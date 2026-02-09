@@ -18,10 +18,9 @@ jobs:
       - name: Create Data JS
         run: |
           echo "const calendarData = [" > data.js
-          # 1. すべてのデータを1列に並べ直す
-          # 2. { "date": ... } のパターンだけを抽出する
-          # 3. CSV特有の "" を " に置換し、余計な date 見出しを消す
-          grep -o "{[^}]*}" data.csv | sed 's/""/"/g' | grep -v '"date":"date"' >> data.js
+          # "JSON_START" という文字が含まれる行だけを抽出し、
+          # 余計な "" を " に直し、JSON_START / JSON_END という目印を消します
+          grep "JSON_START" data.csv | sed 's/""/"/g' | sed 's/JSON_START//g; s/JSON_END//g' | grep -v '"date":"date"' >> data.js
           echo "];" >> data.js
 
       - name: Commit and Push
@@ -29,5 +28,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data.js
-          git commit -m "データ分割ロジックの強化" || exit 0
+          git commit -m "Googleのゴミを除去し本番データのみを抽出" || exit 0
           git push
