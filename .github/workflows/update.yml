@@ -12,15 +12,16 @@ jobs:
       
       - name: Download Data
         run: |
-          # 公開用スプシCSV URL
+          # スプシCSV URLをダウンロード
           curl -L "https://docs.google.com/spreadsheets/d/e/2PACX-1vTVkLP2zVJ0c2sXVYrMxdjGE036A-JtpQKJEasY7LnGCYMPpVmUugnGz5xIaT8Nq3lGVy2lXHAUEEP2/pub?gid=0&single=true&output=csv" -o data.csv
 
       - name: Create Data JS
         run: |
           echo "const calendarData = [" > data.js
-          # スプシから届くデータの中から、正しいJSON形式の { ... } だけを抽出
-          # 二重の引用符（""）を単一（"）に直し、JSON_STARTなどのゴミも削除します
-          grep -o "{.*}" data.csv | sed 's/""/"/g' | grep -v "date" >> data.js
+          # 1. すべてのデータを1列に並べ直す
+          # 2. { "date": ... } のパターンだけを抽出する
+          # 3. CSV特有の "" を " に置換し、余計な date 見出しを消す
+          grep -o "{[^}]*}" data.csv | sed 's/""/"/g' | grep -v '"date":"date"' >> data.js
           echo "];" >> data.js
 
       - name: Commit and Push
@@ -28,5 +29,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data.js
-          git commit -m "データ抽出ロジックの最終調整" || exit 0
+          git commit -m "データ分割ロジックの強化" || exit 0
           git push
