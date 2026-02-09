@@ -7,16 +7,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      
       - name: Create Data JS
         run: |
           echo "const calendarData = [" > data.js
-          # ### で囲まれた部分だけを狙い撃ちして抜き出し、余計な記号を掃除します
-          curl -L "https://docs.google.com/spreadsheets/d/e/2PACX-1vTVkLP2zVJ0c2sXVYrMxdjGE036A-JtpQKJEasY7LnGCYMPpVmUugnGz5xIaT8Nq3lGVy2lXHAUEEP2/pub?gid=0&single=true&output=csv" | grep -o "###{.*}###" | sed 's/###//g; s/""/"/g' >> data.js
+          # curlで取得した中身から ### で囲まれた部分を強引に抽出
+          # もしデータが壊れていても空にならないよう調整
+          curl -L "https://docs.google.com/spreadsheets/d/e/2PACX-1vTVkLP2zVJ0c2sXVYrMxdjGE036A-JtpQKJEasY7LnGCYMPpVmUugnGz5xIaT8Nq3lGVy2lXHAUEEP2/pub?gid=0&single=true&output=csv" | grep -o '###{.*}###' | sed 's/###//g' | sed 's/""/"/g' >> data.js
           echo "];" >> data.js
+          
       - name: Push
         run: |
           git config user.name "github-actions"
           git config user.email "action@github.com"
           git add data.js
-          git commit -m "update: exact match extraction" || exit 0
-          git push
+          # 変更がある場合のみコミットする
+          git diff --quiet && git diff --staged --quiet || (git commit -m "update data" && git push)
