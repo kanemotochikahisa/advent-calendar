@@ -1,32 +1,28 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8"><title>TOKIUM Advent Calendar 2025</title>
+    <meta charset="UTF-8"><title>TOKIUM Calendar</title>
     <script src="./data.js"></script>
     <style>
-        :root { --blue: #004bb1; }
-        body { font-family: sans-serif; background: #f4f7f9; padding: 40px; text-align: center; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 40px auto; }
-        .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-decoration: none; color: #333; border-left: 6px solid var(--blue); display: flex; flex-direction: column; min-height: 120px; transition: 0.3s; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .date { width: 40px; height: 40px; background: var(--blue); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-bottom: 15px; }
-        .title { font-weight: bold; flex-grow: 1; text-align: left; line-height: 1.4; }
-        .author { font-size: 0.8rem; color: #666; text-align: right; margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px; }
+        body { font-family: sans-serif; background: #f0f2f5; padding: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; }
+        .card { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-decoration: none; color: #333; border-top: 5px solid #004bb1; }
     </style>
 </head>
 <body>
-    <h1 style="color:var(--blue)">TOKIUM Advent Calendar 2025</h1>
+    <h1 style="text-align:center; color:#004bb1;">TOKIUM Tech Blog</h1>
     <div id="calendar" class="grid"></div>
     <script>
         const container = document.getElementById('calendar');
         if (typeof calendarData !== 'undefined' && calendarData.length > 0) {
-            calendarData.sort((a,b) => new Date(a.date) - new Date(b.date)).forEach(item => {
+            calendarData.forEach(item => {
+                if(!item.date) return;
                 const card = document.createElement('a');
-                card.className = 'card'; card.href = item.url; card.target = '_blank';
-                card.innerHTML = `<div class="date">${new Date(item.date).getDate()}</div><div class="title">${item.title}</div><div class="author">${item.name}</div>`;
+                card.className = 'card'; card.href = item.url || '#'; card.target = '_blank';
+                card.innerHTML = `<div><b>${item.date}</b></div><p>${item.title}</p><div style="text-align:right; font-size:0.8em;">${item.name}</div>`;
                 container.appendChild(card);
             });
-        } else { container.innerHTML = "<p>データを同期中...（GitHub Actionsを実行してください）</p>"; }
+        } else { container.innerHTML = "データを読み込み中...数分後にリロードしてください。"; }
     </script>
 </body>
 </html>
