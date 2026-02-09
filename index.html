@@ -1,39 +1,32 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TOKIUM Tech Blog Calendar 2025</title>
+    <meta charset="UTF-8"><title>TOKIUM Advent Calendar 2025</title>
     <script src="./data.js"></script>
     <style>
-        :root { --tokium-blue: #004bb1; --bg-color: #f4f7f9; }
-        body { font-family: sans-serif; background-color: var(--bg-color); padding: 40px 20px; margin: 0; }
-        h1 { text-align: center; color: var(--tokium-blue); }
-        .calendar-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
-        .card { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-decoration: none; color: #333; border-left: 6px solid var(--tokium-blue); transition: 0.3s; }
+        :root { --blue: #004bb1; }
+        body { font-family: sans-serif; background: #f4f7f9; padding: 40px; text-align: center; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 40px auto; }
+        .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-decoration: none; color: #333; border-left: 6px solid var(--blue); display: flex; flex-direction: column; min-height: 120px; transition: 0.3s; }
         .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .date { width: 40px; height: 40px; background: var(--tokium-blue); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-bottom: 15px; }
-        .title { font-weight: bold; margin-bottom: 10px; line-height: 1.4; height: 3em; overflow: hidden; }
-        .author { font-size: 0.8rem; color: #666; text-align: right; border-top: 1px solid #eee; padding-top: 10px; }
+        .date { width: 40px; height: 40px; background: var(--blue); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-bottom: 15px; }
+        .title { font-weight: bold; flex-grow: 1; text-align: left; line-height: 1.4; }
+        .author { font-size: 0.8rem; color: #666; text-align: right; margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px; }
     </style>
 </head>
 <body>
-    <h1>TOKIUM Tech Blog Calendar 2025</h1>
-    <div id="calendar" class="calendar-grid"></div>
+    <h1 style="color:var(--blue)">TOKIUM Advent Calendar 2025</h1>
+    <div id="calendar" class="grid"></div>
     <script>
         const container = document.getElementById('calendar');
-        if (typeof calendarData === 'undefined' || calendarData.length === 0) {
-            container.innerHTML = "<p style='grid-column:1/-1;text-align:center;'>データ取得中、または記事がありません。Actionsを実行してください。</p>";
-        } else {
-            calendarData.sort((a, b) => new Date(a.date) - new Date(b.date)).forEach(item => {
+        if (typeof calendarData !== 'undefined' && calendarData.length > 0) {
+            calendarData.sort((a,b) => new Date(a.date) - new Date(b.date)).forEach(item => {
                 const card = document.createElement('a');
-                card.className = 'card';
-                card.href = item.url || '#';
-                card.target = '_blank';
+                card.className = 'card'; card.href = item.url; card.target = '_blank';
                 card.innerHTML = `<div class="date">${new Date(item.date).getDate()}</div><div class="title">${item.title}</div><div class="author">${item.name}</div>`;
                 container.appendChild(card);
             });
-        }
+        } else { container.innerHTML = "<p>データを同期中...（GitHub Actionsを実行してください）</p>"; }
     </script>
 </body>
 </html>
