@@ -8,7 +8,7 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - uses: uses: actions/checkout@v3
+      - uses: actions/checkout@v3
       
       - name: Download Data
         run: |
@@ -18,8 +18,7 @@ jobs:
       - name: Create Data JS
         run: |
           echo "const calendarData = [" > data.js
-          # A列（1番目の項目）にある { で始まるデータだけを抽出します
-          # 二重引用符の重複（""）を一つ（"）に直して保存します
+          # スプシのA列にある { で始まる正しいデータ行だけを抽出します
           grep "^{" data.csv | sed 's/""/"/g' >> data.js
           echo "];" >> data.js
 
@@ -28,5 +27,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data.js
-          git commit -m "スプシの新しい形式に対応" || exit 0
+          git commit -m "修正：タイポの修正とデータ同期" || exit 0
           git push
