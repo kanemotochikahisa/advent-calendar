@@ -4,25 +4,25 @@
     <meta charset="UTF-8"><title>TOKIUM Calendar</title>
     <script src="./data.js"></script>
     <style>
-        body { font-family: sans-serif; background: #f0f2f5; padding: 20px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; }
-        .card { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); text-decoration: none; color: #333; border-top: 5px solid #004bb1; }
+        body { font-family: sans-serif; background: #f0f2f5; padding: 20px; text-align: center; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 15px; max-width: 1200px; margin: 0 auto; }
+        .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-decoration: none; color: #333; border-top: 6px solid #004bb1; display: block; transition: 0.3s; }
+        .card:hover { transform: translateY(-3px); }
     </style>
 </head>
 <body>
-    <h1 style="text-align:center; color:#004bb1;">TOKIUM Tech Blog</h1>
+    <h1 style="color:#004bb1;">TOKIUM Tech Blog Calendar</h1>
     <div id="calendar" class="grid"></div>
     <script>
         const container = document.getElementById('calendar');
         if (typeof calendarData !== 'undefined' && calendarData.length > 0) {
-            calendarData.forEach(item => {
-                if(!item.date) return;
+            calendarData.sort((a,b) => new Date(a.date) - new Date(b.date)).forEach(item => {
                 const card = document.createElement('a');
                 card.className = 'card'; card.href = item.url || '#'; card.target = '_blank';
-                card.innerHTML = `<div><b>${item.date}</b></div><p>${item.title}</p><div style="text-align:right; font-size:0.8em;">${item.name}</div>`;
+                card.innerHTML = `<h3>${new Date(item.date).getDate()}日</h3><p><b>${item.title}</b></p><p style="text-align:right">${item.name}</p>`;
                 container.appendChild(card);
             });
-        } else { container.innerHTML = "データを読み込み中...数分後にリロードしてください。"; }
+        } else { container.innerHTML = "<p>データ同期中... 1分後に再読み込みしてください。</p>"; }
     </script>
 </body>
 </html>
