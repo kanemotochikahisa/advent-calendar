@@ -1,5 +1,5 @@
 const calendarData = [
-/*# sourceMappingURL=style.css.map */</style><script nonce="ng981m-OMdgIdBniQc7I4A">'use strict';function h(a){var b=0;return function(){return b<a.length?{done:!1,value:a[b++]}:{done:!0}}}function k(a){var b=typeof Symbol!="undefined"&&Symbol.iterator&&a[Symbol.iterator];if(b)return b.call(a);if(typeof a.length=="number")return{next:h(a)};throw Error(String(a)+" is not an iterable or ArrayLike");};var l=["storage_access_granted","not_in_iframe","login_counter"];function m(a,b,c){c=c===void 0?"true":c;a=new URL(a);for(var d=0;d<l.length;d++)a.searchParams.delete(l[d]);a.searchParams.set(b,c);return a.toString()};/*
+/*# sourceMappingURL=style.css.map */</style><script nonce="gPFtsOxYAUYdi6Jk9couXw">'use strict';function h(a){var b=0;return function(){return b<a.length?{done:!1,value:a[b++]}:{done:!0}}}function k(a){var b=typeof Symbol!="undefined"&&Symbol.iterator&&a[Symbol.iterator];if(b)return b.call(a);if(typeof a.length=="number")return{next:h(a)};throw Error(String(a)+" is not an iterable or ArrayLike");};var l=["storage_access_granted","not_in_iframe","login_counter"];function m(a,b,c){c=c===void 0?"true":c;a=new URL(a);for(var d=0;d<l.length;d++)a.searchParams.delete(l[d]);a.searchParams.set(b,c);return a.toString()};/*
 
  Copyright The Closure Library Authors.
  SPDX-License-Identifier: Apache-2.0
