@@ -1,7 +1,5 @@
 name: Auto Update Calendar
 on:
-  schedule:
-    - cron: '0 * * * *'
   workflow_dispatch:
 
 jobs:
@@ -9,23 +7,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      
-      - name: Download Data
-        run: |
-          # スプシCSVをダウンロード
-          curl -L "https://docs.google.com/spreadsheets/d/e/2PACX-1vTVkLP2zVJ0c2sXVYrMxdjGE036A-JtpQKJEasY7LnGCYMPpVmUugnGz5xIaT8Nq3lGVy2lXHAUEEP2/pub?gid=0&single=true&output=csv" -o data.csv
-
       - name: Create Data JS
         run: |
           echo "const calendarData = [" > data.js
-          # START_JSON{...}END_JSON の行だけを抽出し、余計な文字を掃除します
-          grep -o "START_JSON{.*}END_JSON" data.csv | sed 's/START_JSON//g; s/END_JSON//g; s/""/"/g' >> data.js
+          # スプシをダウンロードして、ゴミを無視してそのまま貼り付ける
+          curl -L "https://docs.google.com/spreadsheets/d/e/2PACX-1vTVkLP2zVJ0c2sXVYrMxdjGE036A-JtpQKJEasY7LnGCYMPpVmUugnGz5xIaT8Nq3lGVy2lXHAUEEP2/pub?gid=0&single=true&output=csv" | grep "{" | sed 's/""/"/g' >> data.js
           echo "];" >> data.js
-
-      - name: Commit and Push
+      - name: Push
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions"
+          git config user.email "action@github.com"
           git add data.js
-          git commit -m "最新の抽出形式（START_JSON）に対応" || exit 0
+          git commit -m "update" || exit 0
           git push
