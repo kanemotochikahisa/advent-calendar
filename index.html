@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOKIUM Advent Calendar 2025</title>
+    <style>
+        :root { --main-color: #004bb1; --bg-color: #f4f7f9; }
+        body { font-family: 'Helvetica Neue', Arial, sans-serif; background-color: var(--bg-color); margin: 0; padding: 40px 20px; color: #333; }
+        h1 { text-align: center; color: var(--main-color); margin-bottom: 40px; }
+        .calendar-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+            gap: 20px; max-width: 1200px; margin: 0 auto; 
+        }
+        .card { 
+            background: white; border-radius: 12px; padding: 20px; 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: transform 0.2s;
+            display: flex; flex-direction: column; min-height: 150px;
+            text-decoration: none; color: inherit;
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 15px rgba(0,0,0,0.1); }
+        .date-circle { 
+            width: 40px; height: 40px; background: var(--main-color); color: white; 
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+            font-weight: bold; margin-bottom: 15px; 
+        }
+        .title { font-size: 0.95rem; font-weight: bold; line-height: 1.4; margin-bottom: 10px; flex-grow: 1; }
+        .author { font-size: 0.85rem; color: #666; text-align: right; }
+        .loading { text-align: center; font-size: 1.2rem; color: #999; }
+    </style>
+</head>
+<body>
+
+<h1>TOKIUM Advent Calendar 2025</h1>
+<div id="calendar" class="calendar-grid">
+    <div class="loading">データを読み込み中...</div>
+</div>
+
+<script>
+    const GAS_URL = "https://script.google.com/a/macros/tokium.jp/s/AKfycbxyEfIfooekPVROQl4-IdaVnYa8aeA_MUq8Z5SHIxNv3O0LHpm_uU0wifpjlDP3g50Lmg/exec";
+
+    async function fetchCalendar() {
+        try {
+            const response = await fetch(GAS_URL);
+            const data = await response.json();
+            
+            // 日付順にソート
+            data.sort((a, b) => new Date(a.date) - new Date(b.date));
+
+            const container = document.getElementById('calendar');
+            container.innerHTML = '';
+
+            data.forEach(item => {
+                const dateObj = new Date(item.date);
+                const day = dateObj.getDate();
+                
+                const card = document.createElement('a');
+                card.className = 'card';
+                card.href = item.url;
+                card.target = '_blank';
+                card.innerHTML = `
+                    <div class="date-circle">${day}</div>
+                    <div class="title">${item.title}</div>
+                    <div class="author">${item.name}</div>
+                `;
+                container.appendChild(card);
+            });
+        } catch (error) {
+            document.getElementById('calendar').innerHTML = '<div class="loading">データの取得に失敗しました。GASの公開設定を確認してください。</div>';
+        }
+    }
+
+    fetchCalendar();
+</script>
+
+</body>
+</html>
