@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8"><title>TOKIUM Calendar</title>
+    <meta charset="UTF-8"><title>TOKIUM Tech Blog</title>
     <script src="./data.js"></script>
     <style>
-        body { font-family: sans-serif; background: #f0f2f5; padding: 20px; text-align: center; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 15px; max-width: 1200px; margin: 0 auto; }
-        .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); text-decoration: none; color: #333; border-top: 6px solid #004bb1; display: block; transition: 0.3s; }
-        .card:hover { transform: translateY(-3px); }
+        body { font-family: sans-serif; background: #f4f7f9; padding: 20px; text-align: center; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 40px auto; }
+        .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-decoration: none; color: #333; border-left: 6px solid #004bb1; display: block; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
-    <h1 style="color:#004bb1;">TOKIUM Tech Blog Calendar</h1>
+    <h1 style="color:#004bb1">TOKIUM Tech Blog Calendar</h1>
     <div id="calendar" class="grid"></div>
     <script>
         const container = document.getElementById('calendar');
         if (typeof calendarData !== 'undefined' && calendarData.length > 0) {
             calendarData.sort((a,b) => new Date(a.date) - new Date(b.date)).forEach(item => {
-                const card = document.createElement('a');
-                card.className = 'card'; card.href = item.url || '#'; card.target = '_blank';
-                card.innerHTML = `<h3>${new Date(item.date).getDate()}日</h3><p><b>${item.title}</b></p><p style="text-align:right">${item.name}</p>`;
+                const day = new Date(item.date).getDate();
+                card = document.createElement('a'); card.className = 'card'; card.href = item.url; card.target = '_blank';
+                card.innerHTML = `<h3>${day}日</h3><p><b>${item.title}</b></p><p style="text-align:right; color:#666;">${item.name}</p>`;
                 container.appendChild(card);
             });
-        } else { container.innerHTML = "<p>データ同期中... 1分後に再読み込みしてください。</p>"; }
+        } else { container.innerHTML = "<h2>データ同期中... 1分後にリロードしてください。</h2>"; }
     </script>
 </body>
 </html>
