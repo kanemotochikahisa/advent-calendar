@@ -18,16 +18,12 @@
     </main>
 
     <script>
-        const GAS_URL = 'https://script.google.com/a/macros/tokium.jp/s/AKfycbxA3dZch-F0jJT0CP45UAGAkf4bHiPmChxYqHl7u18eTyiIB-v1t2dYDe0_Vr9-mnocwA/exec';
-
         async function fetchCalendar() {
             try {
-                // キャッシュを回避するためにURLにタイムスタンプを付与
-                const response = await fetch(`${GAS_URL}?t=${new Date().getTime()}`);
+                // 同じリポジトリ内の data.json を読み込みます
+                const response = await fetch('./data.json');
                 const data = await response.json();
                 
-                console.log("取得データ:", data); // ブラウザのF12キーで見れるログ
-
                 const container = document.getElementById('calendar');
                 document.getElementById('loading').style.display = 'none';
 
@@ -36,15 +32,14 @@
                     return;
                 }
 
-                // 日付順（古い順）にソート
+                // 日付順にソート（以前の目標「日付順に並べる」を反映）
                 data.sort((a, b) => {
-                    const dateA = a.date ? new Date(a.date) : new Date(8640000000000000);
-                    const dateB = b.date ? new Date(b.date) : new Date(8640000000000000);
-                    return dateA - dateB;
+                    if (!a.date) return 1;
+                    if (!b.date) return -1;
+                    return new Date(a.date) - new Date(b.date);
                 });
 
                 data.forEach(item => {
-                    // 日付の整形 (GMT形式から M/D 形式へ)
                     let displayDate = "日付未定";
                     if (item.date) {
                         const d = new Date(item.date);
@@ -67,7 +62,7 @@
                 });
             } catch (error) {
                 console.error("エラー詳細:", error);
-                document.getElementById('loading').innerHTML = '❌ データの取得に失敗しました。<br>TOKIUMアカウントでGoogleログイン後に再読み込みしてください。';
+                document.getElementById('loading').innerHTML = '❌ データの読み込みに失敗しました。data.jsonファイルを確認してください。';
             }
         }
 
