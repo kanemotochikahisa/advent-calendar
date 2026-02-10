@@ -13,12 +13,11 @@
     </header>
 
     <main>
-        <div id="loading" class="message">データを読み込み中...<br><small>※表示されない場合はTOKIUMアカウントでGoogleログインしてください</small></div>
+        <div id="loading" class="message">データを読み込み中...</div>
         <div class="calendar-grid" id="calendar"></div>
     </main>
 
     <script>
-        // ご提示いただいたURLを反映しました
         const GAS_URL = 'https://script.google.com/a/macros/tokium.jp/s/AKfycbxA3dZch-F0jJT0CP45UAGAkf4bHiPmChxYqHl7u18eTyiIB-v1t2dYDe0_Vr9-mnocwA/exec';
 
         async function fetchCalendar() {
@@ -26,34 +25,29 @@
                 const response = await fetch(GAS_URL);
                 const data = await response.json();
                 
-                if (!data || data.length === 0) {
-                    document.getElementById('loading').innerHTML = 'データが空か、読み込み権限がありません。';
-                    return;
-                }
-
-                // 日付を「M/D」形式に変換し、ソートを容易にする処理
-                const formattedData = data.map(item => {
-                    const dateObj = new Date(item.date);
-                    return {
-                        ...item,
-                        timestamp: dateObj.getTime(),
-                        displayDate: isNaN(dateObj) ? "日付未定" : `${dateObj.getMonth() + 1}/${dateObj.getDate()}`
-                    };
-                });
-
-                // 日付順（古い順）に並び替え
-                formattedData.sort((a, b) => a.timestamp - b.timestamp);
-
                 const container = document.getElementById('calendar');
                 document.getElementById('loading').style.display = 'none';
 
-                formattedData.forEach(item => {
+                if (!data || data.length === 0) {
+                    document.getElementById('loading').innerHTML = '表示できるデータがありません。';
+                    return;
+                }
+
+                // 元データの項目名に合わせて表示
+                data.forEach(item => {
+                    // 日付の整形（2026-02-16T... 形式を M/D に）
+                    let displayDate = "未定";
+                    if (item.date) {
+                        const d = new Date(item.date);
+                        displayDate = `${d.getMonth() + 1}/${d.getDate()}`;
+                    }
+
                     const card = document.createElement('div');
                     card.className = 'card';
                     card.innerHTML = `
-                        <div class="card-date">${item.displayDate}</div>
-                        <div class="card-author">👤 ${item.name || 'Anonymous'}</div>
-                        <h2 class="card-title">${item.title || '（タイトル未設定）'}</h2>
+                        <div class="card-date">${displayDate}</div>
+                        <div class="card-author">👤 ${item.name || '未登録'}</div>
+                        <h2 class="card-title">${item.title || 'タイトル未設定'}</h2>
                         ${item.url ? 
                             `<a href="${item.url}" target="_blank" class="card-link">記事を読む</a>` : 
                             '<span class="pending">執筆中...</span>'}
@@ -62,7 +56,7 @@
                 });
             } catch (error) {
                 console.error(error);
-                document.getElementById('loading').innerHTML = '❌ データの読み込みに失敗しました。<br>TOKIUMアカウントでのログインを確認してください。';
+                document.getElementById('loading').innerHTML = '❌ データの取得に失敗しました。<br>TOKIUMアカウントでGoogleにログインしているか確認してください。';
             }
         }
 
