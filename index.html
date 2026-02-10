@@ -8,20 +8,17 @@
 </head>
 <body>
     <header>
-        <h1>📅 Advent Calendar 2026</h1>
-        <p>TOKIUMメンバーによる技術・カルチャー発信</p>
+        <h1>📅 TOKIUM Advent Calendar 2026</h1>
+        <p>タイトルと製作者を記録するアドベントカレンダー</p>
     </header>
 
     <main>
-        <div id="loading" class="message">
-            <p>データを読み込み中...</p>
-            <small>※表示されない場合はTOKIUMアカウントでGoogleログインしてください</small>
-        </div>
+        <div id="loading" class="message">データを読み込み中...<br><small>※表示されない場合はTOKIUMアカウントでGoogleログインしてください</small></div>
         <div class="calendar-grid" id="calendar"></div>
     </main>
 
     <script>
-        // 先ほど発行されたGASのURL
+        // ご提示いただいたURLを反映しました
         const GAS_URL = 'https://script.google.com/a/macros/tokium.jp/s/AKfycbxA3dZch-F0jJT0CP45UAGAkf4bHiPmChxYqHl7u18eTyiIB-v1t2dYDe0_Vr9-mnocwA/exec';
 
         async function fetchCalendar() {
@@ -29,31 +26,43 @@
                 const response = await fetch(GAS_URL);
                 const data = await response.json();
                 
-                // 日付順に並び替え
-                data.sort((a, b) => new Date(a.date) - new Date(b.date));
+                if (!data || data.length === 0) {
+                    document.getElementById('loading').innerHTML = 'データが空か、読み込み権限がありません。';
+                    return;
+                }
+
+                // 日付を「M/D」形式に変換し、ソートを容易にする処理
+                const formattedData = data.map(item => {
+                    const dateObj = new Date(item.date);
+                    return {
+                        ...item,
+                        timestamp: dateObj.getTime(),
+                        displayDate: isNaN(dateObj) ? "日付未定" : `${dateObj.getMonth() + 1}/${dateObj.getDate()}`
+                    };
+                });
+
+                // 日付順（古い順）に並び替え
+                formattedData.sort((a, b) => a.timestamp - b.timestamp);
 
                 const container = document.getElementById('calendar');
                 document.getElementById('loading').style.display = 'none';
 
-                data.forEach(item => {
+                formattedData.forEach(item => {
                     const card = document.createElement('div');
                     card.className = 'card';
-                    
-                    // 以前決めた「タイトルと製作者を覚える」ための表示
                     card.innerHTML = `
-                        <div class="card-date">${item.date}</div>
+                        <div class="card-date">${item.displayDate}</div>
                         <div class="card-author">👤 ${item.name || 'Anonymous'}</div>
-                        <h2 class="card-title">${item.title || 'Coming Soon...'}</h2>
-                        ${item.url ? `<a href="${item.url}" target="_blank" class="card-link">記事を読む</a>` : '<span class="pending">準備中</span>'}
+                        <h2 class="card-title">${item.title || '（タイトル未設定）'}</h2>
+                        ${item.url ? 
+                            `<a href="${item.url}" target="_blank" class="card-link">記事を読む</a>` : 
+                            '<span class="pending">執筆中...</span>'}
                     `;
                     container.appendChild(card);
                 });
             } catch (error) {
                 console.error(error);
-                document.getElementById('loading').innerHTML = `
-                    <p class="error">❌ データの取得に失敗しました</p>
-                    <p><a href="${GAS_URL}" target="_blank">こちら</a>を別タブで開き、Googleログイン後に再読み込みしてください。</p>
-                `;
+                document.getElementById('loading').innerHTML = '❌ データの読み込みに失敗しました。<br>TOKIUMアカウントでのログインを確認してください。';
             }
         }
 
