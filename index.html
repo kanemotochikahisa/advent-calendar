@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8"><title>TOKIUM Advent Calendar 2025</title>
     <style>
-        body { font-family: sans-serif; background: #f4f7f9; padding: 40px; text-align: center; }
+        body { font-family: sans-serif; background: #f4f7f9; padding: 40px; text-align: center; color: #333; }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 40px auto; }
-        .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-decoration: none; color: #333; border-left: 6px solid #004bb1; display: flex; flex-direction: column; min-height: 120px; transition: 0.3s; }
+        .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-decoration: none; color: #333; border-left: 6px solid #004bb1; display: flex; flex-direction: column; min-height: 120px; transition: 0.3s; text-align: left; }
         .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .date { width: 40px; height: 40px; background: #004bb1; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-bottom: 15px; }
+        .date-circle { width: 35px; height: 35px; background: #004bb1; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-bottom: 15px; font-size: 0.9em; }
+        .title { font-weight: bold; font-size: 1.1em; line-height: 1.4; flex-grow: 1; }
+        .author { font-size: 0.8em; color: #666; margin-top: 15px; border-top: 1px solid #eee; padding-top: 10px; text-align: right; }
     </style>
 </head>
 <body>
@@ -15,37 +17,36 @@
     <div id="calendar" class="grid">読み込み中...</div>
 
     <script>
-        // 【修正ポイント】CORS制限を受けにくいURL形式に変更
-        const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTVkLP2zVJ0c2sXVYrMxdjGE036A-JtpQKJEasY7LnGCYMPpVmUugnGz5xIaT8Nq3lGVy2lXHAUEEP2/pubhtml?gid=0&single=true';
+        const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTVkLP2zVJ0c2sXVYrMxdjGE036A-JtpQKJEasY7LnGCYMPpVmUugnGz5xIaT8Nq3lGVy2lXHAUEEP2/pubhtml?gid=0&single=true';
 
-        async function loadCalendar() {
+        async function init() {
             try {
-                const response = await fetch(url);
-                const html = await response.text();
+                const res = await fetch(sheetUrl);
+                const html = await res.text();
                 const container = document.getElementById('calendar');
                 
-                // HTMLの中に埋もれた JSONデータ { ... } を力技で探し出します
-                const rows = html.match(/{.*?}/g);
-                if (!rows) throw new Error("No data found");
+                // HTMLの中から { ... } のJSON部分だけを強引に抽出
+                const matches = html.match(/{.*?}/g);
+                if (!matches) throw new Error("No data");
 
                 container.innerHTML = '';
-                rows.forEach(row => {
+                matches.forEach(str => {
                     try {
-                        // 特殊な記号を掃除してJSONとして解析
-                        const item = JSON.parse(row.replace(/&quot;/g, '"'));
-                        if (!item.date) return;
+                        const data = JSON.parse(str.replace(/&quot;/g, '"'));
+                        if (!data.date) return;
                         
+                        const day = new Date(data.date).getDate();
                         const card = document.createElement('a');
-                        card.className = 'card'; card.href = item.url || '#'; card.target = '_blank';
-                        card.innerHTML = `<div class="date">${new Date(item.date).getDate()}</div><div style="font-weight:bold;text-align:left;">${item.title}</div><div style="text-align:right;margin-top:10px;font-size:0.8em;color:#666;">${item.name}</div>`;
+                        card.className = 'card'; card.href = data.url || '#'; card.target = '_blank';
+                        card.innerHTML = `<div class="date-circle">${day}</div><div class="title">${data.title}</div><div class="author">${data.name}</div>`;
                         container.appendChild(card);
-                    } catch(e) { /* 解析エラーは無視 */ }
+                    } catch(e) {}
                 });
             } catch (e) {
-                document.getElementById('calendar').innerHTML = "<h2>データ同期中...</h2><p>スプレッドシートを更新して5分ほどお待ちください。</p>";
+                document.getElementById('calendar').innerHTML = "<h2>データ同期中...</h2><p>5分ほど待ってから再読み込みしてください。</p>";
             }
         }
-        loadCalendar();
+        init();
     </script>
 </body>
 </html>
