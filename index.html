@@ -29,25 +29,33 @@
                 document.getElementById('loading').style.display = 'none';
 
                 if (!data || data.length === 0) {
-                    document.getElementById('loading').innerHTML = '表示できるデータがありません。';
+                    document.getElementById('loading').innerHTML = '表示できる記事がまだありません。';
                     return;
                 }
 
-                // 元データの項目名に合わせて表示
+                // 日付順（古い順）にソート
+                data.sort((a, b) => {
+                    if (!a.date) return 1;
+                    if (!b.date) return -1;
+                    return new Date(a.date) - new Date(b.date);
+                });
+
                 data.forEach(item => {
-                    // 日付の整形（2026-02-16T... 形式を M/D に）
-                    let displayDate = "未定";
+                    // 日付の整形 (GMT形式から M/D 形式へ)
+                    let displayDate = "日付未定";
                     if (item.date) {
                         const d = new Date(item.date);
-                        displayDate = `${d.getMonth() + 1}/${d.getDate()}`;
+                        if (!isNaN(d)) {
+                            displayDate = `${d.getMonth() + 1}/${d.getDate()}`;
+                        }
                     }
 
                     const card = document.createElement('div');
                     card.className = 'card';
                     card.innerHTML = `
                         <div class="card-date">${displayDate}</div>
-                        <div class="card-author">👤 ${item.name || '未登録'}</div>
-                        <h2 class="card-title">${item.title || 'タイトル未設定'}</h2>
+                        <div class="card-author">👤 ${item.name || 'Anonymous'}</div>
+                        <h2 class="card-title">${item.title || '（タイトル未設定）'}</h2>
                         ${item.url ? 
                             `<a href="${item.url}" target="_blank" class="card-link">記事を読む</a>` : 
                             '<span class="pending">執筆中...</span>'}
@@ -56,7 +64,7 @@
                 });
             } catch (error) {
                 console.error(error);
-                document.getElementById('loading').innerHTML = '❌ データの取得に失敗しました。<br>TOKIUMアカウントでGoogleにログインしているか確認してください。';
+                document.getElementById('loading').innerHTML = '❌ データの取得に失敗しました。<br>TOKIUMアカウントでGoogleログインが必要です。';
             }
         }
 
