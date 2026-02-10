@@ -1,28 +1,47 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8"><title>TOKIUM Tech Blog</title>
-    <script src="./data.js"></script>
+    <meta charset="UTF-8"><title>TOKIUM Advent Calendar 2025</title>
     <style>
-        body { font-family: sans-serif; background: #f4f7f9; padding: 20px; text-align: center; }
+        body { font-family: sans-serif; background: #f4f7f9; padding: 40px; text-align: center; }
         .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 40px auto; }
-        .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-decoration: none; color: #333; border-left: 6px solid #004bb1; display: block; transition: 0.3s; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-decoration: none; color: #333; border-left: 6px solid #004bb1; display: flex; flex-direction: column; min-height: 120px; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); }
+        .date { width: 40px; height: 40px; background: #004bb1; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-bottom: 15px; }
     </style>
 </head>
 <body>
-    <h1 style="color:#004bb1">TOKIUM Tech Blog Calendar</h1>
-    <div id="calendar" class="grid"></div>
+    <h1 style="color:#004bb1">TOKIUM Tech Blog Calendar 2025</h1>
+    <div id="calendar" class="grid">読み込み中...</div>
+
     <script>
-        const container = document.getElementById('calendar');
-        if (typeof calendarData !== 'undefined' && calendarData.length > 0) {
-            calendarData.sort((a,b) => new Date(a.date) - new Date(b.date)).forEach(item => {
-                const day = new Date(item.date).getDate();
-                card = document.createElement('a'); card.className = 'card'; card.href = item.url; card.target = '_blank';
-                card.innerHTML = `<h3>${day}日</h3><p><b>${item.title}</b></p><p style="text-align:right; color:#666;">${item.name}</p>`;
-                container.appendChild(card);
-            });
-        } else { container.innerHTML = "<h2>データ同期中... 1分後にリロードしてください。</h2>"; }
+        // 公開用スプレッドシートのCSV URL（坂上さんのもの）
+        const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTVkLP2zVJ0c2sXVYrMxdjGE036A-JtpQKJEasY7LnGCYMPpVmUugnGz5xIaT8Nq3lGVy2lXHAUEEP2/pub?gid=0&single=true&output=csv';
+
+        async function loadCalendar() {
+            try {
+                const response = await fetch(csvUrl);
+                const csvData = await response.text();
+                const container = document.getElementById('calendar');
+                
+                // CSVから { ... } の部分だけを抽出してJSONとして解析
+                const rows = csvData.match(/{.*}/g);
+                if (!rows) throw new Error("No data");
+
+                const calendarData = rows.map(row => JSON.parse(row.replace(/""/g, '"')));
+                
+                container.innerHTML = '';
+                calendarData.sort((a,b) => new Date(a.date) - new Date(b.date)).forEach(item => {
+                    const card = document.createElement('a');
+                    card.className = 'card'; card.href = item.url; card.target = '_blank';
+                    card.innerHTML = `<div class="date">${new Date(item.date).getDate()}</div><div style="font-weight:bold;text-align:left;">${item.title}</div><div style="text-align:right;margin-top:10px;font-size:0.8em;color:#666;">${item.name}</div>`;
+                    container.appendChild(card);
+                });
+            } catch (e) {
+                document.getElementById('calendar').innerText = "データの取得に失敗しました。スプレッドシートの公開設定を確認してください。";
+            }
+        }
+        loadCalendar();
     </script>
 </body>
 </html>
