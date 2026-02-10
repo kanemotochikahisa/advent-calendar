@@ -22,9 +22,12 @@
 
         async function fetchCalendar() {
             try {
-                const response = await fetch(GAS_URL);
+                // キャッシュを回避するためにURLにタイムスタンプを付与
+                const response = await fetch(`${GAS_URL}?t=${new Date().getTime()}`);
                 const data = await response.json();
                 
+                console.log("取得データ:", data); // ブラウザのF12キーで見れるログ
+
                 const container = document.getElementById('calendar');
                 document.getElementById('loading').style.display = 'none';
 
@@ -35,9 +38,9 @@
 
                 // 日付順（古い順）にソート
                 data.sort((a, b) => {
-                    if (!a.date) return 1;
-                    if (!b.date) return -1;
-                    return new Date(a.date) - new Date(b.date);
+                    const dateA = a.date ? new Date(a.date) : new Date(8640000000000000);
+                    const dateB = b.date ? new Date(b.date) : new Date(8640000000000000);
+                    return dateA - dateB;
                 });
 
                 data.forEach(item => {
@@ -45,7 +48,7 @@
                     let displayDate = "日付未定";
                     if (item.date) {
                         const d = new Date(item.date);
-                        if (!isNaN(d)) {
+                        if (!isNaN(d.getTime())) {
                             displayDate = `${d.getMonth() + 1}/${d.getDate()}`;
                         }
                     }
@@ -63,8 +66,8 @@
                     container.appendChild(card);
                 });
             } catch (error) {
-                console.error(error);
-                document.getElementById('loading').innerHTML = '❌ データの取得に失敗しました。<br>TOKIUMアカウントでGoogleログインが必要です。';
+                console.error("エラー詳細:", error);
+                document.getElementById('loading').innerHTML = '❌ データの取得に失敗しました。<br>TOKIUMアカウントでGoogleログイン後に再読み込みしてください。';
             }
         }
 
