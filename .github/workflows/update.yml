@@ -8,17 +8,25 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install google-auth google-api-python-client requests
+
       - name: Fetch Google Sheets Data
+        env:
+          GCP_KEY: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
         run: |
-          # サービスアカウントのキーを使ってGoogleからアクセストークンを取得し、直接スプシをダウンロードします
-          # 1. Pythonを使って認証とダウンロードを実行
           python3 -c "
-          import json, requests, time
+          import json, os
           from google.oauth2 import service_account
           from googleapiclient.discovery import build
 
-          # GitHub Secretsからキーを読み込み
-          info = json.loads('''${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}''')
+          # 環境変数から安全にキーを読み込み
+          info = json.loads(os.environ.get('GCP_KEY'))
           creds = service_account.Credentials.from_service_account_info(info)
           service = build('sheets', 'v4', credentials=creds)
 
@@ -32,7 +40,7 @@ jobs:
           with open('data.js', 'w') as f:
               f.write('const calendarData = [\n')
               for row in result.get('values', []):
-                  if row and row[0].startswith('{'):
+                  if row and isinstance(row[0], str) and row[0].startswith('{'):
                       f.write(row[0] + ',\n')
               f.write('];')
           "
