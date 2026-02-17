@@ -8,7 +8,7 @@ jobs:
   update:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # GitHubへの書き込み権限を許可
+      contents: write
     steps:
       - uses: actions/checkout@v3
 
@@ -66,7 +66,14 @@ jobs:
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # 【重要】data.js を強制的にステージング（追跡対象）に追加
           git add data.js
-          # 変更がある場合のみコミットし、強制的にPushする
-          git commit -m "chore: update data.js from sheets" || echo "No changes to commit"
-          git push origin main
+          
+          # 変更があればコミットし、なければメッセージを出して終了
+          if git commit -m "chore: auto-update calendar data"; then
+            git push origin main
+            echo "Successfully pushed changes!"
+          else
+            echo "No changes to commit"
+          fi
