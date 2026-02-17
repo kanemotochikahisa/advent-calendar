@@ -1,4 +1,4 @@
-const calendarData = [
+window.calendarData = [
 { "date": "2026/02/05", "name": "", "title": "AIエージェントの不気味の谷を超えるには？", "url": "" },
 { "date": "2026/02/05", "name": "村上雅一", "title": "マイクロマネジメントは「支配」、レビューは「信頼」", "url": "https://zenn.dev/tokium_dev/articles/a02834d489ddb7" },
 { "date": "2026/02/03", "name": "未登録", "title": "安藤大翔　何か書く", "url": "" },
