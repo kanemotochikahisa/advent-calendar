@@ -2,7 +2,7 @@ name: Auto Update Calendar
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *' # 毎日日本時間午前9時に自動実行
+    - cron: '0 0 * * *' # 毎日日本時間午前9時に自動更新
 
 jobs:
   update:
@@ -28,40 +28,36 @@ jobs:
           from googleapiclient.discovery import build
 
           try:
-              # 認証情報の読み込み
               info = json.loads(os.environ.get('GCP_KEY'))
               creds = service_account.Credentials.from_service_account_info(info)
               service = build('sheets', 'v4', credentials=creds)
               spreadsheet_id = '1DVbCRhxizfF4FtQ0z093XfsCwXagt5qCsZwtdkramg4'
 
-              # 1. 一番左のシート名を自動取得
               sheet_metadata = service.spreadsheets().get(spreadsheetId=spreadsheet_id).execute()
               target_sheet_name = sheet_metadata['sheets'][0]['properties']['title']
-              print(f'Target Sheet: {target_sheet_name}')
 
-              # 2. M列（JSONデータが入っている列）を取得
               result = service.spreadsheets().values().get(
                   spreadsheetId=spreadsheet_id,
                   range=f'{target_sheet_name}!M:M'
               ).execute()
 
               values = result.get('values', [])
-              print(f'Found {len(values)} rows')
-
-              # 3. data.js を作成（文法エラーが出ないようにコンマを付与）
+              
               with open('data.js', 'w', encoding='utf-8') as f:
+                  # index.htmlが確実に認識できるwindow.変数形式で書き出す
                   f.write('window.calendarData = [\n')
                   for row in values:
                       if row:
                           line = str(row[0])
                           match = re.search(r'\{.*\}', line)
                           if match:
+                              # 行末にカンマを付与
                               f.write(match.group(0) + ',\n')
                   f.write('];')
-              print('Successfully created data.js')
+              print(f'Success: Updated data.js with {len(values)} entries')
 
           except Exception as e:
-              print(f'Error occurred: {e}')
+              print(f'Error: {e}')
               exit(1)
           EOF
           python3 fetch_data.py
