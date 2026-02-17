@@ -25,7 +25,7 @@ jobs:
           GCP_KEY: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
         run: |
           cat << 'EOF' > fetch_data.py
-          import json, os, re
+          import json, os, re, ast
           from google.oauth2 import service_account
           from googleapiclient.discovery import build
 
@@ -34,6 +34,7 @@ jobs:
               creds = service_account.Credentials.from_service_account_info(info)
               service = build('sheets', 'v4', credentials=creds)
               spreadsheet_id = '1DVbCRhxizfF4FtQ0z093XfsCwXagt5qCsZwtdkramg4'
+              
               sheet_metadata = service.spreadsheets().get(spreadsheetId=spreadsheet_id).execute()
               target_sheet_name = sheet_metadata['sheets'][0]['properties']['title']
               result = service.spreadsheets().values().get(spreadsheetId=spreadsheet_id, range=f'{target_sheet_name}!M:M').execute()
@@ -41,15 +42,23 @@ jobs:
               
               data_list = []
               for row in values:
-                  if row:
-                      match = re.search(r'\{.*\}', str(row[0]))
-                      if match:
-                          data_list.append(json.loads(match.group(0)))
+                  if not row: continue
+                  raw_str = str(row[0])
+                  # 文字列の中から { ... } の部分だけを探す
+                  match = re.search(r'\{.*\}', raw_str)
+                  if match:
+                      try:
+                          # 特殊文字が含まれていても安全に辞書形式に変換する
+                          item = ast.literal_eval(match.group(0))
+                          data_list.append(item)
+                      except:
+                          continue
               
-              # JSONファイルとして保存
+              # JSONとして保存
               with open('data.json', 'w', encoding='utf-8') as f:
                   json.dump(data_list, f, ensure_ascii=False, indent=2)
               print(f'Success: Created data.json with {len(data_list)} entries')
+              
           except Exception as e:
               print(f'Error: {e}'); exit(1)
           EOF
