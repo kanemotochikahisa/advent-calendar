@@ -7,37 +7,34 @@
     <script src="./data.js"></script>
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f4f7f9; padding: 20px; color: #333; }
-        h1 { text-align: center; color: #004bb1; margin-bottom: 30px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; max-width: 1200px; margin: 40px auto; }
         .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-decoration: none; color: inherit; border-top: 6px solid #004bb1; display: flex; flex-direction: column; transition: 0.3s; height: 100%; box-sizing: border-box; }
         .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         .date { color: #004bb1; font-weight: bold; font-size: 0.9em; margin-bottom: 10px; }
         .title { font-weight: bold; line-height: 1.5; font-size: 1.1em; flex-grow: 1; }
         .author { font-size: 0.85em; color: #666; margin-top: 15px; text-align: right; border-top: 1px solid #eee; padding-top: 10px; }
-        .no-data { grid-column: 1/-1; padding: 100px; background: white; border-radius: 12px; text-align: center; }
     </style>
 </head>
 <body>
-    <h1>TOKIUM Tech Blog Calendar</h1>
-    <div id="calendar" class="grid">
-        <div class="no-data">データを読み込んでいます...<br>表示されない場合はCtrl+F5で更新してください。</div>
-    </div>
+    <h1 style="text-align:center; color:#004bb1;">TOKIUM Tech Blog Calendar</h1>
+    <div id="calendar" class="grid"></div>
 
     <script>
         const container = document.getElementById('calendar');
-        // window.形式のデータを取得
-        const data = window.calendarData;
+        // window.calendarData があるか確認
+        const rawData = window.calendarData;
 
-        if (data && Array.isArray(data) && data.length > 0) {
+        if (rawData && rawData.length > 0) {
             container.innerHTML = '';
-            // 日付順にソート（新しい順）
-            const sorted = data.filter(d => d.date).sort((a, b) => new Date(b.date) - new Date(a.date));
+            // 日付の新しい順に並び替え
+            const sortedData = rawData.filter(d => d.date).sort((a, b) => new Date(b.date) - new Date(a.date));
 
-            sorted.forEach(item => {
+            sortedData.forEach(item => {
                 const card = document.createElement('a');
                 card.className = 'card';
                 card.href = item.url || '#';
                 if (item.url) card.target = '_blank';
+                
                 card.innerHTML = `
                     <div class="date">${item.date}</div>
                     <div class="title">${item.title}</div>
@@ -46,7 +43,7 @@
                 container.appendChild(card);
             });
         } else {
-            container.innerHTML = "<div class='no-data'><h2>記事が見つかりません</h2><p>GitHub Actionsを実行してdata.jsを生成してください。</p></div>";
+            container.innerHTML = "<div style='grid-column: 1/-1; text-align:center; padding:50px;'><h2>データ読み込み中...</h2><p>表示されない場合は強力リロード(Ctrl+F5)してください。</p></div>";
         }
     </script>
 </body>
