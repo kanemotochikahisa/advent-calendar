@@ -2,31 +2,54 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TOKIUM Tech Blog Calendar</title>
     <script src="./data.js"></script>
     <style>
-        body { font-family: sans-serif; background: #f0f2f5; padding: 20px; text-align: center; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; max-width: 1200px; margin: 40px auto; }
-        .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-decoration: none; color: #333; border-top: 6px solid #004bb1; display: block; transition: 0.3s; text-align: left; }
-        .card:hover { transform: translateY(-5px); }
-        .date { font-weight: bold; color: #004bb1; font-size: 1.2em; margin-bottom: 8px; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f4f7f9; padding: 20px; color: #333; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; max-width: 1200px; margin: 40px auto; }
+        .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-decoration: none; color: inherit; border-left: 6px solid #004bb1; display: flex; flex-direction: column; transition: 0.3s; height: 100%; box-sizing: border-box; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .date { color: #004bb1; font-weight: bold; font-size: 0.9em; margin-bottom: 10px; }
+        .title { font-weight: bold; line-height: 1.5; font-size: 1.1em; flex-grow: 1; }
+        .author { font-size: 0.85em; color: #666; margin-top: 15px; text-align: right; }
+        .no-data { grid-column: 1/-1; padding: 50px; background: white; border-radius: 12px; }
     </style>
 </head>
 <body>
-    <h1 style="color:#004bb1;">TOKIUM Tech Blog Calendar</h1>
-    <div id="calendar" class="grid"></div>
+    <h1 style="text-align:center; color:#004bb1;">TOKIUM Tech Blog Calendar</h1>
+    <div id="calendar" class="grid">
+        <div class="no-data">読み込み中...（表示されない場合は強力リロードしてください）</div>
+    </div>
+
     <script>
         const container = document.getElementById('calendar');
-        if (typeof calendarData !== 'undefined' && calendarData.length > 0) {
-            calendarData.filter(d => d.date).sort((a,b) => new Date(a.date) - new Date(b.date)).forEach(item => {
-                const day = new Date(item.date).getDate();
+
+        // window.calendarData が存在するかチェック
+        if (window.calendarData && window.calendarData.length > 0) {
+            container.innerHTML = '';
+            
+            // 日付の新しい順にソート（降順）
+            const sortedData = window.calendarData.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            sortedData.forEach(item => {
                 const card = document.createElement('a');
-                card.className = 'card'; card.href = item.url || '#'; card.target = '_blank';
-                card.innerHTML = `<div class="date">${day}日</div><div><b>${item.title}</b></div><div style="text-align:right; font-size:0.8em; color:#666; margin-top:10px;">${item.name}</div>`;
+                card.className = 'card';
+                card.href = item.url || '#';
+                if (item.url) card.target = '_blank';
+                
+                // 表示する日付を整形
+                const dateStr = item.date.replace(/\//g, '.');
+
+                card.innerHTML = `
+                    <div class="date">${dateStr}</div>
+                    <div class="title">${item.title}</div>
+                    <div class="author">${item.name || 'Anonymous'}</div>
+                `;
                 container.appendChild(card);
             });
         } else {
-            container.innerHTML = "<h2>データ読み込み中...</h2><p>Actionsを実行してください。</p>";
+            container.innerHTML = "<div class='no-data'>表示するデータがありません。data.js を確認してください。</div>";
         }
     </script>
 </body>
