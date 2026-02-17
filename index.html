@@ -3,44 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TOKIUM Tech Blog Calendar</title>
+    <title>TOKIUM Monthly Blog Calendar</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f4f7f9; padding: 20px; color: #333; }
-        h1 { text-align: center; color: #004bb1; margin-bottom: 30px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
-        .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); text-decoration: none; color: inherit; border-top: 6px solid #004bb1; display: flex; flex-direction: column; transition: 0.3s; height: 100%; box-sizing: border-box; }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .date { color: #004bb1; font-weight: bold; margin-bottom: 10px; }
-        .title { font-weight: bold; line-height: 1.5; flex-grow: 1; }
-        .author { font-size: 0.85em; color: #666; margin-top: 15px; text-align: right; border-top: 1px solid #eee; padding-top: 10px; }
+        :root {
+            --primary-color: #004bb1;
+            --bg-color: #f0f2f5;
+            --card-bg: #ffffff;
+            --empty-bg: #e0e4e8;
+        }
+        body { font-family: "Helvetica Neue", Arial, sans-serif; background: var(--bg-color); margin: 0; padding: 20px; color: #333; }
+        .header { text-align: center; margin-bottom: 40px; }
+        .header h1 { color: var(--primary-color); font-size: 2.5em; margin-bottom: 10px; }
+        .month-label { font-size: 1.5em; font-weight: bold; background: var(--primary-color); color: white; padding: 5px 20px; border-radius: 50px; display: inline-block; }
+        
+        /* カレンダー風グリッド */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 各日付の枠 */
+        .day-slot {
+            aspect-ratio: 1 / 1;
+            background: var(--empty-bg);
+            border-radius: 10px;
+            position: relative;
+            border: 2px dashed #bdc3c7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* 記事がある時のカード */
+        .card {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            box-sizing: border-box;
+            border: 2px solid transparent;
+            transition: transform 0.2s, border-color 0.2s;
+            z-index: 2;
+        }
+        .card:hover { transform: scale(1.03); border-color: var(--primary-color); }
+
+        .day-number { font-size: 1.8em; font-weight: 900; color: rgba(0,0,0,0.1); position: absolute; top: 10px; left: 10px; z-index: 1; }
+        .card .day-number { color: var(--primary-color); opacity: 0.2; }
+        
+        .card-title { font-size: 0.9em; font-weight: bold; line-height: 1.4; flex-grow: 1; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; margin-top: 20px; }
+        .card-author { font-size: 0.75em; color: #777; text-align: right; margin-top: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     </style>
 </head>
 <body>
-    <h1>TOKIUM Tech Blog Calendar</h1>
-    <div id="calendar" class="grid"><p style="text-align:center; grid-column:1/-1;">読み込み中...</p></div>
+
+    <div class="header">
+        <h1>TOKIUM Tech Blog</h1>
+        <div id="current-month" class="month-label">Loading...</div>
+    </div>
+
+    <div id="calendar" class="calendar-grid"></div>
 
     <script>
-        // JSONデータを取得して表示する
-        fetch('./data.json?v=' + new Date().getTime())
-            .then(response => response.json())
-            .then(data => {
-                const container = document.getElementById('calendar');
-                if (data && data.length > 0) {
-                    container.innerHTML = '';
-                    data.sort((a, b) => new Date(b.date) - new Date(a.date)).forEach(item => {
+        async function init() {
+            const container = document.getElementById('calendar');
+            const monthLabel = document.getElementById('current-month');
+            
+            // 1. 今月の日数と情報を取得
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = now.getMonth(); // 0-11
+            const lastDay = new Date(year, month + 1, 0).getDate();
+            
+            monthLabel.textContent = `${year}年 ${month + 1}月`;
+
+            // 2. データを取得
+            try {
+                const response = await fetch('./data.json?v=' + new Date().getTime());
+                const posts = await response.json();
+
+                // 3. 1日から末日まで枠を作る
+                for (let i = 1; i <= lastDay; i++) {
+                    const dateStr = `${year}/${String(month + 1).padStart(2, '0')}/${String(i).padStart(2, '0')}`;
+                    const post = posts.find(p => p.date === dateStr);
+
+                    const slot = document.createElement('div');
+                    slot.className = 'day-slot';
+                    slot.innerHTML = `<div class="day-number">${i}</div>`;
+
+                    if (post) {
                         const card = document.createElement('a');
-                        card.className = 'card'; card.href = item.url || '#';
-                        if (item.url) card.target = '_blank';
-                        card.innerHTML = `<div class="date">${item.date}</div><div class="title">${item.title}</div><div class="author">${item.name || 'Anonymous'}</div>`;
-                        container.appendChild(card);
-                    });
-                } else {
-                    container.innerHTML = "記事が見つかりませんでした。";
+                        card.className = 'card';
+                        card.href = post.url || '#';
+                        if (post.url) card.target = '_blank';
+                        
+                        card.innerHTML = `
+                            <div class="day-number">${i}</div>
+                            <div class="card-title">${post.title}</div>
+                            <div class="card-author">${post.name || 'Anonymous'}</div>
+                        `;
+                        slot.appendChild(card);
+                    }
+                    container.appendChild(slot);
                 }
-            })
-            .catch(err => {
-                document.getElementById('calendar').innerHTML = "データの読み込みに失敗しました。GitHub Actionsが完了しているか確認してください。";
-            });
+            } catch (e) {
+                container.innerHTML = "データの読み込みに失敗しました。";
+            }
+        }
+        init();
     </script>
 </body>
 </html>
