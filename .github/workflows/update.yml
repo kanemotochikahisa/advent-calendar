@@ -7,48 +7,46 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
-
       - name: Install dependencies
         run: pip install google-auth google-api-python-client requests
-
       - name: Fetch Google Sheets Data
         env:
           GCP_KEY: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
         run: |
           python3 -c "
-          import json, os
+          import json, os, re
           from google.oauth2 import service_account
           from googleapiclient.discovery import build
 
-          # 環境変数から安全にキーを読み込み
           info = json.loads(os.environ.get('GCP_KEY'))
           creds = service_account.Credentials.from_service_account_info(info)
           service = build('sheets', 'v4', credentials=creds)
 
-          # スプレッドシートからデータを取得
+          # 【修正ポイント】データがある「M列」を指定します
           result = service.spreadsheets().values().get(
               spreadsheetId='1DVbCRhxizfF4FtQ0z093XfsCwXagt5qCsZwtdkramg4',
-              range='シート1!A:A'
+              range='シート1!M:M'
           ).execute()
 
-          # data.jsを作成
-          with open('data.js', 'w') as f:
+          with open('data.js', 'w', encoding='utf-8') as f:
               f.write('const calendarData = [\n')
               for row in result.get('values', []):
-                  if row and isinstance(row[0], str) and row[0].startswith('{'):
-                      f.write(row[0] + ',\n')
+                  if row:
+                      line = str(row[0])
+                      # 行の中に { ... } が含まれているか探す
+                      match = re.search(r'\{.*\}', line)
+                      if match:
+                          f.write(match.group(0) + ',\n')
               f.write('];')
           "
-
       - name: Commit and Push
         run: |
           git config user.name "github-actions"
           git config user.email "action@github.com"
           git add data.js
-          git commit -m "update data via official google api" || exit 0
+          git commit -m "update data: pointing to column M" || exit 0
           git push
