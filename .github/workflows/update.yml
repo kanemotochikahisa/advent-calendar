@@ -8,25 +8,39 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Download Google Sheets Data
-        uses: jasonmccreary/google-sheet-download@v1
-        with:
-          # あなたのスプシのID
-          spreadsheet_id: '1DVbCRhxizfF4FtQ0z093XfsCwXagt5qCsZwtdkramg4'
-          service_account_key: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
-          output: data.csv
-
-      - name: Create Data JS
+      - name: Fetch Google Sheets Data
         run: |
-          echo "const calendarData = [" > data.js
-          # スプシのA列にあるJSON行を抽出して整形
-          grep -o "{.*}" data.csv | sed 's/""/"/g' | sed 's/$/,/' >> data.js
-          echo "];" >> data.js
+          # サービスアカウントのキーを使ってGoogleからアクセストークンを取得し、直接スプシをダウンロードします
+          # 1. Pythonを使って認証とダウンロードを実行
+          python3 -c "
+          import json, requests, time
+          from google.oauth2 import service_account
+          from googleapiclient.discovery import build
+
+          # GitHub Secretsからキーを読み込み
+          info = json.loads('''${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}''')
+          creds = service_account.Credentials.from_service_account_info(info)
+          service = build('sheets', 'v4', credentials=creds)
+
+          # スプレッドシートからデータを取得
+          result = service.spreadsheets().values().get(
+              spreadsheetId='1DVbCRhxizfF4FtQ0z093XfsCwXagt5qCsZwtdkramg4',
+              range='シート1!A:A'
+          ).execute()
+
+          # data.jsを作成
+          with open('data.js', 'w') as f:
+              f.write('const calendarData = [\n')
+              for row in result.get('values', []):
+                  if row and row[0].startswith('{'):
+                      f.write(row[0] + ',\n')
+              f.write('];')
+          "
 
       - name: Commit and Push
         run: |
           git config user.name "github-actions"
           git config user.email "action@github.com"
           git add data.js
-          git commit -m "update data" || exit 0
+          git commit -m "update data via official google api" || exit 0
           git push
