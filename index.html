@@ -6,67 +6,176 @@
     <title>TOKIUM Tech Blog Monthly Calendar</title>
     <style>
         :root {
-            --primary-color: #004bb1;
-            --bg-color: #f0f2f5;
+            /* TOKIUMブランドカラーをベースに設定 */
+            --tokium-blue: #004bb1;
+            --tokium-light-blue: #e6edf7;
+            --tokium-dark: #1a202c;
+            --bg-color: #f8fafc;
             --card-bg: #ffffff;
-            --empty-bg: #e0e4e8;
-            --text-main: #333;
+            --text-main: #2d3748;
+            --text-muted: #718096;
+            --border-color: #e2e8f0;
         }
-        body { font-family: "Helvetica Neue", Arial, sans-serif; background: var(--bg-color); margin: 0; padding: 20px; color: var(--text-main); }
         
-        /* ヘッダーとナビゲーション */
-        .header { text-align: center; margin-bottom: 30px; }
-        .header h1 { color: var(--primary-color); margin-bottom: 15px; }
-        .nav-controls { display: flex; align-items: center; justify-content: center; gap: 20px; }
-        .nav-btn { background: var(--primary-color); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
-        .nav-btn:hover { opacity: 0.8; }
-        .month-label { font-size: 1.4em; font-weight: bold; min-width: 150px; }
+        body { 
+            font-family: "Hiragino Sans", "Meiryo", sans-serif; 
+            background: var(--bg-color); 
+            margin: 0; 
+            padding: 20px; 
+            color: var(--text-main); 
+            line-height: 1.6;
+        }
+
+        /* ヘッダーデザイン */
+        .header { 
+            text-align: center; 
+            margin-bottom: 40px; 
+            padding: 20px 0;
+            border-bottom: 2px solid var(--tokium-light-blue);
+        }
+        .header h1 { 
+            color: var(--tokium-blue); 
+            font-size: 2.2em; 
+            margin: 0 0 20px 0; 
+            letter-spacing: 1px;
+        }
+        
+        /* ナビゲーション */
+        .nav-controls { 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 25px; 
+        }
+        .nav-btn { 
+            background: white; 
+            color: var(--tokium-blue); 
+            border: 2px solid var(--tokium-blue); 
+            padding: 10px 20px; 
+            border-radius: 8px; 
+            cursor: pointer; 
+            font-weight: bold; 
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+        }
+        .nav-btn:hover { 
+            background: var(--tokium-blue); 
+            color: white;
+            transform: translateY(-2px);
+        }
+        .month-label { 
+            font-size: 1.6em; 
+            font-weight: 800; 
+            min-width: 200px;
+            color: var(--tokium-dark);
+        }
 
         /* カレンダーグリッド */
         .calendar-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 12px;
-            max-width: 1200px;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 16px;
+            max-width: 1300px;
             margin: 0 auto;
         }
 
-        /* 日付枠の基本スタイル */
+        /* 日付枠 */
         .day-slot {
             aspect-ratio: 1 / 1;
-            background: var(--empty-bg);
-            border-radius: 8px;
+            background: white;
+            border-radius: 12px;
             position: relative;
-            border: 1px solid #ccc;
-            overflow: hidden;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
         }
 
-        .day-number { font-size: 1.5em; font-weight: 900; color: rgba(0,0,0,0.1); position: absolute; top: 8px; left: 8px; z-index: 1; }
+        /* 日付数字の背景装飾 */
+        .day-number { 
+            font-size: 2.5em; 
+            font-weight: 900; 
+            color: var(--tokium-light-blue); 
+            position: absolute; 
+            top: 5px; 
+            left: 10px; 
+            z-index: 1; 
+            line-height: 1;
+        }
 
-        /* 記事カード */
+        /* 記事カード共通 */
         .card {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--card-bg);
             display: flex;
             flex-direction: column;
-            padding: 12px;
+            padding: 16px;
             box-sizing: border-box;
             z-index: 2;
             text-decoration: none;
             color: inherit;
-            transition: 0.2s;
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
-        /* URLがある場合のみホバー効果 */
-        a.card:hover { transform: scale(1.03); box-shadow: 0 4px 15px rgba(0,0,0,0.15); z-index: 3; }
-        
-        /* 公開済み・未公開の区別 */
-        .card.published { border-top: 5px solid var(--primary-color); cursor: pointer; }
-        .card.draft { border-top: 5px solid #95a5a6; cursor: default; opacity: 0.8; background: #fafafa; }
 
-        .card-title { font-size: 0.85em; font-weight: bold; line-height: 1.4; flex-grow: 1; margin-top: 15px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; }
-        .card-author { font-size: 0.7em; color: #777; text-align: right; margin-top: 5px; }
-        .status-badge { font-size: 0.6em; background: #eee; padding: 2px 5px; border-radius: 3px; display: inline-block; margin-bottom: 2px; }
+        /* 公開済み（TOKIUM BLUE） */
+        .card.published { 
+            background: var(--card-bg);
+            border-top: 6px solid var(--tokium-blue);
+            box-shadow: 0 4px 12px rgba(0, 75, 177, 0.08);
+        }
+        a.card.published:hover { 
+            transform: translateY(-8px); 
+            box-shadow: 0 12px 24px rgba(0, 75, 177, 0.15);
+            border-top-width: 10px;
+        }
+
+        /* 未公開（グレー・下書き） */
+        .card.draft { 
+            background: rgba(248, 250, 252, 0.8);
+            border-top: 6px solid #cbd5e0;
+            filter: grayscale(0.5);
+        }
+
+        /* カード内のテキスト要素 */
+        .card-title { 
+            font-size: 1.05em; 
+            font-weight: 700; 
+            line-height: 1.5; 
+            flex-grow: 1; 
+            margin-top: 25px; 
+            color: var(--tokium-dark);
+            display: -webkit-box; 
+            -webkit-line-clamp: 4; 
+            -webkit-box-orient: vertical; 
+            overflow: hidden; 
+        }
+        .card-author { 
+            font-size: 0.85em; 
+            font-weight: 600;
+            color: var(--tokium-blue); 
+            text-align: right; 
+            margin-top: 10px;
+            border-top: 1px solid var(--tokium-light-blue);
+            padding-top: 8px;
+        }
+        
+        .status-badge { 
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            font-size: 0.7em; 
+            background: #edf2f7; 
+            color: #4a5568;
+            padding: 3px 8px; 
+            border-radius: 4px; 
+            font-weight: bold;
+        }
+
+        /* レスポンシブ対応 */
+        @media (max-width: 600px) {
+            .calendar-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+            .month-label { font-size: 1.2em; min-width: auto; }
+        }
     </style>
 </head>
 <body>
@@ -74,16 +183,16 @@
     <div class="header">
         <h1>TOKIUM Tech Blog</h1>
         <div class="nav-controls">
-            <button class="nav-btn" onclick="changeMonth(-1)">◀ 前月</button>
+            <button class="nav-btn" onclick="changeMonth(-1)">◀ PREV</button>
             <div id="month-display" class="month-label"></div>
-            <button class="nav-btn" onclick="changeMonth(1)">次月 ▶</button>
+            <button class="nav-btn" onclick="changeMonth(1)">NEXT ▶</button>
         </div>
     </div>
 
     <div id="calendar" class="calendar-grid"></div>
 
     <script>
-        let currentViewDate = new Date(); // 現在表示している年月
+        let currentViewDate = new Date();
         let allPosts = [];
 
         async function loadData() {
@@ -92,7 +201,7 @@
                 allPosts = await response.json();
                 renderCalendar();
             } catch (e) {
-                document.getElementById('calendar').innerHTML = "データの読み込みに失敗しました。";
+                document.getElementById('calendar').innerHTML = "データの取得に失敗しました。";
             }
         }
 
@@ -110,7 +219,7 @@
             const month = currentViewDate.getMonth();
             const lastDay = new Date(year, month + 1, 0).getDate();
 
-            monthDisplay.textContent = `${year}年 ${month + 1}月`;
+            monthDisplay.textContent = `${year} / ${month + 1}`;
 
             for (let i = 1; i <= lastDay; i++) {
                 const dateStr = `${year}/${String(month + 1).padStart(2, '0')}/${String(i).padStart(2, '0')}`;
@@ -122,7 +231,6 @@
 
                 dailyPosts.forEach(post => {
                     const isPublished = post.url && post.url.startsWith('http');
-                    // URLがあれば <a>、なければ <div> で作成
                     const card = document.createElement(isPublished ? 'a' : 'div');
                     card.className = `card ${isPublished ? 'published' : 'draft'}`;
                     
@@ -133,11 +241,9 @@
 
                     card.innerHTML = `
                         <div class="day-number">${i}</div>
-                        <div class="card-title">
-                            ${!isPublished ? '<span class="status-badge">準備中</span><br>' : ''}
-                            ${post.title}
-                        </div>
-                        <div class="card-author">${post.name || '未登録'}</div>
+                        ${!isPublished ? '<span class="status-badge">COMING SOON</span>' : ''}
+                        <div class="card-title">${post.title}</div>
+                        <div class="card-author">${post.name || 'Anonymous'}</div>
                     `;
                     slot.appendChild(card);
                 });
