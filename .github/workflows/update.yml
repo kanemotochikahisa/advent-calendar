@@ -7,46 +7,69 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
+
       - name: Install dependencies
         run: pip install google-auth google-api-python-client requests
-      - name: Fetch Google Sheets Data
+
+      - name: Run Fetch Script
         env:
           GCP_KEY: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
         run: |
-          python3 -c "
+          # 1. Pythonスクリプトをファイルとして書き出す
+          cat << 'EOF' > fetch_data.py
           import json, os, re
           from google.oauth2 import service_account
           from googleapiclient.discovery import build
 
-          info = json.loads(os.environ.get('GCP_KEY'))
-          creds = service_account.Credentials.from_service_account_info(info)
-          service = build('sheets', 'v4', credentials=creds)
+          try:
+              info = json.loads(os.environ.get('GCP_KEY'))
+              creds = service_account.Credentials.from_service_account_info(info)
+              service = build('sheets', 'v4', credentials=creds)
+              spreadsheet_id = '1DVbCRhxizfF4FtQ0z093XfsCwXagt5qCsZwtdkramg4'
 
-          # 【修正ポイント】データがある「M列」を指定します
-          result = service.spreadsheets().values().get(
-              spreadsheetId='1DVbCRhxizfF4FtQ0z093XfsCwXagt5qCsZwtdkramg4',
-              range='シート1!M:M'
-          ).execute()
+              # 1. 一番左のシート名を取得
+              sheet_metadata = service.spreadsheets().get(spreadsheetId=spreadsheet_id).execute()
+              target_sheet_name = sheet_metadata['sheets'][0]['properties']['title']
+              print(f'Target Sheet: {target_sheet_name}')
 
-          with open('data.js', 'w', encoding='utf-8') as f:
-              f.write('const calendarData = [\n')
-              for row in result.get('values', []):
-                  if row:
-                      line = str(row[0])
-                      # 行の中に { ... } が含まれているか探す
-                      match = re.search(r'\{.*\}', line)
-                      if match:
-                          f.write(match.group(0) + ',\n')
-              f.write('];')
-          "
+              # 2. M列を読み込む
+              result = service.spreadsheets().values().get(
+                  spreadsheetId=spreadsheet_id,
+                  range=f'{target_sheet_name}!M:M'
+              ).execute()
+
+              values = result.get('values', [])
+              print(f'Found {len(values)} rows')
+
+              # 3. data.jsを作成
+              with open('data.js', 'w', encoding='utf-8') as f:
+                  f.write('const calendarData = [\n')
+                  for row in values:
+                      if row:
+                          line = str(row[0])
+                          match = re.search(r'\{.*\}', line)
+                          if match:
+                              f.write(match.group(0) + ',\n')
+                  f.write('];')
+              print('Successfully created data.js')
+
+          except Exception as e:
+              print(f'Error occurred: {e}')
+              exit(1)
+          EOF
+
+          # 2. 作成したスクリプトを実行する
+          python3 fetch_data.py
+
       - name: Commit and Push
         run: |
           git config user.name "github-actions"
           git config user.email "action@github.com"
           git add data.js
-          git commit -m "update data: pointing to column M" || exit 0
-          git push
+          # 変更がある場合のみコミット
+          git diff --quiet && git diff --staged --quiet || (git commit -m "update data" && git push)
