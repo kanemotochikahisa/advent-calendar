@@ -3,122 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TOKIUM Monthly Blog Calendar</title>
+    <title>TOKIUM Tech Blog Monthly Calendar</title>
     <style>
         :root {
             --primary-color: #004bb1;
             --bg-color: #f0f2f5;
             --card-bg: #ffffff;
             --empty-bg: #e0e4e8;
+            --text-main: #333;
         }
-        body { font-family: "Helvetica Neue", Arial, sans-serif; background: var(--bg-color); margin: 0; padding: 20px; color: #333; }
-        .header { text-align: center; margin-bottom: 40px; }
-        .header h1 { color: var(--primary-color); font-size: 2.5em; margin-bottom: 10px; }
-        .month-label { font-size: 1.5em; font-weight: bold; background: var(--primary-color); color: white; padding: 5px 20px; border-radius: 50px; display: inline-block; }
+        body { font-family: "Helvetica Neue", Arial, sans-serif; background: var(--bg-color); margin: 0; padding: 20px; color: var(--text-main); }
         
-        /* カレンダー風グリッド */
+        /* ヘッダーとナビゲーション */
+        .header { text-align: center; margin-bottom: 30px; }
+        .header h1 { color: var(--primary-color); margin-bottom: 15px; }
+        .nav-controls { display: flex; align-items: center; justify-content: center; gap: 20px; }
+        .nav-btn { background: var(--primary-color); color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .nav-btn:hover { opacity: 0.8; }
+        .month-label { font-size: 1.4em; font-weight: bold; min-width: 150px; }
+
+        /* カレンダーグリッド */
         .calendar-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        /* 各日付の枠 */
+        /* 日付枠の基本スタイル */
         .day-slot {
             aspect-ratio: 1 / 1;
             background: var(--empty-bg);
-            border-radius: 10px;
+            border-radius: 8px;
             position: relative;
-            border: 2px dashed #bdc3c7;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            border: 1px solid #ccc;
+            overflow: hidden;
         }
 
-        /* 記事がある時のカード */
+        .day-number { font-size: 1.5em; font-weight: 900; color: rgba(0,0,0,0.1); position: absolute; top: 8px; left: 8px; z-index: 1; }
+
+        /* 記事カード */
         .card {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             background: var(--card-bg);
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            text-decoration: none;
-            color: inherit;
             display: flex;
             flex-direction: column;
-            padding: 15px;
+            padding: 12px;
             box-sizing: border-box;
-            border: 2px solid transparent;
-            transition: transform 0.2s, border-color 0.2s;
             z-index: 2;
+            text-decoration: none;
+            color: inherit;
+            transition: 0.2s;
         }
-        .card:hover { transform: scale(1.03); border-color: var(--primary-color); }
-
-        .day-number { font-size: 1.8em; font-weight: 900; color: rgba(0,0,0,0.1); position: absolute; top: 10px; left: 10px; z-index: 1; }
-        .card .day-number { color: var(--primary-color); opacity: 0.2; }
+        /* URLがある場合のみホバー効果 */
+        a.card:hover { transform: scale(1.03); box-shadow: 0 4px 15px rgba(0,0,0,0.15); z-index: 3; }
         
-        .card-title { font-size: 0.9em; font-weight: bold; line-height: 1.4; flex-grow: 1; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; margin-top: 20px; }
-        .card-author { font-size: 0.75em; color: #777; text-align: right; margin-top: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        /* 公開済み・未公開の区別 */
+        .card.published { border-top: 5px solid var(--primary-color); cursor: pointer; }
+        .card.draft { border-top: 5px solid #95a5a6; cursor: default; opacity: 0.8; background: #fafafa; }
+
+        .card-title { font-size: 0.85em; font-weight: bold; line-height: 1.4; flex-grow: 1; margin-top: 15px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; }
+        .card-author { font-size: 0.7em; color: #777; text-align: right; margin-top: 5px; }
+        .status-badge { font-size: 0.6em; background: #eee; padding: 2px 5px; border-radius: 3px; display: inline-block; margin-bottom: 2px; }
     </style>
 </head>
 <body>
 
     <div class="header">
         <h1>TOKIUM Tech Blog</h1>
-        <div id="current-month" class="month-label">Loading...</div>
+        <div class="nav-controls">
+            <button class="nav-btn" onclick="changeMonth(-1)">◀ 前月</button>
+            <div id="month-display" class="month-label"></div>
+            <button class="nav-btn" onclick="changeMonth(1)">次月 ▶</button>
+        </div>
     </div>
 
     <div id="calendar" class="calendar-grid"></div>
 
     <script>
-        async function init() {
-            const container = document.getElementById('calendar');
-            const monthLabel = document.getElementById('current-month');
-            
-            // 1. 今月の日数と情報を取得
-            const now = new Date();
-            const year = now.getFullYear();
-            const month = now.getMonth(); // 0-11
-            const lastDay = new Date(year, month + 1, 0).getDate();
-            
-            monthLabel.textContent = `${year}年 ${month + 1}月`;
+        let currentViewDate = new Date(); // 現在表示している年月
+        let allPosts = [];
 
-            // 2. データを取得
+        async function loadData() {
             try {
                 const response = await fetch('./data.json?v=' + new Date().getTime());
-                const posts = await response.json();
-
-                // 3. 1日から末日まで枠を作る
-                for (let i = 1; i <= lastDay; i++) {
-                    const dateStr = `${year}/${String(month + 1).padStart(2, '0')}/${String(i).padStart(2, '0')}`;
-                    const post = posts.find(p => p.date === dateStr);
-
-                    const slot = document.createElement('div');
-                    slot.className = 'day-slot';
-                    slot.innerHTML = `<div class="day-number">${i}</div>`;
-
-                    if (post) {
-                        const card = document.createElement('a');
-                        card.className = 'card';
-                        card.href = post.url || '#';
-                        if (post.url) card.target = '_blank';
-                        
-                        card.innerHTML = `
-                            <div class="day-number">${i}</div>
-                            <div class="card-title">${post.title}</div>
-                            <div class="card-author">${post.name || 'Anonymous'}</div>
-                        `;
-                        slot.appendChild(card);
-                    }
-                    container.appendChild(slot);
-                }
+                allPosts = await response.json();
+                renderCalendar();
             } catch (e) {
-                container.innerHTML = "データの読み込みに失敗しました。";
+                document.getElementById('calendar').innerHTML = "データの読み込みに失敗しました。";
             }
         }
-        init();
+
+        function changeMonth(diff) {
+            currentViewDate.setMonth(currentViewDate.getMonth() + diff);
+            renderCalendar();
+        }
+
+        function renderCalendar() {
+            const container = document.getElementById('calendar');
+            const monthDisplay = document.getElementById('month-display');
+            container.innerHTML = '';
+
+            const year = currentViewDate.getFullYear();
+            const month = currentViewDate.getMonth();
+            const lastDay = new Date(year, month + 1, 0).getDate();
+
+            monthDisplay.textContent = `${year}年 ${month + 1}月`;
+
+            for (let i = 1; i <= lastDay; i++) {
+                const dateStr = `${year}/${String(month + 1).padStart(2, '0')}/${String(i).padStart(2, '0')}`;
+                const dailyPosts = allPosts.filter(p => p.date === dateStr);
+
+                const slot = document.createElement('div');
+                slot.className = 'day-slot';
+                slot.innerHTML = `<div class="day-number">${i}</div>`;
+
+                dailyPosts.forEach(post => {
+                    const isPublished = post.url && post.url.startsWith('http');
+                    // URLがあれば <a>、なければ <div> で作成
+                    const card = document.createElement(isPublished ? 'a' : 'div');
+                    card.className = `card ${isPublished ? 'published' : 'draft'}`;
+                    
+                    if (isPublished) {
+                        card.href = post.url;
+                        card.target = '_blank';
+                    }
+
+                    card.innerHTML = `
+                        <div class="day-number">${i}</div>
+                        <div class="card-title">
+                            ${!isPublished ? '<span class="status-badge">準備中</span><br>' : ''}
+                            ${post.title}
+                        </div>
+                        <div class="card-author">${post.name || '未登録'}</div>
+                    `;
+                    slot.appendChild(card);
+                });
+
+                container.appendChild(slot);
+            }
+        }
+
+        loadData();
     </script>
 </body>
 </html>
