@@ -1,56 +1,67 @@
-import json, os, re, ast
+# fetch_data.py
+import json
+import os
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 
-SPREADSHEET_ID = "あなたのスプシID"
-COLUMN_RANGE = "M:M"  # JSON列
+# ===== 環境変数 =====
+SPREADSHEET_ID = os.environ["SPREADSHEET_ID"]
+SHEET_NAME = os.environ.get("SHEET_NAME", "シート1")
+
+# ===== 列番号（0始まり）=====
+IDX_DATE   = 0   # A列：日付
+IDX_TITLE  = 2   # C列：タイトル
+IDX_NAME   = 4   # E列：名前
+IDX_STATUS = 10  # K列：ステータス（公開 / 下書きなど）
+IDX_URL    = 10  # K列：記事URL（空でもOK）
+
+PUBLISHED_STATUS = "公開"
 
 def main():
-    info = json.loads(os.environ["GCP_KEY"])
+    creds_info = json.loads(os.environ["GCP_SERVICE_ACCOUNT_KEY"])
     creds = service_account.Credentials.from_service_account_info(
-        info,
+        creds_info,
         scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"]
     )
 
     service = build("sheets", "v4", credentials=creds)
 
-    meta = service.spreadsheets().get(
-        spreadsheetId=SPREADSHEET_ID
-    ).execute()
-
-    sheet_name = meta["sheets"][0]["properties"]["title"]
-
-    res = service.spreadsheets().values().get(
+    result = service.spreadsheets().values().get(
         spreadsheetId=SPREADSHEET_ID,
-        range=f"{sheet_name}!{COLUMN_RANGE}"
+        range=f"{SHEET_NAME}!A:Z"
     ).execute()
 
-    values = res.get("values", [])
+    rows = result.get("values", [])
+    posts = []
 
-    data = []
-
-    for row in values:
-        if not row:
+    # 1行目はヘッダ想定
+    for row in rows[1:]:
+        if len(row) <= IDX_STATUS:
             continue
 
-        raw = row[0]
-        try:
-            item = ast.literal_eval(raw)
-        except Exception:
+        status = row[IDX_STATUS].strip() if len(row) > IDX_STATUS else ""
+        if status != PUBLISHED_STATUS:
             continue
 
-        # 最低限の安全チェック
-        if (
-            item.get("date")
-            and item.get("title")
-            and isinstance(item.get("url"), str)
-        ):
-            data.append(item)
+        date  = row[IDX_DATE]  if len(row) > IDX_DATE  else ""
+        title = row[IDX_TITLE] if len(row) > IDX_TITLE else ""
+        name  = row[IDX_NAME]  if len(row) > IDX_NAME  else ""
+        url   = row[IDX_URL]   if len(row) > IDX_URL   else ""
+
+        if not date or not title:
+            continue
+
+        posts.append({
+            "date": date,
+            "title": title,
+            "name": name,
+            "url": url
+        })
 
     with open("data.json", "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+        json.dump(posts, f, ensure_ascii=False, indent=2)
 
-    print(f"OK: {len(data)} items written")
+    print(f"OK: data.json updated ({len(posts)} items)")
 
 if __name__ == "__main__":
     main()
