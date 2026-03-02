@@ -1,98 +1,35 @@
-name: update
+name: Auto Update Calendar
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 0 * * *" # 毎日 9:00 JST
+    - cron: '0 0 * * *' # 毎日9時JST
 
 jobs:
   update:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: '3.11'
 
-      - name: Install dependencies
-        run: pip install requests
+      - name: Install deps
+        run: pip install google-auth google-api-python-client
 
-      - name: Fetch data from Jira
+      - name: Fetch spreadsheet data
         env:
-          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
-          JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
-          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
-        run: |
-          cat << 'EOF' > fetch_data.py
-          import os
-          import json
-          import requests
-          from requests.auth import HTTPBasicAuth
+          GCP_KEY: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+        run: python fetch_data.py
 
-          BASE = os.environ["JIRA_BASE_URL"].rstrip("/")
-          EMAIL = os.environ["JIRA_EMAIL"]
-          TOKEN = os.environ["JIRA_API_TOKEN"]
-
-          if BASE.endswith("/wiki"):
-              BASE = BASE[:-5]
-
-          JQL = """
-          project = TECHBLOG
-          AND issuetype = "記事執筆"
-          AND duedate IS NOT EMPTY
-          ORDER BY duedate ASC
-          """
-
-          url = f"{BASE}/rest/api/3/search/jql"
-
-          res = requests.post(
-              url,
-              json={
-                  "jql": JQL,
-                  "fields": ["summary", "assignee", "duedate"],
-                  "maxResults": 100
-              },
-              headers={
-                  "Accept": "application/json",
-                  "Content-Type": "application/json"
-              },
-              auth=HTTPBasicAuth(EMAIL, TOKEN)
-          )
-
-          print("Request URL:", url)
-          print("Status:", res.status_code)
-          print(res.text)
-
-          res.raise_for_status()
-
-          issues = res.json()["issues"]
-          data = []
-
-          for issue in issues:
-              f = issue["fields"]
-              data.append({
-                  "date": f["duedate"].replace("-", "/"),
-                  "title": f["summary"],
-                  "name": f["assignee"]["displayName"] if f["assignee"] else "",
-                  "url": f"{BASE}/browse/{issue['key']}"
-              })
-
-          with open("data.json", "w", encoding="utf-8") as fp:
-              json.dump(data, fp, ensure_ascii=False, indent=2)
-
-          print(f"Generated data.json with {len(data)} items")
-          EOF
-
-          python fetch_data.py
-
-      - name: Commit and push if changed
+      - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data.json
-          git diff --cached --quiet || git commit -m "chore: update data.json"
+          git commit --allow-empty -m "chore: update data.json"
           git push
