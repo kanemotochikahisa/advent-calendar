@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>TOKIUM Tech Blog Calendar</title>
-
   <style>
     :root {
       --tokium-blue: #004bb1;
@@ -18,18 +17,15 @@
       background: #f1f5f9;
       margin: 0;
       padding: 10px;
+      color: var(--text-color);
       height: calc(100vh - 20px);
       box-sizing: border-box;
       overflow: hidden;
-      color: var(--text-color);
-      display: flex;
-      flex-direction: column;
     }
 
     .header {
       text-align: center;
       padding: 5px 0;
-      flex-shrink: 0;
     }
 
     .header h1 {
@@ -41,8 +37,7 @@
     .nav-controls {
       display: flex;
       justify-content: center;
-      gap: 12px;
-      align-items: center;
+      gap: 15px;
     }
 
     .nav-btn {
@@ -55,47 +50,33 @@
       font-size: 0.75em;
     }
 
-    .month-label {
-      font-weight: bold;
-      min-width: 100px;
-      text-align: center;
-    }
-
     .calendar-container {
-      flex: 1;
       max-width: 1100px;
       margin: 0 auto;
-      width: 100%;
       background: white;
       padding: 5px;
       border-radius: 8px;
+      height: calc(100% - 60px);
       box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
     }
 
-    .weekday-header {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      background: var(--tokium-light);
-      font-weight: bold;
-      font-size: 0.7em;
-      text-align: center;
-      padding: 4px 0;
-    }
-
-    .weekday-header div:nth-child(1) { color: #e53e3e; }
-    .weekday-header div:nth-child(7) { color: var(--tokium-blue); }
-
+    .weekday-header,
     .calendar-grid {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
-      grid-template-rows: repeat(auto-fit, minmax(0, 1fr));
+    }
+
+    .weekday-header {
+      font-size: 0.7em;
+      font-weight: bold;
+      background: var(--tokium-light);
+      text-align: center;
+    }
+
+    .calendar-grid {
+      height: calc(100% - 20px);
       gap: 2px;
-      flex: 1;
       background: var(--border-color);
-      border: 1px solid var(--border-color);
     }
 
     .day-slot {
@@ -104,88 +85,75 @@
       font-size: 0.65em;
       display: flex;
       flex-direction: column;
-      overflow: hidden;
     }
 
     .day-number {
-      font-weight: bold;
-      color: #a0aec0;
       font-size: 0.75em;
+      color: #a0aec0;
+      font-weight: bold;
     }
 
     .card {
       margin-top: 2px;
       padding: 2px;
-      border-radius: 2px;
+      border-top: 2px solid var(--tokium-blue);
       text-decoration: none;
       color: inherit;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      border-top: 2px solid var(--tokium-blue);
     }
 
     .card-title {
       font-weight: bold;
       line-height: 1.2;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
     }
 
     .card-author {
+      text-align: right;
       font-size: 0.8em;
       color: var(--tokium-blue);
-      text-align: right;
-      margin-top: 2px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
     }
   </style>
 </head>
-
 <body>
-  <div class="header">
-    <h1>TOKIUM Tech Blog</h1>
-    <div class="nav-controls">
-      <button class="nav-btn" onclick="changeMonth(-1)">◀ PREV</button>
-      <div id="month" class="month-label"></div>
-      <button class="nav-btn" onclick="changeMonth(1)">NEXT ▶</button>
-    </div>
-  </div>
 
-  <div class="calendar-container">
-    <div class="weekday-header">
-      <div>SUN</div><div>MON</div><div>TUE</div><div>WED</div>
-      <div>THU</div><div>FRI</div><div>SAT</div>
-    </div>
-    <div id="calendar" class="calendar-grid"></div>
+<div class="header">
+  <h1>TOKIUM Tech Blog</h1>
+  <div class="nav-controls">
+    <button class="nav-btn" onclick="changeMonth(-1)">◀ PREV</button>
+    <div id="month-display"></div>
+    <button class="nav-btn" onclick="changeMonth(1)">NEXT ▶</button>
   </div>
+</div>
+
+<div class="calendar-container">
+  <div class="weekday-header">
+    <div>SUN</div><div>MON</div><div>TUE</div><div>WED</div>
+    <div>THU</div><div>FRI</div><div>SAT</div>
+  </div>
+  <div id="calendar" class="calendar-grid"></div>
+</div>
 
 <script>
-let currentDate = new Date();
-let posts = [];
+let currentViewDate = new Date();
+let allPosts = [];
 
 async function loadData() {
-  const res = await fetch('./data.json?v=' + Date.now());
-  posts = await res.json();
-  render();
+  const res = await fetch('./data.json?' + Date.now());
+  allPosts = await res.json();
+  renderCalendar();
 }
 
 function changeMonth(diff) {
-  currentDate.setMonth(currentDate.getMonth() + diff);
-  render();
+  currentViewDate.setMonth(currentViewDate.getMonth() + diff);
+  renderCalendar();
 }
 
-function render() {
+function renderCalendar() {
   const cal = document.getElementById('calendar');
-  const label = document.getElementById('month');
+  const label = document.getElementById('month-display');
   cal.innerHTML = '';
 
-  const y = currentDate.getFullYear();
-  const m = currentDate.getMonth();
+  const y = currentViewDate.getFullYear();
+  const m = currentViewDate.getMonth();
   label.textContent = `${y} / ${m + 1}`;
 
   const firstDay = new Date(y, m, 1).getDay();
@@ -201,7 +169,7 @@ function render() {
     slot.innerHTML = `<div class="day-number">${d}</div>`;
 
     const dateStr = `${y}/${String(m+1).padStart(2,'0')}/${String(d).padStart(2,'0')}`;
-    const post = posts.find(p => p.date === dateStr);
+    const post = allPosts.find(p => p.date === dateStr);
 
     if (post && post.url) {
       const a = document.createElement('a');
@@ -221,5 +189,6 @@ function render() {
 
 loadData();
 </script>
+
 </body>
 </html>
