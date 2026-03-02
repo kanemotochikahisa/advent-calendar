@@ -1,73 +1,38 @@
-name: Auto Update Calendar
-on:
-  workflow_dispatch:
-  schedule:
-    - cron: '0 0 * * *'
+import os, json, requests
+from requests.auth import HTTPBasicAuth
 
-jobs:
-  update:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v3
+BASE = os.environ["JIRA_BASE_URL"]
+EMAIL = os.environ["JIRA_EMAIL"]
+TOKEN = os.environ["JIRA_API_TOKEN"]
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
+jql = '''
+project = TECHBLOG
+AND issuetype = "記事執筆"
+AND duedate IS NOT EMPTY
+ORDER BY duedate ASC
+'''
 
-      - name: Install dependencies
-        run: pip install google-auth google-api-python-client requests
+res = requests.get(
+    f"{BASE}/rest/api/3/search",
+    params={
+        "jql": jql,
+        "fields": "summary,assignee,duedate,status"
+    },
+    auth=HTTPBasicAuth(EMAIL, TOKEN)
+)
+res.raise_for_status()
 
-      - name: Run Fetch Script
-        env:
-          GCP_KEY: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
-        run: |
-          cat << 'EOF' > fetch_data.py
-          import json, os, re, ast
-          from google.oauth2 import service_account
-          from googleapiclient.discovery import build
+issues = res.json()["issues"]
 
-          try:
-              info = json.loads(os.environ.get('GCP_KEY'))
-              creds = service_account.Credentials.from_service_account_info(info)
-              service = build('sheets', 'v4', credentials=creds)
-              spreadsheet_id = '1DVbCRhxizfF4FtQ0z093XfsCwXagt5qCsZwtdkramg4'
-              
-              sheet_metadata = service.spreadsheets().get(spreadsheetId=spreadsheet_id).execute()
-              target_sheet_name = sheet_metadata['sheets'][0]['properties']['title']
-              result = service.spreadsheets().values().get(spreadsheetId=spreadsheet_id, range=f'{target_sheet_name}!M:M').execute()
-              values = result.get('values', [])
-              
-              data_list = []
-              for row in values:
-                  if not row: continue
-                  raw_str = str(row[0])
-                  # 文字列の中から { ... } の部分だけを探す
-                  match = re.search(r'\{.*\}', raw_str)
-                  if match:
-                      try:
-                          # 特殊文字が含まれていても安全に辞書形式に変換する
-                          item = ast.literal_eval(match.group(0))
-                          data_list.append(item)
-                      except:
-                          continue
-              
-              # JSONとして保存
-              with open('data.json', 'w', encoding='utf-8') as f:
-                  json.dump(data_list, f, ensure_ascii=False, indent=2)
-              print(f'Success: Created data.json with {len(data_list)} entries')
-              
-          except Exception as e:
-              print(f'Error: {e}'); exit(1)
-          EOF
-          python3 fetch_data.py
+data = []
+for issue in issues:
+    f = issue["fields"]
+    data.append({
+        "date": f["duedate"].replace("-", "/"),
+        "title": f["summary"],
+        "name": f["assignee"]["displayName"] if f["assignee"] else "",
+        "url": f"{BASE}/browse/{issue['key']}"
+    })
 
-      - name: Commit and Push
-        run: |
-          git config --local user.name "github-actions[bot]"
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git add data.json
-          git commit --allow-empty -m "chore: update data.json"
-          git push origin main
+with open("data.json", "w", encoding="utf-8") as fp:
+    json.dump(data, fp, ensure_ascii=False, indent=2)
