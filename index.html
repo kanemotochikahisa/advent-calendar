@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TOKIUM Tech Blog Calendar</title>
 
   <style>
@@ -18,20 +18,24 @@
       background: #f1f5f9;
       margin: 0;
       padding: 10px;
-      color: var(--text-color);
       height: calc(100vh - 20px);
+      box-sizing: border-box;
       overflow: hidden;
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
     }
 
     .header {
       text-align: center;
-      margin-bottom: 6px;
+      padding: 5px 0;
+      flex-shrink: 0;
     }
 
     .header h1 {
       color: var(--tokium-blue);
       font-size: 1.3em;
-      margin: 4px 0;
+      margin: 0 0 5px 0;
     }
 
     .nav-controls {
@@ -53,65 +57,72 @@
 
     .month-label {
       font-weight: bold;
-      min-width: 90px;
+      min-width: 100px;
       text-align: center;
     }
 
     .calendar-container {
+      flex: 1;
       max-width: 1100px;
       margin: 0 auto;
+      width: 100%;
       background: white;
-      padding: 6px;
+      padding: 5px;
       border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-      height: calc(100% - 70px);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
       display: flex;
       flex-direction: column;
-    }
-
-    .weekday-header,
-    .calendar-grid {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
+      overflow: hidden;
     }
 
     .weekday-header {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
       background: var(--tokium-light);
-      font-size: 0.7em;
       font-weight: bold;
+      font-size: 0.7em;
       text-align: center;
       padding: 4px 0;
     }
 
+    .weekday-header div:nth-child(1) { color: #e53e3e; }
+    .weekday-header div:nth-child(7) { color: var(--tokium-blue); }
+
     .calendar-grid {
-      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      grid-template-rows: repeat(auto-fit, minmax(0, 1fr));
       gap: 2px;
-      border: 1px solid var(--border-color);
+      flex: 1;
       background: var(--border-color);
+      border: 1px solid var(--border-color);
     }
 
     .day-slot {
-      background: white;
+      background: #fff;
       padding: 2px 4px;
       font-size: 0.65em;
-      overflow: hidden;
       display: flex;
       flex-direction: column;
+      overflow: hidden;
     }
 
     .day-number {
-      font-size: 0.75em;
       font-weight: bold;
       color: #a0aec0;
+      font-size: 0.75em;
     }
 
     .card {
       margin-top: 2px;
       padding: 2px;
-      border-top: 2px solid var(--tokium-blue);
+      border-radius: 2px;
       text-decoration: none;
       color: inherit;
-      display: block;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-top: 2px solid var(--tokium-blue);
     }
 
     .card-title {
@@ -124,7 +135,7 @@
     }
 
     .card-author {
-      font-size: 0.85em;
+      font-size: 0.8em;
       color: var(--tokium-blue);
       text-align: right;
       margin-top: 2px;
@@ -140,82 +151,75 @@
     <h1>TOKIUM Tech Blog</h1>
     <div class="nav-controls">
       <button class="nav-btn" onclick="changeMonth(-1)">◀ PREV</button>
-      <div id="month-display" class="month-label"></div>
+      <div id="month" class="month-label"></div>
       <button class="nav-btn" onclick="changeMonth(1)">NEXT ▶</button>
     </div>
   </div>
 
   <div class="calendar-container">
     <div class="weekday-header">
-      <div>SUN</div><div>MON</div><div>TUE</div>
-      <div>WED</div><div>THU</div><div>FRI</div><div>SAT</div>
+      <div>SUN</div><div>MON</div><div>TUE</div><div>WED</div>
+      <div>THU</div><div>FRI</div><div>SAT</div>
     </div>
     <div id="calendar" class="calendar-grid"></div>
   </div>
 
-  <script>
-    let currentDate = new Date();
-    let posts = [];
+<script>
+let currentDate = new Date();
+let posts = [];
 
-    async function loadData() {
-      // ★ここを GAS の WebアプリURL に置き換える
-      const GAS_URL = "https://script.google.com/macros/s/XXXXXXXXXXXX/exec";
+async function loadData() {
+  const res = await fetch('./data.json?v=' + Date.now());
+  posts = await res.json();
+  render();
+}
 
-      const res = await fetch(GAS_URL + "?t=" + Date.now());
-      posts = await res.json();
-      render();
+function changeMonth(diff) {
+  currentDate.setMonth(currentDate.getMonth() + diff);
+  render();
+}
+
+function render() {
+  const cal = document.getElementById('calendar');
+  const label = document.getElementById('month');
+  cal.innerHTML = '';
+
+  const y = currentDate.getFullYear();
+  const m = currentDate.getMonth();
+  label.textContent = `${y} / ${m + 1}`;
+
+  const firstDay = new Date(y, m, 1).getDay();
+  const lastDate = new Date(y, m + 1, 0).getDate();
+
+  for (let i = 0; i < firstDay; i++) {
+    cal.appendChild(document.createElement('div'));
+  }
+
+  for (let d = 1; d <= lastDate; d++) {
+    const slot = document.createElement('div');
+    slot.className = 'day-slot';
+    slot.innerHTML = `<div class="day-number">${d}</div>`;
+
+    const dateStr = `${y}/${String(m+1).padStart(2,'0')}/${String(d).padStart(2,'0')}`;
+    const post = posts.find(p => p.date === dateStr);
+
+    if (post && post.url) {
+      const a = document.createElement('a');
+      a.className = 'card';
+      a.href = post.url;
+      a.target = '_blank';
+      a.innerHTML = `
+        <div class="card-title">${post.title}</div>
+        <div class="card-author">${post.name || ''}</div>
+      `;
+      slot.appendChild(a);
     }
 
-    function changeMonth(diff) {
-      currentDate.setMonth(currentDate.getMonth() + diff);
-      render();
-    }
+    cal.appendChild(slot);
+  }
+}
 
-    function render() {
-      const calendar = document.getElementById("calendar");
-      const label = document.getElementById("month-display");
-      calendar.innerHTML = "";
-
-      const y = currentDate.getFullYear();
-      const m = currentDate.getMonth();
-
-      label.textContent = `${y} / ${m + 1}`;
-
-      const firstDay = new Date(y, m, 1).getDay();
-      const lastDate = new Date(y, m + 1, 0).getDate();
-
-      for (let i = 0; i < firstDay; i++) {
-        calendar.appendChild(document.createElement("div"));
-      }
-
-      for (let d = 1; d <= lastDate; d++) {
-        const slot = document.createElement("div");
-        slot.className = "day-slot";
-        slot.innerHTML = `<div class="day-number">${d}</div>`;
-
-        const dateStr = `${y}/${String(m + 1).padStart(2, "0")}/${String(d).padStart(2, "0")}`;
-        const post = posts.find(p => p.date === dateStr);
-
-        if (post) {
-          const card = document.createElement("a");
-          card.className = "card";
-          card.href = post.url;
-          card.target = "_blank";
-          card.rel = "noopener";
-
-          card.innerHTML = `
-            <div class="card-title">${post.title}</div>
-            <div class="card-author">${post.name || ""}</div>
-          `;
-
-          slot.appendChild(card);
-        }
-
-        calendar.appendChild(slot);
-      }
-    }
-
-    loadData();
-  </script>
+loadData();
+</script>
 </body>
 </html>
