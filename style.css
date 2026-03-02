@@ -1,109 +1,90 @@
-/* ===== 全体 ===== */
+:root {
+  --blue: #004bb1;
+  --bg: #f1f5f9;
+  --line: #cbd5e0;
+}
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-               "Hiragino Kaku Gothic ProN", "Hiragino Sans",
-               "Noto Sans JP", Meiryo, sans-serif;
-  background: #f7f9fc;
   margin: 0;
-  padding: 20px;
-  color: #333;
+  padding: 10px;
+  font-family: "Hiragino Sans", "Meiryo", sans-serif;
+  background: var(--bg);
 }
 
-h1 {
+.header {
   text-align: center;
-  margin-bottom: 10px;
 }
 
-/* ===== ナビゲーション ===== */
-.nav {
+.header h1 {
+  color: var(--blue);
+  margin: 0 0 5px;
+}
+
+.nav-controls {
   display: flex;
   justify-content: center;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 20px;
+  gap: 10px;
+  margin-bottom: 5px;
 }
 
-.nav button {
-  background: #2f5bea;
+button {
+  background: var(--blue);
   color: #fff;
   border: none;
-  padding: 6px 14px;
-  border-radius: 6px;
+  padding: 4px 10px;
+  border-radius: 4px;
   cursor: pointer;
-  font-size: 14px;
 }
 
-.nav button:hover {
-  background: #2448b8;
+.calendar-container {
+  background: #fff;
+  border-radius: 8px;
+  padding: 5px;
 }
 
-/* ===== カレンダー ===== */
+.weekday {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background: #e6edf7;
+  text-align: center;
+  font-size: 12px;
+}
+
 .calendar {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 1px;
-  background: #dbe2f0;
-  border: 1px solid #dbe2f0;
+  border: 1px solid var(--line);
 }
 
-/* 曜日ヘッダ */
-.calendar .day-header {
-  background: #eef2fb;
-  padding: 8px 0;
-  text-align: center;
-  font-weight: 600;
-  font-size: 13px;
-}
-
-/* 日付セル */
-.calendar .day {
-  background: #fff;
-  min-height: 110px;
-  padding: 6px;
+.day {
+  min-height: 90px;
+  border: 1px solid var(--line);
+  padding: 3px;
   box-sizing: border-box;
-  position: relative;
 }
 
-/* 日付数字 */
-.calendar .day .date {
-  font-size: 12px;
-  color: #666;
-  margin-bottom: 4px;
-}
-
-/* ===== 記事リンク ===== */
-.calendar .day a {
-  display: block;
-  font-size: 13px;
-  font-weight: 600;
-  color: #1f3fbf;
-  text-decoration: none;
-  line-height: 1.3;
-  margin-bottom: 4px;
-}
-
-.calendar .day a:hover {
-  text-decoration: underline;
-}
-
-/* 著者名 */
-.calendar .day .author {
+.num {
   font-size: 11px;
-  color: #555;
+  color: #94a3b8;
 }
 
-/* ===== 空セル ===== */
-.calendar .day.empty {
-  background: #f7f9fc;
+.card {
+  display: block;
+  margin-top: 3px;
+  padding: 3px;
+  border-top: 2px solid var(--blue);
+  font-size: 11px;
+  text-decoration: none;
+  color: #000;
 }
 
-/* ===== レスポンシブ ===== */
-@media (max-width: 900px) {
-  .calendar {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.title {
+  font-weight: bold;
+  line-height: 1.2;
+}
 
-  .calendar .day-header {
-    display: none;
-  }
+.name {
+  text-align: right;
+  color: var(--blue);
+  font-size: 10px;
 }
