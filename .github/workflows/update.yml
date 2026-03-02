@@ -1,56 +1,89 @@
-- name: Fetch data from Jira
-  env:
-    JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
-    JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
-    JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
-  run: |
-    cat << 'EOF' > fetch_data.py
-    import os, json, requests
-    from requests.auth import HTTPBasicAuth
+name: update
 
-    BASE = os.environ["JIRA_BASE_URL"]
-    EMAIL = os.environ["JIRA_EMAIL"]
-    TOKEN = os.environ["JIRA_API_TOKEN"]
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"  # 毎日 9:00 JST
 
-    JQL = """
-    project = TECHBLOG
-    AND issuetype = "記事執筆"
-    AND duedate IS NOT EMPTY
-    ORDER BY duedate ASC
-    """
+jobs:
+  update:
+    runs-on: ubuntu-latest
 
-    res = requests.post(
-        f"{BASE}/rest/api/3/search",
-        json={
-            "jql": JQL,
-            "fields": ["summary", "assignee", "duedate"],
-            "maxResults": 100
-        },
-        headers={
-            "Accept": "application/json",
-            "Content-Type": "application/json"
-        },
-        auth=HTTPBasicAuth(EMAIL, TOKEN)
-    )
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-    res.raise_for_status()
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
 
-    issues = res.json()["issues"]
-    data = []
+      - name: Install dependencies
+        run: pip install requests
 
-    for issue in issues:
-        f = issue["fields"]
-        data.append({
-            "date": f["duedate"].replace("-", "/"),
-            "title": f["summary"],
-            "name": f["assignee"]["displayName"] if f["assignee"] else "",
-            "url": f"{BASE}/browse/{issue['key']}"
-        })
+      - name: Fetch data from Jira
+        env:
+          JIRA_BASE_URL: ${{ secrets.JIRA_BASE_URL }}
+          JIRA_EMAIL: ${{ secrets.JIRA_EMAIL }}
+          JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+        run: |
+          cat << 'EOF' > fetch_data.py
+          import os
+          import json
+          import requests
+          from requests.auth import HTTPBasicAuth
 
-    with open("data.json", "w", encoding="utf-8") as fp:
-        json.dump(data, fp, ensure_ascii=False, indent=2)
+          BASE = os.environ["JIRA_BASE_URL"]
+          EMAIL = os.environ["JIRA_EMAIL"]
+          TOKEN = os.environ["JIRA_API_TOKEN"]
 
-    print(f"Generated data.json with {len(data)} items")
-    EOF
+          JQL = """
+          project = TECHBLOG
+          AND issuetype = "記事執筆"
+          AND duedate IS NOT EMPTY
+          ORDER BY duedate ASC
+          """
 
-    python fetch_data.py
+          res = requests.post(
+              f"{BASE}/rest/api/3/search",
+              json={
+                  "jql": JQL,
+                  "fields": ["summary", "assignee", "duedate"],
+                  "maxResults": 100
+              },
+              headers={
+                  "Accept": "application/json",
+                  "Content-Type": "application/json"
+              },
+              auth=HTTPBasicAuth(EMAIL, TOKEN)
+          )
+
+          res.raise_for_status()
+
+          issues = res.json()["issues"]
+          data = []
+
+          for issue in issues:
+              f = issue["fields"]
+              data.append({
+                  "date": f["duedate"].replace("-", "/"),
+                  "title": f["summary"],
+                  "name": f["assignee"]["displayName"] if f["assignee"] else "",
+                  "url": f"{BASE}/browse/{issue['key']}"
+              })
+
+          with open("data.json", "w", encoding="utf-8") as fp:
+              json.dump(data, fp, ensure_ascii=False, indent=2)
+
+          print(f"Generated data.json with {len(data)} items")
+          EOF
+
+          python fetch_data.py
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data.json
+          git diff --cached --quiet || git commit -m "chore: update data.json"
+          git push
