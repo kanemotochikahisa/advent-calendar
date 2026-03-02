@@ -1,194 +1,93 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>TOKIUM Tech Blog Calendar</title>
-  <style>
-    :root {
-      --tokium-blue: #004bb1;
-      --tokium-light: #e6edf7;
-      --border-color: #cbd5e0;
-      --text-color: #2d3748;
-    }
-
-    body {
-      font-family: "Hiragino Sans", "Meiryo", sans-serif;
-      background: #f1f5f9;
-      margin: 0;
-      padding: 10px;
-      color: var(--text-color);
-      height: calc(100vh - 20px);
-      box-sizing: border-box;
-      overflow: hidden;
-    }
-
-    .header {
-      text-align: center;
-      padding: 5px 0;
-    }
-
-    .header h1 {
-      color: var(--tokium-blue);
-      font-size: 1.3em;
-      margin: 0 0 5px 0;
-    }
-
-    .nav-controls {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-    }
-
-    .nav-btn {
-      background: var(--tokium-blue);
-      color: white;
-      border: none;
-      padding: 4px 10px;
-      border-radius: 4px;
-      cursor: pointer;
-      font-size: 0.75em;
-    }
-
-    .calendar-container {
-      max-width: 1100px;
-      margin: 0 auto;
-      background: white;
-      padding: 5px;
-      border-radius: 8px;
-      height: calc(100% - 60px);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
-
-    .weekday-header,
-    .calendar-grid {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-    }
-
-    .weekday-header {
-      font-size: 0.7em;
-      font-weight: bold;
-      background: var(--tokium-light);
-      text-align: center;
-    }
-
-    .calendar-grid {
-      height: calc(100% - 20px);
-      gap: 2px;
-      background: var(--border-color);
-    }
-
-    .day-slot {
-      background: #fff;
-      padding: 2px 4px;
-      font-size: 0.65em;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .day-number {
-      font-size: 0.75em;
-      color: #a0aec0;
-      font-weight: bold;
-    }
-
-    .card {
-      margin-top: 2px;
-      padding: 2px;
-      border-top: 2px solid var(--tokium-blue);
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .card-title {
-      font-weight: bold;
-      line-height: 1.2;
-    }
-
-    .card-author {
-      text-align: right;
-      font-size: 0.8em;
-      color: var(--tokium-blue);
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-<div class="header">
-  <h1>TOKIUM Tech Blog</h1>
-  <div class="nav-controls">
-    <button class="nav-btn" onclick="changeMonth(-1)">◀ PREV</button>
-    <div id="month-display"></div>
-    <button class="nav-btn" onclick="changeMonth(1)">NEXT ▶</button>
+  <div class="header">
+    <h1>TOKIUM Tech Blog</h1>
+    <div class="nav-controls">
+      <button onclick="changeMonth(-1)">◀ PREV</button>
+      <div id="month-label"></div>
+      <button onclick="changeMonth(1)">NEXT ▶</button>
+    </div>
   </div>
-</div>
 
-<div class="calendar-container">
-  <div class="weekday-header">
-    <div>SUN</div><div>MON</div><div>TUE</div><div>WED</div>
-    <div>THU</div><div>FRI</div><div>SAT</div>
+  <div class="calendar-container">
+    <div class="weekday">
+      <div>SUN</div><div>MON</div><div>TUE</div>
+      <div>WED</div><div>THU</div><div>FRI</div><div>SAT</div>
+    </div>
+    <div id="calendar" class="calendar"></div>
   </div>
-  <div id="calendar" class="calendar-grid"></div>
-</div>
 
 <script>
-let currentViewDate = new Date();
-let allPosts = [];
+/** ★★★★★ ここに Apps Script の WebアプリURLを入れる ★★★★★ */
+const API_URL = "https://script.google.com/macros/s/【あなたのURL】/exec";
+
+let posts = [];
+let current = new Date();
 
 async function loadData() {
-  const res = await fetch('./data.json?' + Date.now());
-  allPosts = await res.json();
-  renderCalendar();
+  const res = await fetch(API_URL + "?t=" + Date.now());
+  posts = await res.json();
+  render();
 }
 
 function changeMonth(diff) {
-  currentViewDate.setMonth(currentViewDate.getMonth() + diff);
-  renderCalendar();
+  current.setMonth(current.getMonth() + diff);
+  render();
 }
 
-function renderCalendar() {
-  const cal = document.getElementById('calendar');
-  const label = document.getElementById('month-display');
-  cal.innerHTML = '';
+function render() {
+  const cal = document.getElementById("calendar");
+  const label = document.getElementById("month-label");
+  cal.innerHTML = "";
 
-  const y = currentViewDate.getFullYear();
-  const m = currentViewDate.getMonth();
+  const y = current.getFullYear();
+  const m = current.getMonth();
+
   label.textContent = `${y} / ${m + 1}`;
 
   const firstDay = new Date(y, m, 1).getDay();
   const lastDate = new Date(y, m + 1, 0).getDate();
 
   for (let i = 0; i < firstDay; i++) {
-    cal.appendChild(document.createElement('div'));
+    cal.appendChild(document.createElement("div"));
   }
 
   for (let d = 1; d <= lastDate; d++) {
-    const slot = document.createElement('div');
-    slot.className = 'day-slot';
-    slot.innerHTML = `<div class="day-number">${d}</div>`;
+    const cell = document.createElement("div");
+    cell.className = "day";
 
-    const dateStr = `${y}/${String(m+1).padStart(2,'0')}/${String(d).padStart(2,'0')}`;
-    const post = allPosts.find(p => p.date === dateStr);
+    const dateStr = `${y}/${String(m+1).padStart(2,"0")}/${String(d).padStart(2,"0")}`;
+    const post = posts.find(p => p.date === dateStr);
 
-    if (post && post.url) {
-      const a = document.createElement('a');
-      a.className = 'card';
-      a.href = post.url;
-      a.target = '_blank';
-      a.innerHTML = `
-        <div class="card-title">${post.title}</div>
-        <div class="card-author">${post.name || ''}</div>
+    cell.innerHTML = `<div class="num">${d}</div>`;
+
+    if (post) {
+      const card = document.createElement(post.url ? "a" : "div");
+      card.className = "card";
+      if (post.url) {
+        card.href = post.url;
+        card.target = "_blank";
+      }
+
+      card.innerHTML = `
+        <div class="title">${post.title}</div>
+        <div class="name">${post.name || ""}</div>
       `;
-      slot.appendChild(a);
+      cell.appendChild(card);
     }
 
-    cal.appendChild(slot);
+    cal.appendChild(cell);
   }
 }
 
 loadData();
 </script>
-
 </body>
 </html>
