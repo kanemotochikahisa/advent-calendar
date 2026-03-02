@@ -37,7 +37,6 @@ jobs:
           EMAIL = os.environ["JIRA_EMAIL"]
           TOKEN = os.environ["JIRA_API_TOKEN"]
 
-          # /wiki が入っていたら除去（410対策）
           if BASE.endswith("/wiki"):
               BASE = BASE[:-5]
 
@@ -48,7 +47,7 @@ jobs:
           ORDER BY duedate ASC
           """
 
-          url = f"{BASE}/rest/api/3/search"
+          url = f"{BASE}/rest/api/3/search/jql"
 
           res = requests.post(
               url,
