@@ -1,93 +1,87 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TOKIUM Tech Blog Calendar</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<title>TOKIUM Tech Blog</title>
+<style>
+body { font-family:sans-serif; background:#f3f4f6; margin:0; padding:20px; }
+h1 { text-align:center; color:#004bb1; }
+.calendar { display:grid; grid-template-columns:repeat(7,1fr); gap:5px; }
+.day { background:#fff; min-height:100px; padding:5px; border:1px solid #ddd; }
+.num { font-size:12px; color:#888; }
+.card { display:block; margin-top:5px; font-size:12px; border-top:2px solid #004bb1; text-decoration:none; color:#000; }
+.name { text-align:right; font-size:11px; color:#004bb1; }
+</style>
 </head>
 <body>
-  <div class="header">
-    <h1>TOKIUM Tech Blog</h1>
-    <div class="nav-controls">
-      <button onclick="changeMonth(-1)">◀ PREV</button>
-      <div id="month-label"></div>
-      <button onclick="changeMonth(1)">NEXT ▶</button>
-    </div>
-  </div>
 
-  <div class="calendar-container">
-    <div class="weekday">
-      <div>SUN</div><div>MON</div><div>TUE</div>
-      <div>WED</div><div>THU</div><div>FRI</div><div>SAT</div>
-    </div>
-    <div id="calendar" class="calendar"></div>
-  </div>
+<h1>TOKIUM Tech Blog</h1>
+<div id="calendar" class="calendar"></div>
 
 <script>
-/** ★★★★★ ここに Apps Script の WebアプリURLを入れる ★★★★★ */
-const API_URL = "https://script.google.com/macros/s/【あなたのURL】/exec";
+
+// ★★★★★ Apps Script URL ★★★★★
+const API_URL = "ここにGASのURLを貼る";
 
 let posts = [];
-let current = new Date();
 
-async function loadData() {
-  const res = await fetch(API_URL + "?t=" + Date.now());
-  posts = await res.json();
-  render();
-}
-
-function changeMonth(diff) {
-  current.setMonth(current.getMonth() + diff);
-  render();
+async function load() {
+  try {
+    const res = await fetch(API_URL + "?t=" + Date.now());
+    posts = await res.json();
+    render();
+  } catch(e) {
+    console.error("API取得失敗", e);
+  }
 }
 
 function render() {
   const cal = document.getElementById("calendar");
-  const label = document.getElementById("month-label");
   cal.innerHTML = "";
 
-  const y = current.getFullYear();
-  const m = current.getMonth();
-
-  label.textContent = `${y} / ${m + 1}`;
+  const now = new Date();
+  const y = now.getFullYear();
+  const m = now.getMonth();
 
   const firstDay = new Date(y, m, 1).getDay();
-  const lastDate = new Date(y, m + 1, 0).getDate();
+  const lastDate = new Date(y, m+1, 0).getDate();
 
-  for (let i = 0; i < firstDay; i++) {
+  for(let i=0;i<firstDay;i++){
     cal.appendChild(document.createElement("div"));
   }
 
-  for (let d = 1; d <= lastDate; d++) {
+  for(let d=1; d<=lastDate; d++){
     const cell = document.createElement("div");
     cell.className = "day";
 
-    const dateStr = `${y}/${String(m+1).padStart(2,"0")}/${String(d).padStart(2,"0")}`;
-    const post = posts.find(p => p.date === dateStr);
+    const dateStr =
+      y + "/" +
+      String(m+1).padStart(2,"0") + "/" +
+      String(d).padStart(2,"0");
 
     cell.innerHTML = `<div class="num">${d}</div>`;
 
-    if (post) {
-      const card = document.createElement(post.url ? "a" : "div");
-      card.className = "card";
-      if (post.url) {
-        card.href = post.url;
-        card.target = "_blank";
-      }
+    const post = posts.find(p => p.date === dateStr);
 
-      card.innerHTML = `
-        <div class="title">${post.title}</div>
-        <div class="name">${post.name || ""}</div>
+    if(post){
+      const el = document.createElement(post.url ? "a":"div");
+      el.className = "card";
+      if(post.url){
+        el.href = post.url;
+        el.target = "_blank";
+      }
+      el.innerHTML = `
+        <div>${post.title}</div>
+        <div class="name">${post.name}</div>
       `;
-      cell.appendChild(card);
+      cell.appendChild(el);
     }
 
     cal.appendChild(cell);
   }
 }
 
-loadData();
+load();
 </script>
 </body>
 </html>
