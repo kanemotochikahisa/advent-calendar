@@ -2,86 +2,207 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>TOKIUM Tech Blog</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>TOKIUM Tech Blog Calendar</title>
+
 <style>
-body { font-family:sans-serif; background:#f3f4f6; margin:0; padding:20px; }
-h1 { text-align:center; color:#004bb1; }
-.calendar { display:grid; grid-template-columns:repeat(7,1fr); gap:5px; }
-.day { background:#fff; min-height:100px; padding:5px; border:1px solid #ddd; }
-.num { font-size:12px; color:#888; }
-.card { display:block; margin-top:5px; font-size:12px; border-top:2px solid #004bb1; text-decoration:none; color:#000; }
-.name { text-align:right; font-size:11px; color:#004bb1; }
+:root {
+    --tokium-blue: #004bb1;
+    --tokium-light: #e6edf7;
+    --border-color: #cbd5e0;
+}
+
+body{
+    font-family:"Hiragino Sans","Meiryo",sans-serif;
+    background:#f1f5f9;
+    margin:0;
+    padding:10px;
+}
+
+.header{
+    text-align:center;
+}
+
+.header h1{
+    color:var(--tokium-blue);
+}
+
+.nav-controls{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+}
+
+.nav-btn{
+    background:var(--tokium-blue);
+    color:white;
+    border:none;
+    padding:6px 12px;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+.calendar-container{
+    max-width:1100px;
+    margin:auto;
+    background:white;
+    padding:10px;
+}
+
+.weekday-header{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    text-align:center;
+    background:var(--tokium-light);
+}
+
+.calendar-grid{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+}
+
+.day-slot{
+    border:1px solid var(--border-color);
+    min-height:80px;
+    padding:4px;
+}
+
+.day-number{
+    font-size:12px;
+    color:#999;
+}
+
+.card{
+    display:block;
+    text-decoration:none;
+    font-size:12px;
+    margin-top:4px;
+}
+
+.card-title{
+    font-weight:bold;
+}
+
+.card-author{
+    font-size:11px;
+}
 </style>
+
 </head>
+
 <body>
 
+<div class="header">
 <h1>TOKIUM Tech Blog</h1>
-<div id="calendar" class="calendar"></div>
+
+<div class="nav-controls">
+<button class="nav-btn" onclick="changeMonth(-1)">◀ PREV</button>
+<div id="month-display"></div>
+<button class="nav-btn" onclick="changeMonth(1)">NEXT ▶</button>
+</div>
+</div>
+
+<div class="calendar-container">
+
+<div class="weekday-header">
+<div>SUN</div>
+<div>MON</div>
+<div>TUE</div>
+<div>WED</div>
+<div>THU</div>
+<div>FRI</div>
+<div>SAT</div>
+</div>
+
+<div id="calendar" class="calendar-grid"></div>
+
+</div>
 
 <script>
 
-// ★★★★★ Apps Script URL ★★★★★
-const API_URL = "ここにGASのURLを貼る";
+let currentViewDate=new Date()
+let allPosts=[]
 
-let posts = [];
+async function loadData(){
 
-async function load() {
-  try {
-    const res = await fetch(API_URL + "?t=" + Date.now());
-    posts = await res.json();
-    render();
-  } catch(e) {
-    console.error("API取得失敗", e);
-  }
+const res=await fetch("./data.json?"+Date.now())
+allPosts=await res.json()
+
+renderCalendar()
+
 }
 
-function render() {
-  const cal = document.getElementById("calendar");
-  cal.innerHTML = "";
+function changeMonth(diff){
 
-  const now = new Date();
-  const y = now.getFullYear();
-  const m = now.getMonth();
+currentViewDate.setMonth(currentViewDate.getMonth()+diff)
+renderCalendar()
 
-  const firstDay = new Date(y, m, 1).getDay();
-  const lastDate = new Date(y, m+1, 0).getDate();
-
-  for(let i=0;i<firstDay;i++){
-    cal.appendChild(document.createElement("div"));
-  }
-
-  for(let d=1; d<=lastDate; d++){
-    const cell = document.createElement("div");
-    cell.className = "day";
-
-    const dateStr =
-      y + "/" +
-      String(m+1).padStart(2,"0") + "/" +
-      String(d).padStart(2,"0");
-
-    cell.innerHTML = `<div class="num">${d}</div>`;
-
-    const post = posts.find(p => p.date === dateStr);
-
-    if(post){
-      const el = document.createElement(post.url ? "a":"div");
-      el.className = "card";
-      if(post.url){
-        el.href = post.url;
-        el.target = "_blank";
-      }
-      el.innerHTML = `
-        <div>${post.title}</div>
-        <div class="name">${post.name}</div>
-      `;
-      cell.appendChild(el);
-    }
-
-    cal.appendChild(cell);
-  }
 }
 
-load();
+function renderCalendar(){
+
+const calendar=document.getElementById("calendar")
+calendar.innerHTML=""
+
+const monthDisplay=document.getElementById("month-display")
+
+const year=currentViewDate.getFullYear()
+const month=currentViewDate.getMonth()
+
+monthDisplay.textContent=year+" / "+(month+1)
+
+const firstDay=new Date(year,month,1).getDay()
+const lastDate=new Date(year,month+1,0).getDate()
+
+for(let i=0;i<firstDay;i++){
+
+const blank=document.createElement("div")
+blank.className="day-slot"
+
+calendar.appendChild(blank)
+
+}
+
+for(let day=1;day<=lastDate;day++){
+
+const slot=document.createElement("div")
+slot.className="day-slot"
+
+slot.innerHTML='<div class="day-number">'+day+'</div>'
+
+const dateStr=year+"/"+String(month+1).padStart(2,"0")+"/"+String(day).padStart(2,"0")
+
+const post=allPosts.find(p=>p.date===dateStr)
+
+if(post){
+
+const card=document.createElement("a")
+
+card.className="card"
+
+if(post.url){
+card.href=post.url
+card.target="_blank"
+}
+
+card.innerHTML=
+'<div class="card-title">'+post.title+'</div>'+
+'<div class="card-author">'+post.name+'</div>'
+
+slot.appendChild(card)
+
+}
+
+calendar.appendChild(slot)
+
+}
+
+}
+
+loadData()
+
 </script>
+
 </body>
 </html>
