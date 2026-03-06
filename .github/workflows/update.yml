@@ -1,5 +1,4 @@
-name: update
-
+name: Auto Update Calendar
 on:
   workflow_dispatch:
   schedule:
@@ -7,32 +6,53 @@ on:
 
 jobs:
   update:
-
     runs-on: ubuntu-latest
-
     permissions:
       contents: write
-
     steps:
-
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          python-version: "3.11"
-
-      - run: pip install google-auth google-api-python-client
-
-      - run: python fetch_data.py
+          python-version: '3.x'
+      - name: Install dependencies
+        run: pip install google-auth google-api-python-client requests
+      - name: Run Fetch Script
         env:
-          GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
-          SPREADSHEET_ID: ${{ secrets.SPREADSHEET_ID }}
-          SHEET_NAME: ${{ secrets.SHEET_NAME }}
-
-      - name: commit
+          GCP_KEY: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
         run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
+          cat << 'EOF' > fetch_data.py
+          import json, os, re, ast
+          from google.oauth2 import service_account
+          from googleapiclient.discovery import build
+          try:
+              info = json.loads(os.environ.get('GCP_KEY'))
+              creds = service_account.Credentials.from_service_account_info(info)
+              service = build('sheets', 'v4', credentials=creds)
+              spreadsheet_id = '1DVbCRhxizfF4FtQ0z093XfsCwXagt5qCsZwtdkramg4'
+              sheet_metadata = service.spreadsheets().get(spreadsheetId=spreadsheet_id).execute()
+              target_sheet_name = sheet_metadata['sheets'][0]['properties']['title']
+              result = service.spreadsheets().values().get(spreadsheetId=spreadsheet_id, range=f'{target_sheet_name}!M:M').execute()
+              values = result.get('values', [])
+              data_list = []
+              for row in values:
+                  if not row: continue
+                  match = re.search(r'\{.*\}', str(row[0]))
+                  if match:
+                      try:
+                          item = ast.literal_eval(match.group(0))
+                          data_list.append(item)
+                      except: continue
+              with open('data.json', 'w', encoding='utf-8') as f:
+                  json.dump(data_list, f, ensure_ascii=False, indent=2)
+          except Exception as e:
+              print(f'Error: {e}'); exit(1)
+          EOF
+          python3 fetch_data.py
+      - name: Commit and Push
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git add data.json
-          git commit -m "auto update data" || echo no change
-          git push
+          git commit --allow-empty -m "chore: update data.json"
+          git push origin main
