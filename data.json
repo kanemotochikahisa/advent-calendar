@@ -1,1 +1,380 @@
-[]
+[
+  {
+    "date": "2026/02/24",
+    "title": "登壇記事",
+    "name": "東優太",
+    "url": "https://zenn.dev/tokium_dev/articles/3236cc7c721259"
+  },
+  {
+    "date": "2026/02/25",
+    "title": "「報告」で終わらない定例会議の進め方 — 6チーム30分で回す仕組み",
+    "name": "寺田太一",
+    "url": "https://zenn.dev/articles/8570a0c9f143da/edit"
+  },
+  {
+    "date": "2026/02/24",
+    "title": "「準備」から「対話」へ——定例資料をAIに任せて変わったこと",
+    "name": "寺田太一",
+    "url": "https://zenn.dev/articles/c3cc133a68c85a/edit"
+  },
+  {
+    "date": "2026/02/13",
+    "title": "知見を「掛け算」に変えるコンテキスト設計——PdMがClaude Codeに施した「仕込み」の技術",
+    "name": "Yohei Ishii / 石井 洋平",
+    "url": "https://zenn.dev/tokium_dev/articles/ffb28cbed528e0"
+  },
+  {
+    "date": "2026/02/10",
+    "title": "Claude Code Agent Teams で PM の感覚でチーム設計するとうまくいった話",
+    "name": "井上智敬",
+    "url": "https://zenn.dev/tokium_dev/articles/9db5c5e1192509"
+  },
+  {
+    "date": "2026/02/13",
+    "title": "AIエージェントの不気味の谷を超えるには？",
+    "name": "村上雅一",
+    "url": "https://zenn.dev/tokium_dev/articles/72f517593a75f1"
+  },
+  {
+    "date": "2026/02/12",
+    "title": "マイクロマネジメントは「支配」、レビューは「信頼」",
+    "name": "村上雅一",
+    "url": "https://zenn.dev/tokium_dev/articles/a02834d489ddb7"
+  },
+  {
+    "date": "2026/02/19",
+    "title": "VimでのAIを使った開発について何か書く",
+    "name": "西川真澄",
+    "url": "https://zenn.dev/tokium_dev/articles/3e786908bc7dad"
+  },
+  {
+    "date": "2026/02/16",
+    "title": "SaaS Is Deadの先に行くにあたってのボトルネック",
+    "name": "西平基志",
+    "url": "https://zenn.dev/tokium_dev/articles/068a149f25c60e"
+  },
+  {
+    "date": "2026/02/18",
+    "title": "池田新　何か書く",
+    "name": "ikeda_ar",
+    "url": "https://zenn.dev/tokium_dev/articles/a0248212baaee3"
+  },
+  {
+    "date": "2026/02/17",
+    "title": "速く出して、速く潰す——AIエージェント開発でPdMが学んだこと",
+    "name": "村上雅一",
+    "url": "https://zenn.dev/tokium_dev/articles/63db4f3f7b2e7b"
+  },
+  {
+    "date": "2026/01/28",
+    "title": "PjMの本質は「事実」の可視化、PdMの本質は「意思」の可視化。",
+    "name": "村上雅一",
+    "url": "https://zenn.dev/tokium_dev/articles/e8952922afaf3e"
+  },
+  {
+    "date": "2026/02/06",
+    "title": "冨永_兼務PdMの話",
+    "name": "冨永 佑介",
+    "url": "https://zenn.dev/tokium_dev/articles/pdm-multi-team-management"
+  },
+  {
+    "date": "2026/02/09",
+    "title": "「なんか良いらしい」でDDDを導入した結果、何も得られなかった話",
+    "name": "kimura_r",
+    "url": "https://zenn.dev/tokium_dev/articles/why-ddd-failed-for-me"
+  },
+  {
+    "date": "2026/01/29",
+    "title": "Compose Multiplatform for WebのEmbedding HTML Content機能を使ってみた",
+    "name": "坂上晴信",
+    "url": "https://zenn.dev/tokium_dev/articles/cmp-for-web-embedding-html-content"
+  },
+  {
+    "date": "2026/01/23",
+    "title": "Xperia 1 Ⅱ にLineageOSを焼いて復活させる",
+    "name": "坂上晴信",
+    "url": "https://zenn.dev/tokium_dev/articles/xperia-1-mark2-lineageos-revival"
+  },
+  {
+    "date": "2026/01/13",
+    "title": "過程を吹っ飛ばしたCircleCI self-hosted runner with EKSのバージョンアップ",
+    "name": "對馬克",
+    "url": "https://zenn.dev/tokium_dev/articles/53110c1d22e8db"
+  },
+  {
+    "date": "2026/01/26",
+    "title": "BPO×AIの知見から考える「人間がレビューしない率」の上げ方",
+    "name": "西平基志",
+    "url": "https://zenn.dev/tokium_dev/articles/4a46f5a2992fd9"
+  },
+  {
+    "date": "2026/01/22",
+    "title": "現場と共に育てるAI機能 - リリース後の泥臭い品質改善プロセスについて",
+    "name": "戸松一貴",
+    "url": "https://zenn.dev/tokium_dev/articles/c4bbac51dd4462"
+  },
+  {
+    "date": "2026/02/02",
+    "title": "Claude Code Skillsがわからなくて焦った僕が、最初に考えるべきだったこと",
+    "name": "shigemura_y",
+    "url": "https://zenn.dev/tokium_dev/articles/1f0c83eb3dd72d"
+  },
+  {
+    "date": "2025/12/24",
+    "title": "DevHRに手を挙げた3年前の自分へ──最高の仲間たちを巻き込もう、それが君の役割だ",
+    "name": "坂上晴信",
+    "url": "https://zenn.dev/tokium_dev/articles/devhr-reflection-3-years"
+  },
+  {
+    "date": "2025/12/22",
+    "title": "サービスのイメージがわかないなら、バイブコーディングで作ってみればいい",
+    "name": "冨永 佑介",
+    "url": "https://zenn.dev/tokium_dev/articles/daa50e7f631971"
+  },
+  {
+    "date": "2026/01/07",
+    "title": "新卒エンジニアよ。コードは書かなくていいかもしれない。でも理解だけはやめないでほしい",
+    "name": "kimura_r",
+    "url": "https://zenn.dev/tokium_dev/articles/vibe-coding-understanding-matters"
+  },
+  {
+    "date": "2025/12/17",
+    "title": "AIエージェント開発で「チャットUI」を疑うべき理由",
+    "name": "Yuki Hanafusa",
+    "url": "https://zenn.dev/tokium_dev/articles/0657fa760ad085"
+  },
+  {
+    "date": "2025/12/25",
+    "title": "「正解」がコモディティ化した時代。なぜAIの台頭と共に「仮説」が最強の武器になるのか～不確実な世界で「スタンス」を示す技術～",
+    "name": "村上雅一",
+    "url": "https://zenn.dev/tokium_dev/articles/06c63a3d33ddf2"
+  },
+  {
+    "date": "2025/12/24",
+    "title": "AIエージェントに必要な「観測性」の話",
+    "name": "shigemura_y",
+    "url": "https://zenn.dev/tokium_dev/articles/a0f6f46c6c2e96"
+  },
+  {
+    "date": "2026/01/16",
+    "title": "「不便」は体験しないと見えてこない。PdMはもっと「怠惰」でいいんじゃない？という話",
+    "name": "kato_m",
+    "url": "https://zenn.dev/tokium_dev/articles/5a452c6ce3e4c1"
+  },
+  {
+    "date": "2026/01/08",
+    "title": "コードが書けない私は、エンジニアと呼べるのだろうか？ ―― AI時代の新卒CREが出した答え",
+    "name": "ano_y",
+    "url": "https://zenn.dev/tokium_dev/articles/bb20f34d606efd"
+  },
+  {
+    "date": "2026/01/19",
+    "title": "Go + Watermillで実装するイベント駆動通信",
+    "name": "Ayato Tachibana",
+    "url": "https://zenn.dev/tokium_dev/articles/2026-01-14-go-watermill"
+  },
+  {
+    "date": "2026/01/27",
+    "title": "QA・エンジニアで現場目線を持つということ",
+    "name": "石川裕才",
+    "url": "https://zenn.dev/tokium_dev/articles/3300bf63c8708d"
+  },
+  {
+    "date": "2026/01/21",
+    "title": "ジュニアエンジニアが実践したい、プロンプトより大切な「下ごしらえ力」",
+    "name": "西片文哉",
+    "url": "https://zenn.dev/tokium_dev/articles/c597e807a249ad"
+  },
+  {
+    "date": "2026/01/09",
+    "title": "新卒で営業サイドから開発サイドへの転向について",
+    "name": "ichihara_k",
+    "url": "https://zenn.dev/tokium_dev/articles/46d95d2be30f78"
+  },
+  {
+    "date": "2026/01/14",
+    "title": "AI時代に、あえて「遠回り」な学習を選んでみた話",
+    "name": "kabe_j",
+    "url": "https://zenn.dev/tokium_dev/articles/ec3b29f4709538"
+  },
+  {
+    "date": "2026/01/06",
+    "title": "QAエンジニア採用面談で本当に見極めたいこと ― 短い時間で「一緒に働きたい」を見つける方法",
+    "name": "西田泰明",
+    "url": "https://zenn.dev/tokium_dev/articles/85285b8bdff3e7"
+  },
+  {
+    "date": "2026/02/04",
+    "title": "決定的推論とLLM的推論で課題を解くアプローチの提案~AI経費承認から見えた最適解",
+    "name": "murase_k",
+    "url": "https://zenn.dev/tokium_dev/articles/4074da289110c3"
+  },
+  {
+    "date": "2026/01/20",
+    "title": "その機能を「なぜ作るのか」、チームに翻訳できていますか",
+    "name": "tsutsui_t",
+    "url": "https://zenn.dev/tokium_dev/articles/7b354bb0fda3d6"
+  },
+  {
+    "date": "2025/12/23",
+    "title": "画面を閉じて、書店に行こう",
+    "name": "井上智敬",
+    "url": "https://zenn.dev/tokium_dev/articles/0e4b1552824dfc"
+  },
+  {
+    "date": "2026/02/03",
+    "title": "git worktree × 動的ポートで並列開発環境を作る",
+    "name": "Masahiro Okamoto/岡本匡弘",
+    "url": "https://zenn.dev/tokium_dev/articles/git-worktree-dynamic-port-parallel-dev"
+  },
+  {
+    "date": "2026/01/30",
+    "title": "実装はClaude、レビューはCodex ─ tmuxで繋ぐ開発フロー",
+    "name": "Masahiro Okamoto/岡本匡弘",
+    "url": "https://zenn.dev/tokium_dev/articles/0ef3f807d67e7c"
+  },
+  {
+    "date": "2026/01/29",
+    "title": "LLMアプリケーションの技術的負債を解消する",
+    "name": "井上智敬",
+    "url": "https://zenn.dev/tokium_dev/articles/95263724de88dd"
+  },
+  {
+    "date": "2025/12/26",
+    "title": "Googleカレンダーの「イベントID」をGASでサクッと取得する方法",
+    "name": "村上雅一",
+    "url": "https://zenn.dev/tokium_dev/articles/3a1d26c2df9fdb"
+  },
+  {
+    "date": "2025/12/19",
+    "title": "AIエージェント開発を社内ライブラリで支えようとして起きたこと",
+    "name": "東優太",
+    "url": "https://zenn.dev/tokium_dev/articles/763970a664df28"
+  },
+  {
+    "date": "2025/12/18",
+    "title": "メインプロダクトのRubyのアップグレードに際して行った改善",
+    "name": "西川真澄",
+    "url": "https://zenn.dev/tokium_dev/articles/17a826f6e72f46"
+  },
+  {
+    "date": "",
+    "title": "Hacker Newsの最新記事を要約するツールを作る",
+    "name": "Masahiro Okamoto/岡本匡弘",
+    "url": "https://zenn.dev/tokium_dev/articles/3b6dc32e930737"
+  },
+  {
+    "date": "2025/12/02",
+    "title": "未経験PdMが「スタンスを取れる人」になった、たった1つのコツ",
+    "name": "kato_m",
+    "url": "https://zenn.dev/tokium_dev/articles/1152349bf10bde"
+  },
+  {
+    "date": "2025/12/03",
+    "title": "PdMとAIが議事録を撲滅する──「会議の内容、覚えてない問題」を自動化で解決した話",
+    "name": "冨永 佑介",
+    "url": "https://zenn.dev/tokium_dev/articles/60c975bd35fe19"
+  },
+  {
+    "date": "",
+    "title": "AI驚き屋にならないための処方箋：ニュースの「表面」じゃなくて「本質」を見よう",
+    "name": "村上雅一",
+    "url": "https://zenn.dev/tokium_dev/articles/4a3c329d1eee62"
+  },
+  {
+    "date": "",
+    "title": "AIエージェント開発は、特別なものじゃなかった",
+    "name": "ikeda_ar",
+    "url": "https://zenn.dev/tokium_dev/articles/83d28297fa7b15"
+  },
+  {
+    "date": "",
+    "title": "Mastraを使ってAIエージェントを作ろう！ - 応用編 -",
+    "name": "坂上晴信",
+    "url": "https://zenn.dev/tokium_dev/articles/mastra-ai-agent-handson-advanced"
+  },
+  {
+    "date": "",
+    "title": "Mastraを使ってAIエージェントを作ろう！ - 基礎編(3) -",
+    "name": "坂上晴信",
+    "url": "https://zenn.dev/tokium_dev/articles/mastra-ai-agent-handson-basic-3"
+  },
+  {
+    "date": "",
+    "title": "Mastraを使ってAIエージェントを作ろう！ - 基礎編(2) -",
+    "name": "坂上晴信",
+    "url": "https://zenn.dev/tokium_dev/articles/mastra-ai-agent-handson-basic-2"
+  },
+  {
+    "date": "",
+    "title": "Mastraを使ってAIエージェントを作ろう！ - 基礎編(1) -",
+    "name": "坂上晴信",
+    "url": "https://zenn.dev/tokium_dev/articles/mastra-ai-agent-handson-basic-1"
+  },
+  {
+    "date": "2025/10/17",
+    "title": "「AIを使わない」という選択をしてもいいのか？〜請求照合の泥臭い現場から見えた、AIとの正しい付き合い方〜",
+    "name": "村上雅一",
+    "url": "https://zenn.dev/tokium_dev/articles/fbcd62e6e07a07"
+  },
+  {
+    "date": "2025/08/08",
+    "title": "正解のないテストに挑む ― AIエージェントQAの試行錯誤と学び",
+    "name": "西田泰明",
+    "url": "https://zenn.dev/tokium_dev/articles/c986844e3cf8d8"
+  },
+  {
+    "date": "",
+    "title": "Datadog SLO metricsベースとtime sliceの比較",
+    "name": "對馬克",
+    "url": "https://zenn.dev/tokium_dev/articles/e6cb9456a7bb47"
+  },
+  {
+    "date": "",
+    "title": "【Jules】Geminiが2週間かかると言った機能実装を土日で終わらせた",
+    "name": "西片文哉",
+    "url": "https://zenn.dev/tokium_dev/articles/3f5985c306ecb9"
+  },
+  {
+    "date": "",
+    "title": "図解で一発理解！AIの「賢くさせ方」3つの違い：ファインチューニング、プロンプトチューニング、RAG入門",
+    "name": "村上雅一",
+    "url": "https://zenn.dev/tokium_dev/articles/8bbc73748cc29c"
+  },
+  {
+    "date": "",
+    "title": "スロークエリチューニング（タネ潰しPJ）の振り返り",
+    "name": "Masahiro Okamoto/岡本匡弘",
+    "url": "https://zenn.dev/tokium_dev/articles/14f5e72695ec54"
+  },
+  {
+    "date": "2025/08/22",
+    "title": "Postgresqlの実行計画を読んでパフォーマンスチューニングする",
+    "name": "Ayato Tachibana",
+    "url": "https://zenn.dev/tokium_dev/articles/2025-08-07-postgresql-performance"
+  },
+  {
+    "date": "2025/07/28",
+    "title": "Jira MCP と Claude Codeを利用した課題管理について",
+    "name": "村上雅一",
+    "url": "https://zenn.dev/tokium_dev/articles/006a2ed0ea39a6"
+  },
+  {
+    "date": "",
+    "title": "[戒め]mskのトピック名は重複させてはいけない",
+    "name": "對馬克",
+    "url": "https://zenn.dev/tokium_dev/articles/303b6773c934b5"
+  },
+  {
+    "date": "",
+    "title": "service-defを使わずにecspressoとTerraformを併用する",
+    "name": "對馬克",
+    "url": "https://zenn.dev/tokium_dev/articles/69e70ea22d70a4"
+  },
+  {
+    "date": "",
+    "title": "cloudfront continuous deploymentでSPAのデプロイパイプラインを構築する",
+    "name": "對馬克",
+    "url": "https://zenn.dev/tokium_dev/articles/2ba13fd02e95ce"
+  }
+]
