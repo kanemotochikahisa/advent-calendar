@@ -1,38 +1,38 @@
-name: Auto Update Calendar
+name: update
 
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 0 * * *'  # 毎日 09:00 JST
+    - cron: '0 0 * * *'
 
 jobs:
   update:
+
     runs-on: ubuntu-latest
+
     permissions:
       contents: write
 
     steps:
+
       - uses: actions/checkout@v4
 
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
-      - name: Install dependencies
-        run: |
-          pip install --upgrade google-auth google-api-python-client
+      - run: pip install google-auth google-api-python-client
 
-      - name: Run fetch script
-        run: python fetch_data.py
+      - run: python fetch_data.py
         env:
           GCP_SERVICE_ACCOUNT_KEY: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
           SPREADSHEET_ID: ${{ secrets.SPREADSHEET_ID }}
           SHEET_NAME: ${{ secrets.SHEET_NAME }}
 
-      - name: Commit and push
+      - name: commit
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name github-actions
+          git config user.email github-actions@github.com
           git add data.json
-          git commit -m "chore: update data.json" || exit 0
+          git commit -m "auto update data" || echo no change
           git push
