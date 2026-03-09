@@ -1,23 +1,74 @@
-fetch("data/calendar.json")
-.then(res=>res.json())
-.then(data=>{
+let current = new Date()
 
-const calendar=document.getElementById("calendar")
+fetch("./data/calendar.json")
+.then(res => res.json())
+.then(data => {
 
-data.forEach(item=>{
+function render(){
 
-const card=document.createElement("div")
-card.className="card"
+const calendar = document.getElementById("calendar")
+calendar.innerHTML=""
 
-card.innerHTML=`
-<div class="day">Day ${item.day}</div>
-<div class="title">${item.title}</div>
-<div class="author">${item.author}</div>
-<a href="${item.url}" target="_blank">記事を見る</a>
+const year=current.getFullYear()
+const month=current.getMonth()
+
+document.getElementById("monthLabel").textContent =
+year+" / "+(month+1)
+
+const firstDay = new Date(year,month,1).getDay()
+const lastDate = new Date(year,month+1,0).getDate()
+
+for(let i=0;i<firstDay;i++){
+calendar.appendChild(document.createElement("div"))
+}
+
+for(let d=1; d<=lastDate; d++){
+
+const cell=document.createElement("div")
+cell.className="day"
+
+const date=document.createElement("div")
+date.className="date"
+date.textContent=d
+
+cell.appendChild(date)
+
+const dateStr = year+"-"+String(month+1).padStart(2,"0")+"-"+String(d).padStart(2,"0")
+
+data
+.filter(a=>a.date===dateStr)
+.forEach(a=>{
+
+const art=document.createElement("div")
+art.className="article"
+
+art.innerHTML=`
+<a href="${a.url}" target="_blank">
+${a.title}
+</a>
+<div>${a.author}<span class="type">${a.type}</span></div>
 `
 
-calendar.appendChild(card)
+cell.appendChild(art)
 
 })
+
+calendar.appendChild(cell)
+
+}
+
+}
+
+render()
+
+document.getElementById("prev").onclick=()=>{
+current.setMonth(current.getMonth()-1)
+render()
+}
+
+document.getElementById("next").onclick=()=>{
+current.setMonth(current.getMonth()+1)
+render()
+}
 
 })
