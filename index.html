@@ -1,138 +1,18 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TOKIUM Tech Blog Calendar</title>
-    <style>
-        :root {
-            --tokium-blue: #004bb1;
-            --tokium-light: #e6edf7;
-            --border-color: #cbd5e0;
-            --text-color: #2d3748;
-            --sun-color: #e53e3e;
-            --sat-color: #3182ce;
-            --today-accent: #f6ad55;
-        }
-        body { 
-            font-family: "Hiragino Sans", "Meiryo", sans-serif; 
-            background: #f1f5f9; 
-            margin: 0; padding: 10px; 
-            color: var(--text-color);
-            display: flex; flex-direction: column;
-            height: calc(100vh - 20px); 
-            box-sizing: border-box; overflow: hidden;
-        }
-        .header { text-align: center; padding: 5px 0; flex-shrink: 0; }
-        .header h1 { color: var(--tokium-blue); font-size: 1.3em; margin: 0 0 5px 0; }
-        .nav-controls { display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 5px; }
-        .nav-btn { background: var(--tokium-blue); color: white; border: none; padding: 4px 10px; border-radius: 4px; cursor: pointer; font-size: 0.75em; }
-        .month-label { font-size: 1.0em; font-weight: bold; min-width: 100px; text-align: center; }
-        .calendar-container { 
-            flex: 1; max-width: 1100px; margin: 0 auto; width: 100%;
-            display: flex; flex-direction: column;
-            background: white; padding: 5px; border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05); box-sizing: border-box; overflow: hidden;
-        }
-        .weekday-header {
-            display: grid; grid-template-columns: repeat(7, 1fr);
-            text-align: center; font-weight: bold; font-size: 0.7em;
-            background: var(--tokium-light); padding: 4px 0; flex-shrink: 0;
-        }
-        .weekday-header div:nth-child(1) { color: var(--sun-color); }
-        .weekday-header div:nth-child(7) { color: var(--sat-color); }
-        .calendar-grid {
-            display: grid; grid-template-columns: repeat(7, 1fr);
-            grid-template-rows: repeat(auto-fit, minmax(0, 1fr)); 
-            gap: 2px; flex: 1; border: 1px solid var(--border-color); background: var(--border-color);
-        }
-        .day-slot { background: #fff; position: relative; display: flex; flex-direction: column; padding: 2px 4px; box-sizing: border-box; overflow: hidden; }
-        .day-slot.is-sun { background: #fff5f5; }
-        .day-slot.is-sat { background: #ebf8ff; }
-        .day-slot.is-today { border: 2px solid var(--today-accent); z-index: 10; }
-        .day-number { font-size: 0.75em; font-weight: bold; color: #a0aec0; line-height: 1.2; }
-        .is-sun .day-number { color: var(--sun-color); opacity: 0.6; }
-        .is-sat .day-number { color: var(--sat-color); opacity: 0.6; }
-        .card {
-            flex: 1; display: flex; flex-direction: column;
-            text-decoration: none; color: inherit; font-size: 0.65em;
-            background: rgba(255, 255, 255, 0.9); border-radius: 2px; padding: 2px;
-            overflow: hidden; justify-content: center;
-        }
-        .card.published { border-top: 2px solid var(--tokium-blue); box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-        .card.draft { border-top: 2px solid #cbd5e0; opacity: 0.6; }
-        .card-title { font-weight: bold; line-height: 1.1; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-        .card-author { font-size: 0.85em; color: var(--tokium-blue); text-align: right; margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    </style>
+<meta charset="utf-8">
+<title>Tech Blog Calendar</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div class="header">
-        <h1>TOKIUM Tech Blog</h1>
-        <div class="nav-controls">
-            <button class="nav-btn" onclick="changeMonth(-1)">◀ PREV</button>
-            <div id="month-display" class="month-label"></div>
-            <button class="nav-btn" onclick="changeMonth(1)">NEXT ▶</button>
-        </div>
-    </div>
-    <div class="calendar-container">
-        <div class="weekday-header">
-            <div>SUN</div><div>MON</div><div>TUE</div><div>WED</div><div>THU</div><div>FRI</div><div>SAT</div>
-        </div>
-        <div id="calendar" class="calendar-grid"></div>
-    </div>
-    <script>
-        let currentViewDate = new Date();
-        let allPosts = [];
-        async function loadData() {
-            try {
-                const response = await fetch('./data.json?v=' + new Date().getTime());
-                allPosts = await response.json();
-                renderCalendar();
-            } catch (e) { console.error(e); }
-        }
-        function changeMonth(diff) {
-            currentViewDate.setMonth(currentViewDate.getMonth() + diff);
-            renderCalendar();
-        }
-        function renderCalendar() {
-            const container = document.getElementById('calendar');
-            const monthDisplay = document.getElementById('month-display');
-            container.innerHTML = '';
-            const year = currentViewDate.getFullYear();
-            const month = currentViewDate.getMonth();
-            const firstDay = new Date(year, month, 1).getDay();
-            const lastDate = new Date(year, month + 1, 0).getDate();
-            monthDisplay.textContent = `${year} / ${month + 1}`;
-            const today = new Date();
-            const isCurrentMonth = (year === today.getFullYear() && month === today.getMonth());
-            for (let i = 0; i < firstDay; i++) {
-                const slot = document.createElement('div');
-                slot.className = 'day-slot';
-                slot.style.background = '#f8fafc';
-                container.appendChild(slot);
-            }
-            for (let i = 1; i <= lastDate; i++) {
-                const dayOfWeek = new Date(year, month, i).getDay();
-                const slot = document.createElement('div');
-                slot.className = 'day-slot';
-                if (dayOfWeek === 0) slot.classList.add('is-sun');
-                if (dayOfWeek === 6) slot.classList.add('is-sat');
-                if (isCurrentMonth && i === today.getDate()) slot.classList.add('is-today');
-                slot.innerHTML = `<div class="day-number">${i}</div>`;
-                const dateStr = `${year}/${String(month + 1).padStart(2, '0')}/${String(i).padStart(2, '0')}`;
-                const post = allPosts.find(p => p.date === dateStr);
-                if (post) {
-                    const isPub = post.url && post.url.startsWith('http');
-                    const card = document.createElement(isPub ? 'a' : 'div');
-                    card.className = `card ${isPub ? 'published' : 'draft'}`;
-                    if (isPub) { card.href = post.url; card.target = '_blank'; }
-                    card.innerHTML = `<div class="card-title">${post.title}</div><div class="card-author">${post.name || '---'}</div>`;
-                    slot.appendChild(card);
-                }
-                container.appendChild(slot);
-            }
-        }
-        loadData();
-    </script>
+
+<h1>Tech Blog Calendar</h1>
+
+<div id="calendar"></div>
+
+<script src="script.js"></script>
+
 </body>
 </html>
