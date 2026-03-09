@@ -1,1 +1,698 @@
-
+[
+  {
+    "date": "2025/07/16",
+    "day": "16",
+    "title": "[戒め]mskのトピック名は重複させてはいけない",
+    "author": "對馬 克",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/303b6773c934b5"
+  },
+  {
+    "date": "2025/07/23",
+    "day": "23",
+    "title": "cloudfront continuous deploymentでSPAのデプロイパイプラインを構築する",
+    "author": "對馬 克",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/2ba13fd02e95ce"
+  },
+  {
+    "date": "2025/07/25",
+    "day": "25",
+    "title": "経理AIエージェント開発のプロジェクト立ち上げから関わったインターン生の話",
+    "author": "岩崎 勇斗",
+    "type": "NOTE",
+    "url": "https://note.tokium.jp/n/n132e7d8dc7ac"
+  },
+  {
+    "date": "2025/07/25",
+    "day": "25",
+    "title": "AIがコードを自動生成する時代に、未経験エンジニアとしてどう価値を見出すのか？8日間のアプリ開発研修で葛藤し、学んだこと",
+    "author": "原田 瑚子",
+    "type": "NOTE",
+    "url": "https://note.tokium.jp/n/n8e4546c3f6f3"
+  },
+  {
+    "date": "2025/07/28",
+    "day": "28",
+    "title": "Jira MCP と Claude Codeを利用した課題管理について",
+    "author": "村上 雅一",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/006a2ed0ea39a6"
+  },
+  {
+    "date": "2025/07/30",
+    "day": "30",
+    "title": "service-defを使わずにecspressoとTerraformを併用する",
+    "author": "對馬 克",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/69e70ea22d70a4"
+  },
+  {
+    "date": "2025/08/08",
+    "day": "8",
+    "title": "正解のないテストに挑む ― AIエージェントQAの試行錯誤と学び",
+    "author": "西田 泰明",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/c986844e3cf8d8"
+  },
+  {
+    "date": "2025/08/22",
+    "day": "22",
+    "title": "Postgresqlの実行計画を読んでパフォーマンスチューニングする",
+    "author": "立花 斐斗",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/2025-08-07-postgresql-performance"
+  },
+  {
+    "date": "2025/08/22",
+    "day": "22",
+    "title": "Vibe Codingはエンジニアの職を奪うのか",
+    "author": "辻 晃太郎",
+    "type": "NOTE",
+    "url": "https://note.tokium.jp/n/n4a9a9825b019"
+  },
+  {
+    "date": "2025/08/29",
+    "day": "29",
+    "title": "Datadog SLO metricsベースとtime sliceの比較",
+    "author": "對馬 克",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/e6cb9456a7bb47"
+  },
+  {
+    "date": "2025/09/26",
+    "day": "26",
+    "title": "【イベント登壇レポート】半年でシナリオ数2.5倍、安定稼働率98%！TOKIUM QAチームの「Autifyテスト設計術」",
+    "author": "石川 裕才",
+    "type": "NOTE",
+    "url": "https://note.tokium.jp/n/n3b31227e5146"
+  },
+  {
+    "date": "2025/10/10",
+    "day": "10",
+    "title": "FY26 6〜8月のプロダクト本部登壇まとめ",
+    "author": "出口 秀一",
+    "type": "NOTE",
+    "url": "https://note.tokium.jp/n/n236d947cf19e"
+  },
+  {
+    "date": "2025/10/17",
+    "day": "17",
+    "title": "「AIを使わない」という選択をしてもいいのか？〜請求照合の泥臭い現場から見えた、AIとの正しい付き合い方〜",
+    "author": "村上 雅一",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/fbcd62e6e07a07"
+  },
+  {
+    "date": "2025/10/23",
+    "day": "23",
+    "title": "Mastraを使ってAIエージェントを作ろう！ - 基礎編(3) -",
+    "author": "坂上 晴信",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/mastra-ai-agent-handson-basic-3"
+  },
+  {
+    "date": "2025/10/23",
+    "day": "23",
+    "title": "Mastraを使ってAIエージェントを作ろう！ - 基礎編(2) -",
+    "author": "坂上 晴信",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/mastra-ai-agent-handson-basic-2"
+  },
+  {
+    "date": "2025/10/23",
+    "day": "23",
+    "title": "Mastraを使ってAIエージェントを作ろう！ - 基礎編(1) -",
+    "author": "坂上 晴信",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/mastra-ai-agent-handson-basic-1"
+  },
+  {
+    "date": "2025/10/29",
+    "day": "29",
+    "title": "Mastraを使ってAIエージェントを作ろう！ - 応用編 -",
+    "author": "坂上 晴信",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/mastra-ai-agent-handson-advanced"
+  },
+  {
+    "date": "2025/10/30",
+    "day": "30",
+    "title": "AIエージェント開発は、特別なものじゃなかった",
+    "author": "池田 新",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/83d28297fa7b15"
+  },
+  {
+    "date": "2025/11/04",
+    "day": "4",
+    "title": "図解で一発理解！AIの「賢くさせ方」3つの違い：ファインチューニング、プロンプトチューニング、RAG入門",
+    "author": "村上 雅一",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/8bbc73748cc29c"
+  },
+  {
+    "date": "2025/11/21",
+    "day": "21",
+    "title": "Hacker Newsの最新記事を要約するツールを作る",
+    "author": "岡本 匡弘",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/3b6dc32e930737"
+  },
+  {
+    "date": "2025/11/26",
+    "day": "26",
+    "title": "AI驚き屋にならないための処方箋：ニュースの「表面」じゃなくて「本質」を見よう",
+    "author": "村上 雅一",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/4a3c329d1eee62"
+  },
+  {
+    "date": "2025/12/02",
+    "day": "2",
+    "title": "未経験PdMが「スタンスを取れる人」になった、たった1つのコツ",
+    "author": "加藤 未央",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/1152349bf10bde"
+  },
+  {
+    "date": "2025/12/03",
+    "day": "3",
+    "title": "PdMとAIが議事録を撲滅する──「会議の内容、覚えてない問題」を自動化で解決した話",
+    "author": "冨永 佑介",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/60c975bd35fe19"
+  },
+  {
+    "date": "2025/12/08",
+    "day": "8",
+    "title": "【イベントレポート】Developers Boost 2025にゴールドスポンサーとして参加！〜Webエンジニア・坂上が語る「技術以外の世界に『越境』するキャリア戦略」〜",
+    "author": "出口 秀一",
+    "type": "NOTE",
+    "url": "https://note.tokium.jp/n/n91dfe5ad4968"
+  },
+  {
+    "date": "2025/12/08",
+    "day": "8",
+    "title": "開発未経験から4年でEMへ！TOKIUMの魅力は「協力解決」文化。オペレーションの\"平和\"をもたらすチームマネジメント",
+    "author": "小口 翔太",
+    "type": "NOTE",
+    "url": "https://note.tokium.jp/n/n559abb68fc27"
+  },
+  {
+    "date": "2025/12/11",
+    "day": "11",
+    "title": "TOKIUMのTech Valueを策定しました",
+    "author": "西平 基志",
+    "type": "NOTE",
+    "url": "https://note.com/tokium_nishihira/n/n0574ff81c508"
+  },
+  {
+    "date": "2025/12/12",
+    "day": "12",
+    "title": "エンジニアの評価に毎回モヤモヤしてた僕が、VPoEで成し遂げたいこと",
+    "author": "橘高 俊",
+    "type": "NOTE",
+    "url": "https://note.tokium.jp/n/n13e0e9e4374b"
+  },
+  {
+    "date": "2025/12/16",
+    "day": "16",
+    "title": "「ストーリーを作り、逆算をする」元・高校野球部監督がPdMになって気づいたこと",
+    "author": "芦田 拓人",
+    "type": "NOTE",
+    "url": "https://note.tokium.jp/n/nd18ef1a4ce87"
+  },
+  {
+    "date": "2025/12/17",
+    "day": "17",
+    "title": "AIエージェント開発で「チャットUI」を疑うべき理由",
+    "author": "花房 優貴",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/0657fa760ad085"
+  },
+  {
+    "date": "2025/12/17",
+    "day": "17",
+    "title": "【イベントレポート】CoLab Confに登壇！ VPoE・橘高が語る「AI時代の生存戦略」",
+    "author": "出口 秀一",
+    "type": "NOTE",
+    "url": "https://note.tokium.jp/n/nee0a0405f208"
+  },
+  {
+    "date": "2025/12/18",
+    "day": "18",
+    "title": "メインプロダクトのRubyのアップグレードに際して行った改善",
+    "author": "西川 真澄",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/17a826f6e72f46"
+  },
+  {
+    "date": "2025/12/19",
+    "day": "19",
+    "title": "AIエージェント開発を社内ライブラリで支えようとして起きたこと",
+    "author": "東 優太",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/763970a664df28"
+  },
+  {
+    "date": "2025/12/22",
+    "day": "22",
+    "title": "サービスのイメージがわかないなら、バイブコーディングで作ってみればいい",
+    "author": "冨永 佑介",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/daa50e7f631971"
+  },
+  {
+    "date": "2025/12/23",
+    "day": "23",
+    "title": "画面を閉じて、書店に行こう",
+    "author": "井上 智敬",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/0e4b1552824dfc"
+  },
+  {
+    "date": "2025/12/23",
+    "day": "23",
+    "title": "プロダクトマネージャーになりたいけれど、一歩踏み出せないあなたへ ― 裁量を持って挑戦できる環境の話",
+    "author": "寺田 太一",
+    "type": "NOTE",
+    "url": "https://note.tokium.jp/n/n5fce7bf1cdc9"
+  },
+  {
+    "date": "2025/12/24",
+    "day": "24",
+    "title": "DevHRに手を挙げた3年前の自分へ──最高の仲間たちを巻き込もう、それが君の役割だ",
+    "author": "坂上 晴信",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/devhr-reflection-3-years"
+  },
+  {
+    "date": "2025/12/24",
+    "day": "24",
+    "title": "AIエージェントに必要な「観測性」の話",
+    "author": "重村 優太",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/a0f6f46c6c2e96"
+  },
+  {
+    "date": "2025/12/25",
+    "day": "25",
+    "title": "「正解」がコモディティ化した時代。なぜAIの台頭と共に「仮説」が最強の武器になるのか～不確実な世界で「スタンス」を示す技術～",
+    "author": "村上 雅一",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/06c63a3d33ddf2"
+  },
+  {
+    "date": "2025/12/26",
+    "day": "26",
+    "title": "Googleカレンダーの「イベントID」をGASでサクッと取得する方法",
+    "author": "村上 雅一",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/3a1d26c2df9fdb"
+  },
+  {
+    "date": "2026/01/05",
+    "day": "5",
+    "title": "2026年のTOKIUMプロダクト本部は発信・広報を頑張ります！",
+    "author": "坂上 晴信",
+    "type": "NOTE",
+    "url": "https://note.tokium.jp/n/n60dac7e7db30"
+  },
+  {
+    "date": "2026/01/06",
+    "day": "6",
+    "title": "QAエンジニア採用面談で本当に見極めたいこと ― 短い時間で「一緒に働きたい」を見つける方法",
+    "author": "西田 泰明",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/85285b8bdff3e7"
+  },
+  {
+    "date": "2026/01/07",
+    "day": "7",
+    "title": "新卒エンジニアよ。コードは書かなくていいかもしれない。でも理解だけはやめないでほしい",
+    "author": "木村 陸人",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/vibe-coding-understanding-matters"
+  },
+  {
+    "date": "2026/01/08",
+    "day": "8",
+    "title": "コードが書けない私は、エンジニアと呼べるのだろうか？ ―― AI時代の新卒CREが出した答え",
+    "author": "阿野 庸太郎",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/bb20f34d606efd"
+  },
+  {
+    "date": "2026/01/09",
+    "day": "9",
+    "title": "新卒で営業サイドから開発サイドへの転向について",
+    "author": "市原 航",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/46d95d2be30f78"
+  },
+  {
+    "date": "2026/01/13",
+    "day": "13",
+    "title": "過程を吹っ飛ばしたCircleCI self-hosted runner with EKSのバージョンアップ",
+    "author": "對馬 克",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/53110c1d22e8db"
+  },
+  {
+    "date": "2026/01/14",
+    "day": "14",
+    "title": "AI時代に、あえて「遠回り」な学習を選んでみた話",
+    "author": "賀部 寿音",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/ec3b29f4709538"
+  },
+  {
+    "date": "2026/01/16",
+    "day": "16",
+    "title": "「不便」は体験しないと見えてこない。PdMはもっと「怠惰」でいいんじゃない？という話",
+    "author": "加藤 未央",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/5a452c6ce3e4c1"
+  },
+  {
+    "date": "2026/01/19",
+    "day": "19",
+    "title": "Go + Watermillで実装するイベント駆動通信",
+    "author": "立花 斐斗",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/2026-01-14-go-watermill"
+  },
+  {
+    "date": "2026/01/20",
+    "day": "20",
+    "title": "その機能を「なぜ作るのか」、チームに翻訳できていますか",
+    "author": "筒井 智也",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/7b354bb0fda3d6"
+  },
+  {
+    "date": "2026/01/21",
+    "day": "21",
+    "title": "ジュニアエンジニアが実践したい、プロンプトより大切な「下ごしらえ力」",
+    "author": "西片 文哉",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/c597e807a249ad"
+  },
+  {
+    "date": "2026/01/22",
+    "day": "22",
+    "title": "現場と共に育てるAI機能 - リリース後の泥臭い品質改善プロセスについて",
+    "author": "戸松 一貴",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/c4bbac51dd4462"
+  },
+  {
+    "date": "2026/01/23",
+    "day": "23",
+    "title": "Xperia 1 Ⅱ にLineageOSを焼いて復活させる",
+    "author": "坂上 晴信",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/xperia-1-mark2-lineageos-revival"
+  },
+  {
+    "date": "2026/01/26",
+    "day": "26",
+    "title": "BPO×AIの知見から考える「人間がレビューしない率」の上げ方",
+    "author": "西平 基志",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/4a46f5a2992fd9"
+  },
+  {
+    "date": "2026/01/27",
+    "day": "27",
+    "title": "QA・エンジニアで現場目線を持つということ",
+    "author": "石川 裕才",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/3300bf63c8708d"
+  },
+  {
+    "date": "2026/01/28",
+    "day": "28",
+    "title": "PjMの本質は「事実」の可視化、PdMの本質は「意思」の可視化。",
+    "author": "村上 雅一",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/e8952922afaf3e"
+  },
+  {
+    "date": "2026/01/29",
+    "day": "29",
+    "title": "Compose Multiplatform for WebのEmbedding HTML Content機能を使ってみた",
+    "author": "坂上 晴信",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/cmp-for-web-embedding-html-content"
+  },
+  {
+    "date": "2026/01/29",
+    "day": "29",
+    "title": "LLMアプリケーションの技術的負債を解消する",
+    "author": "井上 智敬",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/95263724de88dd"
+  },
+  {
+    "date": "2026/01/30",
+    "day": "30",
+    "title": "実装はClaude、レビューはCodex ─ tmuxで繋ぐ開発フロー",
+    "author": "岡本 匡弘",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/0ef3f807d67e7c"
+  },
+  {
+    "date": "2026/02/02",
+    "day": "2",
+    "title": "Claude Code Skillsがわからなくて焦った僕が、最初に考えるべきだったこと",
+    "author": "重村 優太",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/1f0c83eb3dd72d"
+  },
+  {
+    "date": "2026/02/03",
+    "day": "3",
+    "title": "git worktree × 動的ポートで並列開発環境を作る",
+    "author": "岡本 匡弘",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/git-worktree-dynamic-port-parallel-dev"
+  },
+  {
+    "date": "2026/02/04",
+    "day": "4",
+    "title": "決定的推論とLLM的推論で課題を解くアプローチの提案~AI経費承認から見えた最適解",
+    "author": "村瀬 晃",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/4074da289110c3"
+  },
+  {
+    "date": "2026/02/05",
+    "day": "5",
+    "title": "小さく始め、確実に育て、ちゃんと使えるものにする。とあるPdM管理職の\"with AI\"職場環境",
+    "author": "芦田 拓人",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/fd77fbf967e59e"
+  },
+  {
+    "date": "2026/02/06",
+    "day": "6",
+    "title": "【週35時間の会議地獄】4チーム兼務のPdMが「作業しているフリ」をやめるまで",
+    "author": "冨永 佑介",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/pdm-multi-team-management"
+  },
+  {
+    "date": "2026/02/06",
+    "day": "6",
+    "title": "インタビュー記事",
+    "author": "佐藤 秀輔",
+    "type": "NOTE",
+    "url": "https://note.tokium.jp/n/n80f8b3c94350"
+  },
+  {
+    "date": "2026/02/06",
+    "day": "6",
+    "title": "エンジニアの未来を切り拓く！LLMプロジェクトの最前線で活躍する若手エンジニアが語るTOKIUMでの開発と成長",
+    "author": "兼本 集久",
+    "type": "NOTE",
+    "url": "https://note.tokium.jp/n/n80f8b3c94350"
+  },
+  {
+    "date": "2026/02/09",
+    "day": "9",
+    "title": "「なんか良いらしい」でDDDを導入した結果、何も得られなかった話",
+    "author": "木村 陸人",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/why-ddd-failed-for-me"
+  },
+  {
+    "date": "2026/02/10",
+    "day": "10",
+    "title": "Claude Code Agent Teams で PM の感覚でチーム設計するとうまくいった話",
+    "author": "井上 智敬",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/9db5c5e1192509"
+  },
+  {
+    "date": "2026/02/12",
+    "day": "12",
+    "title": "マイクロマネジメントは「支配」、レビューは「信頼」",
+    "author": "村上 雅一",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/a02834d489ddb7"
+  },
+  {
+    "date": "2026/02/13",
+    "day": "13",
+    "title": "知見を「掛け算」に変えるコンテキスト設計——PdMがClaude Codeに施した「仕込み」の技術",
+    "author": "石井 洋平",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/ffb28cbed528e0"
+  },
+  {
+    "date": "2026/02/13",
+    "day": "13",
+    "title": "AIエージェントの不気味の谷を超えるには？",
+    "author": "村上 雅一",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/72f517593a75f1"
+  },
+  {
+    "date": "2026/02/16",
+    "day": "16",
+    "title": "SaaS Is Deadの先に行くにあたってのボトルネック",
+    "author": "西平 基志",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/068a149f25c60e"
+  },
+  {
+    "date": "2026/02/17",
+    "day": "17",
+    "title": "速く出して、速く潰す——AIエージェント開発でPdMが学んだこと",
+    "author": "村上 雅一",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/63db4f3f7b2e7b"
+  },
+  {
+    "date": "2026/02/18",
+    "day": "18",
+    "title": "新卒未経験エンジニアが、「今」SaaSの開発に携わることの価値",
+    "author": "池田 新",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/a0248212baaee3"
+  },
+  {
+    "date": "2026/02/19",
+    "day": "19",
+    "title": "VimでのAIを用いての開発",
+    "author": "西川 真澄",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/3e786908bc7dad"
+  },
+  {
+    "date": "2026/02/20",
+    "day": "20",
+    "title": "「要求」を伝えないから、AIも人も動けない",
+    "author": "花房 優貴",
+    "type": "NOTE",
+    "url": "https://note.com/tokium_hanafusa/n/n13111e5898d0"
+  },
+  {
+    "date": "2026/02/24",
+    "day": "24",
+    "title": "AIによる開発の民主化を支えるコンテキスト管理と、民主化の中で起きていること",
+    "author": "東 優太",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/3236cc7c721259"
+  },
+  {
+    "date": "2026/02/24",
+    "day": "24",
+    "title": "「準備」から「対話」へ——定例資料をAIに任せて変わったこと",
+    "author": "寺田 太一",
+    "type": "ZENN",
+    "url": "https://zenn.dev/articles/c3cc133a68c85a/edit"
+  },
+  {
+    "date": "2026/02/25",
+    "day": "25",
+    "title": "「報告」で終わらない定例会議の進め方 — 6チーム30分で回す仕組み",
+    "author": "寺田 太一",
+    "type": "ZENN",
+    "url": "https://zenn.dev/articles/8570a0c9f143da/edit"
+  },
+  {
+    "date": "2026/02/25",
+    "day": "25",
+    "title": "ObsidianからAIエージェントとチャットできるプラグインを作った (Claude Code，Codex，Gemini CLI対応)",
+    "author": "井上蓮太",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/2fc1fa15407efe"
+  },
+  {
+    "date": "2026/02/26",
+    "day": "26",
+    "title": "インターン生がAIエージェントにDatadog LLM Observabilityを導入して\"中身が見える\"ようになるまで",
+    "author": "安藤 ⼤翔",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/79ab7c1934d921"
+  },
+  {
+    "date": "2026/02/27",
+    "day": "27",
+    "title": "「良くなった気がする」を数値化する ── AIチャットボットの回答品質の測り方",
+    "author": "西平 基志",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/497b8f89b850ed"
+  },
+  {
+    "date": "2026/03/02",
+    "day": "2",
+    "title": "OpenAPI形式のJSONから、（Swaggerで）サクッとビューワーとモックサーバーを立ち上げたいんじゃ",
+    "author": "坂上 晴信",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/setup-swagger-ui-and-mock-server-from-json"
+  },
+  {
+    "date": "2026/03/03",
+    "day": "3",
+    "title": "remarkを使ってFront MatterのLinter・Formatterを実装する",
+    "author": "坂上 晴信",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/remark-lint-custom-rules-for-zenn-frontmatter"
+  },
+  {
+    "date": "2026/03/05",
+    "day": "5",
+    "title": "続・小さく始め、確実に育て、ちゃんと使えるものにする。とあるPdM管理職の\"with AI\"職場環境",
+    "author": "芦田 拓人",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/fd77fbf967e59e"
+  },
+  {
+    "date": "2026/03/09",
+    "day": "9",
+    "title": "AI時代のE2Eテスト、PlaywrightとVibiumをどう使い分けるか",
+    "author": "西田 泰明",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/b0df516ba8750d"
+  },
+  {
+    "date": "2026/03/13",
+    "day": "13",
+    "title": "「涼宮ハルヒの憂鬱」と「氷菓」の主人公たちが動く部活駆動エージェント --『薄氷（うすらひ）』をつくってみた",
+    "author": "阿野 庸太郎",
+    "type": "ZENN",
+    "url": "https://zenn.dev/articles/e5f208f7b51fe6/edit"
+  },
+  {
+    "date": "2026/03/16",
+    "day": "16",
+    "title": "QA立ち上げから今日までの変遷と振り返りを記事化する",
+    "author": "西田 泰明",
+    "type": "NOTE",
+    "url": "https://note.com/preview/n9745052d0c8b?prev_access_key=07e430661ac06a970bd4f5a12f6ac7d0"
+  }
+]
