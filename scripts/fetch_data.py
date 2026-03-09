@@ -1,56 +1,36 @@
-import os
-import json
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
+import json
 
+SCOPES=["https://www.googleapis.com/auth/spreadsheets.readonly"]
 
-def main():
+creds=service_account.Credentials.from_service_account_file(
+"service-account.json",
+scopes=SCOPES
+)
 
-    spreadsheet_id=os.environ["SPREADSHEET_ID"]
-    sheet_name=os.environ["SHEET_NAME"]
-    key=os.environ["GCP_SERVICE_ACCOUNT_KEY"]
+service=build("sheets","v4",credentials=creds)
 
-    creds_info=json.loads(key)
+SHEET_ID="1DVbCRhxizfF4FtQ0z093XfsCwXagt5qCsZwtdkramg4"
 
-    creds=service_account.Credentials.from_service_account_info(
-        creds_info,
-        scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"]
-    )
+res=service.spreadsheets().values().get(
+spreadsheetId=SHEET_ID,
+range="api!A:F"
+).execute()
 
-    service=build("sheets","v4",credentials=creds)
+rows=res.get("values",[])[1:]
 
-    result=service.spreadsheets().values().get(
-        spreadsheetId=spreadsheet_id,
-        range=f"{sheet_name}!M2:M"
-    ).execute()
+data=[]
 
-    rows=result.get("values",[])
+for r in rows:
+data.append({
+"date":r[0],
+"day":r[1],
+"title":r[2],
+"author":r[3],
+"type":r[4],
+"url":r[5]
+})
 
-    posts=[]
-
-    for r in rows:
-
-        if not r:
-            continue
-
-        raw=r[0]
-
-        try:
-            obj=json.loads(raw)
-        except:
-            continue
-
-        if "date" not in obj:
-            continue
-
-        if "title" not in obj:
-            continue
-
-        posts.append(obj)
-
-    with open("data.json","w",encoding="utf-8") as f:
-        json.dump(posts,f,ensure_ascii=False,indent=2)
-
-
-if __name__=="__main__":
-    main()
+with open("../data/calendar.json","w",encoding="utf8") as f:
+json.dump(data,f,ensure_ascii=False,indent=2)
