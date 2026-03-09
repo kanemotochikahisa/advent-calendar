@@ -1,0 +1,86 @@
+name: Auto Update Calendar
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: pip install google-auth google-api-python-client
+
+      - name: Run Fetch Script
+        env:
+          GCP_KEY: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
+        run: |
+          cat << 'EOF' > fetch_data.py
+          import json
+          import os
+          from google.oauth2 import service_account
+          from googleapiclient.discovery import build
+
+          info = json.loads(os.environ["GCP_KEY"])
+
+          creds = service_account.Credentials.from_service_account_info(
+              info,
+              scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"]
+          )
+
+          service = build("sheets", "v4", credentials=creds)
+
+          SPREADSHEET_ID = "1DVbCRhxizfF4FtQ0z093XfsCwXagt5qCsZwtdkramg4"
+
+          result = service.spreadsheets().values().get(
+              spreadsheetId=SPREADSHEET_ID,
+              range="api!A:F"
+          ).execute()
+
+          rows = result.get("values", [])[1:]
+
+          data = []
+
+          for r in rows:
+              if len(r) < 6:
+                  continue
+
+              data.append({
+                  "date": r[0],
+                  "day": r[1],
+                  "title": r[2],
+                  "author": r[3],
+                  "type": r[4],
+                  "url": r[5]
+              })
+
+          os.makedirs("data", exist_ok=True)
+
+          with open("data/calendar.json", "w", encoding="utf-8") as f:
+              json.dump(data, f, ensure_ascii=False, indent=2)
+
+          print("calendar.json updated")
+          EOF
+
+          python3 fetch_data.py
+
+      - name: Commit and Push
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add data/calendar.json
+          git commit --allow-empty -m "chore: update calendar.json"
+          git push origin main
