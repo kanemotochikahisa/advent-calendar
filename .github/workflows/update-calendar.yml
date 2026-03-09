@@ -46,7 +46,7 @@ jobs:
 
           result = service.spreadsheets().values().get(
               spreadsheetId=SPREADSHEET_ID,
-              range="api!A:F"
+              range="view_calendar!A:F"
           ).execute()
 
           rows = result.get("values", [])[1:]
