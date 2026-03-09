@@ -49,7 +49,7 @@ art.innerHTML=`
 <a href="${a.url}" target="_blank">
 ${a.title}
 </a>
-<div>${a.author} (${a.type})</div>
+<div class="meta">${a.author} <span class="badge ${a.type}">${a.type}</span></div>
 `
 
 cell.appendChild(art)
