@@ -1,5 +1,13 @@
 [
   {
+    "date": "2025/06/08",
+    "day": "8",
+    "title": "スロークエリチューニング（タネ潰しPJ）の振り返り",
+    "author": "岡本 匡弘",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/14f5e72695ec54"
+  },
+  {
     "date": "2025/07/16",
     "day": "16",
     "title": "[戒め]mskのトピック名は重複させてはいけない",
