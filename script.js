@@ -4,14 +4,6 @@ fetch("./data/calendar.json")
 .then(res => res.json())
 .then(data => {
 
-data = data.map(d=>{
-const date = new Date(d.date.replace(/\//g,"-"))
-d.year = date.getFullYear()
-d.month = date.getMonth()+1
-d.day = date.getDate()
-return d
-})
-
 function render(){
 
 const calendar = document.getElementById("calendar")
@@ -42,7 +34,12 @@ date.textContent=d
 cell.appendChild(date)
 
 data
-.filter(a=>a.year===year && a.month===month && a.day===d)
+.filter(a=>{
+const parts=a.date.split("/")
+return Number(parts[0])===year &&
+Number(parts[1])===month &&
+Number(a.day)===d
+})
 .forEach(a=>{
 
 const art=document.createElement("div")
@@ -52,7 +49,7 @@ art.innerHTML=`
 <a href="${a.url}" target="_blank">
 ${a.title}
 </a>
-<div>${a.author} <span class="type">${a.type}</span></div>
+<div>${a.author} (${a.type})</div>
 `
 
 cell.appendChild(art)
