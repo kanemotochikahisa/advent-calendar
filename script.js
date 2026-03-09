@@ -1,21 +1,23 @@
-fetch("data.json")
-  .then(res => res.json())
-  .then(items => {
-    items.forEach(item => {
-      const cell = document.querySelector(`[data-date="${item.date}"]`);
-      if (!cell) return;
+fetch("data/calendar.json")
+.then(res=>res.json())
+.then(data=>{
 
-      const a = document.createElement("a");
-      a.href = item.url;
-      a.target = "_blank";
-      a.rel = "noopener";
-      a.textContent = item.title;
+const cal=document.getElementById("calendar")
 
-      const author = document.createElement("div");
-      author.className = "author";
-      author.textContent = item.author;
+data.forEach(d=>{
 
-      cell.appendChild(a);
-      cell.appendChild(author);
-    });
-  });
+const card=document.createElement("div")
+card.className="card"
+
+card.innerHTML=`
+<div class="day">Day ${d.day}</div>
+<div>${d.title}</div>
+<div>${d.author}</div>
+<a href="${d.url}" target="_blank">記事</a>
+`
+
+cal.appendChild(card)
+
+})
+
+})
