@@ -1,90 +1,21 @@
-:root {
-  --blue: #004bb1;
-  --bg: #f1f5f9;
-  --line: #cbd5e0;
+body{
+font-family:sans-serif;
+margin:40px;
 }
 
-body {
-  margin: 0;
-  padding: 10px;
-  font-family: "Hiragino Sans", "Meiryo", sans-serif;
-  background: var(--bg);
+#calendar{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:20px;
 }
 
-.header {
-  text-align: center;
+.card{
+border:1px solid #ddd;
+padding:20px;
+border-radius:10px;
 }
 
-.header h1 {
-  color: var(--blue);
-  margin: 0 0 5px;
-}
-
-.nav-controls {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  margin-bottom: 5px;
-}
-
-button {
-  background: var(--blue);
-  color: #fff;
-  border: none;
-  padding: 4px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.calendar-container {
-  background: #fff;
-  border-radius: 8px;
-  padding: 5px;
-}
-
-.weekday {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  background: #e6edf7;
-  text-align: center;
-  font-size: 12px;
-}
-
-.calendar {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  border: 1px solid var(--line);
-}
-
-.day {
-  min-height: 90px;
-  border: 1px solid var(--line);
-  padding: 3px;
-  box-sizing: border-box;
-}
-
-.num {
-  font-size: 11px;
-  color: #94a3b8;
-}
-
-.card {
-  display: block;
-  margin-top: 3px;
-  padding: 3px;
-  border-top: 2px solid var(--blue);
-  font-size: 11px;
-  text-decoration: none;
-  color: #000;
-}
-
-.title {
-  font-weight: bold;
-  line-height: 1.2;
-}
-
-.name {
-  text-align: right;
-  color: var(--blue);
-  font-size: 10px;
+.day{
+font-size:24px;
+font-weight:bold;
 }
