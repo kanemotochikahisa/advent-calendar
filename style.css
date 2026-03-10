@@ -1,176 +1,199 @@
 body{
+
 font-family:'Inter',sans-serif;
-background:#f4f6fb;
+background:#f5f7fb;
 margin:0;
-padding:16px;
+padding:20px;
+
 }
 
-/* タイトル */
-
 header{
+
 text-align:center;
-margin-bottom:16px;
+margin-bottom:15px;
+
 }
 
 h1{
+
 color:#4A67E8;
 font-size:28px;
-margin-bottom:8px;
-font-weight:600;
+margin-bottom:10px;
+
 }
 
-/* 月操作 */
-
 .controls{
-font-size:16px;
+
+font-size:18px;
+
 }
 
 button{
+
 background:#4A67E8;
 border:none;
 color:white;
-padding:5px 12px;
+padding:6px 14px;
 border-radius:8px;
 cursor:pointer;
-font-size:13px;
 margin:0 6px;
-transition:0.2s;
+
 }
 
 button:hover{
+
 background:#314ED1;
+
 }
 
 /* 曜日 */
 
 .calendar-header{
+
 display:grid;
 grid-template-columns:repeat(7,1fr);
 max-width:1100px;
 margin:auto;
-margin-bottom:4px;
+margin-bottom:5px;
+
 }
 
 .calendar-header div{
+
 text-align:center;
-padding:6px 0;
+font-size:13px;
 font-weight:600;
-font-size:12px;
-color:#777;
+padding:6px;
+
 }
 
-/* 日曜 */
+.sun{
 
-.calendar-header div:nth-child(1){
 color:#e74c3c;
+
 }
 
-/* 土曜 */
+.sat{
 
-.calendar-header div:nth-child(7){
 color:#3498db;
+
 }
 
 /* カレンダー */
 
 #calendar{
+
 display:grid;
 grid-template-columns:repeat(7,1fr);
-gap:6px;
+gap:8px;
 max-width:1100px;
 margin:auto;
+
 }
 
-/* 日セル */
+/* カード */
 
 .day{
+
 background:white;
 border-radius:10px;
-padding:6px;
-min-height:80px;
+padding:8px;
+min-height:85px;
 
-box-shadow:
-0 1px 3px rgba(0,0,0,0.05);
+box-shadow:0 2px 6px rgba(0,0,0,0.05);
 
 transition:0.2s;
-}
 
-/* hover */
+}
 
 .day:hover{
+
 transform:translateY(-2px);
-box-shadow:
-0 4px 10px rgba(0,0,0,0.08);
+
 }
 
-/* 日付 */
-
 .date{
+
 font-size:11px;
 font-weight:600;
 color:#888;
-margin-bottom:3px;
-}
+margin-bottom:4px;
 
-/* 今日 */
-
-.today{
-border:2px solid #4A67E8;
 }
 
 /* 記事 */
 
 .article{
+
 font-size:11px;
-line-height:1.3;
 margin-bottom:2px;
+
 }
 
-/* タイトル */
-
 .article a{
-color:#2b2b2b;
+
+color:#2c2c2c;
 text-decoration:none;
-font-weight:500;
+
 }
 
 .article a:hover{
-color:#4A67E8;
-}
 
-/* 著者 */
+color:#4A67E8;
+
+}
 
 .meta{
+
 font-size:9px;
 color:#777;
+
 }
 
-/* バッジ */
-
 .badge{
+
 font-size:8px;
 padding:1px 4px;
 border-radius:4px;
 margin-left:4px;
-font-weight:600;
-}
 
-/* Zenn */
+}
 
 .badge.ZENN{
+
 background:#eef3ff;
 color:#3b6cff;
+
 }
 
-/* note */
-
 .badge.NOTE{
+
 background:#eafff1;
 color:#00a65a;
+
+}
+
+/* 未登録 */
+
+.empty{
+
+font-size:10px;
+color:#bbb;
+
 }
 
 /* 記事がある日 */
 
-.day.has-article{
+.has-article{
+
 background:#f8faff;
+
+}
+
+/* 今日 */
+
+.today{
+
+border:2px solid #4A67E8;
+
 }
