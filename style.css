@@ -173,6 +173,22 @@ color:#00a65a;
 
 }
 
+/* 未公開 */
+
+.draft{
+
+color:#999;
+font-style:italic;
+
+}
+
+.draft-badge{
+
+background:#fff4cc;
+color:#b38f00;
+
+}
+
 /* 未登録 */
 
 .empty{
@@ -182,7 +198,7 @@ color:#bbb;
 
 }
 
-/* 記事がある日 */
+/* 記事あり */
 
 .has-article{
 
