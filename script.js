@@ -4,6 +4,17 @@ fetch("./data/calendar.json")
 .then(res => res.json())
 .then(data => {
 
+function isPublished(url){
+
+if(!url) return false
+
+if(url.includes("edit")) return false
+if(url.includes("preview")) return false
+
+return true
+
+}
+
 function render(){
 
 const calendar=document.getElementById("calendar")
@@ -67,16 +78,33 @@ cell.classList.add("has-article")
 
 articles.slice(0,2).forEach(a=>{
 
+const published=isPublished(a.url)
+
 const art=document.createElement("div")
 
 art.className="article"
 
+if(published){
+
 art.innerHTML=`
 <a href="${a.url}" target="_blank">${a.title}</a>
-<div class="meta">${a.author}
+<div class="meta">
+${a.author}
 <span class="badge ${a.type}">${a.type}</span>
 </div>
 `
+
+}else{
+
+art.innerHTML=`
+<span class="draft">🔒 ${a.title}</span>
+<div class="meta">
+${a.author}
+<span class="badge draft-badge">予定</span>
+</div>
+`
+
+}
 
 cell.appendChild(art)
 
