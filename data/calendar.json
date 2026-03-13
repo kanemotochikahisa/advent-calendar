@@ -1,5 +1,15 @@
 [
   {
+    "date": "2026/03/13",
+    "title": "プロトタイプで\"握った\"はずが、なぜズレるのか",
+    "author": "冨永 佑介",
+    "type": "ZENN",
+    "status": "To Do",
+    "key": "TECHBLOG-121",
+    "url": "https://github.com/TOKIUM/zenn/pull/39",
+    "image": ""
+  },
+  {
     "date": "2026/03/11",
     "title": "Mastra の @rollup/rollup-darwin-arm64 エラーを解決してサクッと始める (Mac arm)",
     "author": "井上 智敬",
