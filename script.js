@@ -1,116 +1,127 @@
 let currentDate = new Date();
 
-async function loadCalendar() {
+async function loadCalendar(){
 
- const res = await fetch("data/calendar.json");
- const data = await res.json();
+const res = await fetch("data/calendar.json");
+const data = await res.json();
 
- const holidays = await fetch(
-  "https://holidays-jp.github.io/api/v1/date.json"
- ).then(r => r.json());
+const holidays = await fetch(
+"https://holidays-jp.github.io/api/v1/date.json"
+).then(r=>r.json());
 
- const calendar = document.getElementById("calendar");
- const monthLabel = document.getElementById("monthLabel");
+const calendar = document.getElementById("calendar");
+const monthLabel = document.getElementById("monthLabel");
 
- const year = currentDate.getFullYear();
- const month = currentDate.getMonth();
+const months = [
+"January","February","March","April","May","June",
+"July","August","September","October","November","December"
+];
 
- monthLabel.innerText = `${year} / ${month + 1}`;
+const year = currentDate.getFullYear();
+const month = currentDate.getMonth();
 
- const firstDay = new Date(year, month, 1);
- const lastDay = new Date(year, month + 1, 0);
+monthLabel.innerText = `${months[month]} ${year}`;
 
- const startWeek = firstDay.getDay();
+const firstDay = new Date(year,month,1);
+const lastDay = new Date(year,month+1,0);
 
- let html = "";
+const startWeek = firstDay.getDay();
 
- let day = 1;
+let html="";
+let day=1;
 
- for (let i = 0; i < 42; i++) {
+for(let i=0;i<42;i++){
 
-  if (i < startWeek || day > lastDay.getDate()) {
-   html += `<div class="day empty"></div>`;
-   continue;
-  }
+if(i<startWeek || day>lastDay.getDate()){
+html+=`<div class="day empty"></div>`;
+continue;
+}
 
-  const dateStr = `${year}/${String(month+1).padStart(2,"0")}/${String(day).padStart(2,"0")}`;
+const dateStr=`${year}/${String(month+1).padStart(2,"0")}/${String(day).padStart(2,"0")}`;
 
-  const items = data.filter(d => d.date === dateStr);
+const items=data.filter(d=>d.date===dateStr);
 
-  let cards = "";
+let cards="";
 
-  items.forEach(item => {
+items.forEach(item=>{
 
-   if(item.type === "登壇"){
+let typeClass="";
 
-    cards += `
-    <div class="event talk">
-     🎤 ${item.title}
-    </div>`;
+if(item.type==="ZENN") typeClass="zenn";
+if(item.type==="NOTE") typeClass="note";
+if(item.type==="登壇") typeClass="talk";
 
-   } else {
+let image=item.image || "";
 
-    if(item.url){
+let imgTag=image?`<img src="${image}">`:"";
 
-     cards += `
-     <a class="event article" href="${item.url}" target="_blank">
-      ${item.title}
-      <div class="author">${item.author}</div>
-     </a>`;
+if(item.url){
 
-    } else {
+cards+=`
+<a class="event ${typeClass}" href="${item.url}" target="_blank">
+${imgTag}
+${item.title}
+<div class="author">${item.author}</div>
+</a>
+`;
 
-     cards += `
-     <div class="event draft">
-      ${item.title}
-      <div class="author">${item.author}</div>
-     </div>`;
+}else{
 
-    }
+cards+=`
+<div class="event ${typeClass}">
+${imgTag}
+${item.title}
+<div class="author">${item.author}</div>
+</div>
+`;
 
-   }
+}
 
-  });
+});
 
-  let holidayLabel = "";
+let holidayLabel="";
 
-  if(holidays[dateStr]){
-   holidayLabel = `<div class="holiday">${holidays[dateStr]}</div>`;
-  }
+if(holidays[dateStr]){
+holidayLabel=`<div class="holiday">${holidays[dateStr]}</div>`;
+}
 
-  html += `
-  <div class="day">
+html+=`
 
-   <div class="date">${day}</div>
+<div class="day">
 
-   ${holidayLabel}
+<div class="date">${day}</div>
 
-   <div class="events">
-    ${cards}
-   </div>
+${holidayLabel}
 
-  </div>
-  `;
+<div class="events">
 
-  day++;
+${cards}
 
- }
+</div>
 
- calendar.innerHTML = html;
+</div>
+
+`;
+
+day++;
+
+}
+
+calendar.innerHTML=html;
 
 }
 
 function prevMonth(){
 
- currentDate.setMonth(currentDate.getMonth() - 1);
- loadCalendar();
+currentDate.setMonth(currentDate.getMonth()-1);
+loadCalendar();
 
 }
 
 function nextMonth(){
 
- currentDate.setMonth(currentDate.getMonth() + 1);
- loadCalendar();
+currentDate.setMonth(currentDate.getMonth()+1);
+loadCalendar();
 
 }
 
