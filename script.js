@@ -1,14 +1,21 @@
+let currentDate = new Date();
+
 async function loadCalendar() {
 
  const res = await fetch("data/calendar.json");
  const data = await res.json();
 
+ const holidays = await fetch(
+  "https://holidays-jp.github.io/api/v1/date.json"
+ ).then(r => r.json());
+
  const calendar = document.getElementById("calendar");
+ const monthLabel = document.getElementById("monthLabel");
 
- const today = new Date();
+ const year = currentDate.getFullYear();
+ const month = currentDate.getMonth();
 
- const year = today.getFullYear();
- const month = today.getMonth();
+ monthLabel.innerText = `${year} / ${month + 1}`;
 
  const firstDay = new Date(year, month, 1);
  const lastDay = new Date(year, month + 1, 0);
@@ -16,10 +23,6 @@ async function loadCalendar() {
  const startWeek = firstDay.getDay();
 
  let html = "";
-
- const holidays = await fetch(
-  "https://holidays-jp.github.io/api/v1/date.json"
- ).then(r => r.json());
 
  let day = 1;
 
@@ -39,26 +42,30 @@ async function loadCalendar() {
   items.forEach(item => {
 
    if(item.type === "登壇"){
+
     cards += `
     <div class="event talk">
      🎤 ${item.title}
     </div>`;
-   }
-   else{
+
+   } else {
 
     if(item.url){
+
      cards += `
      <a class="event article" href="${item.url}" target="_blank">
       ${item.title}
       <div class="author">${item.author}</div>
      </a>`;
-    }
-    else{
+
+    } else {
+
      cards += `
      <div class="event draft">
       ${item.title}
       <div class="author">${item.author}</div>
      </div>`;
+
     }
 
    }
@@ -74,9 +81,7 @@ async function loadCalendar() {
   html += `
   <div class="day">
 
-   <div class="date">
-    ${day}
-   </div>
+   <div class="date">${day}</div>
 
    ${holidayLabel}
 
@@ -92,6 +97,20 @@ async function loadCalendar() {
  }
 
  calendar.innerHTML = html;
+
+}
+
+function prevMonth(){
+
+ currentDate.setMonth(currentDate.getMonth() - 1);
+ loadCalendar();
+
+}
+
+function nextMonth(){
+
+ currentDate.setMonth(currentDate.getMonth() + 1);
+ loadCalendar();
 
 }
 
