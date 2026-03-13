@@ -136,18 +136,42 @@ const data=await res.json()
 
 const timeline=document.getElementById("timeline")
 
-const months=["Dec","Jan","Feb","Mar","Apr","May"]
+const monthMap={
+12:"Dec",
+1:"Jan",
+2:"Feb",
+3:"Mar",
+4:"Apr",
+5:"May"
+}
+
+let counts={
+12:0,
+1:0,
+2:0,
+3:0,
+4:0,
+5:0
+}
+
+data.forEach(item=>{
+
+const m=parseInt(item.date.split("/")[1])
+
+if(counts[m]!==undefined){
+counts[m]++
+}
+
+})
 
 let html=""
 
-months.forEach(m=>{
-
-let count=data.filter(d=>d.date.includes(`/${m}`)).length
+Object.keys(monthMap).forEach(m=>{
 
 html+=`
 <div class="timeline-month">
-<b>${m}</b><br>
-${count} posts
+<b>${monthMap[m]}</b><br>
+${counts[m]} posts
 </div>
 `
 
