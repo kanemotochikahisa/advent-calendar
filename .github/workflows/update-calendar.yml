@@ -30,7 +30,6 @@ jobs:
           GCP_KEY: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
         run: |
           cat << 'EOF' > fetch_data.py
-
           import json
           import os
           import requests
@@ -42,12 +41,11 @@ jobs:
           def get_ogp(url):
 
               try:
+                  r = requests.get(url,timeout=5)
 
-                  r = requests.get(url, timeout=5)
+                  soup = BeautifulSoup(r.text,"html.parser")
 
-                  soup = BeautifulSoup(r.text, "html.parser")
-
-                  tag = soup.find("meta", property="og:image")
+                  tag = soup.find("meta",property="og:image")
 
                   if tag:
                       return tag["content"]
@@ -64,7 +62,7 @@ jobs:
               scopes=["https://www.googleapis.com/auth/spreadsheets.readonly"]
           )
 
-          service = build("sheets", "v4", credentials=creds)
+          service = build("sheets","v4",credentials=creds)
 
           SPREADSHEET_ID = "1DVbCRhxizfF4FtQ0z093XfsCwXagt5qCsZwtdkramg4"
 
@@ -73,53 +71,51 @@ jobs:
               range="calendar_db!A:G"
           ).execute()
 
-          rows = result.get("values", [])[1:]
+          rows = result.get("values",[])[1:]
 
           today = datetime.today()
 
-          data = []
+          data=[]
 
           for r in rows:
 
-              if len(r) < 7:
+              if len(r)<7:
                   continue
 
-              date_str = r[0]
+              date_str=r[0]
 
               try:
-                  date = datetime.strptime(date_str, "%Y/%m/%d")
+                  date=datetime.strptime(date_str,"%Y/%m/%d")
               except:
                   continue
 
-              # 今日より未来の記事は表示しない
-              if date > today:
+              if date>today:
                   continue
 
-              url = r[6]
+              url=r[6]
 
-              image = ""
+              image=""
 
               if url:
-                  image = get_ogp(url)
+                  image=get_ogp(url)
 
               data.append({
 
-                  "date": r[0],
-                  "title": r[1],
-                  "author": r[2],
-                  "type": r[3],
-                  "status": r[4],
-                  "key": r[5],
-                  "url": url,
-                  "image": image
+                  "date":r[0],
+                  "title":r[1],
+                  "author":r[2],
+                  "type":r[3],
+                  "status":r[4],
+                  "key":r[5],
+                  "url":url,
+                  "image":image
 
               })
 
-          os.makedirs("data", exist_ok=True)
+          os.makedirs("data",exist_ok=True)
 
-          with open("data/calendar.json", "w", encoding="utf-8") as f:
-
-              json.dump(data, f, ensure_ascii=False, indent=2)
+          with open("data/calendar.json","w",encoding="utf-8") as f:
+              json.dump(data,f,ensure_ascii=False,indent=2)
 
           print("calendar.json updated")
 
@@ -133,7 +129,5 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
 
           git add data/calendar.json
-
-          git commit --allow-empty -m "update calendar data"
-
+          git commit --allow-empty -m "update calendar"
           git push origin main
