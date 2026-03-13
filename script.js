@@ -64,6 +64,10 @@ continue
 
 }
 
+const dateObj = new Date(year,month,day)
+
+const weekDay = dateObj.getDay()
+
 const dateKey = `${year}-${String(month+1).padStart(2,"0")}-${String(day).padStart(2,"0")}`
 
 const holidayName = holidays[dateKey] || ""
@@ -106,13 +110,20 @@ cards += `<div class="more">+${items.length-3} more</div>`
 
 }
 
+/* 週末クラス */
+
+let className = "day"
+
+if(weekDay === 0) className += " sun"
+if(weekDay === 6) className += " sat"
+
+if(holidayName) className += " holiday-cell"
+
 html += `
-<div class="day">
+<div class="${className}">
 <div class="date">${day}</div>
 <div class="holiday">${holidayName}</div>
-<div class="events">
-${cards}
-</div>
+<div class="events">${cards}</div>
 </div>
 `
 
