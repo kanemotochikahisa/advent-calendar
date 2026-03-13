@@ -1,99 +1,98 @@
-let current = new Date()
+async function loadCalendar() {
 
-fetch("./data/calendar.json")
-.then(res => res.json())
-.then(data => {
+ const res = await fetch("data/calendar.json");
+ const data = await res.json();
 
-function render(){
+ const calendar = document.getElementById("calendar");
 
-const calendar=document.getElementById("calendar")
-calendar.innerHTML=""
+ const today = new Date();
 
-const year=current.getFullYear()
-const month=current.getMonth()+1
+ const year = today.getFullYear();
+ const month = today.getMonth();
 
-document.getElementById("monthLabel").textContent =
-year+" / "+month
+ const firstDay = new Date(year, month, 1);
+ const lastDay = new Date(year, month + 1, 0);
 
-const firstDay=new Date(year,month-1,1).getDay()
-const lastDate=new Date(year,month,0).getDate()
+ const startWeek = firstDay.getDay();
 
-for(let i=0;i<firstDay;i++){
-calendar.appendChild(document.createElement("div"))
+ let html = "";
+
+ const holidays = await fetch(
+  "https://holidays-jp.github.io/api/v1/date.json"
+ ).then(r => r.json());
+
+ let day = 1;
+
+ for (let i = 0; i < 42; i++) {
+
+  if (i < startWeek || day > lastDay.getDate()) {
+   html += `<div class="day empty"></div>`;
+   continue;
+  }
+
+  const dateStr = `${year}/${String(month+1).padStart(2,"0")}/${String(day).padStart(2,"0")}`;
+
+  const items = data.filter(d => d.date === dateStr);
+
+  let cards = "";
+
+  items.forEach(item => {
+
+   if(item.type === "登壇"){
+    cards += `
+    <div class="event talk">
+     🎤 ${item.title}
+    </div>`;
+   }
+   else{
+
+    if(item.url){
+     cards += `
+     <a class="event article" href="${item.url}" target="_blank">
+      ${item.title}
+      <div class="author">${item.author}</div>
+     </a>`;
+    }
+    else{
+     cards += `
+     <div class="event draft">
+      ${item.title}
+      <div class="author">${item.author}</div>
+     </div>`;
+    }
+
+   }
+
+  });
+
+  let holidayLabel = "";
+
+  if(holidays[dateStr]){
+   holidayLabel = `<div class="holiday">${holidays[dateStr]}</div>`;
+  }
+
+  html += `
+  <div class="day">
+
+   <div class="date">
+    ${day}
+   </div>
+
+   ${holidayLabel}
+
+   <div class="events">
+    ${cards}
+   </div>
+
+  </div>
+  `;
+
+  day++;
+
+ }
+
+ calendar.innerHTML = html;
+
 }
 
-for(let d=1; d<=lastDate; d++){
-
-const cell=document.createElement("div")
-cell.className="day"
-
-const date=document.createElement("div")
-date.className="date"
-date.textContent=d
-
-cell.appendChild(date)
-
-const articles=data.filter(a=>{
-
-const parts=a.date.split("/")
-
-return Number(parts[0])===year &&
-Number(parts[1])===month &&
-Number(parts[2])===d
-
-})
-
-if(articles.length>0){
-
-cell.classList.add("has-article")
-
-articles.slice(0,2).forEach(a=>{
-
-const art=document.createElement("div")
-art.className="article"
-
-if(a.type==="TALK"){
-
-art.innerHTML=`
-<span>${a.title}</span>
-<div class="meta">${a.author}
-<span class="badge TALK">TALK</span>
-</div>
-`
-
-}else{
-
-art.innerHTML=`
-<a href="${a.url}" target="_blank">${a.title}</a>
-<div class="meta">${a.author}
-<span class="badge ${a.type}">${a.type}</span>
-</div>
-`
-
-}
-
-cell.appendChild(art)
-
-})
-
-}
-
-calendar.appendChild(cell)
-
-}
-
-}
-
-render()
-
-document.getElementById("prev").onclick=()=>{
-current.setMonth(current.getMonth()-1)
-render()
-}
-
-document.getElementById("next").onclick=()=>{
-current.setMonth(current.getMonth()+1)
-render()
-}
-
-})
+loadCalendar();
