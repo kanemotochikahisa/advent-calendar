@@ -5,10 +5,6 @@ async function loadCalendar(){
 const res = await fetch("data/calendar.json");
 const data = await res.json();
 
-const holidays = await fetch(
-"https://holidays-jp.github.io/api/v1/date.json"
-).then(r=>r.json());
-
 const calendar = document.getElementById("calendar");
 const monthLabel = document.getElementById("monthLabel");
 
@@ -45,21 +41,10 @@ let cards="";
 
 items.forEach(item=>{
 
-let typeClass="";
-
-if(item.type==="ZENN") typeClass="zenn";
-if(item.type==="NOTE") typeClass="note";
-if(item.type==="登壇") typeClass="talk";
-
-let image=item.image || "";
-
-let imgTag=image?`<img src="${image}">`:"";
-
 if(item.url){
 
 cards+=`
-<a class="event ${typeClass}" href="${item.url}" target="_blank">
-${imgTag}
+<a class="event" href="${item.url}" target="_blank">
 ${item.title}
 <div class="author">${item.author}</div>
 </a>
@@ -68,8 +53,7 @@ ${item.title}
 }else{
 
 cards+=`
-<div class="event ${typeClass}">
-${imgTag}
+<div class="event">
 ${item.title}
 <div class="author">${item.author}</div>
 </div>
@@ -79,19 +63,11 @@ ${item.title}
 
 });
 
-let holidayLabel="";
-
-if(holidays[dateStr]){
-holidayLabel=`<div class="holiday">${holidays[dateStr]}</div>`;
-}
-
 html+=`
 
 <div class="day">
 
 <div class="date">${day}</div>
-
-${holidayLabel}
 
 <div class="events">
 
