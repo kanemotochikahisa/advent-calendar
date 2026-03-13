@@ -1,48 +1,27 @@
 let currentDate = new Date()
 
-let holidays = {}
-
-async function loadHoliday(){
-
-const res = await fetch("https://holidays-jp.github.io/api/v1/date.json")
-
-holidays = await res.json()
-
-}
-
 async function loadCalendar(){
 
 const res = await fetch("data/calendar.json")
 
-let data = await res.json()
-
-/* 重複削除 */
-
-const map = new Map()
-
-data.forEach(item=>{
-const key = item.url ? item.url : item.title
-if(!map.has(key)){
-map.set(key,item)
-}
-})
-
-data = Array.from(map.values())
+const data = await res.json()
 
 const calendar = document.getElementById("calendar")
 
 const monthLabel = document.getElementById("monthLabel")
+
+calendar.innerHTML=""
+
+const year = currentDate.getFullYear()
+
+const month = currentDate.getMonth()
 
 const months = [
 "January","February","March","April","May","June",
 "July","August","September","October","November","December"
 ]
 
-const year = currentDate.getFullYear()
-
-const month = currentDate.getMonth()
-
-monthLabel.innerText = `${months[month]} ${year}`
+monthLabel.innerText = months[month] + " " + year
 
 const firstDay = new Date(year,month,1)
 
@@ -50,148 +29,128 @@ const lastDay = new Date(year,month+1,0)
 
 const startWeek = firstDay.getDay()
 
-let html = ""
-
 let day = 1
 
 for(let i=0;i<42;i++){
 
 if(i < startWeek || day > lastDay.getDate()){
 
-html += `<div class="day empty"></div>`
+calendar.innerHTML += `<div class="day"></div>`
 
 continue
 
 }
 
-const dateObj = new Date(year,month,day)
+const dateStr = `${year}/${String(month+1).padStart(2,"0")}/${String(day).padStart(2,"0")}`
 
-const weekDay = dateObj.getDay()
+const items = data.filter(d=>d.date===dateStr)
 
-const dateKey = `${year}-${String(month+1).padStart(2,"0")}-${String(day).padStart(2,"0")}`
+const week = new Date(year,month,day).getDay()
 
-const holidayName = holidays[dateKey] || ""
+let dayClass="day"
 
-const items = data.filter(d=>d.date === dateKey.replaceAll("-","/"))
+if(week===0) dayClass+=" sun"
 
-let cards = ""
+if(week===6) dayClass+=" sat"
+
+let content = `<div>${day}</div>`
+
+/* UIパターン */
+
+const pattern = month % 3
+
+/* Pattern A */
+
+if(pattern===0){
 
 items.slice(0,3).forEach(item=>{
 
-let img = item.image ? `<img src="${item.image}">` : ""
+content += `
 
-if(item.type === "登壇"){
+<div class="card">
 
-cards += `
-<div class="event talk">
-<div class="talk-label">🎤 登壇</div>
+<img src="${item.image || ''}">
+
 ${item.title}
-<div class="author">${item.author}</div>
+
 </div>
+
 `
-
-}else{
-
-cards += `
-<a class="event" href="${item.url}" target="_blank">
-${img}
-${item.title}
-<div class="author">${item.author}</div>
-</a>
-`
-
-}
 
 })
 
-if(items.length > 3){
+}
 
-cards += `<div class="more">+${items.length-3} more</div>`
+/* Pattern B */
+
+if(pattern===1){
+
+content += `<div class="tile-grid">`
+
+items.slice(0,4).forEach(item=>{
+
+content += `
+
+<div class="tile">
+
+<img src="${item.image || ''}">
+
+<span>${item.author}</span>
+
+</div>
+
+`
+
+})
+
+content += `</div>`
 
 }
 
-/* 週末クラス */
+/* Pattern C */
 
-let className = "day"
+if(pattern===2){
 
-if(weekDay === 0) className += " sun"
-if(weekDay === 6) className += " sat"
+items.slice(0,3).forEach(item=>{
 
-if(holidayName) className += " holiday-cell"
+content += `
 
-html += `
-<div class="${className}">
-<div class="date">${day}</div>
-<div class="holiday">${holidayName}</div>
-<div class="events">${cards}</div>
+<div class="timeline-item">
+
+<img src="${item.image || ''}">
+
+<div>${item.title}</div>
+
 </div>
+
 `
+
+})
+
+}
+
+calendar.innerHTML += `<div class="${dayClass}">${content}</div>`
 
 day++
 
 }
 
-calendar.innerHTML = html
-
 }
 
-/* 月移動 */
-
 function prevMonth(){
+
 currentDate.setMonth(currentDate.getMonth()-1)
+
 loadCalendar()
+
 }
 
 function nextMonth(){
+
 currentDate.setMonth(currentDate.getMonth()+1)
+
 loadCalendar()
-}
-
-/* Timeline */
-
-async function loadTimeline(){
-
-const res = await fetch("data/calendar.json")
-
-const data = await res.json()
-
-const timeline = document.getElementById("timeline")
-
-let counts = {}
-
-data.forEach(item=>{
-
-const month = item.date.slice(0,7)
-
-counts[month] = (counts[month] || 0) + 1
-
-})
-
-let html = ""
-
-Object.keys(counts).sort().forEach(month=>{
-
-html += `
-<div class="timeline-month">
-<b>${month}</b><br>
-${counts[month]} posts
-</div>
-`
-
-})
-
-timeline.innerHTML = html
 
 }
 
-async function init(){
-
-await loadHoliday()
-
-await loadCalendar()
-
-loadTimeline()
-
-}
-
-init()
+loadCalendar()
