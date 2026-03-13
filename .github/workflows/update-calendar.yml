@@ -46,7 +46,7 @@ jobs:
 
           result = service.spreadsheets().values().get(
               spreadsheetId=SPREADSHEET_ID,
-              range="view_calendar!A:F"
+              range="calendar_db!A:G"
           ).execute()
 
           rows = result.get("values", [])[1:]
@@ -54,16 +54,24 @@ jobs:
           data = []
 
           for r in rows:
-              if len(r) < 6:
+
+              if len(r) < 7:
+                  continue
+
+              status = r[4]
+
+              # 公開済みのみ
+              if status != "公開":
                   continue
 
               data.append({
                   "date": r[0],
-                  "day": r[1],
-                  "title": r[2],
-                  "author": r[3],
-                  "type": r[4],
-                  "url": r[5]
+                  "title": r[1],
+                  "author": r[2],
+                  "type": r[3],
+                  "status": r[4],
+                  "key": r[5],
+                  "url": r[6]
               })
 
           os.makedirs("data", exist_ok=True)
