@@ -736,12 +736,28 @@
     "url": "https://github.com/TOKIUM/zenn/pull/35"
   },
   {
+    "date": "2026/03/24",
+    "day": "24",
+    "title": "状態管理について書くよ",
+    "author": "井上 智敬",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/5c9e322cdee796"
+  },
+  {
     "date": "2026/03/25",
     "day": "25",
     "title": "Mastra で ローカルLLM(SLM) を動かしてみよう",
     "author": "井上 智敬",
     "type": "ZENN",
     "url": "https://zenn.dev/tokium_dev/articles/63d407a40fd0bf"
+  },
+  {
+    "date": "2026/03/27",
+    "day": "27",
+    "title": "なんか書く",
+    "author": "",
+    "type": "ZENN",
+    "url": "https://zenn.dev/tokium_dev/articles/559245e2ff4df0"
   },
   {
     "date": "2026/03/27",
