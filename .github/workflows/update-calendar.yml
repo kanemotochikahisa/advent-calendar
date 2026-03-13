@@ -13,7 +13,8 @@ jobs:
       contents: write
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -21,18 +22,40 @@ jobs:
           python-version: '3.x'
 
       - name: Install dependencies
-        run: pip install google-auth google-api-python-client
+        run: |
+          pip install google-auth google-api-python-client requests beautifulsoup4
 
       - name: Run Fetch Script
         env:
           GCP_KEY: ${{ secrets.GCP_SERVICE_ACCOUNT_KEY }}
         run: |
           cat << 'EOF' > fetch_data.py
+
           import json
           import os
+          import requests
+          from bs4 import BeautifulSoup
           from datetime import datetime
           from google.oauth2 import service_account
           from googleapiclient.discovery import build
+
+          def get_ogp(url):
+
+              try:
+
+                  r = requests.get(url, timeout=5)
+
+                  soup = BeautifulSoup(r.text, "html.parser")
+
+                  tag = soup.find("meta", property="og:image")
+
+                  if tag:
+                      return tag["content"]
+
+              except:
+                  pass
+
+              return ""
 
           info = json.loads(os.environ["GCP_KEY"])
 
@@ -61,31 +84,45 @@ jobs:
               if len(r) < 7:
                   continue
 
+              date_str = r[0]
+
               try:
-                  date_obj = datetime.strptime(r[0], "%Y/%m/%d")
+                  date = datetime.strptime(date_str, "%Y/%m/%d")
               except:
                   continue
 
-              # 今日より未来は表示しない
-              if date_obj > today:
+              # 今日より未来の記事は表示しない
+              if date > today:
                   continue
 
+              url = r[6]
+
+              image = ""
+
+              if url:
+                  image = get_ogp(url)
+
               data.append({
+
                   "date": r[0],
                   "title": r[1],
                   "author": r[2],
                   "type": r[3],
                   "status": r[4],
                   "key": r[5],
-                  "url": r[6]
+                  "url": url,
+                  "image": image
+
               })
 
           os.makedirs("data", exist_ok=True)
 
           with open("data/calendar.json", "w", encoding="utf-8") as f:
+
               json.dump(data, f, ensure_ascii=False, indent=2)
 
           print("calendar.json updated")
+
           EOF
 
           python3 fetch_data.py
@@ -96,5 +133,7 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
 
           git add data/calendar.json
-          git commit --allow-empty -m "chore: update calendar.json"
+
+          git commit --allow-empty -m "update calendar data"
+
           git push origin main
