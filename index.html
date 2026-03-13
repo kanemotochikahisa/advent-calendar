@@ -2,13 +2,9 @@
 <html lang="ja">
 
 <head>
-
 <meta charset="UTF-8">
-
 <title>TOKIUM Tech Calendar</title>
-
 <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
@@ -18,22 +14,26 @@
 <h1>TOKIUM Tech Calendar</h1>
 
 <div class="calendar-nav">
-
 <button onclick="prevMonth()">◀</button>
-
 <div id="monthLabel"></div>
-
 <button onclick="nextMonth()">▶</button>
-
 </div>
 
 <section class="timeline">
-
 <h2>Half Year Timeline</h2>
-
 <div id="timeline"></div>
-
 </section>
+
+<!-- 曜日ヘッダー -->
+<div class="week-header">
+<div>SUN</div>
+<div>MON</div>
+<div>TUE</div>
+<div>WED</div>
+<div>THU</div>
+<div>FRI</div>
+<div>SAT</div>
+</div>
 
 <div id="calendar"></div>
 
@@ -42,5 +42,4 @@
 <script src="script.js"></script>
 
 </body>
-
 </html>
