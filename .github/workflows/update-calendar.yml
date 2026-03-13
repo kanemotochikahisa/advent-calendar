@@ -30,6 +30,7 @@ jobs:
           cat << 'EOF' > fetch_data.py
           import json
           import os
+          from datetime import datetime
           from google.oauth2 import service_account
           from googleapiclient.discovery import build
 
@@ -51,6 +52,8 @@ jobs:
 
           rows = result.get("values", [])[1:]
 
+          today = datetime.today()
+
           data = []
 
           for r in rows:
@@ -58,10 +61,13 @@ jobs:
               if len(r) < 7:
                   continue
 
-              status = r[4]
+              try:
+                  date_obj = datetime.strptime(r[0], "%Y/%m/%d")
+              except:
+                  continue
 
-              # 公開済みのみ
-              if status != "公開":
+              # 今日より未来は表示しない
+              if date_obj > today:
                   continue
 
               data.append({
