@@ -49,25 +49,57 @@ visible.forEach(item=>{
 
 let img=item.image?`<img src="${item.image}">`:""
 
+if(item.type==="登壇"){
+
+cards+=`
+
+<div class="event talk">
+
+<div class="talk-label">🎤 登壇</div>
+
+${item.title}
+
+<div class="author">${item.author}</div>
+
+</div>
+
+`
+
+}else{
+
 if(item.url){
 
 cards+=`
-<a class="event" href="${item.url}" target="_blank">
+
+<a class="event article" href="${item.url}" target="_blank">
+
 ${img}
+
 ${item.title}
+
 <div class="author">${item.author}</div>
+
 </a>
+
 `
 
 }else{
 
 cards+=`
-<div class="event">
+
+<div class="event article">
+
 ${img}
+
 ${item.title}
+
 <div class="author">${item.author}</div>
+
 </div>
+
 `
+
+}
 
 }
 
