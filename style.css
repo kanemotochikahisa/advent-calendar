@@ -1,215 +1,71 @@
 body{
-
-font-family:'Inter',sans-serif;
-background:#f5f7fb;
-margin:0;
-padding:20px;
-
+ font-family:sans-serif;
+ background:#f7faf8;
+ margin:0;
 }
 
 header{
-
-text-align:center;
-margin-bottom:15px;
-
+ background:#1b7f5f;
+ color:white;
+ padding:20px;
+ text-align:center;
 }
-
-h1{
-
-color:#4A67E8;
-font-size:28px;
-margin-bottom:10px;
-
-}
-
-.controls{
-
-font-size:18px;
-
-}
-
-button{
-
-background:#4A67E8;
-border:none;
-color:white;
-padding:6px 14px;
-border-radius:8px;
-cursor:pointer;
-margin:0 6px;
-
-}
-
-button:hover{
-
-background:#314ED1;
-
-}
-
-/* 曜日 */
-
-.calendar-header{
-
-display:grid;
-grid-template-columns:repeat(7,1fr);
-max-width:1100px;
-margin:auto;
-margin-bottom:5px;
-
-}
-
-.calendar-header div{
-
-text-align:center;
-font-size:13px;
-font-weight:600;
-padding:6px;
-
-}
-
-.sun{
-
-color:#e74c3c;
-
-}
-
-.sat{
-
-color:#3498db;
-
-}
-
-/* カレンダー */
 
 #calendar{
-
-display:grid;
-grid-template-columns:repeat(7,1fr);
-gap:8px;
-max-width:1100px;
-margin:auto;
-
+ display:grid;
+ grid-template-columns:repeat(7,1fr);
+ gap:10px;
+ padding:20px;
+ max-width:1400px;
+ margin:auto;
 }
-
-/* カード */
 
 .day{
-
-background:white;
-border-radius:10px;
-padding:8px;
-min-height:85px;
-
-box-shadow:0 2px 6px rgba(0,0,0,0.05);
-
-transition:0.2s;
-
-}
-
-.day:hover{
-
-transform:translateY(-2px);
-
+ background:white;
+ border-radius:10px;
+ padding:8px;
+ min-height:120px;
+ box-shadow:0 2px 6px rgba(0,0,0,0.08);
 }
 
 .date{
-
-font-size:11px;
-font-weight:600;
-color:#888;
-margin-bottom:4px;
-
+ font-weight:bold;
+ margin-bottom:6px;
 }
 
-/* 記事 */
+.holiday{
+ color:red;
+ font-size:12px;
+}
+
+.event{
+ font-size:12px;
+ padding:6px;
+ margin-bottom:4px;
+ border-radius:6px;
+}
 
 .article{
-
-font-size:11px;
-margin-bottom:2px;
-
+ background:#e6f4ef;
+ color:#064e3b;
+ text-decoration:none;
+ display:block;
 }
 
-.article a{
-
-color:#2c2c2c;
-text-decoration:none;
-
+.article:hover{
+ background:#d1fae5;
 }
 
-.article a:hover{
-
-color:#4A67E8;
-
+.talk{
+ background:#fef3c7;
 }
-
-.meta{
-
-font-size:9px;
-color:#777;
-
-}
-
-.badge{
-
-font-size:8px;
-padding:1px 4px;
-border-radius:4px;
-margin-left:4px;
-
-}
-
-.badge.ZENN{
-
-background:#eef3ff;
-color:#3b6cff;
-
-}
-
-.badge.NOTE{
-
-background:#eafff1;
-color:#00a65a;
-
-}
-
-/* 未公開 */
 
 .draft{
-
-color:#999;
-font-style:italic;
-
+ background:#eee;
+ color:#888;
 }
 
-.draft-badge{
-
-background:#fff4cc;
-color:#b38f00;
-
-}
-
-/* 未登録 */
-
-.empty{
-
-font-size:10px;
-color:#bbb;
-
-}
-
-/* 記事あり */
-
-.has-article{
-
-background:#f8faff;
-
-}
-
-/* 今日 */
-
-.today{
-
-border:2px solid #4A67E8;
-
+.author{
+ font-size:11px;
+ opacity:0.8;
 }
