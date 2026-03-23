@@ -17,11 +17,11 @@ async function loadCalendar(){
     date: d.date.replaceAll("/", "-")
   }))
 
-  /* 年末年始（12/29〜1/4） */
+  /* 年末年始（年末安み） */
   const extra = [
-    { date: "2026-12-29", title: "年末休暇", type:"holiday" },
-    { date: "2026-12-30", title: "年末休暇", type:"holiday" },
-    { date: "2026-12-31", title: "年末休暇", type:"holiday" },
+    { date: "2026-12-29", title: "年末安み", type:"holiday" },
+    { date: "2026-12-30", title: "年末安み", type:"holiday" },
+    { date: "2026-12-31", title: "年末安み", type:"holiday" },
     { date: "2027-01-01", title: "元日", type:"holiday" },
     { date: "2027-01-02", title: "年始休暇", type:"holiday" },
     { date: "2027-01-03", title: "年始休暇", type:"holiday" },
@@ -72,10 +72,9 @@ async function loadCalendar(){
 
     const dateKey = `${year}-${String(month+1).padStart(2,"0")}-${String(day).padStart(2,"0")}`
 
-    /* 年末年始含めた祝日判定 */
+    /* 祝日判定（国民＋年末年始） */
     const extraHoliday = data.find(d => d.date === dateKey && d.type === "holiday")
     const holidayName = holidays[dateKey] || (extraHoliday ? extraHoliday.title : "")
-
     const isHoliday = holidays[dateKey] || extraHoliday
 
     const items = data.filter(d => d.date === dateKey)
@@ -86,8 +85,10 @@ async function loadCalendar(){
 
     visible.forEach(item=>{
 
+      /* 年末年始はカードに出さない */
       if(item.type === "holiday") return
 
+      /* 登壇 */
       if(item.type === "登壇"){
         cards += `
         <div class="event talk">
@@ -98,17 +99,22 @@ async function loadCalendar(){
         return
       }
 
-      if(!item.url){
+      /* 未公開 */
+      if(item.status !== "公開"){
         cards += `
-        <div class="event">
-          ${item.title}
+        <div class="event draft">
+          🔒 ${item.title}
           <div class="author">${item.author || ""}</div>
         </div>`
         return
       }
 
-      let img = item.image ? `<img src="${item.image}">` : ""
+      /* 画像 */
+      let img = item.image
+        ? `<img src="${item.image}">`
+        : `<div class="no-image">No Image</div>`
 
+      /* 通常記事 */
       cards += `
       <a class="event" href="${item.url}" target="_blank">
         ${img}
@@ -134,14 +140,14 @@ async function loadCalendar(){
       `
     }
 
-    /* ★ここが今回の核心 */
     let className = "day"
 
     if(weekDay === 0) className += " sun"
     if(weekDay === 6) className += " sat"
 
+    /* ★祝日（年末年始含む） */
     if(isHoliday){
-      className += " sun"  // ← 祝日も日曜扱いにする
+      className += " holiday-day"
     }
 
     html += `
