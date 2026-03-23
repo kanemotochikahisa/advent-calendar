@@ -4,22 +4,6 @@ let holidays = {}
 async function loadHoliday(){
   const res = await fetch("https://holidays-jp.github.io/api/v1/date.json")
   holidays = await res.json()
-
-  /* ★ここで年末年始を祝日に追加 */
-  const extraHoliday = {
-    "2026-12-29": "年末安み",
-    "2026-12-30": "年末安み",
-    "2026-12-31": "年末安み",
-    "2027-01-01": "元日",
-    "2027-01-02": "年始休暇",
-    "2027-01-03": "年始休暇",
-    "2027-01-04": "年始休暇"
-  }
-
-  holidays = {
-    ...holidays,
-    ...extraHoliday
-  }
 }
 
 async function loadCalendar(){
@@ -33,15 +17,24 @@ async function loadCalendar(){
     date: d.date.replaceAll("/", "-")
   }))
 
-  /* 重複削除 */
-  const map = new Map()
-  data.forEach(item=>{
-    const key = item.url ? item.url : item.title + item.date
-    if(!map.has(key)){
-      map.set(key,item)
-    }
-  })
-  data = Array.from(map.values())
+  /* ★ここが超重要（毎回生成） */
+  const year = currentDate.getFullYear()
+
+  const extraHoliday = {
+    [`${year}-12-29`]: "年末安み",
+    [`${year}-12-30`]: "年末安み",
+    [`${year}-12-31`]: "年末安み",
+    [`${year}-01-01`]: "元日",
+    [`${year}-01-02`]: "年始休暇",
+    [`${year}-01-03`]: "年始休暇",
+    [`${year}-01-04`]: "年始休暇"
+  }
+
+  /* マージ */
+  const mergedHolidays = {
+    ...holidays,
+    ...extraHoliday
+  }
 
   const calendar = document.getElementById("calendar")
   const monthLabel = document.getElementById("monthLabel")
@@ -51,7 +44,6 @@ async function loadCalendar(){
     "July","August","September","October","November","December"
   ]
 
-  const year = currentDate.getFullYear()
   const month = currentDate.getMonth()
 
   monthLabel.innerText = `${months[month]} ${year}`
@@ -75,9 +67,9 @@ async function loadCalendar(){
 
     const dateKey = `${year}-${String(month+1).padStart(2,"0")}-${String(day).padStart(2,"0")}`
 
-    /* ★祝日判定を一本化 */
-    const holidayName = holidays[dateKey] || ""
-    const isHoliday = !!holidays[dateKey]
+    /* ★ここも変更 */
+    const holidayName = mergedHolidays[dateKey] || ""
+    const isHoliday = !!mergedHolidays[dateKey]
 
     const items = data.filter(d => d.date === dateKey)
 
