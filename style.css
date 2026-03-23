@@ -79,24 +79,17 @@ h1{
   transition:0.2s;
 }
 
-/* 日曜 */
+/* ★日曜＆祝日（統一） */
 
 .sun{
   background:#fff3f3;
+  border:1px solid #ffcdd2;
 }
 
 /* 土曜 */
 
 .sat{
   background:#f3f7ff;
-}
-
-/* ★完全休み（強化版） */
-
-.day.holiday-day{
-  background:#ffecec;
-  border:2px solid #ef5350;
-  box-shadow:0 6px 16px rgba(239,83,80,0.2);
 }
 
 /* 日付 */
@@ -107,10 +100,10 @@ h1{
   margin-bottom:4px;
 }
 
-/* ★休みの日付も赤に */
+/* ★日曜＆祝日の日付 */
 
-.holiday-day .date{
-  color:#d32f2f;
+.sun .date{
+  color:#e53935;
 }
 
 /* 祝日テキスト */
@@ -195,13 +188,6 @@ h1{
   color:#999;
   border:1px dashed #ccc;
   font-style:italic;
-}
-
-/* ★休みの日はクリック不可 */
-
-.holiday-day .event{
-  pointer-events:none;
-  opacity:0.6;
 }
 
 /* +more */
