@@ -72,7 +72,9 @@ async function loadCalendar(){
 
     const dateKey = `${year}-${String(month+1).padStart(2,"0")}-${String(day).padStart(2,"0")}`
 
-    const holidayName = holidays[dateKey] || ""
+    /* ★ここが今回の重要修正 */
+    const extraHoliday = data.find(d => d.date === dateKey && d.type === "holiday")
+    const holidayName = holidays[dateKey] || (extraHoliday ? extraHoliday.title : "")
 
     const items = data.filter(d => d.date === dateKey)
 
@@ -82,9 +84,8 @@ async function loadCalendar(){
 
     visible.forEach(item=>{
 
-      /* 年末年始 */
+      /* 年末年始はカードに出さない */
       if(item.type === "holiday"){
-        cards += `<div class="event holiday">${item.title}</div>`
         return
       }
 
@@ -120,9 +121,11 @@ async function loadCalendar(){
       </a>`
     })
 
-    /* +more */
-    if(items.length > 3){
-      const hidden = items.slice(3).map(item=>`
+    /* +more（holiday除外） */
+    const moreItems = items.filter(i => i.type !== "holiday")
+
+    if(moreItems.length > 3){
+      const hidden = moreItems.slice(3).map(item=>`
         <div class="event extra hidden">
           ${item.title}
         </div>
@@ -130,7 +133,7 @@ async function loadCalendar(){
 
       cards += `
         <div class="more" onclick="toggleMore(this)">
-          +${items.length-3} more
+          +${moreItems.length-3} more
         </div>
         ${hidden}
       `
@@ -154,7 +157,7 @@ async function loadCalendar(){
   calendar.innerHTML = html
 }
 
-/* +more制御（1つだけ開く） */
+/* +more制御 */
 function toggleMore(el){
 
   const parent = el.parentElement
