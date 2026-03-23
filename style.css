@@ -91,11 +91,12 @@ h1{
   background:#f3f7ff;
 }
 
-/* ★祝日（年末年始含む） */
+/* ★完全休み（強化版） */
 
 .day.holiday-day{
   background:#ffecec;
-  border:1px solid #ffcdd2;
+  border:2px solid #ef5350;
+  box-shadow:0 6px 16px rgba(239,83,80,0.2);
 }
 
 /* 日付 */
@@ -104,6 +105,12 @@ h1{
   font-weight:bold;
   font-size:14px;
   margin-bottom:4px;
+}
+
+/* ★休みの日付も赤に */
+
+.holiday-day .date{
+  color:#d32f2f;
 }
 
 /* 祝日テキスト */
@@ -134,14 +141,10 @@ h1{
   transition:0.2s;
 }
 
-/* ホバー */
-
 .event:hover{
   transform:translateY(-2px);
   box-shadow:0 4px 8px rgba(0,0,0,0.1);
 }
-
-/* 画像 */
 
 .event img{
   width:100%;
@@ -185,13 +188,20 @@ h1{
   color:#ff9800;
 }
 
-/* 未公開（改善版） */
+/* 未公開 */
 
 .event.draft{
   background:#f5f5f5;
   color:#999;
   border:1px dashed #ccc;
   font-style:italic;
+}
+
+/* ★休みの日はクリック不可 */
+
+.holiday-day .event{
+  pointer-events:none;
+  opacity:0.6;
 }
 
 /* +more */
