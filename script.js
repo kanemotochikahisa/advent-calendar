@@ -19,7 +19,7 @@ async function loadCalendar(){
 
   const year = currentDate.getFullYear()
 
-  /* 年末年始 */
+  /* 年末年始（祝日扱い） */
   const extraHoliday = {
     [`${year}-12-29`]: "年末休暇",
     [`${year}-12-30`]: "年末休暇",
@@ -92,8 +92,9 @@ async function loadCalendar(){
         ? `<img src="${item.image}">`
         : `<div class="no-image">No Image</div>`
 
-      /* ★公開・未公開分岐 */
+      /* ★ここ重要（完全統一） */
       if(item.status === "公開" && item.url){
+        /* 公開 → リンク */
         cards += `
         <a class="event" href="${item.url}" target="_blank">
           ${img}
@@ -101,6 +102,7 @@ async function loadCalendar(){
           <div class="author">${item.author || ""}</div>
         </a>`
       }else{
+        /* 未公開 → div（見えるだけ） */
         cards += `
         <div class="event">
           ${img}
@@ -127,6 +129,7 @@ async function loadCalendar(){
 
     let className = "day"
 
+    /* 祝日＝日曜 */
     if(weekDay === 0 || isHoliday) className += " sun"
     if(weekDay === 6) className += " sat"
 
