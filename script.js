@@ -11,6 +11,7 @@ async function loadCalendar(){
   const res = await fetch("data/calendar.json")
   let data = await res.json()
 
+  /* 日付フォーマット統一 */
   data = data.map(d => ({
     ...d,
     date: d.date.replaceAll("/", "-")
@@ -18,7 +19,7 @@ async function loadCalendar(){
 
   const year = currentDate.getFullYear()
 
-  /* ★ここ統一 */
+  /* 年末年始（祝日に統合） */
   const extraHoliday = {
     [`${year}-12-29`]: "年末休暇",
     [`${year}-12-30`]: "年末休暇",
@@ -43,7 +44,6 @@ async function loadCalendar(){
   ]
 
   const month = currentDate.getMonth()
-
   monthLabel.innerText = `${months[month]} ${year}`
 
   const firstDay = new Date(year,month,1)
@@ -124,9 +124,9 @@ async function loadCalendar(){
 
     let className = "day"
 
-    if(weekDay === 0) className += " sun"
+    /* ★ここが重要：祝日も日曜扱い */
+    if(weekDay === 0 || isHoliday) className += " sun"
     if(weekDay === 6) className += " sat"
-    if(isHoliday) className += " holiday-day"
 
     html += `
     <div class="${className}">
