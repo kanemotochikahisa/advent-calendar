@@ -1,159 +1,190 @@
 body{
-margin:0;
-font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
-background:#f3f5f4;
-color:#222;
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  background:#f3f5f4;
+  color:#222;
 }
 
 .container{
-max-width:1400px;
-margin:auto;
-padding:30px;
+  max-width:1400px;
+  margin:auto;
+  padding:30px;
 }
 
 h1{
-text-align:center;
-margin-bottom:10px;
+  text-align:center;
+  margin-bottom:10px;
 }
 
 /* 月切替 */
 
 .calendar-nav{
-display:flex;
-justify-content:center;
-align-items:center;
-gap:20px;
-margin-bottom:30px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+  margin-bottom:30px;
 }
 
 .calendar-nav button{
-background:#2e7d5b;
-color:white;
-border:none;
-padding:10px 16px;
-border-radius:8px;
-font-size:16px;
-cursor:pointer;
+  background:#2e7d5b;
+  color:white;
+  border:none;
+  padding:10px 16px;
+  border-radius:8px;
+  font-size:16px;
+  cursor:pointer;
 }
 
 #monthLabel{
-font-size:20px;
-font-weight:bold;
+  font-size:20px;
+  font-weight:bold;
 }
 
 /* 曜日ヘッダー */
 
 .week-header{
-display:grid;
-grid-template-columns:repeat(7,1fr);
-text-align:center;
-font-weight:bold;
-margin-bottom:10px;
-color:#666;
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  text-align:center;
+  font-weight:bold;
+  margin-bottom:10px;
+  color:#666;
 }
 
 .week-header div:nth-child(1){
-color:#e53935;
+  color:#e53935;
 }
 
 .week-header div:nth-child(7){
-color:#1e88e5;
+  color:#1e88e5;
 }
 
 /* カレンダー */
 
 #calendar{
-display:grid;
-grid-template-columns:repeat(7,1fr);
-gap:14px;
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:14px;
 }
 
 .day{
-background:white;
-border-radius:14px;
-padding:10px;
-min-height:150px;
-box-shadow:0 4px 12px rgba(0,0,0,0.08);
-display:flex;
-flex-direction:column;
+  background:white;
+  border-radius:14px;
+  padding:10px;
+  min-height:150px;
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+  display:flex;
+  flex-direction:column;
+  transition:0.2s;
 }
 
 /* 日曜 */
 
 .sun{
-background:#fff3f3;
+  background:#fff3f3;
 }
 
 /* 土曜 */
 
 .sat{
-background:#f3f7ff;
+  background:#f3f7ff;
 }
 
 .date{
-font-weight:bold;
-font-size:14px;
-margin-bottom:4px;
+  font-weight:bold;
+  font-size:14px;
+  margin-bottom:4px;
 }
 
 /* 祝日 */
 
 .holiday{
-font-size:11px;
-color:#d32f2f;
-margin-bottom:4px;
+  font-size:11px;
+  color:#d32f2f;
+  margin-bottom:4px;
 }
 
 /* 記事 */
 
 .events{
-display:flex;
-flex-direction:column;
-gap:6px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
 }
 
 .event{
-display:block;
-background:#eef5f2;
-border-radius:8px;
-padding:6px;
-font-size:12px;
-text-decoration:none;
-color:#222;
+  display:block;
+  background:#eef5f2;
+  border-radius:8px;
+  padding:6px;
+  font-size:12px;
+  text-decoration:none;
+  color:#222;
+  transition:0.2s;
+}
+
+/* ホバーでちょい浮く（UX改善） */
+.event:hover{
+  transform:translateY(-2px);
+  box-shadow:0 4px 8px rgba(0,0,0,0.1);
 }
 
 .event img{
-width:100%;
-height:60px;
-object-fit:cover;
-border-radius:6px;
-margin-bottom:4px;
+  width:100%;
+  height:60px;
+  object-fit:cover;
+  border-radius:6px;
+  margin-bottom:4px;
 }
 
 .author{
-font-size:10px;
-color:#666;
+  font-size:10px;
+  color:#666;
 }
 
 /* 登壇 */
 
 .talk{
-background:#fff4d6;
+  background:#fff4d6;
 }
 
 .talk-label{
-font-size:10px;
-font-weight:bold;
-color:#ff9800;
+  font-size:10px;
+  font-weight:bold;
+  color:#ff9800;
 }
+
+/* 年末年始用 */
+
+.event.holiday{
+  background:#ffecec;
+  color:#d32f2f;
+  font-weight:bold;
+}
+
+/* +more */
 
 .more{
-font-size:11px;
-color:#2e7d5b;
-cursor:pointer;
+  font-size:11px;
+  color:#2e7d5b;
+  cursor:pointer;
+  font-weight:bold;
+  margin-top:2px;
 }
 
+.more:hover{
+  text-decoration:underline;
+}
+
+/* 非表示制御（これ重要） */
+.hidden{
+  display:none;
+}
+
+/* 空セル */
+
 .empty{
-background:transparent;
-box-shadow:none;
+  background:transparent;
+  box-shadow:none;
 }
