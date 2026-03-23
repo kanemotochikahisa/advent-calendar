@@ -19,7 +19,7 @@ async function loadCalendar(){
 
   const year = currentDate.getFullYear()
 
-  /* 年末年始（祝日に統合） */
+  /* 年末年始 */
   const extraHoliday = {
     [`${year}-12-29`]: "年末休暇",
     [`${year}-12-30`]: "年末休暇",
@@ -76,6 +76,7 @@ async function loadCalendar(){
 
     visible.forEach(item=>{
 
+      /* 登壇 */
       if(item.type === "登壇"){
         cards += `
         <div class="event talk">
@@ -86,25 +87,27 @@ async function loadCalendar(){
         return
       }
 
-      if(item.status !== "公開"){
-        cards += `
-        <div class="event draft">
-          🔒 ${item.title}
-          <div class="author">${item.author || ""}</div>
-        </div>`
-        return
-      }
-
+      /* 画像 */
       let img = item.image
         ? `<img src="${item.image}">`
         : `<div class="no-image">No Image</div>`
 
-      cards += `
-      <a class="event" href="${item.url}" target="_blank">
-        ${img}
-        ${item.title}
-        <div class="author">${item.author || ""}</div>
-      </a>`
+      /* ★公開・未公開分岐 */
+      if(item.status === "公開" && item.url){
+        cards += `
+        <a class="event" href="${item.url}" target="_blank">
+          ${img}
+          ${item.title}
+          <div class="author">${item.author || ""}</div>
+        </a>`
+      }else{
+        cards += `
+        <div class="event">
+          ${img}
+          ${item.title}
+          <div class="author">${item.author || ""}</div>
+        </div>`
+      }
     })
 
     if(items.length > 3){
@@ -124,7 +127,6 @@ async function loadCalendar(){
 
     let className = "day"
 
-    /* ★ここが重要：祝日も日曜扱い */
     if(weekDay === 0 || isHoliday) className += " sun"
     if(weekDay === 6) className += " sat"
 
