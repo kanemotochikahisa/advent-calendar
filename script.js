@@ -11,13 +11,13 @@ async function loadCalendar(){
   const res = await fetch("data/calendar.json")
   let data = await res.json()
 
-  /* 日付フォーマット統一（超重要） */
+  /* 日付フォーマット統一 */
   data = data.map(d => ({
     ...d,
     date: d.date.replaceAll("/", "-")
   }))
 
-  /* 年末年始追加 */
+  /* 年末年始（12/29〜1/4） */
   const extra = [
     { date: "2026-12-29", title: "年末休暇", type:"holiday" },
     { date: "2026-12-30", title: "年末休暇", type:"holiday" },
@@ -25,6 +25,7 @@ async function loadCalendar(){
     { date: "2027-01-01", title: "元日", type:"holiday" },
     { date: "2027-01-02", title: "年始休暇", type:"holiday" },
     { date: "2027-01-03", title: "年始休暇", type:"holiday" },
+    { date: "2027-01-04", title: "年始休暇", type:"holiday" },
   ]
 
   data = [...data, ...extra]
@@ -81,31 +82,45 @@ async function loadCalendar(){
 
     visible.forEach(item=>{
 
+      /* 年末年始 */
       if(item.type === "holiday"){
         cards += `<div class="event holiday">${item.title}</div>`
         return
       }
 
-      let img = item.image ? `<img src="${item.image}">` : ""
-
+      /* 登壇 */
       if(item.type === "登壇"){
         cards += `
         <div class="event talk">
           <div class="talk-label">🎤 登壇</div>
           ${item.title}
-          <div class="author">${item.author}</div>
+          <div class="author">${item.author || ""}</div>
         </div>`
-      }else{
-        cards += `
-        <a class="event" href="${item.url}" target="_blank">
-          ${img}
-          ${item.title}
-          <div class="author">${item.author}</div>
-        </a>`
+        return
       }
+
+      /* 未公開（URLなし） */
+      if(!item.url){
+        cards += `
+        <div class="event">
+          ${item.title}
+          <div class="author">${item.author || ""}</div>
+        </div>`
+        return
+      }
+
+      /* 通常記事 */
+      let img = item.image ? `<img src="${item.image}">` : ""
+
+      cards += `
+      <a class="event" href="${item.url}" target="_blank">
+        ${img}
+        ${item.title}
+        <div class="author">${item.author || ""}</div>
+      </a>`
     })
 
-    /* +more（展開エリア込み） */
+    /* +more */
     if(items.length > 3){
       const hidden = items.slice(3).map(item=>`
         <div class="event extra hidden">
@@ -139,25 +154,23 @@ async function loadCalendar(){
   calendar.innerHTML = html
 }
 
-/* +more（1箇所だけ開く + トグル対応） */
+/* +more制御（1つだけ開く） */
 function toggleMore(el){
 
   const parent = el.parentElement
   const hidden = parent.querySelectorAll(".extra")
   const isOpen = el.innerText.includes("閉じる")
 
-  /* 一旦全部閉じる */
+  /* 全部閉じる */
   document.querySelectorAll(".extra").forEach(e=>{
     e.classList.add("hidden")
   })
 
   document.querySelectorAll(".more").forEach(m=>{
-    if(m.innerText.includes("閉じる")){
-      m.innerText = m.innerText.replace("閉じる","more")
-    }
+    m.innerText = m.innerText.includes("閉じる") ? "more" : m.innerText
   })
 
-  /* 開いてなかったら開く */
+  /* 開く */
   if(!isOpen){
     hidden.forEach(e=>{
       e.classList.remove("hidden")
