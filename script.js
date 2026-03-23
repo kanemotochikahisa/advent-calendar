@@ -4,6 +4,22 @@ let holidays = {}
 async function loadHoliday(){
   const res = await fetch("https://holidays-jp.github.io/api/v1/date.json")
   holidays = await res.json()
+
+  /* ★ここで年末年始を祝日に追加 */
+  const extraHoliday = {
+    "2026-12-29": "年末安み",
+    "2026-12-30": "年末安み",
+    "2026-12-31": "年末安み",
+    "2027-01-01": "元日",
+    "2027-01-02": "年始休暇",
+    "2027-01-03": "年始休暇",
+    "2027-01-04": "年始休暇"
+  }
+
+  holidays = {
+    ...holidays,
+    ...extraHoliday
+  }
 }
 
 async function loadCalendar(){
@@ -16,19 +32,6 @@ async function loadCalendar(){
     ...d,
     date: d.date.replaceAll("/", "-")
   }))
-
-  /* 年末年始（年末安み） */
-  const extra = [
-    { date: "2026-12-29", title: "年末安み", type:"holiday" },
-    { date: "2026-12-30", title: "年末安み", type:"holiday" },
-    { date: "2026-12-31", title: "年末安み", type:"holiday" },
-    { date: "2027-01-01", title: "元日", type:"holiday" },
-    { date: "2027-01-02", title: "年始休暇", type:"holiday" },
-    { date: "2027-01-03", title: "年始休暇", type:"holiday" },
-    { date: "2027-01-04", title: "年始休暇", type:"holiday" },
-  ]
-
-  data = [...data, ...extra]
 
   /* 重複削除 */
   const map = new Map()
@@ -72,10 +75,9 @@ async function loadCalendar(){
 
     const dateKey = `${year}-${String(month+1).padStart(2,"0")}-${String(day).padStart(2,"0")}`
 
-    /* 祝日判定（国民＋年末年始） */
-    const extraHoliday = data.find(d => d.date === dateKey && d.type === "holiday")
-    const holidayName = holidays[dateKey] || (extraHoliday ? extraHoliday.title : "")
-    const isHoliday = holidays[dateKey] || extraHoliday
+    /* ★祝日判定を一本化 */
+    const holidayName = holidays[dateKey] || ""
+    const isHoliday = !!holidays[dateKey]
 
     const items = data.filter(d => d.date === dateKey)
 
@@ -85,10 +87,6 @@ async function loadCalendar(){
 
     visible.forEach(item=>{
 
-      /* 年末年始はカードに出さない */
-      if(item.type === "holiday") return
-
-      /* 登壇 */
       if(item.type === "登壇"){
         cards += `
         <div class="event talk">
@@ -99,7 +97,6 @@ async function loadCalendar(){
         return
       }
 
-      /* 未公開 */
       if(item.status !== "公開"){
         cards += `
         <div class="event draft">
@@ -109,12 +106,10 @@ async function loadCalendar(){
         return
       }
 
-      /* 画像 */
       let img = item.image
         ? `<img src="${item.image}">`
         : `<div class="no-image">No Image</div>`
 
-      /* 通常記事 */
       cards += `
       <a class="event" href="${item.url}" target="_blank">
         ${img}
@@ -123,10 +118,8 @@ async function loadCalendar(){
       </a>`
     })
 
-    const moreItems = items.filter(i => i.type !== "holiday")
-
-    if(moreItems.length > 3){
-      const hidden = moreItems.slice(3).map(item=>`
+    if(items.length > 3){
+      const hidden = items.slice(3).map(item=>`
         <div class="event extra hidden">
           ${item.title}
         </div>
@@ -134,7 +127,7 @@ async function loadCalendar(){
 
       cards += `
         <div class="more" onclick="toggleMore(this)">
-          +${moreItems.length-3} more
+          +${items.length-3} more
         </div>
         ${hidden}
       `
@@ -144,11 +137,7 @@ async function loadCalendar(){
 
     if(weekDay === 0) className += " sun"
     if(weekDay === 6) className += " sat"
-
-    /* ★祝日（年末年始含む） */
-    if(isHoliday){
-      className += " holiday-day"
-    }
+    if(isHoliday) className += " holiday-day"
 
     html += `
     <div class="${className}">
@@ -164,7 +153,7 @@ async function loadCalendar(){
   calendar.innerHTML = html
 }
 
-/* +more制御 */
+/* +more */
 function toggleMore(el){
 
   const parent = el.parentElement
