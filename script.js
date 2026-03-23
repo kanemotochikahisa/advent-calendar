@@ -11,26 +11,24 @@ async function loadCalendar(){
   const res = await fetch("data/calendar.json")
   let data = await res.json()
 
-  /* 日付フォーマット統一 */
   data = data.map(d => ({
     ...d,
     date: d.date.replaceAll("/", "-")
   }))
 
-  /* ★ここが超重要（毎回生成） */
   const year = currentDate.getFullYear()
 
+  /* ★ここ統一 */
   const extraHoliday = {
-    [`${year}-12-29`]: "年末安み",
-    [`${year}-12-30`]: "年末安み",
-    [`${year}-12-31`]: "年末安み",
+    [`${year}-12-29`]: "年末休暇",
+    [`${year}-12-30`]: "年末休暇",
+    [`${year}-12-31`]: "年末休暇",
     [`${year}-01-01`]: "元日",
     [`${year}-01-02`]: "年始休暇",
     [`${year}-01-03`]: "年始休暇",
     [`${year}-01-04`]: "年始休暇"
   }
 
-  /* マージ */
   const mergedHolidays = {
     ...holidays,
     ...extraHoliday
@@ -67,7 +65,6 @@ async function loadCalendar(){
 
     const dateKey = `${year}-${String(month+1).padStart(2,"0")}-${String(day).padStart(2,"0")}`
 
-    /* ★ここも変更 */
     const holidayName = mergedHolidays[dateKey] || ""
     const isHoliday = !!mergedHolidays[dateKey]
 
