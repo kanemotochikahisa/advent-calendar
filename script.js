@@ -72,9 +72,11 @@ async function loadCalendar(){
 
     const dateKey = `${year}-${String(month+1).padStart(2,"0")}-${String(day).padStart(2,"0")}`
 
-    /* ★ここが今回の重要修正 */
+    /* 年末年始含めた祝日判定 */
     const extraHoliday = data.find(d => d.date === dateKey && d.type === "holiday")
     const holidayName = holidays[dateKey] || (extraHoliday ? extraHoliday.title : "")
+
+    const isHoliday = holidays[dateKey] || extraHoliday
 
     const items = data.filter(d => d.date === dateKey)
 
@@ -84,12 +86,8 @@ async function loadCalendar(){
 
     visible.forEach(item=>{
 
-      /* 年末年始はカードに出さない */
-      if(item.type === "holiday"){
-        return
-      }
+      if(item.type === "holiday") return
 
-      /* 登壇 */
       if(item.type === "登壇"){
         cards += `
         <div class="event talk">
@@ -100,7 +98,6 @@ async function loadCalendar(){
         return
       }
 
-      /* 未公開（URLなし） */
       if(!item.url){
         cards += `
         <div class="event">
@@ -110,7 +107,6 @@ async function loadCalendar(){
         return
       }
 
-      /* 通常記事 */
       let img = item.image ? `<img src="${item.image}">` : ""
 
       cards += `
@@ -121,7 +117,6 @@ async function loadCalendar(){
       </a>`
     })
 
-    /* +more（holiday除外） */
     const moreItems = items.filter(i => i.type !== "holiday")
 
     if(moreItems.length > 3){
@@ -139,9 +134,15 @@ async function loadCalendar(){
       `
     }
 
+    /* ★ここが今回の核心 */
     let className = "day"
+
     if(weekDay === 0) className += " sun"
     if(weekDay === 6) className += " sat"
+
+    if(isHoliday){
+      className += " sun"  // ← 祝日も日曜扱いにする
+    }
 
     html += `
     <div class="${className}">
@@ -164,7 +165,6 @@ function toggleMore(el){
   const hidden = parent.querySelectorAll(".extra")
   const isOpen = el.innerText.includes("閉じる")
 
-  /* 全部閉じる */
   document.querySelectorAll(".extra").forEach(e=>{
     e.classList.add("hidden")
   })
@@ -173,7 +173,6 @@ function toggleMore(el){
     m.innerText = m.innerText.includes("閉じる") ? "more" : m.innerText
   })
 
-  /* 開く */
   if(!isOpen){
     hidden.forEach(e=>{
       e.classList.remove("hidden")
