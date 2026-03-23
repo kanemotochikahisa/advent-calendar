@@ -14,7 +14,7 @@ async function loadCalendar(){
   /* 日付フォーマット統一（超重要） */
   data = data.map(d => ({
     ...d,
-    date: d.date.replaceAll("/","-")
+    date: d.date.replaceAll("/", "-")
   }))
 
   /* 年末年始追加 */
@@ -105,7 +105,7 @@ async function loadCalendar(){
       }
     })
 
-    /* +moreクリック対応 */
+    /* +more（展開エリア込み） */
     if(items.length > 3){
       const hidden = items.slice(3).map(item=>`
         <div class="event extra hidden">
@@ -139,16 +139,31 @@ async function loadCalendar(){
   calendar.innerHTML = html
 }
 
-/* +more動作 */
+/* +more（1箇所だけ開く + トグル対応） */
 function toggleMore(el){
+
   const parent = el.parentElement
   const hidden = parent.querySelectorAll(".extra")
+  const isOpen = el.innerText.includes("閉じる")
 
-  hidden.forEach(e=>{
-    e.classList.toggle("hidden")
+  /* 一旦全部閉じる */
+  document.querySelectorAll(".extra").forEach(e=>{
+    e.classList.add("hidden")
   })
 
-  el.innerText = el.innerText.includes("more") ? "閉じる" : "more"
+  document.querySelectorAll(".more").forEach(m=>{
+    if(m.innerText.includes("閉じる")){
+      m.innerText = m.innerText.replace("閉じる","more")
+    }
+  })
+
+  /* 開いてなかったら開く */
+  if(!isOpen){
+    hidden.forEach(e=>{
+      e.classList.remove("hidden")
+    })
+    el.innerText = "閉じる"
+  }
 }
 
 function prevMonth(){
