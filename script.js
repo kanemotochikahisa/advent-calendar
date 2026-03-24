@@ -1,9 +1,7 @@
-let currentDate = new Date();
-let holidays = {};
-const MAX_VISIBLE = 2;
+let current = new Date();
 
-// 著者変換
-const authorMap = {
+// ✅ 名前 → Zenn ID 対応表
+const AUTHOR_MAP = {
   "西平 基志": "nishihira",
   "坂上 晴信": "subroh_0508",
   "西川 真澄": "m_nishikawa",
@@ -32,163 +30,139 @@ const authorMap = {
   "冨永 佑介": "tommy_y"
 };
 
-function convertAuthor(name) {
-  return authorMap[name] || name;
-}
-
-// 祝日取得
-async function fetchHolidays(year) {
-  try {
-    const res = await fetch(`https://holidays-jp.github.io/api/v1/${year}/date.json`);
-    holidays = await res.json();
-  } catch {
-    holidays = {};
-  }
-}
-
-// 会社休み
-function getCompanyHoliday(dateStr) {
-  if (dateStr.includes("/12/29") || dateStr.includes("/12/30") || dateStr.includes("/12/31")) return "年末休み";
-  if (dateStr.includes("/01/02") || dateStr.includes("/01/03") || dateStr.includes("/01/04")) return "年始休み";
-  return null;
-}
-
-async function renderCalendar() {
-  const year = currentDate.getFullYear();
-  const month = currentDate.getMonth();
-
-  await fetchHolidays(year);
-
+async function load() {
   const res = await fetch("data/calendar.json");
   const data = await res.json();
 
+  // ✅ 未公開は除外
+  const published = data.filter(d => d.status === "公開");
+
+  render(published);
+}
+
+function render(data) {
   const calendar = document.getElementById("calendar");
-  const label = document.getElementById("monthLabel");
+  const title = document.getElementById("monthTitle");
 
   calendar.innerHTML = "";
-  label.textContent = `${currentDate.toLocaleString("en-US", { month: "long" })} ${year}`;
 
-  const firstDay = new Date(year, month, 1);
+  const year = current.getFullYear();
+  const month = current.getMonth();
+
+  title.textContent = `${year}年 ${month + 1}月`;
+
+  const firstDay = new Date(year, month, 1).getDay();
   const lastDate = new Date(year, month + 1, 0).getDate();
-  const startDay = firstDay.getDay();
 
-  for (let i = 0; i < startDay; i++) {
+  // 空白埋め
+  for (let i = 0; i < firstDay; i++) {
     const empty = document.createElement("div");
-    empty.className = "empty";
+    empty.className = "day empty";
     calendar.appendChild(empty);
   }
 
   for (let d = 1; d <= lastDate; d++) {
-    const date = new Date(year, month, d);
-    const dayOfWeek = date.getDay();
-
     const dateStr = `${year}/${String(month + 1).padStart(2, "0")}/${String(d).padStart(2, "0")}`;
 
     const dayEl = document.createElement("div");
     dayEl.className = "day";
 
-    if (dayOfWeek === 0) dayEl.classList.add("sun");
-    if (dayOfWeek === 6) dayEl.classList.add("sat");
+    const day = new Date(year, month, d).getDay();
+    if (day === 0) dayEl.classList.add("sun");
+    if (day === 6) dayEl.classList.add("sat");
 
-    // 🔥 修正ポイント（祝日）
-    const holidayKey = dateStr.replaceAll("/", "-");
-    const holidayName = holidays[holidayKey];
-    const companyHoliday = getCompanyHoliday(dateStr);
+    const date = document.createElement("div");
+    date.className = "date";
+    date.textContent = d;
 
-    if (holidayName || companyHoliday) {
-      dayEl.classList.add("holiday-day");
-
-      const holidayEl = document.createElement("div");
-      holidayEl.className = "holiday";
-      holidayEl.textContent = companyHoliday || holidayName;
-      dayEl.appendChild(holidayEl);
-    }
-
-    const dateEl = document.createElement("div");
-    dateEl.className = "date";
-    dateEl.textContent = d;
-    dayEl.appendChild(dateEl);
+    dayEl.appendChild(date);
 
     const events = data.filter(e => e.date === dateStr);
-    const eventsWrap = document.createElement("div");
-    eventsWrap.className = "events";
 
-    events.forEach((e, index) => {
-      const el = document.createElement("a");
+    const wrap = document.createElement("div");
+    wrap.className = "events";
 
-      const isPublic = e.status === "公開";
+    // ✅ 2件表示 + more
+    const visible = events.slice(0, 2);
+    const hidden = events.slice(2);
 
-      el.className = "event";
-      if (!isPublic) el.classList.add("draft");
-
-      if (isPublic && e.url) {
-        el.href = e.url;
-        el.target = "_blank";
-      }
-
-      if (index >= MAX_VISIBLE) {
-        el.style.display = "none";
-        el.classList.add("hidden-event");
-      }
-
-      if (e.image) {
-        const img = document.createElement("img");
-        img.src = e.image;
-        el.appendChild(img);
-      } else {
-        const noImg = document.createElement("div");
-        noImg.className = "no-image";
-        noImg.textContent = "No Image";
-        el.appendChild(noImg);
-      }
-
-      const title = document.createElement("div");
-      title.textContent = e.title;
-      el.appendChild(title);
-
-      const zennId = convertAuthor(e.author);
-      const author = document.createElement("div");
-      author.className = "author";
-      author.innerHTML = `<a href="https://zenn.dev/${zennId}" target="_blank">@${zennId}</a>`;
-      el.appendChild(author);
-
-      eventsWrap.appendChild(el);
+    visible.forEach(e => {
+      wrap.appendChild(createEvent(e));
     });
 
-    if (events.length > MAX_VISIBLE) {
-      const moreBtn = document.createElement("div");
-      moreBtn.className = "more";
+    if (hidden.length > 0) {
+      hidden.forEach(e => {
+        const el = createEvent(e);
+        el.classList.add("hidden-event");
+        wrap.appendChild(el);
+      });
 
-      let opened = false;
-      moreBtn.textContent = `+${events.length - MAX_VISIBLE} more`;
+      const more = document.createElement("div");
+      more.className = "more";
+      more.textContent = `+${hidden.length} more`;
 
-      moreBtn.onclick = () => {
-        const hidden = eventsWrap.querySelectorAll(".hidden-event");
+      more.onclick = () => {
+        const isOpen = more.classList.toggle("open");
 
-        hidden.forEach(el => {
-          el.style.display = opened ? "none" : "block";
+        wrap.querySelectorAll(".hidden-event").forEach(el => {
+          el.style.display = isOpen ? "block" : "none";
         });
 
-        opened = !opened;
-        moreBtn.textContent = opened ? "閉じる" : `+${events.length - MAX_VISIBLE} more`;
+        more.textContent = isOpen
+          ? "閉じる"
+          : `+${hidden.length} more`;
       };
 
-      eventsWrap.appendChild(moreBtn);
+      wrap.appendChild(more);
     }
 
-    dayEl.appendChild(eventsWrap);
+    dayEl.appendChild(wrap);
     calendar.appendChild(dayEl);
   }
 }
 
+// ✅ イベント生成（名前変換ここでやる）
+function createEvent(e) {
+  const el = document.createElement("a");
+  el.className = "event";
+  el.href = e.url;
+  el.target = "_blank";
+
+  if (e.image) {
+    const img = document.createElement("img");
+    img.src = e.image;
+    el.appendChild(img);
+  } else {
+    const no = document.createElement("div");
+    no.className = "no-image";
+    no.textContent = "No Image";
+    el.appendChild(no);
+  }
+
+  const title = document.createElement("div");
+  title.textContent = e.title;
+
+  // ✅ 名前 → Zenn ID 変換
+  const zennId = AUTHOR_MAP[e.author] || e.author;
+
+  const author = document.createElement("div");
+  author.className = "author";
+  author.textContent = `@${zennId}`;
+
+  el.appendChild(title);
+  el.appendChild(author);
+
+  return el;
+}
+
 function prevMonth() {
-  currentDate.setMonth(currentDate.getMonth() - 1);
-  renderCalendar();
+  current.setMonth(current.getMonth() - 1);
+  load();
 }
 
 function nextMonth() {
-  currentDate.setMonth(currentDate.getMonth() + 1);
-  renderCalendar();
+  current.setMonth(current.getMonth() + 1);
+  load();
 }
 
-renderCalendar();
+load();
