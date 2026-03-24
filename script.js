@@ -1,5 +1,7 @@
 let current = new Date();
+let holidays = {};
 
+// 著者変換
 const authorMap = {
   "冨永 佑介": "tommy_y",
   "坂上 晴信": "subroh_0508",
@@ -29,7 +31,26 @@ const authorMap = {
   "加藤 未央": "oyaoyalog"
 };
 
+// 祝日取得（失敗しても止まらない）
+async function loadHolidays() {
+  try {
+    const res = await fetch("https://holidays-jp.github.io/api/v1/date.json");
+    holidays = await res.json();
+  } catch {
+    holidays = {};
+  }
+}
+
+// 年末年始
+function isCompanyHoliday(date) {
+  const m = date.getMonth() + 1;
+  const d = date.getDate();
+  return (m === 12 && d >= 29) || (m === 1 && d <= 3);
+}
+
+// メイン描画
 async function loadCalendar() {
+
   const res = await fetch("data/calendar.json");
   const data = await res.json();
 
@@ -45,15 +66,33 @@ async function loadCalendar() {
   const firstDay = new Date(year, month, 1).getDay();
   const lastDate = new Date(year, month + 1, 0).getDate();
 
+  // 空白
   for (let i = 0; i < firstDay; i++) {
     calendar.appendChild(document.createElement("div"));
   }
 
   for (let d = 1; d <= lastDate; d++) {
+
+    const dateObj = new Date(year, month, d);
+    const dateStr = `${year}/${String(month + 1).padStart(2,"0")}/${String(d).padStart(2,"0")}`;
+
     const day = document.createElement("div");
     day.className = "day";
 
-    const dateStr = `${year}/${String(month + 1).padStart(2,"0")}/${String(d).padStart(2,"0")}`;
+    // 曜日色
+    const week = dateObj.getDay();
+    if (week === 0) day.classList.add("sun");
+    if (week === 6) day.classList.add("sat");
+
+    // 祝日
+    if (holidays[dateStr]) {
+      day.classList.add("holiday");
+    }
+
+    // 年末年始
+    if (isCompanyHoliday(dateObj)) {
+      day.classList.add("holiday");
+    }
 
     const num = document.createElement("div");
     num.className = "day-number";
@@ -63,11 +102,12 @@ async function loadCalendar() {
     const events = data.filter(e => e.date === dateStr);
 
     // 外部仕様
-    const filtered = events.filter(e => 
+    const filtered = events.filter(e =>
       e.status === "公開" || e.type === "登壇"
     );
 
     filtered.slice(0,2).forEach(e => {
+
       const el = document.createElement("div");
       el.className = "event";
 
@@ -102,6 +142,7 @@ async function loadCalendar() {
   }
 }
 
+// ナビ
 document.getElementById("prev").onclick = () => {
   current.setMonth(current.getMonth() - 1);
   loadCalendar();
@@ -112,4 +153,10 @@ document.getElementById("next").onclick = () => {
   loadCalendar();
 };
 
-loadCalendar();
+// 初期化
+async function init() {
+  await loadHolidays(); // 失敗してもOK
+  loadCalendar();
+}
+
+init();
