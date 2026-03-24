@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-<meta charset="UTF-8">
-<title>Tech Blog Calendar</title>
-<link rel="stylesheet" href="style.css">
-</head>
+  <meta charset="UTF-8" />
+  <title>TOKIUM Tech Blog Calendar</title>
 
+  <!-- OGP -->
+  <meta property="og:title" content="TOKIUM Tech Blog Calendar">
+  <meta property="og:description" content="技術記事の公開スケジュール">
+  <meta property="og:type" content="website">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
 <body>
 
-<div class="container">
+  <h1>TOKIUM Tech Blog Calendar</h1>
+  <p class="subtitle">技術記事の公開スケジュール</p>
 
-<h1>Tech Blog Calendar</h1>
+  <div class="controls">
+    <button onclick="prevMonth()">◀</button>
+    <span id="monthLabel"></span>
+    <button onclick="nextMonth()">▶</button>
+  </div>
 
-<div class="calendar-nav">
-<button onclick="prevMonth()">◀</button>
-<div id="monthLabel"></div>
-<button onclick="nextMonth()">▶</button>
-</div>
+  <div class="weekdays">
+    <div class="sun">SUN</div>
+    <div>MON</div>
+    <div>TUE</div>
+    <div>WED</div>
+    <div>THU</div>
+    <div>FRI</div>
+    <div class="sat">SAT</div>
+  </div>
 
-<div class="week-header">
-<div>SUN</div>
-<div>MON</div>
-<div>TUE</div>
-<div>WED</div>
-<div>THU</div>
-<div>FRI</div>
-<div>SAT</div>
-</div>
+  <div id="calendar" class="calendar"></div>
 
-<div id="calendar"></div>
-
-</div>
-
-<script src="script.js"></script>
-
+  <script src="script.js"></script>
 </body>
 </html>
