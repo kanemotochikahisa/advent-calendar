@@ -31,7 +31,7 @@ const authorMap = {
   "加藤 未央": "oyaoyalog"
 };
 
-// 祝日取得（失敗しても止まらない）
+// 祝日取得
 async function loadHolidays() {
   try {
     const res = await fetch("https://holidays-jp.github.io/api/v1/date.json");
@@ -48,7 +48,6 @@ function isCompanyHoliday(date) {
   return (m === 12 && d >= 29) || (m === 1 && d <= 3);
 }
 
-// メイン描画
 async function loadCalendar() {
 
   const res = await fetch("data/calendar.json");
@@ -66,7 +65,6 @@ async function loadCalendar() {
   const firstDay = new Date(year, month, 1).getDay();
   const lastDate = new Date(year, month + 1, 0).getDate();
 
-  // 空白
   for (let i = 0; i < firstDay; i++) {
     calendar.appendChild(document.createElement("div"));
   }
@@ -79,29 +77,40 @@ async function loadCalendar() {
     const day = document.createElement("div");
     day.className = "day";
 
-    // 曜日色
     const week = dateObj.getDay();
     if (week === 0) day.classList.add("sun");
     if (week === 6) day.classList.add("sat");
 
-    // 祝日
-    if (holidays[dateStr]) {
-      day.classList.add("holiday");
-    }
-
-    // 年末年始
-    if (isCompanyHoliday(dateObj)) {
-      day.classList.add("holiday");
-    }
-
+    // 日付
     const num = document.createElement("div");
     num.className = "day-number";
     num.textContent = d;
     day.appendChild(num);
 
+    // ===== 祝日表示 =====
+    if (holidays[dateStr]) {
+      day.classList.add("holiday");
+
+      const label = document.createElement("div");
+      label.className = "holiday-label";
+      label.textContent = holidays[dateStr];
+
+      day.prepend(label);
+    }
+
+    // ===== 年末年始 =====
+    if (isCompanyHoliday(dateObj)) {
+      day.classList.add("holiday");
+
+      const label = document.createElement("div");
+      label.className = "holiday-label";
+      label.textContent = "年末年始休業";
+
+      day.prepend(label);
+    }
+
     const events = data.filter(e => e.date === dateStr);
 
-    // 外部仕様
     const filtered = events.filter(e =>
       e.status === "公開" || e.type === "登壇"
     );
@@ -155,7 +164,7 @@ document.getElementById("next").onclick = () => {
 
 // 初期化
 async function init() {
-  await loadHolidays(); // 失敗してもOK
+  await loadHolidays();
   loadCalendar();
 }
 
