@@ -31,34 +31,29 @@ const AUTHOR_MAP = {
 
 async function load() {
   try {
-    console.log("fetch開始");
-
     const res = await fetch("data/calendar.json");
     const data = await res.json();
 
-    console.log("取得データ:", data);
+    console.log("全データ:", data);
 
-    const published = data.filter(d =>
-      d.status && d.status.includes("公開")
+    // ✅ 公開 or 登壇だけ残す
+    const filtered = data.filter(d =>
+      (d.status && d.status.includes("公開")) ||
+      d.type === "登壇"
     );
 
-    console.log("公開データ:", published);
+    console.log("表示データ:", filtered);
 
-    render(published);
+    render(filtered);
 
   } catch (e) {
-    console.error("エラー:", e);
+    console.error(e);
   }
 }
 
 function render(data) {
   const calendar = document.getElementById("calendar");
   const title = document.getElementById("monthTitle");
-
-  if (!calendar) {
-    console.error("calendarが見つからない");
-    return;
-  }
 
   calendar.innerHTML = "";
 
@@ -71,8 +66,7 @@ function render(data) {
   const lastDate = new Date(year, month + 1, 0).getDate();
 
   for (let i = 0; i < firstDay; i++) {
-    const empty = document.createElement("div");
-    calendar.appendChild(empty);
+    calendar.appendChild(document.createElement("div"));
   }
 
   for (let d = 1; d <= lastDate; d++) {
@@ -96,10 +90,24 @@ function render(data) {
 
       const zennId = AUTHOR_MAP[e.author] || e.author;
 
-      el.innerHTML = `
-        <div>${e.title}</div>
-        <div>@${zennId}</div>
-      `;
+      // ✅ 公開記事
+      if (e.status && e.status.includes("公開")) {
+        el.innerHTML = `
+          <a href="${e.url}" target="_blank">
+            <div>${e.title}</div>
+          </a>
+          <div>@${zennId}</div>
+        `;
+      }
+      // ✅ 登壇（リンクなし）
+      else if (e.type === "登壇") {
+        el.innerHTML = `
+          <div style="opacity:0.7;">
+            🎤 ${e.title}
+          </div>
+          <div>@${zennId}</div>
+        `;
+      }
 
       dayEl.appendChild(el);
     });
