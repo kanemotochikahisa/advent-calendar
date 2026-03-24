@@ -1,39 +1,26 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>TOKIUM Tech Blog Calendar</title>
-
-  <!-- OGP -->
-  <meta property="og:title" content="TOKIUM Tech Blog Calendar">
-  <meta property="og:description" content="技術記事の公開スケジュール">
-  <meta property="og:type" content="website">
-
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <h1>TOKIUM Tech Blog Calendar</h1>
-  <p class="subtitle">技術記事の公開スケジュール</p>
+  <p>技術記事の公開スケジュール</p>
 
   <div class="controls">
     <button onclick="prevMonth()">◀</button>
-    <span id="monthLabel"></span>
+    <span id="monthTitle"></span>
     <button onclick="nextMonth()">▶</button>
   </div>
 
-  <div class="weekdays">
-    <div class="sun">SUN</div>
-    <div>MON</div>
-    <div>TUE</div>
-    <div>WED</div>
-    <div>THU</div>
-    <div>FRI</div>
-    <div class="sat">SAT</div>
-  </div>
-
+  <!-- ✅ これ絶対必要 -->
   <div id="calendar" class="calendar"></div>
 
+  <!-- ✅ これも絶対必要 -->
   <script src="script.js"></script>
+
 </body>
 </html>
