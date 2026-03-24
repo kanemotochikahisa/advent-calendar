@@ -2,7 +2,46 @@ let currentDate = new Date();
 
 let holidays = {};
 
+// ===============================
+// 著者対応表（本名 → Zenn ID）
+// ===============================
+const authorMap = {
+  "西平 基志": "nishihira",
+  "坂上 晴信": "subroh_0508",
+  "西川 真澄": "m_nishikawa",
+  "東 優太": "muyu",
+  "花房 優貴": "fusasnnn",
+  "重村 優太": "sigok5904",
+  "小口 翔太": "koguchi_s",
+  "阿野 庸太郎": "hidetama",
+  "芦田 拓人": "takuto1023",
+  "木村 陸人": "krkrkrrk",
+  "市原 航": "koichihara",
+  "橘高 俊": "1knco",
+  "賀部 寿音": "jk_koro",
+  "石川 裕才": "toshi_3",
+  "筒井 智也": "tomoya1",
+  "戸松 一貴": "kazt06",
+  "對馬 克": "tsushima_m",
+  "村上 雅一": "mura_massann",
+  "立花 斐斗": "lapi",
+  "岡本 匡弘": "o8n",
+  "西片 文哉": "fum1ple",
+  "西田 泰明": "ynis_qa",
+  "井上 智敬": "tomoyukiinoue",
+  "池田 新": "arata_maru",
+  "加藤 未央": "oyaoyalog",
+  "冨永 佑介": "tommy_y"
+};
+
+// 著者変換
+function convertAuthor(name) {
+  return authorMap[name] || name;
+}
+
+// ===============================
 // 日本の祝日取得
+// ===============================
 async function fetchHolidays(year) {
   try {
     const res = await fetch(`https://holidays-jp.github.io/api/v1/${year}/date.json`);
@@ -12,7 +51,9 @@ async function fetchHolidays(year) {
   }
 }
 
-// TOKIUM休み（固定）
+// ===============================
+// TOKIUM年末年始
+// ===============================
 function getCompanyHoliday(dateStr) {
   if (dateStr.includes("/12/29") || dateStr.includes("/12/30") || dateStr.includes("/12/31")) {
     return "年末休み";
@@ -23,6 +64,9 @@ function getCompanyHoliday(dateStr) {
   return null;
 }
 
+// ===============================
+// カレンダー描画
+// ===============================
 async function renderCalendar() {
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
@@ -42,14 +86,18 @@ async function renderCalendar() {
   const lastDate = new Date(year, month + 1, 0).getDate();
   const startDay = firstDay.getDay();
 
+  // ===============================
   // 前の空白
+  // ===============================
   for (let i = 0; i < startDay; i++) {
     const empty = document.createElement("div");
     empty.className = "empty";
     calendar.appendChild(empty);
   }
 
-  // 日付
+  // ===============================
+  // 日付ループ
+  // ===============================
   for (let d = 1; d <= lastDate; d++) {
     const date = new Date(year, month, d);
     const dayOfWeek = date.getDay();
@@ -59,7 +107,7 @@ async function renderCalendar() {
     const dayEl = document.createElement("div");
     dayEl.className = "day";
 
-    // 土日カラー
+    // 土日
     if (dayOfWeek === 0) dayEl.classList.add("sun");
     if (dayOfWeek === 6) dayEl.classList.add("sat");
 
@@ -82,7 +130,9 @@ async function renderCalendar() {
     dateEl.textContent = d;
     dayEl.appendChild(dateEl);
 
+    // ===============================
     // イベント
+    // ===============================
     const events = data.filter(e => e.date === dateStr);
 
     const eventsWrap = document.createElement("div");
@@ -99,11 +149,11 @@ async function renderCalendar() {
       if (isPublic && e.url) {
         el.href = e.url;
         el.target = "_blank";
-      } else {
-        el.removeAttribute("href");
       }
 
+      // ===============================
       // 画像
+      // ===============================
       if (e.image) {
         const img = document.createElement("img");
         img.src = e.image;
@@ -120,10 +170,14 @@ async function renderCalendar() {
       title.textContent = e.title;
       el.appendChild(title);
 
-      // 著者
+      // ===============================
+      // 著者（Zenn ID変換）
+      // ===============================
+      const zennId = convertAuthor(e.author);
+
       const author = document.createElement("div");
       author.className = "author";
-      author.textContent = e.author;
+      author.innerHTML = `<a href="https://zenn.dev/${zennId}" target="_blank">@${zennId}</a>`;
       el.appendChild(author);
 
       eventsWrap.appendChild(el);
@@ -133,7 +187,9 @@ async function renderCalendar() {
     calendar.appendChild(dayEl);
   }
 
-  // ✅ 最後の余白を削除（ここが重要）
+  // ===============================
+  // 最後の余白調整（6週バグ修正）
+  // ===============================
   const cells = calendar.children.length;
   const remainder = cells % 7;
 
@@ -146,7 +202,9 @@ async function renderCalendar() {
   }
 }
 
+// ===============================
 // 月移動
+// ===============================
 function prevMonth() {
   currentDate.setMonth(currentDate.getMonth() - 1);
   renderCalendar();
