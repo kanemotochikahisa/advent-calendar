@@ -51,18 +51,28 @@ h1 {
   text-align: left;
 }
 
-.day.sun { background: #ffecec; }
-.day.sat { background: #eef3ff; }
-
-.holiday-day {
-  border: 2px solid red;
+/* 日曜 */
+.day.sun {
+  background: #ffecec;
 }
 
+/* 土曜 */
+.day.sat {
+  background: #eef3ff;
+}
+
+/* ✅ 修正：祝日も日曜と同じにする */
+.day.holiday-day {
+  background: #ffecec;
+}
+
+/* 日付 */
 .date {
   font-weight: bold;
   margin-bottom: 4px;
 }
 
+/* 祝日テキスト */
 .holiday {
   font-size: 10px;
   color: red;
