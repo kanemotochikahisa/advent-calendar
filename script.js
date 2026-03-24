@@ -1,5 +1,6 @@
 let current = new Date();
 
+// ✅ 名前 → Zenn ID（全員分）
 const AUTHOR_MAP = {
   "西平 基志": "nishihira",
   "坂上 晴信": "subroh_0508",
@@ -33,13 +34,14 @@ async function load() {
   const res = await fetch("data/calendar.json");
   const data = await res.json();
 
-  // 🔥 ここ修正（超重要）
+  console.log("取得データ:", data);
+
+  // ✅ 未公開除外（安全版）
   const published = data.filter(d =>
     d.status && d.status.trim().includes("公開")
   );
 
-  console.log("データ数:", data.length);
-  console.log("公開データ:", published.length);
+  console.log("公開データ:", published);
 
   render(published);
 }
@@ -58,6 +60,7 @@ function render(data) {
   const firstDay = new Date(year, month, 1).getDay();
   const lastDate = new Date(year, month + 1, 0).getDate();
 
+  // 空白
   for (let i = 0; i < firstDay; i++) {
     const empty = document.createElement("div");
     empty.className = "day empty";
@@ -65,8 +68,6 @@ function render(data) {
   }
 
   for (let d = 1; d <= lastDate; d++) {
-    const dateStr = `${year}/${String(month + 1).padStart(2, "0")}/${String(d).padStart(2, "0")}`;
-
     const dayEl = document.createElement("div");
     dayEl.className = "day";
 
@@ -74,13 +75,22 @@ function render(data) {
     if (day === 0) dayEl.classList.add("sun");
     if (day === 6) dayEl.classList.add("sat");
 
+    const dateStr1 = `${year}/${String(month + 1).padStart(2, "0")}/${String(d).padStart(2, "0")}`;
+    const dateStr2 = `${year}/${month + 1}/${d}`;
+
     const date = document.createElement("div");
     date.className = "date";
     date.textContent = d;
-
     dayEl.appendChild(date);
 
-    const events = data.filter(e => e.date === dateStr);
+    // ✅ 日付フォーマット両対応
+    const events = data.filter(e => {
+      if (!e.date) return false;
+
+      const normalized = e.date.replace(/-/g, "/");
+
+      return normalized === dateStr1 || normalized === dateStr2;
+    });
 
     const wrap = document.createElement("div");
     wrap.className = "events";
@@ -124,6 +134,7 @@ function render(data) {
   }
 }
 
+// ✅ イベント生成（名前変換）
 function createEvent(e) {
   const el = document.createElement("a");
   el.className = "event";
@@ -144,6 +155,7 @@ function createEvent(e) {
   const title = document.createElement("div");
   title.textContent = e.title;
 
+  // ✅ 名前 → Zenn ID
   const zennId = AUTHOR_MAP[e.author] || e.author;
 
   const author = document.createElement("div");
