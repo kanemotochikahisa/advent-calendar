@@ -38,7 +38,6 @@ h1 {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   font-weight: bold;
-  margin-top: 10px;
 }
 
 .sun { color: red; }
@@ -69,6 +68,9 @@ h1 {
   color: red;
 }
 
+/* =====================
+   イベント
+===================== */
 .events {
   display: flex;
   flex-direction: column;
@@ -83,6 +85,8 @@ h1 {
   padding: 6px;
   background: #f0f4f3;
   transition: 0.2s;
+  font-size: 11px;
+  line-height: 1.4;
 }
 
 .event:hover {
@@ -97,12 +101,12 @@ h1 {
 .no-image {
   background: #eee;
   text-align: center;
-  font-size: 12px;
+  font-size: 11px;
   padding: 10px;
 }
 
 .author {
-  font-size: 12px;
+  font-size: 10px;
   color: #2e7d32;
 }
 
@@ -119,13 +123,9 @@ h1 {
   color: #999;
 }
 
-/* hidden */
-.hidden-event {
-  display: none;
-}
-
+/* +more */
 .more {
-  font-size: 12px;
+  font-size: 11px;
   color: #2e7d32;
   cursor: pointer;
 }
@@ -134,7 +134,11 @@ h1 {
   text-decoration: underline;
 }
 
-/* 空セル */
+/* hidden */
+.hidden-event {
+  display: none;
+}
+
 .empty {
   visibility: hidden;
 }
