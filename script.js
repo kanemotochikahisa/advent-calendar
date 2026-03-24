@@ -1,8 +1,9 @@
 let current = new Date();
 
-const AUTHOR_MAP = {
-  "西平 基志": "nishihira",
+const authorMap = {
+  "冨永 佑介": "tommy_y",
   "坂上 晴信": "subroh_0508",
+  "西平 基志": "nishihira",
   "西川 真澄": "m_nishikawa",
   "東 優太": "muyu",
   "花房 優貴": "fusasnnn",
@@ -25,146 +26,90 @@ const AUTHOR_MAP = {
   "西田 泰明": "ynis_qa",
   "井上 智敬": "tomoyukiinoue",
   "池田 新": "arata_maru",
-  "加藤 未央": "oyaoyalog",
-  "冨永 佑介": "tommy_y"
+  "加藤 未央": "oyaoyalog"
 };
 
-// 日本の祝日（最低限＋拡張可能）
-const HOLIDAYS = {
-  "2026/01/01": "元日",
-  "2026/01/12": "成人の日",
-  "2026/02/11": "建国記念の日",
-  "2026/02/23": "天皇誕生日",
-  "2026/03/20": "春分の日",
-  "2026/04/29": "昭和の日",
-  "2026/05/03": "憲法記念日",
-  "2026/05/04": "みどりの日",
-  "2026/05/05": "こどもの日"
-};
-
-function normalizeDate(str) {
-  return str?.replace(/-/g, "/");
-}
-
-async function load() {
+async function loadCalendar() {
   const res = await fetch("data/calendar.json");
   const data = await res.json();
 
-  const filtered = data.filter(d =>
-    (d.status && d.status.includes("公開")) ||
-    d.type === "登壇"
-  );
-
-  render(filtered);
-}
-
-function render(data) {
   const calendar = document.getElementById("calendar");
-  const title = document.getElementById("monthTitle");
-
   calendar.innerHTML = "";
 
   const year = current.getFullYear();
   const month = current.getMonth();
 
-  title.textContent = `${year}年 ${month + 1}月`;
+  document.getElementById("month").textContent =
+    `${year}年 ${month + 1}月`;
 
   const firstDay = new Date(year, month, 1).getDay();
   const lastDate = new Date(year, month + 1, 0).getDate();
 
-  // 空白
   for (let i = 0; i < firstDay; i++) {
     calendar.appendChild(document.createElement("div"));
   }
 
   for (let d = 1; d <= lastDate; d++) {
-    const dayEl = document.createElement("div");
+    const day = document.createElement("div");
+    day.className = "day";
 
-    const dayOfWeek = new Date(year, month, d).getDay();
-    const dateStr = `${year}/${String(month + 1).padStart(2, "0")}/${String(d).padStart(2, "0")}`;
+    const dateStr = `${year}/${String(month + 1).padStart(2,"0")}/${String(d).padStart(2,"0")}`;
 
-    // ✅ クラス復元（超重要）
-    if (HOLIDAYS[dateStr] || dayOfWeek === 0) {
-      dayEl.className = "day sunday";
-    } else if (dayOfWeek === 6) {
-      dayEl.className = "day saturday";
-    } else {
-      dayEl.className = "day";
-    }
+    const num = document.createElement("div");
+    num.className = "day-number";
+    num.textContent = d;
+    day.appendChild(num);
 
-    // 日付
-    const dateEl = document.createElement("div");
-    dateEl.className = "date";
-    dateEl.textContent = d;
+    const events = data.filter(e => e.date === dateStr);
 
-    // 祝日表示
-    if (HOLIDAYS[dateStr]) {
-      const holidayEl = document.createElement("div");
-      holidayEl.className = "holiday";
-      holidayEl.textContent = HOLIDAYS[dateStr];
-      dayEl.appendChild(holidayEl);
-    }
+    // 外部仕様
+    const filtered = events.filter(e => 
+      e.status === "公開" || e.type === "登壇"
+    );
 
-    dayEl.appendChild(dateEl);
+    filtered.slice(0,2).forEach(e => {
+      const el = document.createElement("div");
+      el.className = "event";
 
-    const events = data.filter(e => {
-      const nd = normalizeDate(e.date);
-      return nd === dateStr || nd === `${year}/${month + 1}/${d}`;
-    });
+      const author = authorMap[e.author] || e.author;
 
-    events.forEach(e => {
-      const zennId = AUTHOR_MAP[e.author] || e.author;
+      let html = "";
 
-      const card = document.createElement("div");
-      card.className = "event";
-
-      // 画像
       if (e.image) {
-        const img = document.createElement("img");
-        img.src = e.image;
-        img.onerror = () => img.style.display = "none";
-        card.appendChild(img);
+        html += `<img src="${e.image}">`;
       }
 
-      const titleEl = document.createElement("div");
-      titleEl.className = "event-title";
-
-      const authorEl = document.createElement("div");
-      authorEl.className = "event-author";
-      authorEl.textContent = `@${zennId}`;
-
-      // 公開記事
-      if (e.status && e.status.includes("公開") && e.url) {
-        const link = document.createElement("a");
-        link.href = e.url;
-        link.target = "_blank";
-        titleEl.textContent = e.title;
-        link.appendChild(titleEl);
-        card.appendChild(link);
-      }
-      // 登壇
-      else if (e.type === "登壇") {
-        titleEl.textContent = "🎤 " + e.title;
-        card.style.opacity = "0.7";
-        card.appendChild(titleEl);
+      if (e.status === "公開" && e.url) {
+        html += `<div class="event-title"><a href="${e.url}" target="_blank">${e.title}</a></div>`;
+      } else {
+        html += `<div class="event-title">${e.title}</div>`;
       }
 
-      card.appendChild(authorEl);
-      dayEl.appendChild(card);
+      html += `<div class="event-author">@${author}</div>`;
+
+      el.innerHTML = html;
+      day.appendChild(el);
     });
 
-    calendar.appendChild(dayEl);
+    if (filtered.length > 2) {
+      const more = document.createElement("div");
+      more.className = "more";
+      more.textContent = `+${filtered.length - 2} more`;
+      day.appendChild(more);
+    }
+
+    calendar.appendChild(day);
   }
 }
 
-function prevMonth() {
+document.getElementById("prev").onclick = () => {
   current.setMonth(current.getMonth() - 1);
-  load();
-}
+  loadCalendar();
+};
 
-function nextMonth() {
+document.getElementById("next").onclick = () => {
   current.setMonth(current.getMonth() + 1);
-  load();
-}
+  loadCalendar();
+};
 
-load();
+loadCalendar();
