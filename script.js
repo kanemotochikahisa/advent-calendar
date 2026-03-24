@@ -1,9 +1,8 @@
 let currentDate = new Date();
-
 let holidays = {};
 
 // ===============================
-// 著者対応表（本名 → Zenn ID）
+// 著者変換
 // ===============================
 const authorMap = {
   "西平 基志": "nishihira",
@@ -39,7 +38,7 @@ function convertAuthor(name) {
 }
 
 // ===============================
-// 日本の祝日
+// 祝日
 // ===============================
 async function fetchHolidays(year) {
   try {
@@ -51,7 +50,7 @@ async function fetchHolidays(year) {
 }
 
 // ===============================
-// TOKIUM休み
+// 会社休み
 // ===============================
 function getCompanyHoliday(dateStr) {
   if (dateStr.includes("/12/29") || dateStr.includes("/12/30") || dateStr.includes("/12/31")) {
@@ -64,7 +63,7 @@ function getCompanyHoliday(dateStr) {
 }
 
 // ===============================
-// カレンダー描画
+// カレンダー
 // ===============================
 async function renderCalendar() {
   const year = currentDate.getFullYear();
@@ -85,14 +84,12 @@ async function renderCalendar() {
   const lastDate = new Date(year, month + 1, 0).getDate();
   const startDay = firstDay.getDay();
 
-  // 前の空白
   for (let i = 0; i < startDay; i++) {
     const empty = document.createElement("div");
     empty.className = "empty";
     calendar.appendChild(empty);
   }
 
-  // 日付ループ
   for (let d = 1; d <= lastDate; d++) {
     const date = new Date(year, month, d);
     const dayOfWeek = date.getDay();
@@ -102,11 +99,9 @@ async function renderCalendar() {
     const dayEl = document.createElement("div");
     dayEl.className = "day";
 
-    // 土日
     if (dayOfWeek === 0) dayEl.classList.add("sun");
     if (dayOfWeek === 6) dayEl.classList.add("sat");
 
-    // 祝日・会社休み
     const holidayName = holidays[dateStr];
     const companyHoliday = getCompanyHoliday(dateStr);
 
@@ -119,89 +114,93 @@ async function renderCalendar() {
       dayEl.appendChild(holidayEl);
     }
 
-    // 日付
     const dateEl = document.createElement("div");
     dateEl.className = "date";
     dateEl.textContent = d;
     dayEl.appendChild(dateEl);
 
-    // ===============================
-    // イベント（完全安定版）
-    // ===============================
     const events = data.filter(e => e.date === dateStr);
 
     const eventsWrap = document.createElement("div");
     eventsWrap.className = "events";
 
-    let expanded = false;
+    // ===============================
+    // ここが完全修正ポイント
+    // ===============================
+    events.forEach((e, index) => {
+      const el = document.createElement("a");
 
-    function renderEvents() {
-      eventsWrap.innerHTML = "";
+      const isPublic = e.status === "公開";
 
-      const displayEvents = expanded ? events : events.slice(0, 3);
+      el.className = "event";
+      if (!isPublic) el.classList.add("draft");
 
-      displayEvents.forEach(e => {
-        const el = document.createElement("a");
-
-        const isPublic = e.status === "公開";
-
-        el.className = "event";
-        if (!isPublic) el.classList.add("draft");
-
-        if (isPublic && e.url) {
-          el.href = e.url;
-          el.target = "_blank";
-        }
-
-        // 画像
-        if (e.image) {
-          const img = document.createElement("img");
-          img.src = e.image;
-          el.appendChild(img);
-        } else {
-          const noImg = document.createElement("div");
-          noImg.className = "no-image";
-          noImg.textContent = "No Image";
-          el.appendChild(noImg);
-        }
-
-        // タイトル
-        const title = document.createElement("div");
-        title.textContent = e.title;
-        el.appendChild(title);
-
-        // 著者
-        const zennId = convertAuthor(e.author);
-        const author = document.createElement("div");
-        author.className = "author";
-        author.innerHTML = `<a href="https://zenn.dev/${zennId}" target="_blank">@${zennId}</a>`;
-        el.appendChild(author);
-
-        eventsWrap.appendChild(el);
-      });
-
-      // +more
-      if (events.length > 3) {
-        const moreBtn = document.createElement("div");
-        moreBtn.className = "more";
-        moreBtn.textContent = expanded ? "閉じる" : `+${events.length - 3} more`;
-
-        moreBtn.onclick = () => {
-          expanded = !expanded;
-          renderEvents();
-        };
-
-        eventsWrap.appendChild(moreBtn);
+      if (isPublic && e.url) {
+        el.href = e.url;
+        el.target = "_blank";
       }
-    }
 
-    renderEvents();
+      // 👇 4件目以降は初期非表示
+      if (index >= 3) {
+        el.style.display = "none";
+        el.classList.add("hidden-event");
+      }
+
+      // 画像
+      if (e.image) {
+        const img = document.createElement("img");
+        img.src = e.image;
+        el.appendChild(img);
+      } else {
+        const noImg = document.createElement("div");
+        noImg.className = "no-image";
+        noImg.textContent = "No Image";
+        el.appendChild(noImg);
+      }
+
+      // タイトル
+      const title = document.createElement("div");
+      title.textContent = e.title;
+      el.appendChild(title);
+
+      // 著者
+      const zennId = convertAuthor(e.author);
+      const author = document.createElement("div");
+      author.className = "author";
+      author.innerHTML = `<a href="https://zenn.dev/${zennId}" target="_blank">@${zennId}</a>`;
+      el.appendChild(author);
+
+      eventsWrap.appendChild(el);
+    });
+
+    // ===============================
+    // +moreボタン
+    // ===============================
+    if (events.length > 3) {
+      const moreBtn = document.createElement("div");
+      moreBtn.className = "more";
+      moreBtn.textContent = `+${events.length - 3} more`;
+
+      let opened = false;
+
+      moreBtn.onclick = () => {
+        const hidden = eventsWrap.querySelectorAll(".hidden-event");
+
+        hidden.forEach(el => {
+          el.style.display = opened ? "none" : "block";
+        });
+
+        opened = !opened;
+        moreBtn.textContent = opened ? "閉じる" : `+${events.length - 3} more`;
+      };
+
+      eventsWrap.appendChild(moreBtn);
+    }
 
     dayEl.appendChild(eventsWrap);
     calendar.appendChild(dayEl);
   }
 
-  // 余白調整
   const cells = calendar.children.length;
   const remainder = cells % 7;
 
@@ -215,8 +214,6 @@ async function renderCalendar() {
 }
 
 // ===============================
-// 月移動
-// ===============================
 function prevMonth() {
   currentDate.setMonth(currentDate.getMonth() - 1);
   renderCalendar();
@@ -227,5 +224,4 @@ function nextMonth() {
   renderCalendar();
 }
 
-// 初期化
 renderCalendar();
