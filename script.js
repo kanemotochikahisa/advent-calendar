@@ -1,6 +1,5 @@
 let current = new Date();
 
-// ✅ 名前 → Zenn ID 対応表
 const AUTHOR_MAP = {
   "西平 基志": "nishihira",
   "坂上 晴信": "subroh_0508",
@@ -34,8 +33,13 @@ async function load() {
   const res = await fetch("data/calendar.json");
   const data = await res.json();
 
-  // ✅ 未公開は除外
-  const published = data.filter(d => d.status === "公開");
+  // 🔥 ここ修正（超重要）
+  const published = data.filter(d =>
+    d.status && d.status.trim().includes("公開")
+  );
+
+  console.log("データ数:", data.length);
+  console.log("公開データ:", published.length);
 
   render(published);
 }
@@ -54,7 +58,6 @@ function render(data) {
   const firstDay = new Date(year, month, 1).getDay();
   const lastDate = new Date(year, month + 1, 0).getDate();
 
-  // 空白埋め
   for (let i = 0; i < firstDay; i++) {
     const empty = document.createElement("div");
     empty.className = "day empty";
@@ -82,7 +85,6 @@ function render(data) {
     const wrap = document.createElement("div");
     wrap.className = "events";
 
-    // ✅ 2件表示 + more
     const visible = events.slice(0, 2);
     const hidden = events.slice(2);
 
@@ -94,6 +96,7 @@ function render(data) {
       hidden.forEach(e => {
         const el = createEvent(e);
         el.classList.add("hidden-event");
+        el.style.display = "none";
         wrap.appendChild(el);
       });
 
@@ -121,7 +124,6 @@ function render(data) {
   }
 }
 
-// ✅ イベント生成（名前変換ここでやる）
 function createEvent(e) {
   const el = document.createElement("a");
   el.className = "event";
@@ -142,7 +144,6 @@ function createEvent(e) {
   const title = document.createElement("div");
   title.textContent = e.title;
 
-  // ✅ 名前 → Zenn ID 変換
   const zennId = AUTHOR_MAP[e.author] || e.author;
 
   const author = document.createElement("div");
