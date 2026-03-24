@@ -34,13 +34,12 @@ const authorMap = {
   "冨永 佑介": "tommy_y"
 };
 
-// 著者変換
 function convertAuthor(name) {
   return authorMap[name] || name;
 }
 
 // ===============================
-// 日本の祝日取得
+// 日本の祝日
 // ===============================
 async function fetchHolidays(year) {
   try {
@@ -52,7 +51,7 @@ async function fetchHolidays(year) {
 }
 
 // ===============================
-// TOKIUM年末年始
+// TOKIUM休み
 // ===============================
 function getCompanyHoliday(dateStr) {
   if (dateStr.includes("/12/29") || dateStr.includes("/12/30") || dateStr.includes("/12/31")) {
@@ -127,82 +126,76 @@ async function renderCalendar() {
     dayEl.appendChild(dateEl);
 
     // ===============================
-    // イベント
+    // イベント（完全安定版）
     // ===============================
     const events = data.filter(e => e.date === dateStr);
 
     const eventsWrap = document.createElement("div");
     eventsWrap.className = "events";
 
-    events.forEach((e, index) => {
-      const el = document.createElement("a");
+    let expanded = false;
 
-      const isPublic = e.status === "公開";
+    function renderEvents() {
+      eventsWrap.innerHTML = "";
 
-      el.className = "event";
-      if (!isPublic) el.classList.add("draft");
+      const displayEvents = expanded ? events : events.slice(0, 3);
 
-      // 4件目以降は非表示
-      if (index >= 3) {
-        el.classList.add("hidden");
-      }
+      displayEvents.forEach(e => {
+        const el = document.createElement("a");
 
-      if (isPublic && e.url) {
-        el.href = e.url;
-        el.target = "_blank";
-      }
+        const isPublic = e.status === "公開";
 
-      // 画像
-      if (e.image) {
-        const img = document.createElement("img");
-        img.src = e.image;
-        el.appendChild(img);
-      } else {
-        const noImg = document.createElement("div");
-        noImg.className = "no-image";
-        noImg.textContent = "No Image";
-        el.appendChild(noImg);
-      }
+        el.className = "event";
+        if (!isPublic) el.classList.add("draft");
 
-      // タイトル
-      const title = document.createElement("div");
-      title.textContent = e.title;
-      el.appendChild(title);
+        if (isPublic && e.url) {
+          el.href = e.url;
+          el.target = "_blank";
+        }
 
-      // 著者（Zenn ID）
-      const zennId = convertAuthor(e.author);
-      const author = document.createElement("div");
-      author.className = "author";
-      author.innerHTML = `<a href="https://zenn.dev/${zennId}" target="_blank">@${zennId}</a>`;
-      el.appendChild(author);
+        // 画像
+        if (e.image) {
+          const img = document.createElement("img");
+          img.src = e.image;
+          el.appendChild(img);
+        } else {
+          const noImg = document.createElement("div");
+          noImg.className = "no-image";
+          noImg.textContent = "No Image";
+          el.appendChild(noImg);
+        }
 
-      eventsWrap.appendChild(el);
-    });
+        // タイトル
+        const title = document.createElement("div");
+        title.textContent = e.title;
+        el.appendChild(title);
 
-    // ===============================
-    // +more
-    // ===============================
-    if (events.length > 3) {
-      const moreBtn = document.createElement("div");
-      moreBtn.className = "more";
-      moreBtn.textContent = `+${events.length - 3} more`;
+        // 著者
+        const zennId = convertAuthor(e.author);
+        const author = document.createElement("div");
+        author.className = "author";
+        author.innerHTML = `<a href="https://zenn.dev/${zennId}" target="_blank">@${zennId}</a>`;
+        el.appendChild(author);
 
-      let expanded = false;
+        eventsWrap.appendChild(el);
+      });
 
-      moreBtn.onclick = () => {
-        expanded = !expanded;
-
-        const hiddenItems = eventsWrap.querySelectorAll(".hidden");
-
-        hiddenItems.forEach(item => {
-          item.style.display = expanded ? "block" : "none";
-        });
-
+      // +more
+      if (events.length > 3) {
+        const moreBtn = document.createElement("div");
+        moreBtn.className = "more";
         moreBtn.textContent = expanded ? "閉じる" : `+${events.length - 3} more`;
-      };
 
-      eventsWrap.appendChild(moreBtn);
+        moreBtn.onclick = () => {
+          expanded = !expanded;
+          renderEvents();
+        };
+
+        eventsWrap.appendChild(moreBtn);
+      }
     }
+
+    renderEvents();
 
     dayEl.appendChild(eventsWrap);
     calendar.appendChild(dayEl);
