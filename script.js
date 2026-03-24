@@ -30,25 +30,16 @@ const AUTHOR_MAP = {
 };
 
 async function load() {
-  try {
-    const res = await fetch("data/calendar.json");
-    const data = await res.json();
+  const res = await fetch("data/calendar.json");
+  const data = await res.json();
 
-    console.log("全データ:", data);
+  // 公開 or 登壇のみ
+  const filtered = data.filter(d =>
+    (d.status && d.status.includes("公開")) ||
+    d.type === "登壇"
+  );
 
-    // ✅ 公開 or 登壇だけ残す
-    const filtered = data.filter(d =>
-      (d.status && d.status.includes("公開")) ||
-      d.type === "登壇"
-    );
-
-    console.log("表示データ:", filtered);
-
-    render(filtered);
-
-  } catch (e) {
-    console.error(e);
-  }
+  render(filtered);
 }
 
 function render(data) {
@@ -71,45 +62,58 @@ function render(data) {
 
   for (let d = 1; d <= lastDate; d++) {
     const dayEl = document.createElement("div");
+    dayEl.className = "day";
 
-    const dateStr1 = `${year}/${String(month + 1).padStart(2, "0")}/${String(d).padStart(2, "0")}`;
-    const dateStr2 = `${year}/${month + 1}/${d}`;
+    const dateEl = document.createElement("div");
+    dateEl.className = "date";
+    dateEl.textContent = d;
+    dayEl.appendChild(dateEl);
 
-    const events = data.filter(e => {
-      if (!e.date) return false;
-      const normalized = e.date.replace(/-/g, "/");
-      return normalized === dateStr1 || normalized === dateStr2;
-    });
+    const dateStr = `${year}/${String(month + 1).padStart(2, "0")}/${String(d).padStart(2, "0")}`;
 
-    const date = document.createElement("div");
-    date.textContent = d;
-    dayEl.appendChild(date);
+    const events = data.filter(e => e.date === dateStr);
 
     events.forEach(e => {
-      const el = document.createElement("div");
-
       const zennId = AUTHOR_MAP[e.author] || e.author;
 
-      // ✅ 公開記事
+      const card = document.createElement("div");
+      card.className = "event";
+
+      // 画像
+      const img = document.createElement("img");
+      img.src = e.image || "";
+      img.alt = "thumb";
+      img.onerror = () => img.style.display = "none";
+
+      // タイトル
+      const title = document.createElement("div");
+      title.className = "event-title";
+      title.textContent = e.title;
+
+      // 著者
+      const author = document.createElement("div");
+      author.className = "event-author";
+      author.textContent = `@${zennId}`;
+
+      // ✅ 公開記事 → リンクあり
       if (e.status && e.status.includes("公開")) {
-        el.innerHTML = `
-          <a href="${e.url}" target="_blank">
-            <div>${e.title}</div>
-          </a>
-          <div>@${zennId}</div>
-        `;
+        const link = document.createElement("a");
+        link.href = e.url;
+        link.target = "_blank";
+        link.appendChild(img);
+        link.appendChild(title);
+        card.appendChild(link);
       }
-      // ✅ 登壇（リンクなし）
-      else if (e.type === "登壇") {
-        el.innerHTML = `
-          <div style="opacity:0.7;">
-            🎤 ${e.title}
-          </div>
-          <div>@${zennId}</div>
-        `;
+      // ✅ 登壇 → リンクなし
+      else {
+        card.style.opacity = "0.7";
+        title.textContent = "🎤 " + e.title;
+        card.appendChild(img);
+        card.appendChild(title);
       }
 
-      dayEl.appendChild(el);
+      card.appendChild(author);
+      dayEl.appendChild(card);
     });
 
     calendar.appendChild(dayEl);
