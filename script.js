@@ -29,29 +29,33 @@ const AUTHOR_MAP = {
   "冨永 佑介": "tommy_y"
 };
 
+// 日本の祝日（最低限＋拡張可能）
+const HOLIDAYS = {
+  "2026/01/01": "元日",
+  "2026/01/12": "成人の日",
+  "2026/02/11": "建国記念の日",
+  "2026/02/23": "天皇誕生日",
+  "2026/03/20": "春分の日",
+  "2026/04/29": "昭和の日",
+  "2026/05/03": "憲法記念日",
+  "2026/05/04": "みどりの日",
+  "2026/05/05": "こどもの日"
+};
+
 function normalizeDate(str) {
-  if (!str) return "";
-  return str.replace(/-/g, "/");
+  return str?.replace(/-/g, "/");
 }
 
 async function load() {
-  try {
-    const res = await fetch("data/calendar.json");
-    const data = await res.json();
+  const res = await fetch("data/calendar.json");
+  const data = await res.json();
 
-    console.log("取得:", data);
+  const filtered = data.filter(d =>
+    (d.status && d.status.includes("公開")) ||
+    d.type === "登壇"
+  );
 
-    // ✅ 公開 or 登壇のみ
-    const filtered = data.filter(d =>
-      (d.status && d.status.includes("公開")) ||
-      d.type === "登壇"
-    );
-
-    render(filtered);
-
-  } catch (e) {
-    console.error(e);
-  }
+  render(filtered);
 }
 
 function render(data) {
@@ -75,18 +79,37 @@ function render(data) {
 
   for (let d = 1; d <= lastDate; d++) {
     const dayEl = document.createElement("div");
-    dayEl.className = "day";
 
+    const dayOfWeek = new Date(year, month, d).getDay();
+    const dateStr = `${year}/${String(month + 1).padStart(2, "0")}/${String(d).padStart(2, "0")}`;
+
+    // ✅ クラス復元（超重要）
+    if (HOLIDAYS[dateStr] || dayOfWeek === 0) {
+      dayEl.className = "day sunday";
+    } else if (dayOfWeek === 6) {
+      dayEl.className = "day saturday";
+    } else {
+      dayEl.className = "day";
+    }
+
+    // 日付
     const dateEl = document.createElement("div");
     dateEl.className = "date";
     dateEl.textContent = d;
-    dayEl.appendChild(dateEl);
 
-    const target = `${year}/${String(month + 1).padStart(2, "0")}/${String(d).padStart(2, "0")}`;
+    // 祝日表示
+    if (HOLIDAYS[dateStr]) {
+      const holidayEl = document.createElement("div");
+      holidayEl.className = "holiday";
+      holidayEl.textContent = HOLIDAYS[dateStr];
+      dayEl.appendChild(holidayEl);
+    }
+
+    dayEl.appendChild(dateEl);
 
     const events = data.filter(e => {
       const nd = normalizeDate(e.date);
-      return nd === target || nd === `${year}/${month + 1}/${d}`;
+      return nd === dateStr || nd === `${year}/${month + 1}/${d}`;
     });
 
     events.forEach(e => {
@@ -99,29 +122,27 @@ function render(data) {
       if (e.image) {
         const img = document.createElement("img");
         img.src = e.image;
-        img.alt = "thumb";
         img.onerror = () => img.style.display = "none";
         card.appendChild(img);
       }
 
       const titleEl = document.createElement("div");
       titleEl.className = "event-title";
-      titleEl.textContent = e.title;
 
       const authorEl = document.createElement("div");
       authorEl.className = "event-author";
       authorEl.textContent = `@${zennId}`;
 
-      // ✅ 公開記事
+      // 公開記事
       if (e.status && e.status.includes("公開") && e.url) {
         const link = document.createElement("a");
         link.href = e.url;
         link.target = "_blank";
-
+        titleEl.textContent = e.title;
         link.appendChild(titleEl);
         card.appendChild(link);
-      } 
-      // ✅ 登壇
+      }
+      // 登壇
       else if (e.type === "登壇") {
         titleEl.textContent = "🎤 " + e.title;
         card.style.opacity = "0.7";
