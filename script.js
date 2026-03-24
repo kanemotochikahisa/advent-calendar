@@ -86,18 +86,14 @@ async function renderCalendar() {
   const lastDate = new Date(year, month + 1, 0).getDate();
   const startDay = firstDay.getDay();
 
-  // ===============================
   // 前の空白
-  // ===============================
   for (let i = 0; i < startDay; i++) {
     const empty = document.createElement("div");
     empty.className = "empty";
     calendar.appendChild(empty);
   }
 
-  // ===============================
   // 日付ループ
-  // ===============================
   for (let d = 1; d <= lastDate; d++) {
     const date = new Date(year, month, d);
     const dayOfWeek = date.getDay();
@@ -111,7 +107,7 @@ async function renderCalendar() {
     if (dayOfWeek === 0) dayEl.classList.add("sun");
     if (dayOfWeek === 6) dayEl.classList.add("sat");
 
-    // 祝日 or 会社休み
+    // 祝日・会社休み
     const holidayName = holidays[dateStr];
     const companyHoliday = getCompanyHoliday(dateStr);
 
@@ -138,7 +134,7 @@ async function renderCalendar() {
     const eventsWrap = document.createElement("div");
     eventsWrap.className = "events";
 
-    events.forEach(e => {
+    events.forEach((e, index) => {
       const el = document.createElement("a");
 
       const isPublic = e.status === "公開";
@@ -146,14 +142,17 @@ async function renderCalendar() {
       el.className = "event";
       if (!isPublic) el.classList.add("draft");
 
+      // 4件目以降は非表示
+      if (index >= 3) {
+        el.classList.add("hidden");
+      }
+
       if (isPublic && e.url) {
         el.href = e.url;
         el.target = "_blank";
       }
 
-      // ===============================
       // 画像
-      // ===============================
       if (e.image) {
         const img = document.createElement("img");
         img.src = e.image;
@@ -170,11 +169,8 @@ async function renderCalendar() {
       title.textContent = e.title;
       el.appendChild(title);
 
-      // ===============================
-      // 著者（Zenn ID変換）
-      // ===============================
+      // 著者（Zenn ID）
       const zennId = convertAuthor(e.author);
-
       const author = document.createElement("div");
       author.className = "author";
       author.innerHTML = `<a href="https://zenn.dev/${zennId}" target="_blank">@${zennId}</a>`;
@@ -183,13 +179,36 @@ async function renderCalendar() {
       eventsWrap.appendChild(el);
     });
 
+    // ===============================
+    // +more
+    // ===============================
+    if (events.length > 3) {
+      const moreBtn = document.createElement("div");
+      moreBtn.className = "more";
+      moreBtn.textContent = `+${events.length - 3} more`;
+
+      let expanded = false;
+
+      moreBtn.onclick = () => {
+        expanded = !expanded;
+
+        const hiddenItems = eventsWrap.querySelectorAll(".hidden");
+
+        hiddenItems.forEach(item => {
+          item.style.display = expanded ? "block" : "none";
+        });
+
+        moreBtn.textContent = expanded ? "閉じる" : `+${events.length - 3} more`;
+      };
+
+      eventsWrap.appendChild(moreBtn);
+    }
+
     dayEl.appendChild(eventsWrap);
     calendar.appendChild(dayEl);
   }
 
-  // ===============================
-  // 最後の余白調整（6週バグ修正）
-  // ===============================
+  // 余白調整
   const cells = calendar.children.length;
   const remainder = cells % 7;
 
