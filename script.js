@@ -1,11 +1,8 @@
 let currentDate = new Date();
 let holidays = {};
+const MAX_VISIBLE = 2;
 
-const MAX_VISIBLE = 2; // ← ここ変更ポイント
-
-// ===============================
 // 著者変換
-// ===============================
 const authorMap = {
   "西平 基志": "nishihira",
   "坂上 晴信": "subroh_0508",
@@ -39,7 +36,7 @@ function convertAuthor(name) {
   return authorMap[name] || name;
 }
 
-// ===============================
+// 祝日
 async function fetchHolidays(year) {
   try {
     const res = await fetch(`https://holidays-jp.github.io/api/v1/${year}/date.json`);
@@ -49,17 +46,13 @@ async function fetchHolidays(year) {
   }
 }
 
+// 会社休み
 function getCompanyHoliday(dateStr) {
-  if (dateStr.includes("/12/29") || dateStr.includes("/12/30") || dateStr.includes("/12/31")) {
-    return "年末休み";
-  }
-  if (dateStr.includes("/01/02") || dateStr.includes("/01/03") || dateStr.includes("/01/04")) {
-    return "年始休み";
-  }
+  if (dateStr.includes("/12/29") || dateStr.includes("/12/30") || dateStr.includes("/12/31")) return "年末休み";
+  if (dateStr.includes("/01/02") || dateStr.includes("/01/03") || dateStr.includes("/01/04")) return "年始休み";
   return null;
 }
 
-// ===============================
 async function renderCalendar() {
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
@@ -115,7 +108,6 @@ async function renderCalendar() {
     dayEl.appendChild(dateEl);
 
     const events = data.filter(e => e.date === dateStr);
-
     const eventsWrap = document.createElement("div");
     eventsWrap.className = "events";
 
@@ -161,7 +153,6 @@ async function renderCalendar() {
       eventsWrap.appendChild(el);
     });
 
-    // +more
     if (events.length > MAX_VISIBLE) {
       const moreBtn = document.createElement("div");
       moreBtn.className = "more";
@@ -185,17 +176,6 @@ async function renderCalendar() {
 
     dayEl.appendChild(eventsWrap);
     calendar.appendChild(dayEl);
-  }
-
-  const cells = calendar.children.length;
-  const remainder = cells % 7;
-
-  if (remainder !== 0) {
-    for (let i = 0; i < 7 - remainder; i++) {
-      const empty = document.createElement("div");
-      empty.className = "empty";
-      calendar.appendChild(empty);
-    }
   }
 }
 
