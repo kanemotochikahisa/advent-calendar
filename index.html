@@ -7,20 +7,27 @@
 </head>
 <body>
 
-  <h1>TOKIUM Tech Blog Calendar</h1>
-  <p>技術記事の公開スケジュール</p>
+<h1>TOKIUM Tech Blog Calendar</h1>
+<p class="subtitle">技術記事の公開スケジュール</p>
 
-  <div class="controls">
-    <button onclick="prevMonth()">◀</button>
-    <span id="monthTitle"></span>
-    <button onclick="nextMonth()">▶</button>
-  </div>
+<div class="nav">
+  <button id="prev">◀</button>
+  <span id="month"></span>
+  <button id="next">▶</button>
+</div>
 
-  <!-- ✅ これ絶対必要 -->
-  <div id="calendar" class="calendar"></div>
+<div class="calendar-header">
+  <div class="sun">SUN</div>
+  <div>MON</div>
+  <div>TUE</div>
+  <div>WED</div>
+  <div>THU</div>
+  <div>FRI</div>
+  <div class="sat">SAT</div>
+</div>
 
-  <!-- ✅ これも絶対必要 -->
-  <script src="script.js"></script>
+<div id="calendar" class="calendar"></div>
 
+<script src="script.js"></script>
 </body>
 </html>
