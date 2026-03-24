@@ -29,17 +29,29 @@ const AUTHOR_MAP = {
   "冨永 佑介": "tommy_y"
 };
 
+function normalizeDate(str) {
+  if (!str) return "";
+  return str.replace(/-/g, "/");
+}
+
 async function load() {
-  const res = await fetch("data/calendar.json");
-  const data = await res.json();
+  try {
+    const res = await fetch("data/calendar.json");
+    const data = await res.json();
 
-  // 公開 or 登壇のみ
-  const filtered = data.filter(d =>
-    (d.status && d.status.includes("公開")) ||
-    d.type === "登壇"
-  );
+    console.log("取得:", data);
 
-  render(filtered);
+    // ✅ 公開 or 登壇のみ
+    const filtered = data.filter(d =>
+      (d.status && d.status.includes("公開")) ||
+      d.type === "登壇"
+    );
+
+    render(filtered);
+
+  } catch (e) {
+    console.error(e);
+  }
 }
 
 function render(data) {
@@ -56,6 +68,7 @@ function render(data) {
   const firstDay = new Date(year, month, 1).getDay();
   const lastDate = new Date(year, month + 1, 0).getDate();
 
+  // 空白
   for (let i = 0; i < firstDay; i++) {
     calendar.appendChild(document.createElement("div"));
   }
@@ -69,9 +82,12 @@ function render(data) {
     dateEl.textContent = d;
     dayEl.appendChild(dateEl);
 
-    const dateStr = `${year}/${String(month + 1).padStart(2, "0")}/${String(d).padStart(2, "0")}`;
+    const target = `${year}/${String(month + 1).padStart(2, "0")}/${String(d).padStart(2, "0")}`;
 
-    const events = data.filter(e => e.date === dateStr);
+    const events = data.filter(e => {
+      const nd = normalizeDate(e.date);
+      return nd === target || nd === `${year}/${month + 1}/${d}`;
+    });
 
     events.forEach(e => {
       const zennId = AUTHOR_MAP[e.author] || e.author;
@@ -80,39 +96,39 @@ function render(data) {
       card.className = "event";
 
       // 画像
-      const img = document.createElement("img");
-      img.src = e.image || "";
-      img.alt = "thumb";
-      img.onerror = () => img.style.display = "none";
+      if (e.image) {
+        const img = document.createElement("img");
+        img.src = e.image;
+        img.alt = "thumb";
+        img.onerror = () => img.style.display = "none";
+        card.appendChild(img);
+      }
 
-      // タイトル
-      const title = document.createElement("div");
-      title.className = "event-title";
-      title.textContent = e.title;
+      const titleEl = document.createElement("div");
+      titleEl.className = "event-title";
+      titleEl.textContent = e.title;
 
-      // 著者
-      const author = document.createElement("div");
-      author.className = "event-author";
-      author.textContent = `@${zennId}`;
+      const authorEl = document.createElement("div");
+      authorEl.className = "event-author";
+      authorEl.textContent = `@${zennId}`;
 
-      // ✅ 公開記事 → リンクあり
-      if (e.status && e.status.includes("公開")) {
+      // ✅ 公開記事
+      if (e.status && e.status.includes("公開") && e.url) {
         const link = document.createElement("a");
         link.href = e.url;
         link.target = "_blank";
-        link.appendChild(img);
-        link.appendChild(title);
+
+        link.appendChild(titleEl);
         card.appendChild(link);
-      }
-      // ✅ 登壇 → リンクなし
-      else {
+      } 
+      // ✅ 登壇
+      else if (e.type === "登壇") {
+        titleEl.textContent = "🎤 " + e.title;
         card.style.opacity = "0.7";
-        title.textContent = "🎤 " + e.title;
-        card.appendChild(img);
-        card.appendChild(title);
+        card.appendChild(titleEl);
       }
 
-      card.appendChild(author);
+      card.appendChild(authorEl);
       dayEl.appendChild(card);
     });
 
