@@ -1,5 +1,31 @@
 let currentDate = new Date()
+let holidays = {}
 
+/* ========================
+   名前変換（外部用）
+======================== */
+const nameMap = {
+  "冨永 佑介": "tommy_y",
+  "坂上 晴信": "subroh_0508",
+  "西平 基志": "nishihira"
+  // 必要に応じて追加
+}
+
+function convertName(name){
+  return nameMap[name] || name
+}
+
+/* ========================
+   祝日取得
+======================== */
+async function loadHoliday(){
+  const res = await fetch("https://holidays-jp.github.io/api/v1/date.json")
+  holidays = await res.json()
+}
+
+/* ========================
+   カレンダー描画
+======================== */
 async function loadCalendar(){
 
   const res = await fetch("data/calendar.json")
@@ -33,34 +59,81 @@ async function loadCalendar(){
     }
 
     const dateStr = `${year}/${String(month+1).padStart(2,"0")}/${String(day).padStart(2,"0")}`
+    const holidayKey = dateStr.replaceAll("/", "-")
+
+    const holidayName = holidays[holidayKey] || ""
 
     const items = data.filter(d => d.date === dateStr)
 
     let cards = ""
 
-    items.forEach(item=>{
+    items.slice(0,3).forEach(item=>{
 
-      // 公開 → リンク
+      const author = convertName(item.author)
+
+      const img = item.image
+        ? `<img src="${item.image}">`
+        : `<div class="no-image">No Image</div>`
+
+      /* ========================
+         外部仕様（ここ重要）
+      ======================== */
+
       if(item.status === "公開"){
-        cards += `
-        <a class="event" href="${item.url}" target="_blank">
-          ${item.title}
-          <div class="author">${item.author}</div>
-        </a>`
+
+        if(item.url){
+          cards += `
+          <a class="event" href="${item.url}" target="_blank">
+            ${img}
+            ${item.title}
+            <div class="author">${author}</div>
+          </a>`
+        }else{
+          cards += `
+          <div class="event warning">
+            ${img}
+            ${item.title}
+            <div class="author">${author}</div>
+            <div class="warn-text">URL未設定</div>
+          </div>`
+        }
+
       }else{
-        // 未公開 → 表示のみ
+        // 未公開 → 表示だけ
         cards += `
         <div class="event draft">
+          ${img}
           ${item.title}
-          <div class="author">${item.author}</div>
+          <div class="author">${author}</div>
         </div>`
       }
 
     })
 
+    if(items.length > 3){
+      cards += `<div class="more">+${items.length-3} more</div>`
+    }
+
+    /* ========================
+       土日・祝日
+    ======================== */
+
+    const weekDay = (i % 7)
+
+    let className = "day"
+
+    if(weekDay === 0 || holidayName){
+      className += " sun"
+    }
+
+    if(weekDay === 6){
+      className += " sat"
+    }
+
     html += `
-    <div class="day">
+    <div class="${className}">
       <div class="date">${day}</div>
+      <div class="holiday">${holidayName}</div>
       <div class="events">${cards}</div>
     </div>
     `
@@ -71,6 +144,9 @@ async function loadCalendar(){
   calendar.innerHTML = html
 }
 
+/* ========================
+   月移動
+======================== */
 function prevMonth(){
   currentDate.setMonth(currentDate.getMonth()-1)
   loadCalendar()
@@ -81,4 +157,12 @@ function nextMonth(){
   loadCalendar()
 }
 
-loadCalendar()
+/* ========================
+   初期化
+======================== */
+async function init(){
+  await loadHoliday()
+  await loadCalendar()
+}
+
+init()
