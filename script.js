@@ -1,6 +1,8 @@
 let currentDate = new Date();
 let holidays = {};
 
+const MAX_VISIBLE = 2; // ← ここ変更ポイント
+
 // ===============================
 // 著者変換
 // ===============================
@@ -38,8 +40,6 @@ function convertAuthor(name) {
 }
 
 // ===============================
-// 祝日
-// ===============================
 async function fetchHolidays(year) {
   try {
     const res = await fetch(`https://holidays-jp.github.io/api/v1/${year}/date.json`);
@@ -49,9 +49,6 @@ async function fetchHolidays(year) {
   }
 }
 
-// ===============================
-// 会社休み
-// ===============================
 function getCompanyHoliday(dateStr) {
   if (dateStr.includes("/12/29") || dateStr.includes("/12/30") || dateStr.includes("/12/31")) {
     return "年末休み";
@@ -62,8 +59,6 @@ function getCompanyHoliday(dateStr) {
   return null;
 }
 
-// ===============================
-// カレンダー
 // ===============================
 async function renderCalendar() {
   const year = currentDate.getFullYear();
@@ -124,9 +119,6 @@ async function renderCalendar() {
     const eventsWrap = document.createElement("div");
     eventsWrap.className = "events";
 
-    // ===============================
-    // ここが完全修正ポイント
-    // ===============================
     events.forEach((e, index) => {
       const el = document.createElement("a");
 
@@ -140,13 +132,11 @@ async function renderCalendar() {
         el.target = "_blank";
       }
 
-      // 👇 4件目以降は初期非表示
-      if (index >= 3) {
+      if (index >= MAX_VISIBLE) {
         el.style.display = "none";
         el.classList.add("hidden-event");
       }
 
-      // 画像
       if (e.image) {
         const img = document.createElement("img");
         img.src = e.image;
@@ -158,12 +148,10 @@ async function renderCalendar() {
         el.appendChild(noImg);
       }
 
-      // タイトル
       const title = document.createElement("div");
       title.textContent = e.title;
       el.appendChild(title);
 
-      // 著者
       const zennId = convertAuthor(e.author);
       const author = document.createElement("div");
       author.className = "author";
@@ -173,15 +161,13 @@ async function renderCalendar() {
       eventsWrap.appendChild(el);
     });
 
-    // ===============================
-    // +moreボタン
-    // ===============================
-    if (events.length > 3) {
+    // +more
+    if (events.length > MAX_VISIBLE) {
       const moreBtn = document.createElement("div");
       moreBtn.className = "more";
-      moreBtn.textContent = `+${events.length - 3} more`;
 
       let opened = false;
+      moreBtn.textContent = `+${events.length - MAX_VISIBLE} more`;
 
       moreBtn.onclick = () => {
         const hidden = eventsWrap.querySelectorAll(".hidden-event");
@@ -191,7 +177,7 @@ async function renderCalendar() {
         });
 
         opened = !opened;
-        moreBtn.textContent = opened ? "閉じる" : `+${events.length - 3} more`;
+        moreBtn.textContent = opened ? "閉じる" : `+${events.length - MAX_VISIBLE} more`;
       };
 
       eventsWrap.appendChild(moreBtn);
@@ -213,7 +199,6 @@ async function renderCalendar() {
   }
 }
 
-// ===============================
 function prevMonth() {
   currentDate.setMonth(currentDate.getMonth() - 1);
   renderCalendar();
