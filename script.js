@@ -36,7 +36,7 @@ function convertAuthor(name) {
   return authorMap[name] || name;
 }
 
-// 祝日
+// 祝日取得
 async function fetchHolidays(year) {
   try {
     const res = await fetch(`https://holidays-jp.github.io/api/v1/${year}/date.json`);
@@ -90,7 +90,9 @@ async function renderCalendar() {
     if (dayOfWeek === 0) dayEl.classList.add("sun");
     if (dayOfWeek === 6) dayEl.classList.add("sat");
 
-    const holidayName = holidays[dateStr];
+    // 🔥 修正ポイント（祝日）
+    const holidayKey = dateStr.replaceAll("/", "-");
+    const holidayName = holidays[holidayKey];
     const companyHoliday = getCompanyHoliday(dateStr);
 
     if (holidayName || companyHoliday) {
