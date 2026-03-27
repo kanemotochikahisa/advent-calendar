@@ -32,7 +32,7 @@ const authorMap = {
   "株式会社TOKIUM プロダクト本部": "tokium"
 };
 
-// ===== Zenn表示名（←今回更新したやつ）=====
+// ===== 表示名 =====
 const authorDisplayMap = {
   "tommy_y": "とみー",
   "oyaoyalog": "ja_tang",
@@ -80,7 +80,6 @@ function isCompanyHoliday(date) {
   return (m === 12 && d >= 29) || (m === 1 && d <= 3);
 }
 
-// ===== カレンダー =====
 async function loadCalendar() {
 
   const res = await fetch("data/calendar.json");
@@ -106,7 +105,11 @@ async function loadCalendar() {
 
     const dateObj = new Date(year, month, d);
 
-    const dateKey =
+    // ★ 両対応（ここが重要）
+    const dateSlash =
+      `${year}/${String(month + 1).padStart(2,"0")}/${String(d).padStart(2,"0")}`;
+
+    const dateHyphen =
       `${year}-${String(month + 1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
 
     const day = document.createElement("div");
@@ -121,12 +124,12 @@ async function loadCalendar() {
     num.textContent = d;
     day.appendChild(num);
 
-    // 祝日
-    if (holidays[dateKey]) {
+    // 祝日（APIはYYYY-MM-DD）
+    if (holidays[dateHyphen]) {
       day.classList.add("holiday");
       const label = document.createElement("div");
       label.className = "holiday-label";
-      label.textContent = holidays[dateKey];
+      label.textContent = holidays[dateHyphen];
       day.prepend(label);
     }
 
@@ -139,7 +142,10 @@ async function loadCalendar() {
       day.prepend(label);
     }
 
-    const events = data.filter(e => e.date === dateKey);
+    // ★ ここ修正（両方見る）
+    const events = data.filter(e =>
+      e.date === dateSlash || e.date === dateHyphen
+    );
 
     const filtered = events.filter(e =>
       e.status === "公開" || e.type === "登壇"
