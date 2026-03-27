@@ -3,7 +3,7 @@
   --secondary: #00CC99; /* Light Green */
   --accent: #F98938;    /* Orange */
   --text: #222229;      /* Text Black */
-  --bg: #F6F6F6;        /* Gray */
+  --bg: #EDF7F8;        /* ← ここを変更 */
   --card: #FFFFFF;
   --soft: #EDF7F8;      /* Pale Blue */
 }
