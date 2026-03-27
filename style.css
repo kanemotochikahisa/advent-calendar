@@ -1,11 +1,11 @@
 :root {
-  --primary: #008D97;
-  --secondary: #00CC99;
-  --accent: #F98938;
-  --text: #222229;
-  --bg: #F6F6F6;
-  --card: #ffffff;
-  --soft: #EDF7F8;
+  --primary: #008D97;   /* TOKIUM Green */
+  --secondary: #00CC99; /* Light Green */
+  --accent: #F98938;    /* Orange */
+  --text: #222229;      /* Text Black */
+  --bg: #F6F6F6;        /* Gray */
+  --card: #FFFFFF;
+  --soft: #EDF7F8;      /* Pale Blue */
 }
 
 body {
@@ -20,7 +20,6 @@ h1 {
   color: var(--text);
 }
 
-/* ナビ */
 .nav {
   display: flex;
   justify-content: center;
@@ -41,7 +40,15 @@ h1 {
   background: var(--secondary);
 }
 
-/* カレンダー */
+.calendar-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: bold;
+}
+
 .calendar {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -115,9 +122,8 @@ h1 {
   font-weight: bold;
 }
 
-.event-author {
-  font-size: 11px;
-  color: #555;
+.event-author a {
+  color: var(--primary);
 }
 
 .more {
