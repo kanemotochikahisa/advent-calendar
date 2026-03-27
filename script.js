@@ -63,7 +63,7 @@ const authorDisplayMap = {
   "arata_maru": "あらた"
 };
 
-// ===== 日付正規化（最重要）=====
+// ===== 日付正規化 =====
 function normalizeDate(str) {
   const d = new Date(str);
   return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
@@ -136,12 +136,13 @@ async function loadCalendar() {
       day.prepend(label);
     }
 
-    // ★ここが完全修正
+    // ===== イベント取得 =====
     const events = data.filter(e =>
       normalizeDate(e.date) === todayKey
     );
 
-    events.forEach(e => {
+    // ★ここ重要：最大2件表示
+    events.slice(0, 2).forEach(e => {
 
       const el = document.createElement("div");
       el.className = "event";
@@ -164,6 +165,14 @@ async function loadCalendar() {
 
       day.appendChild(el);
     });
+
+    // ★ more表示復活
+    if (events.length > 2) {
+      const more = document.createElement("div");
+      more.className = "more";
+      more.textContent = `+${events.length - 2} more`;
+      day.appendChild(more);
+    }
 
     calendar.appendChild(day);
   }
