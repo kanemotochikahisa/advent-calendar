@@ -1,6 +1,5 @@
 let current = new Date();
 let holidays = {};
-const zennCache = {};
 
 // ===== 本名 → Zenn ID =====
 const authorMap = {
@@ -29,7 +28,39 @@ const authorMap = {
   "井上 智敬": "tomoyukiinoue",
   "池田 新": "arata_maru",
   "加藤 未央": "oyaoyalog",
-  "冨永 佑介": "tommy_y"
+  "冨永 佑介": "tommy_y",
+  "株式会社TOKIUM プロダクト本部": "tokium"
+};
+
+// ===== Zenn表示名（←今回更新したやつ）=====
+const authorDisplayMap = {
+  "tommy_y": "とみー",
+  "oyaoyalog": "ja_tang",
+  "tokium": "株式会社TOKIUM プロダクト本部",
+  "nishihira": "西平基志 | TOKIUM",
+  "subroh_0508": "にしこりさぶろ〜 | TOKIUM",
+  "m_nishikawa": "m-nishikawa",
+  "muyu": "yuta higashi",
+  "fusasnnn": "hanafusay",
+  "sigok5904": "しががガガガ",
+  "koguchi_s": "sk",
+  "hidetama": "あのたろう",
+  "takuto1023": "Takuto1023",
+  "krkrkrrk": "kr",
+  "koichihara": "Kokoichi",
+  "1knco": "いかねこ",
+  "jk_koro": "jk",
+  "toshi_3": "＿10.4",
+  "tomoya1": "tsutsui",
+  "kazt06": "kztm",
+  "tsushima_m": "tsushima_m",
+  "mura_massann": "まっさん | TOKIUM",
+  "lapi": "Lapi",
+  "o8n": "o8n",
+  "fum1ple": "fum1ple",
+  "ynis_qa": "ynis_qa",
+  "tomoyukiinoue": "tomoyukiinoue",
+  "arata_maru": "あらた"
 };
 
 // ===== 祝日 =====
@@ -47,27 +78,6 @@ function isCompanyHoliday(date) {
   const m = date.getMonth() + 1;
   const d = date.getDate();
   return (m === 12 && d >= 29) || (m === 1 && d <= 3);
-}
-
-// ===== Zenn表示名取得 =====
-async function getZennName(username) {
-  if (!username) return "Unknown";
-
-  if (zennCache[username]) {
-    return zennCache[username];
-  }
-
-  try {
-    const res = await fetch(`https://zenn.dev/api/users/${username}`);
-    const data = await res.json();
-
-    const name = data.name || `@${username}`;
-    zennCache[username] = name;
-
-    return name;
-  } catch {
-    return `@${username}`;
-  }
 }
 
 // ===== カレンダー =====
@@ -96,11 +106,8 @@ async function loadCalendar() {
 
     const dateObj = new Date(year, month, d);
 
-    const holidayKey =
+    const dateKey =
       `${year}-${String(month + 1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
-
-    const dateSlash =
-      `${year}/${String(month + 1).padStart(2,"0")}/${String(d).padStart(2,"0")}`;
 
     const day = document.createElement("div");
     day.className = "day";
@@ -115,11 +122,11 @@ async function loadCalendar() {
     day.appendChild(num);
 
     // 祝日
-    if (holidays[holidayKey]) {
+    if (holidays[dateKey]) {
       day.classList.add("holiday");
       const label = document.createElement("div");
       label.className = "holiday-label";
-      label.textContent = holidays[holidayKey];
+      label.textContent = holidays[dateKey];
       day.prepend(label);
     }
 
@@ -132,21 +139,20 @@ async function loadCalendar() {
       day.prepend(label);
     }
 
-    const events = data.filter(e =>
-      e.date === holidayKey || e.date === dateSlash
-    );
+    const events = data.filter(e => e.date === dateKey);
 
     const filtered = events.filter(e =>
       e.status === "公開" || e.type === "登壇"
     );
 
-    for (const e of filtered.slice(0,2)) {
+    filtered.slice(0,2).forEach(e => {
 
       const el = document.createElement("div");
       el.className = "event";
 
       const zennId = authorMap[e.author] || e.author;
-      const displayName = await getZennName(zennId);
+      const displayName =
+        authorDisplayMap[zennId] || `@${zennId}`;
 
       let html = "";
 
@@ -168,7 +174,7 @@ async function loadCalendar() {
 
       el.innerHTML = html;
       day.appendChild(el);
-    }
+    });
 
     calendar.appendChild(day);
   }
@@ -188,7 +194,7 @@ document.getElementById("next").onclick = () => {
 // 初期化
 async function init() {
   await loadHolidays();
-  await loadCalendar();
+  loadCalendar();
 }
 
 init();
