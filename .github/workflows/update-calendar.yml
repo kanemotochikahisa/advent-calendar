@@ -130,4 +130,4 @@ jobs:
 
           git add data/calendar.json
           git commit --allow-empty -m "update calendar"
-          git push origin main
+          git push origin HEAD
