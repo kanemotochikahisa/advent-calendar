@@ -1,37 +1,8 @@
 let current = new Date();
 let holidays = {};
+const zennCache = {};
 
-// 著者変換
-const authorMap = {
-  "冨永 佑介": "tommy_y",
-  "坂上 晴信": "subroh_0508",
-  "西平 基志": "nishihira",
-  "西川 真澄": "m_nishikawa",
-  "東 優太": "muyu",
-  "花房 優貴": "fusasnnn",
-  "重村 優太": "sigok5904",
-  "小口 翔太": "koguchi_s",
-  "阿野 庸太郎": "hidetama",
-  "芦田 拓人": "takuto1023",
-  "木村 陸人": "krkrkrrk",
-  "市原 航": "koichihara",
-  "橘高 俊": "1knco",
-  "賀部 寿音": "jk_koro",
-  "石川 裕才": "toshi_3",
-  "筒井 智也": "tomoya1",
-  "戸松 一貴": "kazt06",
-  "對馬 克": "tsushima_m",
-  "村上 雅一": "mura_massann",
-  "立花 斐斗": "lapi",
-  "岡本 匡弘": "o8n",
-  "西片 文哉": "fum1ple",
-  "西田 泰明": "ynis_qa",
-  "井上 智敬": "tomoyukiinoue",
-  "池田 新": "arata_maru",
-  "加藤 未央": "oyaoyalog"
-};
-
-// ===== 祝日取得 =====
+// ===== 祝日 =====
 async function loadHolidays() {
   try {
     const res = await fetch("https://holidays-jp.github.io/api/v1/date.json");
@@ -48,7 +19,21 @@ function isCompanyHoliday(date) {
   return (m === 12 && d >= 29) || (m === 1 && d <= 3);
 }
 
-// ===== カレンダー描画 =====
+// ===== Zenn表示名 =====
+async function getZennName(username) {
+  if (zennCache[username]) return zennCache[username];
+
+  try {
+    const res = await fetch(`https://zenn.dev/api/users/${username}`);
+    const data = await res.json();
+    zennCache[username] = data.name;
+    return data.name;
+  } catch {
+    return username;
+  }
+}
+
+// ===== カレンダー =====
 async function loadCalendar() {
 
   const res = await fetch("data/calendar.json");
@@ -66,21 +51,17 @@ async function loadCalendar() {
   const firstDay = new Date(year, month, 1).getDay();
   const lastDate = new Date(year, month + 1, 0).getDate();
 
-  // 空白
   for (let i = 0; i < firstDay; i++) {
     calendar.appendChild(document.createElement("div"));
   }
 
-  // 日付ループ
   for (let d = 1; d <= lastDate; d++) {
 
     const dateObj = new Date(year, month, d);
 
-    // ★祝日用（YYYY-MM-DD）
     const holidayKey =
       `${year}-${String(month + 1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
 
-    // ★イベント用（両対応）
     const dateSlash =
       `${year}/${String(month + 1).padStart(2,"0")}/${String(d).padStart(2,"0")}`;
 
@@ -91,51 +72,55 @@ async function loadCalendar() {
     if (week === 0) day.classList.add("sun");
     if (week === 6) day.classList.add("sat");
 
-    // ===== 日付 =====
+    // 今日
+    const today = new Date();
+    if (
+      d === today.getDate() &&
+      month === today.getMonth() &&
+      year === today.getFullYear()
+    ) {
+      day.classList.add("today");
+    }
+
+    // 日付
     const num = document.createElement("div");
     num.className = "day-number";
     num.textContent = d;
     day.appendChild(num);
 
-    // ===== 祝日 =====
+    // 祝日
     if (holidays[holidayKey]) {
       day.classList.add("holiday");
 
       const label = document.createElement("div");
       label.className = "holiday-label";
       label.textContent = holidays[holidayKey];
-
       day.prepend(label);
     }
 
-    // ===== 年末年始 =====
+    // 年末年始
     if (isCompanyHoliday(dateObj)) {
       day.classList.add("holiday");
 
       const label = document.createElement("div");
       label.className = "holiday-label";
       label.textContent = "年末年始休業";
-
       day.prepend(label);
     }
 
-    // ===== イベント取得（両対応） =====
+    // イベント
     const events = data.filter(e =>
       e.date === holidayKey || e.date === dateSlash
     );
 
-    // ===== 公開のみ =====
     const filtered = events.filter(e =>
       e.status === "公開" || e.type === "登壇"
     );
 
-    // ===== 表示 =====
-    filtered.slice(0,2).forEach(e => {
+    for (const e of filtered.slice(0,2)) {
 
       const el = document.createElement("div");
       el.className = "event";
-
-      const author = authorMap[e.author] || e.author;
 
       let html = "";
 
@@ -149,13 +134,21 @@ async function loadCalendar() {
         html += `<div class="event-title">${e.title}</div>`;
       }
 
-      html += `<div class="event-author">@${author}</div>`;
+      // ★④ 表示名統一 + リンク
+      const name = await getZennName(e.author);
+
+      html += `
+        <div class="event-author">
+          <a href="https://zenn.dev/${e.author}" target="_blank">
+            ${name}
+          </a>
+        </div>
+      `;
 
       el.innerHTML = html;
       day.appendChild(el);
-    });
+    }
 
-    // ===== more表示 =====
     if (filtered.length > 2) {
       const more = document.createElement("div");
       more.className = "more";
@@ -167,7 +160,7 @@ async function loadCalendar() {
   }
 }
 
-// ===== ナビ =====
+// ナビ
 document.getElementById("prev").onclick = () => {
   current.setMonth(current.getMonth() - 1);
   loadCalendar();
@@ -178,9 +171,9 @@ document.getElementById("next").onclick = () => {
   loadCalendar();
 };
 
-// ===== 初期化 =====
+// 初期化
 async function init() {
-  await loadHolidays(); // ←これ超重要
+  await loadHolidays();
   await loadCalendar();
 }
 
