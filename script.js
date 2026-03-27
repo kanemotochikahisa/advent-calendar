@@ -31,7 +31,7 @@ const authorMap = {
   "加藤 未央": "oyaoyalog"
 };
 
-// 祝日取得
+// ===== 祝日取得 =====
 async function loadHolidays() {
   try {
     const res = await fetch("https://holidays-jp.github.io/api/v1/date.json");
@@ -41,13 +41,14 @@ async function loadHolidays() {
   }
 }
 
-// 年末年始
+// ===== 年末年始 =====
 function isCompanyHoliday(date) {
   const m = date.getMonth() + 1;
   const d = date.getDate();
   return (m === 12 && d >= 29) || (m === 1 && d <= 3);
 }
 
+// ===== カレンダー描画 =====
 async function loadCalendar() {
 
   const res = await fetch("data/calendar.json");
@@ -65,14 +66,23 @@ async function loadCalendar() {
   const firstDay = new Date(year, month, 1).getDay();
   const lastDate = new Date(year, month + 1, 0).getDate();
 
+  // 空白
   for (let i = 0; i < firstDay; i++) {
     calendar.appendChild(document.createElement("div"));
   }
 
+  // 日付ループ
   for (let d = 1; d <= lastDate; d++) {
 
     const dateObj = new Date(year, month, d);
-    const dateStr = `${year}/${String(month + 1).padStart(2,"0")}/${String(d).padStart(2,"0")}`;
+
+    // ★祝日用（YYYY-MM-DD）
+    const holidayKey =
+      `${year}-${String(month + 1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+
+    // ★イベント用（両対応）
+    const dateSlash =
+      `${year}/${String(month + 1).padStart(2,"0")}/${String(d).padStart(2,"0")}`;
 
     const day = document.createElement("div");
     day.className = "day";
@@ -81,19 +91,19 @@ async function loadCalendar() {
     if (week === 0) day.classList.add("sun");
     if (week === 6) day.classList.add("sat");
 
-    // 日付
+    // ===== 日付 =====
     const num = document.createElement("div");
     num.className = "day-number";
     num.textContent = d;
     day.appendChild(num);
 
-    // ===== 祝日表示 =====
-    if (holidays[dateStr]) {
+    // ===== 祝日 =====
+    if (holidays[holidayKey]) {
       day.classList.add("holiday");
 
       const label = document.createElement("div");
       label.className = "holiday-label";
-      label.textContent = holidays[dateStr];
+      label.textContent = holidays[holidayKey];
 
       day.prepend(label);
     }
@@ -109,12 +119,17 @@ async function loadCalendar() {
       day.prepend(label);
     }
 
-    const events = data.filter(e => e.date === dateStr);
+    // ===== イベント取得（両対応） =====
+    const events = data.filter(e =>
+      e.date === holidayKey || e.date === dateSlash
+    );
 
+    // ===== 公開のみ =====
     const filtered = events.filter(e =>
       e.status === "公開" || e.type === "登壇"
     );
 
+    // ===== 表示 =====
     filtered.slice(0,2).forEach(e => {
 
       const el = document.createElement("div");
@@ -140,6 +155,7 @@ async function loadCalendar() {
       day.appendChild(el);
     });
 
+    // ===== more表示 =====
     if (filtered.length > 2) {
       const more = document.createElement("div");
       more.className = "more";
@@ -151,7 +167,7 @@ async function loadCalendar() {
   }
 }
 
-// ナビ
+// ===== ナビ =====
 document.getElementById("prev").onclick = () => {
   current.setMonth(current.getMonth() - 1);
   loadCalendar();
@@ -162,10 +178,10 @@ document.getElementById("next").onclick = () => {
   loadCalendar();
 };
 
-// 初期化
+// ===== 初期化 =====
 async function init() {
-  await loadHolidays();
-  loadCalendar();
+  await loadHolidays(); // ←これ超重要
+  await loadCalendar();
 }
 
 init();
