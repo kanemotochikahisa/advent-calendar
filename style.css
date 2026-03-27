@@ -56,7 +56,7 @@ h1 {
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-/* 土日カラー */
+/* ===== 土日カラー ===== */
 .day.sun {
   background: #ffe5e5;
 }
@@ -65,11 +65,13 @@ h1 {
   background: #e5edff;
 }
 
-/* 祝日 */
+/* ===== 祝日（★修正ポイント） ===== */
 .day.holiday {
-  border: 2px solid #ff6b6b;
+  background: #ffe5e5; /* 日曜と同じ */
+  border: none;        /* 赤枠削除 */
 }
 
+/* 祝日ラベル */
 .holiday-label {
   font-size: 10px;
   color: red;
@@ -77,15 +79,22 @@ h1 {
   margin-bottom: 4px;
 }
 
+/* 日付 */
 .day-number {
   font-weight: bold;
   margin-bottom: 4px;
 }
 
+/* 祝日の日付を赤に */
+.day.holiday .day-number {
+  color: red;
+}
+
+/* 曜日文字 */
 .sun { color: red; }
 .sat { color: blue; }
 
-/* 記事カード */
+/* ===== 記事カード ===== */
 .event {
   background: #eef5f0;
   border-radius: 8px;
