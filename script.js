@@ -1,10 +1,8 @@
 let current = new Date();
 let holidays = {};
-const zennCache = {};
 
-// ===== 本名 → Zenn ID対応表 =====
+// ===== 本名 → Zenn ID =====
 const authorMap = {
-  "西田 泰明": "ynis_qa",
   "西平 基志": "nishihira",
   "坂上 晴信": "subroh_0508",
   "西川 真澄": "m_nishikawa",
@@ -26,6 +24,7 @@ const authorMap = {
   "立花 斐斗": "lapi",
   "岡本 匡弘": "o8n",
   "西片 文哉": "fum1ple",
+  "西田 泰明": "ynis_qa",
   "井上 智敬": "tomoyukiinoue",
   "池田 新": "arata_maru",
   "加藤 未央": "oyaoyalog",
@@ -47,21 +46,6 @@ function isCompanyHoliday(date) {
   const m = date.getMonth() + 1;
   const d = date.getDate();
   return (m === 12 && d >= 29) || (m === 1 && d <= 3);
-}
-
-// ===== Zenn表示名取得 =====
-async function getZennName(username) {
-  if (!username) return "Unknown";
-  if (zennCache[username]) return zennCache[username];
-
-  try {
-    const res = await fetch(`https://zenn.dev/api/users/${username}`);
-    const data = await res.json();
-    zennCache[username] = data.name;
-    return data.name;
-  } catch {
-    return username;
-  }
 }
 
 // ===== カレンダー =====
@@ -108,7 +92,7 @@ async function loadCalendar() {
     num.textContent = d;
     day.appendChild(num);
 
-    // 祝日
+    // ===== 祝日 =====
     if (holidays[holidayKey]) {
       day.classList.add("holiday");
       const label = document.createElement("div");
@@ -117,7 +101,7 @@ async function loadCalendar() {
       day.prepend(label);
     }
 
-    // 年末年始
+    // ===== 年末年始 =====
     if (isCompanyHoliday(dateObj)) {
       day.classList.add("holiday");
       const label = document.createElement("div");
@@ -126,7 +110,7 @@ async function loadCalendar() {
       day.prepend(label);
     }
 
-    // イベント
+    // ===== イベント =====
     const events = data.filter(e =>
       e.date === holidayKey || e.date === dateSlash
     );
@@ -135,13 +119,12 @@ async function loadCalendar() {
       e.status === "公開" || e.type === "登壇"
     );
 
-    for (const e of filtered.slice(0,2)) {
+    filtered.slice(0,2).forEach(e => {
 
       const el = document.createElement("div");
       el.className = "event";
 
       const zennId = authorMap[e.author] || e.author;
-      const displayName = await getZennName(zennId);
 
       let html = "";
 
@@ -153,17 +136,18 @@ async function loadCalendar() {
         html += `<div class="event-title">${e.title}</div>`;
       }
 
+      // ===== ここが重要 =====
       html += `
         <div class="event-author">
           <a href="https://zenn.dev/${zennId}" target="_blank">
-            ${displayName}
+            @${zennId}
           </a>
         </div>
       `;
 
       el.innerHTML = html;
       day.appendChild(el);
-    }
+    });
 
     calendar.appendChild(day);
   }
@@ -180,9 +164,10 @@ document.getElementById("next").onclick = () => {
   loadCalendar();
 };
 
+// 初期化
 async function init() {
   await loadHolidays();
-  await loadCalendar();
+  loadCalendar();
 }
 
 init();
