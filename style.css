@@ -9,7 +9,142 @@ h1 {
   margin-top: 30px;
 }
 
+.subtitle {body {
+  font-family: sans-serif;
+  margin: 0;
+  background: #f5f5f5;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 30px;
+}
+
 .subtitle {
+  text-align: center;
+  color: #666;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 20px;
+}
+
+.nav button {
+  background: #2e7d32;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.calendar-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: bold;
+}
+
+.calendar {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 12px;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 10px;
+}
+
+.day {
+  background: white;
+  border-radius: 12px;
+  padding: 8px;
+  min-height: 140px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* ===== 土日 ===== */
+.day.sun {
+  background: #ffe5e5;
+}
+
+.day.sat {
+  background: #e5edff;
+}
+
+/* ===== 祝日（★最優先で上書き） ===== */
+.day.holiday {
+  background: #ffe5e5 !important; /* 強制 */
+  border: none !important;        /* 枠消す */
+}
+
+/* 日曜＋祝日でも確実に勝つ */
+.day.sun.holiday {
+  background: #ffe5e5 !important;
+}
+
+/* ===== 祝日ラベル ===== */
+.holiday-label {
+  font-size: 10px;
+  color: red;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+/* ===== 日付 ===== */
+.day-number {
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+/* 祝日は日付も赤 */
+.day.holiday .day-number {
+  color: red;
+}
+
+/* ===== 曜日 ===== */
+.sun { color: red; }
+.sat { color: blue; }
+
+/* ===== 記事 ===== */
+.event {
+  background: #eef5f0;
+  border-radius: 8px;
+  padding: 6px;
+  margin-top: 6px;
+  font-size: 12px;
+}
+
+.event img {
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 4px;
+}
+
+.event-title {
+  font-size: 12px;
+}
+
+.event a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.event-author {
+  font-size: 11px;
+  color: #555;
+}
+
+.more {
+  font-size: 12px;
+  color: #2e7d32;
+  margin-top: 4px;
+}
   text-align: center;
   color: #666;
 }
