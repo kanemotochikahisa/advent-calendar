@@ -2,7 +2,7 @@ let current = new Date();
 let holidays = {};
 const zennCache = {};
 
-// ===== 祝日取得 =====
+// ===== 祝日 =====
 async function loadHolidays() {
   try {
     const res = await fetch("https://holidays-jp.github.io/api/v1/date.json");
@@ -19,7 +19,7 @@ function isCompanyHoliday(date) {
   return (m === 12 && d >= 29) || (m === 1 && d <= 3);
 }
 
-// ===== Zenn表示名取得 =====
+// ===== Zenn表示名 =====
 async function getZennName(username) {
   if (zennCache[username]) return zennCache[username];
 
@@ -33,7 +33,7 @@ async function getZennName(username) {
   }
 }
 
-// ===== カレンダー描画 =====
+// ===== カレンダー =====
 async function loadCalendar() {
 
   const res = await fetch("data/calendar.json");
@@ -72,7 +72,7 @@ async function loadCalendar() {
     if (week === 0) day.classList.add("sun");
     if (week === 6) day.classList.add("sat");
 
-    // ===== 今日ハイライト =====
+    // 今日
     const today = new Date();
     if (
       d === today.getDate() &&
@@ -82,13 +82,13 @@ async function loadCalendar() {
       day.classList.add("today");
     }
 
-    // ===== 日付 =====
+    // 日付
     const num = document.createElement("div");
     num.className = "day-number";
     num.textContent = d;
     day.appendChild(num);
 
-    // ===== 祝日 =====
+    // 祝日
     if (holidays[holidayKey]) {
       day.classList.add("holiday");
 
@@ -98,7 +98,7 @@ async function loadCalendar() {
       day.prepend(label);
     }
 
-    // ===== 年末年始 =====
+    // 年末年始
     if (isCompanyHoliday(dateObj)) {
       day.classList.add("holiday");
 
@@ -108,7 +108,7 @@ async function loadCalendar() {
       day.prepend(label);
     }
 
-    // ===== イベント =====
+    // イベント
     const events = data.filter(e =>
       e.date === holidayKey || e.date === dateSlash
     );
@@ -134,9 +134,16 @@ async function loadCalendar() {
         html += `<div class="event-title">${e.title}</div>`;
       }
 
+      // ★④ 表示名統一 + リンク
       const name = await getZennName(e.author);
 
-      html += `<div class="event-author">${name} (@${e.author})</div>`;
+      html += `
+        <div class="event-author">
+          <a href="https://zenn.dev/${e.author}" target="_blank">
+            ${name}
+          </a>
+        </div>
+      `;
 
       el.innerHTML = html;
       day.appendChild(el);
@@ -153,7 +160,7 @@ async function loadCalendar() {
   }
 }
 
-// ===== ナビ =====
+// ナビ
 document.getElementById("prev").onclick = () => {
   current.setMonth(current.getMonth() - 1);
   loadCalendar();
@@ -164,7 +171,7 @@ document.getElementById("next").onclick = () => {
   loadCalendar();
 };
 
-// ===== 初期化 =====
+// 初期化
 async function init() {
   await loadHolidays();
   await loadCalendar();
