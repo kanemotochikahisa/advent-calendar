@@ -2,6 +2,36 @@ let current = new Date();
 let holidays = {};
 const zennCache = {};
 
+// ===== 本名 → Zenn ID対応表 =====
+const authorMap = {
+  "西田 泰明": "ynis_qa",
+  "西平 基志": "nishihira",
+  "坂上 晴信": "subroh_0508",
+  "西川 真澄": "m_nishikawa",
+  "東 優太": "muyu",
+  "花房 優貴": "fusasnnn",
+  "重村 優太": "sigok5904",
+  "小口 翔太": "koguchi_s",
+  "阿野 庸太郎": "hidetama",
+  "芦田 拓人": "takuto1023",
+  "木村 陸人": "krkrkrrk",
+  "市原 航": "koichihara",
+  "橘高 俊": "1knco",
+  "賀部 寿音": "jk_koro",
+  "石川 裕才": "toshi_3",
+  "筒井 智也": "tomoya1",
+  "戸松 一貴": "kazt06",
+  "對馬 克": "tsushima_m",
+  "村上 雅一": "mura_massann",
+  "立花 斐斗": "lapi",
+  "岡本 匡弘": "o8n",
+  "西片 文哉": "fum1ple",
+  "井上 智敬": "tomoyukiinoue",
+  "池田 新": "arata_maru",
+  "加藤 未央": "oyaoyalog",
+  "冨永 佑介": "tommy_y"
+};
+
 // ===== 祝日 =====
 async function loadHolidays() {
   try {
@@ -19,8 +49,9 @@ function isCompanyHoliday(date) {
   return (m === 12 && d >= 29) || (m === 1 && d <= 3);
 }
 
-// ===== Zenn表示名 =====
+// ===== Zenn表示名取得 =====
 async function getZennName(username) {
+  if (!username) return "Unknown";
   if (zennCache[username]) return zennCache[username];
 
   try {
@@ -72,17 +103,6 @@ async function loadCalendar() {
     if (week === 0) day.classList.add("sun");
     if (week === 6) day.classList.add("sat");
 
-    // 今日
-    const today = new Date();
-    if (
-      d === today.getDate() &&
-      month === today.getMonth() &&
-      year === today.getFullYear()
-    ) {
-      day.classList.add("today");
-    }
-
-    // 日付
     const num = document.createElement("div");
     num.className = "day-number";
     num.textContent = d;
@@ -91,7 +111,6 @@ async function loadCalendar() {
     // 祝日
     if (holidays[holidayKey]) {
       day.classList.add("holiday");
-
       const label = document.createElement("div");
       label.className = "holiday-label";
       label.textContent = holidays[holidayKey];
@@ -101,7 +120,6 @@ async function loadCalendar() {
     // 年末年始
     if (isCompanyHoliday(dateObj)) {
       day.classList.add("holiday");
-
       const label = document.createElement("div");
       label.className = "holiday-label";
       label.textContent = "年末年始休業";
@@ -122,38 +140,29 @@ async function loadCalendar() {
       const el = document.createElement("div");
       el.className = "event";
 
+      const zennId = authorMap[e.author] || e.author;
+      const displayName = await getZennName(zennId);
+
       let html = "";
 
-      if (e.image) {
-        html += `<img src="${e.image}">`;
-      }
+      if (e.image) html += `<img src="${e.image}">`;
 
-      if (e.status === "公開" && e.url) {
+      if (e.url) {
         html += `<div class="event-title"><a href="${e.url}" target="_blank">${e.title}</a></div>`;
       } else {
         html += `<div class="event-title">${e.title}</div>`;
       }
 
-      // ★④ 表示名統一 + リンク
-      const name = await getZennName(e.author);
-
       html += `
         <div class="event-author">
-          <a href="https://zenn.dev/${e.author}" target="_blank">
-            ${name}
+          <a href="https://zenn.dev/${zennId}" target="_blank">
+            ${displayName}
           </a>
         </div>
       `;
 
       el.innerHTML = html;
       day.appendChild(el);
-    }
-
-    if (filtered.length > 2) {
-      const more = document.createElement("div");
-      more.className = "more";
-      more.textContent = `+${filtered.length - 2} more`;
-      day.appendChild(more);
     }
 
     calendar.appendChild(day);
@@ -171,7 +180,6 @@ document.getElementById("next").onclick = () => {
   loadCalendar();
 };
 
-// 初期化
 async function init() {
   await loadHolidays();
   await loadCalendar();
