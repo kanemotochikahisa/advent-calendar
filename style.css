@@ -3,9 +3,9 @@
   --secondary: #00CC99; /* Light Green */
   --accent: #F98938;    /* Orange */
   --text: #222229;      /* Text Black */
-  --bg: #EDF7F8;        /* ← ここを変更 */
+  --bg: #EDF7F8;
   --card: #FFFFFF;
-  --soft: #EDF7F8;      /* Pale Blue */
+  --soft: #EDF7F8;
 }
 
 body {
@@ -99,12 +99,13 @@ h1 {
 /* イベント */
 .event {
   background: var(--soft);
-  border-left: 4px solid var(--primary);
+  border-left: none; /* ← 修正ポイント */
   border-radius: 8px;
   padding: 6px;
   margin-top: 6px;
   font-size: 12px;
   transition: 0.2s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1); /* 少し立体感追加 */
 }
 
 .event:hover {
