@@ -105,37 +105,21 @@ h1 {
   font-size: 12px;
   transition: 0.2s;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  position: relative;       /* ← 重要 */
-  overflow: hidden;         /* ← はみ出し防止 */
+  overflow: hidden; /* ← 重要 */
 }
 
 .event:hover {
   transform: translateY(-2px);
 }
 
-/* ===== ここが本質 ===== */
-
-/* 画像はそのまま（トリミングなし） */
+/* ===== 緑ライン消す本質 ===== */
 .event img {
-  width: 100%;
+  width: calc(100% + 8px);
+  margin-left: -8px;
   border-radius: 6px;
   display: block;
 }
-
-/* 左の緑ラインだけ隠す */
-.event::before {
-  content: "";
-  position: absolute;
-  top: 6px;                /* paddingと合わせる */
-  left: 6px;
-  width: 8px;              /* ← 緑ラインの太さに合わせて調整 */
-  height: calc(100% - 12px);
-  background: var(--soft); /* カード色 */
-  z-index: 2;
-  border-radius: 6px 0 0 6px;
-}
-
-/* ===================== */
+/* ============================ */
 
 .event a {
   text-decoration: none;
