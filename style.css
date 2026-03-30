@@ -105,21 +105,27 @@ h1 {
   font-size: 12px;
   transition: 0.2s;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-  overflow: hidden; /* ← 重要 */
 }
 
 .event:hover {
   transform: translateY(-2px);
 }
 
-/* ===== 緑ライン消す本質 ===== */
+/* ===== ここが本質（これだけ変えた） ===== */
+
+/* 画像ラッパーとして扱う */
 .event img {
-  width: calc(100% + 8px);
-  margin-left: -8px;
+  width: 100%;
   border-radius: 6px;
   display: block;
+
+  /* ← これが神 */
+  padding-left: 8px;
+  background: var(--soft);
+  box-sizing: border-box;
 }
-/* ============================ */
+
+/* ================================ */
 
 .event a {
   text-decoration: none;
