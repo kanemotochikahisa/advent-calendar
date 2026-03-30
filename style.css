@@ -14,11 +14,37 @@ body {
   background: var(--bg);
 }
 
-h1 {
+/* ===== タイトル（ロゴ付き） ===== */
+.title {
   text-align: center;
-  margin-top: 30px;
+  margin-top: 40px;
   color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
 }
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 28px;
+  font-weight: bold;
+  color: var(--primary);
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.subtitle {
+  font-size: 16px;
+  color: #666;
+}
+/* ============================ */
 
 .nav {
   display: flex;
@@ -96,7 +122,7 @@ h1 {
   color: var(--primary);
 }
 
-/* イベント */
+/* イベントカード */
 .event {
   background: var(--soft);
   border-radius: 8px;
@@ -105,26 +131,24 @@ h1 {
   font-size: 12px;
   transition: 0.2s;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  overflow: hidden;
 }
 
 .event:hover {
   transform: translateY(-2px);
 }
 
-/* ===== ここが本質（これだけ変えた） ===== */
-
-/* 画像ラッパーとして扱う */
+/* ===== 緑ラインを消す（見切れなし） ===== */
 .event img {
   width: 100%;
   border-radius: 6px;
   display: block;
 
-  /* ← これが神 */
+  /* ← これが最終解 */
   padding-left: 8px;
   background: var(--soft);
   box-sizing: border-box;
 }
-
 /* ================================ */
 
 .event a {
