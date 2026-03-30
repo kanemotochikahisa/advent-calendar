@@ -1,8 +1,8 @@
 :root {
-  --primary: #008D97;   /* TOKIUM Green */
-  --secondary: #00CC99; /* Light Green */
-  --accent: #F98938;    /* Orange */
-  --text: #222229;      /* Text Black */
+  --primary: #008D97;
+  --secondary: #00CC99;
+  --accent: #F98938;
+  --text: #222229;
   --bg: #EDF7F8;
   --card: #FFFFFF;
   --soft: #EDF7F8;
@@ -99,7 +99,6 @@ h1 {
 /* イベント */
 .event {
   background: var(--soft);
-  border-left: none; /* ← 緑ライン削除 */
   border-radius: 8px;
   padding: 6px;
   margin-top: 6px;
@@ -112,15 +111,25 @@ h1 {
   transform: translateY(-2px);
 }
 
-/* ===== ここが今回の本質修正 ===== */
+/* ===== ここが今回の神修正 ===== */
 .event img {
   width: 100%;
-  height: 90px;
-  object-fit: cover;
-  object-position: right; /* ← 左の緑ラインを隠す */
   border-radius: 6px;
+  display: block;
+  position: relative;
 }
 
+/* 左をカード色で覆う */
+.event img::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px; /* ← 調整できる */
+  height: 100%;
+  background: var(--soft); /* ← カード色 */
+  border-radius: 6px 0 0 6px;
+}
 /* ============================ */
 
 .event a {
