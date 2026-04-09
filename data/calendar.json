@@ -10,6 +10,16 @@
     "image": "https://res.cloudinary.com/zenn/image/upload/s--vt1tHHm8--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:70%25E4%25BB%25A3%25E3%2583%25BB%25E9%259D%259E%25E3%2582%25A8%25E3%2583%25B3%25E3%2582%25B8%25E3%2583%258B%25E3%2582%25A2%25E7%259B%25A3%25E6%259F%25BB%25E5%25BD%25B9%25E3%2581%258C3%25E9%2580%25B1%25E9%2596%2593%25E3%2581%25A7AI%25E3%2582%25A2%25E3%2582%25B7%25E3%2582%25B9%25E3%2582%25BF%25E3%2583%25B3%25E3%2583%2588%25E3%2582%2592%25E4%25BD%259C%25E3%2581%25A3%25E3%2581%259F%25E8%25A9%25B1%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:%25E6%25A0%25AA%25E5%25BC%258F%25E4%25BC%259A%25E7%25A4%25BETOKIUM%2520%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E6%259C%25AC%25E9%2583%25A8%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL3plbm4tdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL3plbm4tdXNlci11cGxvYWQvYXZhdGFyL2ZmNDdlOWE4ZDIuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACAGSGT"
   },
   {
+    "date": "2026/04/08",
+    "title": "Claude Codeのメモリに「進化」を実装した話──同じ失敗を3回したらルールに昇格する",
+    "author": "村上 雅一",
+    "type": "ZENN",
+    "status": "公開",
+    "key": "TECHBLOG-131",
+    "url": "https://zenn.dev/tokium_dev/articles/claude-code-evolutionary-memory",
+    "image": "https://res.cloudinary.com/zenn/image/upload/s--WeFFOzE6--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:Claude%2520Code%25E3%2581%25AE%25E3%2583%25A1%25E3%2583%25A2%25E3%2583%25AA%25E3%2582%25923%25E9%259A%258E%25E5%25B1%25A4%25E3%2581%25AB%25E3%2581%2597%25E3%2581%259F%25E3%2582%2589%25E3%2580%258C%25E8%25A6%259A%25E3%2581%2588%25E3%2581%25A6%25E3%2582%258B%25E3%2580%258D%25E3%2581%258C%25E3%2580%258C%25E5%25AD%25A6%25E3%2582%2593%25E3%2581%25A7%25E3%2582%258B%25E3%2580%258D%25E3%2581%25AB%25E5%25A4%2589%25E3%2582%258F%25E3%2581%25A3%25E3%2581%259F%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:%25E3%2581%25BE%25E3%2581%25A3%25E3%2581%2595%25E3%2582%2593%2520%257C%2520TOKIUM%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL3plbm4tdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL3plbm4tdXNlci11cGxvYWQvYXZhdGFyL2ZkYjk0YjRiMmYuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACAGSGT"
+  },
+  {
     "date": "2026/04/06",
     "title": "SOLIDやクリーンアーキテクチャの前に「入力・処理・出力」を分けよう",
     "author": "井上 智敬",
@@ -250,6 +260,16 @@
     "image": "https://res.cloudinary.com/zenn/image/upload/s--VtyNzuM4--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:%25E3%2580%258C%25E8%2589%25AF%25E3%2581%258F%25E3%2581%25AA%25E3%2581%25A3%25E3%2581%259F%25E6%25B0%2597%25E3%2581%258C%25E3%2581%2599%25E3%2582%258B%25E3%2580%258D%25E3%2582%2592%25E6%2595%25B0%25E5%2580%25A4%25E5%258C%2596%25E3%2581%2599%25E3%2582%258B%2520%25E2%2594%2580%25E2%2594%2580%2520AI%25E3%2583%2581%25E3%2583%25A3%25E3%2583%2583%25E3%2583%2588%25E3%2583%259C%25E3%2583%2583%25E3%2583%2588%25E3%2581%25AE%25E5%259B%259E%25E7%25AD%2594%25E5%2593%2581%25E8%25B3%25AA%25E3%2581%25AE%25E6%25B8%25AC%25E3%2582%258A%25E6%2596%25B9%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:yooom%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL3plbm4tdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL3plbm4tdXNlci11cGxvYWQvYXZhdGFyL2QwZjIxMzU1NGYuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACAGSGT"
   },
   {
+    "date": "2026/03/27",
+    "title": "cc-sddを仕様駆動じゃないけど使ってみたら認知負荷から解放された",
+    "author": "木村 陸人",
+    "type": "ZENN",
+    "status": "公開",
+    "key": "TECHBLOG-92",
+    "url": "https://zenn.dev/tokium_dev/articles/cc-sdd-without-sdd",
+    "image": "https://res.cloudinary.com/zenn/image/upload/s--VYCVWARo--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:cc-sdd%25E3%2582%2592%25E4%25BB%2595%25E6%25A7%2598%25E9%25A7%2586%25E5%258B%2595%25E3%2581%2598%25E3%2582%2583%25E3%2581%25AA%25E3%2581%2584%25E3%2581%2591%25E3%2581%25A9%25E4%25BD%25BF%25E3%2581%25A3%25E3%2581%25A6%25E3%2581%25BF%25E3%2581%259F%25E3%2582%2589%25E8%25AA%258D%25E7%259F%25A5%25E8%25B2%25A0%25E8%258D%25B7%25E3%2581%258B%25E3%2582%2589%25E8%25A7%25A3%25E6%2594%25BE%25E3%2581%2595%25E3%2582%258C%25E3%2581%259F%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:kr%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL3plbm4tdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSUtWZEVOVnE1TG5iNHJ1MW9EYlNfT0hjTVQ4Tm80UmFmV2pZU25kSFpZc1FSQTdMND1zMjUwLWM=%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACAGSGT"
+  },
+  {
     "date": "2026/02/13",
     "title": "知見を「掛け算」に変えるコンテキスト設計——PdMがClaude Codeに施した「仕込み」の技術",
     "author": "石井 洋平",
@@ -358,6 +378,16 @@
     "key": "TECHBLOG-81",
     "url": "https://zenn.dev/tokium_dev/articles/63db4f3f7b2e7b",
     "image": "https://res.cloudinary.com/zenn/image/upload/s--sEgdtSWL--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:%25E9%2580%259F%25E3%2581%258F%25E5%2587%25BA%25E3%2581%2597%25E3%2581%25A6%25E3%2580%2581%25E9%2580%259F%25E3%2581%258F%25E6%25BD%25B0%25E3%2581%2599%25E2%2580%2594%25E2%2580%2594AI%25E3%2582%25A8%25E3%2583%25BC%25E3%2582%25B8%25E3%2582%25A7%25E3%2583%25B3%25E3%2583%2588%25E9%2596%258B%25E7%2599%25BA%25E3%2581%25A7PdM%25E3%2581%258C%25E5%25AD%25A6%25E3%2582%2593%25E3%2581%25A0%25E3%2581%2593%25E3%2581%25A8%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:%25E3%2581%25BE%25E3%2581%25A3%25E3%2581%2595%25E3%2582%2593%2520%257C%2520TOKIUM%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL3plbm4tdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL3plbm4tdXNlci11cGxvYWQvYXZhdGFyL2ZkYjk0YjRiMmYuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACAGSGT"
+  },
+  {
+    "date": "2026/04/03",
+    "title": "PjMはPLを、PdMはBSを作っている――会計の目で見るプロダクト開発",
+    "author": "村上 雅一",
+    "type": "ZENN",
+    "status": "公開",
+    "key": "TECHBLOG-80",
+    "url": "https://zenn.dev/tokium_dev/articles/524ac5889e442e",
+    "image": "https://res.cloudinary.com/zenn/image/upload/s--10jU_3EC--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:PjM%25E3%2581%25A8PdM%25E3%2581%25A7%25E3%2581%2599%25E3%2582%258C%25E9%2581%2595%25E3%2581%25A3%25E3%2581%25A6%25E3%2581%2584%25E3%2582%258B%25E4%25BA%25BA%25E3%2581%259F%25E3%2581%25A1%25E3%2581%25B8%25E3%2580%2582%25E3%2581%258A%25E4%25BA%2592%25E3%2581%2584%25E3%2581%258C%25E3%2580%258CPL%25E3%2580%258D%25E3%2581%25A8%25E3%2580%258CBS%25E3%2580%258D%25E3%2581%25A8%25E3%2581%2584%25E3%2581%2586%25E5%2588%25A5%25E3%2581%25AE%25E6%2599%25AF%25E8%2589%25B2%25E3%2582%2592%25E8%25A6%258B%25E3%2581%25A6%25E3%2581%2584%25E3%2582%258B%25E3%2581%2593%25E3%2581%25A8%25E3%2581%25AB%25E6%25B0%2597%25E3%2581%25A5%25E3%2581%2584%25E3%2581%25A6%25E3%2581%25BB%25E3%2581%2597%25E3%2581%2584%25E3%2580%2582%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:%25E3%2581%25BE%25E3%2581%25A3%25E3%2581%2595%25E3%2582%2593%2520%257C%2520TOKIUM%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL3plbm4tdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL3plbm4tdXNlci11cGxvYWQvYXZhdGFyL2ZkYjk0YjRiMmYuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACAGSGT"
   },
   {
     "date": "2026/01/28",
@@ -900,16 +930,6 @@
     "image": "https://d2l930y2yx77uc.cloudfront.net/production/social_images/0787d8254422a4ebea65153e368e98bd6909a0de.png"
   },
   {
-    "date": "2026/02/06",
-    "title": "インタビュー記事",
-    "author": "佐藤 秀輔",
-    "type": "NOTE",
-    "status": "公開",
-    "key": "NOTE-43",
-    "url": "https://note.tokium.jp/n/n80f8b3c94350",
-    "image": "https://assets.st-note.com/production/uploads/images/238331986/rectangle_large_type_2_d910d2b0ba69205d07f392bc5575e185.png?fit=bounds&quality=85&width=1280"
-  },
-  {
     "date": "2026/01/05",
     "title": "2026年のTOKIUMプロダクト本部は発信・広報を頑張ります！",
     "author": "坂上 晴信",
@@ -947,7 +967,7 @@
     "status": "公開",
     "key": "NOTE-38",
     "url": "https://note.tokium.jp/n/n5fce7bf1cdc9",
-    "image": ""
+    "image": "https://assets.st-note.com/production/uploads/images/238312144/rectangle_large_type_2_3feec257da53620c138829e6eee0e7a3.png?fit=bounds&quality=85&width=1280"
   },
   {
     "date": "2025/12/17",
@@ -1060,6 +1080,16 @@
     "image": "https://assets.st-note.com/production/uploads/images/205528726/rectangle_large_type_2_89308bac3269da68730d33ff5a36f15f.jpeg?fit=bounds&quality=85&width=1280"
   },
   {
+    "date": "2026/03/26",
+    "title": "AI駆動開発のポテンシャルを引き出す「モジュラ・モノリス」の実装アプローチ",
+    "author": "阪下 駿",
+    "type": "TALK",
+    "status": "完了",
+    "key": "TALK-63",
+    "url": "https://speakerdeck.com/urugus/fei-da-hua-sururailshenochu-fang-jian-aiqu-dong-kai-fa-nopotensiyaruwoyin-chu-su",
+    "image": "https://files.speakerdeck.com/presentations/adcc360a79fb49458e3617ab5096c332/slide_0.jpg?38860045"
+  },
+  {
     "date": "2026/03/18",
     "title": "LLMアプリケーションの技術的負債を解消しよう “ロジックの液状化” の正体と対策",
     "author": "井上 智敬",
@@ -1158,6 +1188,16 @@
     "key": "TALK-49",
     "url": "https://docs.google.com/presentation/d/1Z9etDRRWF1sKDKPuPlRRNpHtp3NipvoDenor7Dm7XXY/edit?usp=sharing",
     "image": ""
+  },
+  {
+    "date": "2026/01/19",
+    "title": "プロダクトマネジメントにおける調整",
+    "author": "村上 雅一",
+    "type": "TALK",
+    "status": "完了",
+    "key": "TALK-48",
+    "url": "https://speakerdeck.com/muramasa1010/purodakutomanezimentoniokerudiao-zheng",
+    "image": "https://files.speakerdeck.com/presentations/358540b740ee475fabbc00dace3f848f/slide_0.jpg?39020085"
   },
   {
     "date": "2026/01/15",
