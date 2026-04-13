@@ -10,6 +10,16 @@
     "image": "https://res.cloudinary.com/zenn/image/upload/s--vt1tHHm8--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:70%25E4%25BB%25A3%25E3%2583%25BB%25E9%259D%259E%25E3%2582%25A8%25E3%2583%25B3%25E3%2582%25B8%25E3%2583%258B%25E3%2582%25A2%25E7%259B%25A3%25E6%259F%25BB%25E5%25BD%25B9%25E3%2581%258C3%25E9%2580%25B1%25E9%2596%2593%25E3%2581%25A7AI%25E3%2582%25A2%25E3%2582%25B7%25E3%2582%25B9%25E3%2582%25BF%25E3%2583%25B3%25E3%2583%2588%25E3%2582%2592%25E4%25BD%259C%25E3%2581%25A3%25E3%2581%259F%25E8%25A9%25B1%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:%25E6%25A0%25AA%25E5%25BC%258F%25E4%25BC%259A%25E7%25A4%25BETOKIUM%2520%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E6%259C%25AC%25E9%2583%25A8%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL3plbm4tdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL3plbm4tdXNlci11cGxvYWQvYXZhdGFyL2ZmNDdlOWE4ZDIuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACAGSGT"
   },
   {
+    "date": "2026/04/13",
+    "title": "AIにレガシーシステムのドキュメントを書かせる技術",
+    "author": "井上 智敬",
+    "type": "ZENN",
+    "status": "執筆中",
+    "key": "TECHBLOG-133",
+    "url": "https://zenn.dev/tokium_dev/articles/a8e7af3930a473",
+    "image": ""
+  },
+  {
     "date": "2026/04/09",
     "title": "AI時代も変わらずデータをどう流入させるかの重要さは変わらない",
     "author": "村上 雅一",
@@ -168,6 +178,16 @@
     "key": "TECHBLOG-111",
     "url": "https://zenn.dev/tokium_dev/articles/63d407a40fd0bf",
     "image": "https://res.cloudinary.com/zenn/image/upload/s--ZBRvP8Hz--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:Mastra%2520%25E3%2581%25A7%2520%25E3%2583%25AD%25E3%2583%25BC%25E3%2582%25AB%25E3%2583%25ABLLM%2520%25E3%2582%2592%25E3%2582%25B5%25E3%2582%25AF%25E3%2583%2583%25E3%2581%25A8%25E5%258B%2595%25E3%2581%258B%25E3%2581%2599%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:tomoyukiinoue%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL3plbm4tdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSTRxTEJYVmFHWUF1NW82TTJjRXRKeWdSRHhEZTdzZTRtOXhVYUpjQklIclc4PXM5Ni1j%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACAGSGT"
+  },
+  {
+    "date": "2026/04/10",
+    "title": "Claude Codeで「新機能のシステムテスト自動実行」を実現した話 ── 新人テスターを育てるように、AIにナレッジを蓄積させる",
+    "author": "富田 秀作",
+    "type": "ZENN",
+    "status": "公開",
+    "key": "TECHBLOG-110",
+    "url": "https://zenn.dev/tokium_dev/articles/8afaebc087440a",
+    "image": "https://res.cloudinary.com/zenn/image/upload/s--Us72SLxt--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:Claude%2520Code%25E3%2581%25A7%25E3%2580%258C%25E6%2596%25B0%25E6%25A9%259F%25E8%2583%25BD%25E3%2581%25AE%25E3%2582%25B7%25E3%2582%25B9%25E3%2583%2586%25E3%2583%25A0%25E3%2583%2586%25E3%2582%25B9%25E3%2583%2588%25E8%2587%25AA%25E5%258B%2595%25E5%25AE%259F%25E8%25A1%258C%25E3%2580%258D%25E3%2582%2592%25E5%25AE%259F%25E7%258F%25BE%25E3%2581%2597%25E3%2581%259F%25E8%25A9%25B1%2520%25E2%2594%2580%25E2%2594%2580%2520%25E6%2596%25B0%25E4%25BA%25BA%25E3%2583%2586%25E3%2582%25B9%25E3%2582%25BF%25E3%2583%25BC%25E3%2582%2592%25E8%2582%25B2%25E3%2581%25A6%25E3%2582%258B%25E3%2582%2588%25E3%2581%2586%25E3%2581%25AB%25E3%2580%2581AI%25E3%2581%25AB%25E3%2583%258A...%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:%25E3%2581%25A8%25E3%2581%25BF%25E3%2581%2597%25E3%2582%2585%25E3%2581%2586%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL3plbm4tdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jS0pVSHVEX3lkeXpuRFhyX2w1Ry1wd0k5ek5oMVFiUk9XME5vZVlZUXotRzh3Zj1zMjUwLWM=%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACAGSGT"
   },
   {
     "date": "2026/03/09",
@@ -447,7 +467,7 @@
     "status": "公開",
     "key": "TECHBLOG-73",
     "url": "https://zenn.dev/tokium_dev/articles/xperia-1-mark2-lineageos-revival",
-    "image": ""
+    "image": "https://res.cloudinary.com/zenn/image/upload/s--SktPlrdo--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:Xperia%25201%2520%25E2%2585%25A1%2520%25E3%2581%25ABLineageOS%25E3%2582%2592%25E7%2584%25BC%25E3%2581%2584%25E3%2581%25A6%25E3%2582%25BD%25E3%2582%25B7%25E3%2583%25A3%25E3%2582%25B2%25E5%25B0%2582%25E7%2594%25A8%25E7%25AB%25AF%25E6%259C%25AB%25E3%2581%25A8%25E3%2581%2597%25E3%2581%25A6%25E3%2581%25AE%25E4%25BD%2599%25E7%2594%259F%25E3%2582%2592%25E4%25B8%258E%25E3%2581%2588%25E3%2582%258B%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:%25E3%2581%25AB%25E3%2581%2597%25E3%2581%2593%25E3%2582%258A%25E3%2581%2595%25E3%2581%25B6%25E3%2582%258D%25E3%2580%259C%2520%257C%2520TOKIUM%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL3plbm4tdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EtL0FPaDE0R2dtNi16WWpYZEZUT0w4V0R2ZzhndjdSNWgxLTNXSnc4dXJSY05Ld1E9czI1MC1j%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACAGSGT"
   },
   {
     "date": "2026/01/13",
