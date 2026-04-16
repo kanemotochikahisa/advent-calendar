@@ -1,5 +1,15 @@
 [
   {
+    "date": "2026/04/16",
+    "title": "QAチームのナレッジを「ハーネス」にする — Claude Codeでテスト設計を自動化した話",
+    "author": "西田 泰明",
+    "type": "ZENN",
+    "status": "To Do",
+    "key": "TECHBLOG-147",
+    "url": "https://zenn.dev/tokium_dev/articles/705334e2f6ac10",
+    "image": ""
+  },
+  {
     "date": "2026/04/14",
     "title": "Playwright vs Vibium 実測編 — Claude Code × MCP で同じテストケースを実行して比較した話",
     "author": "西田 泰明",
