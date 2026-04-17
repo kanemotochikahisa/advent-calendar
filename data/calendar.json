@@ -4,10 +4,10 @@
     "title": "QAチームのナレッジを「ハーネス」にする — Claude Codeでテスト設計を自動化した話",
     "author": "西田 泰明",
     "type": "ZENN",
-    "status": "To Do",
+    "status": "公開",
     "key": "TECHBLOG-147",
     "url": "https://zenn.dev/tokium_dev/articles/705334e2f6ac10",
-    "image": ""
+    "image": "https://res.cloudinary.com/zenn/image/upload/s--T0DXfOCP--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:QA%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%25E3%2581%25AE%25E3%2583%258A%25E3%2583%25AC%25E3%2583%2583%25E3%2582%25B8%25E3%2582%2592%25E3%2580%258C%25E3%2583%258F%25E3%2583%25BC%25E3%2583%258D%25E3%2582%25B9%25E3%2580%258D%25E3%2581%25AB%25E3%2581%2599%25E3%2582%258B%2520%25E2%2580%2594%2520Claude%2520Code%25E3%2581%25A7%25E3%2583%2586%25E3%2582%25B9%25E3%2583%2588%25E8%25A8%25AD%25E8%25A8%2588%25E3%2582%2592%25E8%2587%25AA%25E5%258B%2595%25E5%258C%2596%25E3%2581%2597%25E3%2581%259F%25E8%25A9%25B1%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:ynis_qa%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL3plbm4tdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdG9yYWdlLmdvb2dsZWFwaXMuY29tL3plbm4tdXNlci11cGxvYWQvYXZhdGFyLzM1ZGRkZGFkMWYuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACAGSGT"
   },
   {
     "date": "2026/04/14",
@@ -1130,6 +1130,26 @@
     "image": "https://assets.st-note.com/production/uploads/images/205528726/rectangle_large_type_2_89308bac3269da68730d33ff5a36f15f.jpeg?fit=bounds&quality=85&width=1280"
   },
   {
+    "date": "2026/04/15",
+    "title": "もし大学1年に戻れるならこうやって学び直す",
+    "author": "木村 陸人",
+    "type": "TALK",
+    "status": "完了",
+    "key": "TALK-66",
+    "url": "https://speakerdeck.com/krkrkrrk/mosida-xue-1nian-nili-rerunara-kouyatutexue-bizhi-su",
+    "image": "https://files.speakerdeck.com/presentations/f38a183544ec4d99a3469ce3009428b2/slide_0.jpg?39115221"
+  },
+  {
+    "date": "2026/04/15",
+    "title": "完璧主義からの脱却  〜「作らないエンジニア」が見つけた、自力で解決する力〜  ",
+    "author": "原田 瑚子",
+    "type": "TALK",
+    "status": "完了",
+    "key": "TALK-65",
+    "url": "https://speakerdeck.com/haradakoko/wan-bi-zhu-yi-karanotuo-que-zuo-ranaienzinia-gajian-tuketa-zi-li-dejie-jue-suruli",
+    "image": "https://files.speakerdeck.com/presentations/6cd238dee9e94f979747fd331ffe19b6/slide_0.jpg?39113995"
+  },
+  {
     "date": "2026/03/26",
     "title": "AI駆動開発のポテンシャルを引き出す「モジュラ・モノリス」の実装アプローチ",
     "author": "阪下 駿",
@@ -1152,7 +1172,7 @@
   {
     "date": "2026/03/19",
     "title": "SaaSの操作主体は人間からAIへ - 経理AIエージェントが目指す深い自動化",
-    "author": "",
+    "author": "西平 基志",
     "type": "TALK",
     "status": "完了",
     "key": "TALK-59",
@@ -1186,8 +1206,8 @@
     "type": "TALK",
     "status": "完了",
     "key": "TALK-56",
-    "url": "https://github.com/TOKIUM/slide/blob/99e2536795761ad367c6fe7251da78570f5aae9d/slides/20260217-tsukuba.pdf",
-    "image": "https://github.githubassets.com/assets/github-logo-55c5b9a1fe52.png"
+    "url": "https://speakerdeck.com/krkrkrrk/kodohashu-kanakuteiikamosirenai-demoli-jie-dakehayamenaidehosii",
+    "image": "https://files.speakerdeck.com/presentations/491cd808abab4497b4c3c3e63122f73e/slide_0.jpg?39115205"
   },
   {
     "date": "2026/02/26",
@@ -1206,8 +1226,8 @@
     "type": "TALK",
     "status": "完了",
     "key": "TALK-53",
-    "url": "https://github.com/TOKIUM/slide/blob/main/slides/20260217-tsukuba-lt/index.md",
-    "image": "https://github.githubassets.com/assets/github-logo-55c5b9a1fe52.png"
+    "url": "https://speakerdeck.com/fum1ple/20260217-tsukuba-lt",
+    "image": "https://files.speakerdeck.com/presentations/da36ef0f32e74ea7a746ea0bc83b0e59/slide_0.jpg?39113015"
   },
   {
     "date": "2026/02/25",
