@@ -1,10 +1,20 @@
 [
   {
+    "date": "2026/04/17",
+    "title": "哲学使ってプロダクト開発を語ってみた——サルトルからガブリエルまで",
+    "author": "村上 雅一",
+    "type": "ZENN",
+    "status": "公開",
+    "key": "TECHBLOG-152",
+    "url": "https://zenn.dev/tokium_dev/articles/philosophy-of-product-dev",
+    "image": "https://res.cloudinary.com/zenn/image/upload/s--A8QCUSkZ--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:%25E5%2593%25B2%25E5%25AD%25A6%25E4%25BD%25BF%25E3%2581%25A3%25E3%2581%25A6%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E9%2596%258B%25E7%2599%25BA%25E3%2582%2592%25E8%25AA%259E%25E3%2581%25A3%25E3%2581%25A6%25E3%2581%25BF%25E3%2581%259F%25E2%2580%2594%25E2%2580%2594%25E3%2582%25B5%25E3%2583%25AB%25E3%2583%2588%25E3%2583%25AB%25E3%2581%258B%25E3%2582%2589%25E3%2582%25AC%25E3%2583%2596%25E3%2583%25AA%25E3%2582%25A8%25E3%2583%25AB%25E3%2581%25BE%25E3%2581%25A7%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:%25E3%2581%25BE%25E3%2581%25A3%25E3%2581%2595%25E3%2582%2593%2520%257C%2520TOKIUM%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyL2ZkYjk0YjRiMmYuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACAGSGT"
+  },
+  {
     "date": "2026/04/20",
     "title": "仕様がわからなくてもテストをかける rspec-undefined を作ったよ",
     "author": "井上 智敬",
     "type": "ZENN",
-    "status": "公開前",
+    "status": "公開",
     "key": "TECHBLOG-149",
     "url": "https://zenn.dev/tokium_dev/articles/0b426c6d002e3e",
     "image": "https://res.cloudinary.com/zenn/image/upload/s--XxnCcgl0--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:%25E4%25BB%2595%25E6%25A7%2598%25E3%2581%258C%25E3%2582%258F%25E3%2581%258B%25E3%2582%2589%25E3%2581%25AA%25E3%2581%258F%25E3%2581%25A6%25E3%2582%2582%25E3%2583%2586%25E3%2582%25B9%25E3%2583%2588%25E3%2582%2592%25E3%2581%258B%25E3%2581%2591%25E3%2582%258B%2520rspec-undefined%2520%25E3%2582%2592%25E4%25BD%259C%25E3%2581%25A3%25E3%2581%259F%25E3%2582%2588%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:tomoyukiinoue%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSTRxTEJYVmFHWUF1NW82TTJjRXRKeWdSRHhEZTdzZTRtOXhVYUpjQklIclc4PXM5Ni1j%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACAGSGT"
@@ -460,13 +470,13 @@
     "image": "https://res.cloudinary.com/zenn/image/upload/s--hAnHOhqw--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:PjM%25E3%2581%25AE%25E6%259C%25AC%25E8%25B3%25AA%25E3%2581%25AF%25E3%2580%258C%25E4%25BA%258B%25E5%25AE%259F%25E3%2580%258D%25E3%2581%25AE%25E5%258F%25AF%25E8%25A6%2596%25E5%258C%2596%25E3%2580%2581PdM%25E3%2581%25AE%25E6%259C%25AC%25E8%25B3%25AA%25E3%2581%25AF%25E3%2580%258C%25E6%2584%258F%25E6%2580%259D%25E3%2580%258D%25E3%2581%25AE%25E5%258F%25AF%25E8%25A6%2596%25E5%258C%2596%25E3%2580%2582%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:%25E3%2581%25BE%25E3%2581%25A3%25E3%2581%2595%25E3%2582%2593%2520%257C%2520TOKIUM%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyL2ZkYjk0YjRiMmYuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACAGSGT"
   },
   {
-    "date": "2026/04/20",
-    "title": "「涼宮ハルヒの憂鬱」と「氷菓」の主人公たちが動く部活駆動エージェント --『薄氷（うすらひ）』をつくってみた",
+    "date": "2026/04/21",
+    "title": "キャラクターとロールの2軸で表現する『部活駆動開発』を考えてみた",
     "author": "阿野 庸太郎",
     "type": "ZENN",
     "status": "執筆中",
     "key": "TECHBLOG-78",
-    "url": "https://zenn.dev/articles/e5f208f7b51fe6/edit",
+    "url": "https://zenn.dev/tokium_dev/articles/1d9370794363c8",
     "image": ""
   },
   {
