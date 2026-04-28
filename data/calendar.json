@@ -40,6 +40,16 @@
     "image": "https://res.cloudinary.com/zenn/image/upload/s--cQSLc22J--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:QA%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%25E3%2581%25AE%25E3%2583%258A%25E3%2583%25AC%25E3%2583%2583%25E3%2582%25B8%25E3%2582%2592%25E3%2580%258C%25E3%2583%258F%25E3%2583%25BC%25E3%2583%258D%25E3%2582%25B9%25E3%2580%258D%25E3%2581%25AB%25E3%2581%2599%25E3%2582%258B%2520%25E2%2580%2594%2520Claude%2520Code%25E3%2581%25A7%25E3%2583%2586%25E3%2582%25B9%25E3%2583%2588%25E8%25A8%25AD%25E8%25A8%2588%25E3%2582%2592%25E8%2587%25AA%25E5%258B%2595%25E5%258C%2596%25E3%2581%2597%25E3%2581%259F%25E8%25A9%25B1%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:ynis_qa%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzM1ZGRkZGFkMWYuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACAGSGT"
   },
   {
+    "date": "2026/04/28",
+    "title": "\"CLOG segment xx does not exist\"とは何なのか",
+    "author": "對馬 克",
+    "type": "ZENN",
+    "status": "公開前",
+    "key": "TECHBLOG-146",
+    "url": "https://zenn.dev/tokium_dev/articles/aurora-postgresql-clog-error",
+    "image": "https://res.cloudinary.com/zenn/image/upload/s--cPgGENMb--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:%2522CLOG%2520segment%2520xx%2520does%2520not%2520exist%2522%25E3%2581%25A8%25E3%2581%25AF%25E4%25BD%2595%25E3%2581%25AA%25E3%2581%25AE%25E3%2581%258B%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:tsushima_m%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUxtNXd1MTRmMkxMVHFIQ2g1OVNkLW5NWVJHRENpMlNmNWdzZ2RHYUhGdz1zOTYtYw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACAGSGT"
+  },
+  {
     "date": "2026/04/14",
     "title": "Playwright vs Vibium 実測編 — Claude Code × MCP で同じテストケースを実行して比較した話",
     "author": "西田 泰明",
@@ -1208,6 +1218,16 @@
     "key": "TALK-63",
     "url": "https://speakerdeck.com/urugus/fei-da-hua-sururailshenochu-fang-jian-aiqu-dong-kai-fa-nopotensiyaruwoyin-chu-su",
     "image": "https://files.speakerdeck.com/presentations/adcc360a79fb49458e3617ab5096c332/slide_0.jpg?38860045"
+  },
+  {
+    "date": "2026/03/21",
+    "title": "25卒をAIネイティブ世代として育てた1年間：実践を通じて見えた変化と可能性",
+    "author": "西平 基志",
+    "type": "TALK",
+    "status": "完了",
+    "key": "TALK-61",
+    "url": "https://speakerdeck.com/nishihira/25zu-woaineiteihushi-dai-tositeyu-teta1nian-jian-noshi-jian-toke-neng-xing",
+    "image": "https://files.speakerdeck.com/presentations/78d0ad60e1044c598233bea36ef1c2ae/slide_0.jpg?38849979"
   },
   {
     "date": "2026/03/18",
