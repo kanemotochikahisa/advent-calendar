@@ -17,7 +17,7 @@
     "status": "公開",
     "key": "TECHBLOG-160",
     "url": "https://zenn.dev/tokium_dev/articles/ca6f30192f6379",
-    "image": "https://res.cloudinary.com/zenn/image/upload/s--l8sXEJ5n--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:Claude%2520Code%2520%25E3%2581%25AB%25E4%25BB%2595%25E4%25BA%258B%25E3%2582%2592%25E8%25AD%25B2%25E3%2581%25A3%25E3%2581%259F%25E6%2597%25A5%25E2%2580%2594%25E2%2580%2594%25E6%25AE%258B%25E3%2581%25A3%25E3%2581%259F%25E3%2581%25AE%25E3%2581%25AF%25E3%2580%258C%25E5%2588%25A4%25E6%2596%25AD%25E3%2580%258D%25E3%2581%25A8%25E3%2580%258C%25E8%25B2%25AC%25E4%25BB%25BB%25E3%2580%258D%25E3%2581%25A0%25E3%2581%25A3%25E3%2581%259F%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:Kokoichi%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzVkNjg4YzM2Y2MuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACAGSGT"
+    "image": ""
   },
   {
     "date": "2026/05/11",
@@ -128,6 +128,16 @@
     "key": "TECHBLOG-142",
     "url": "https://zenn.dev/tokium_dev/articles/techbookfest20-making-of",
     "image": "https://res.cloudinary.com/zenn/image/upload/s--sQl_drjz--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:%25E6%258A%2580%25E8%25A1%2593%25E5%2590%258C%25E4%25BA%25BA%25E8%25AA%258C%25E3%2582%2592%25E4%25BD%259C%25E3%2582%258B%25E6%258A%2580%25E8%25A1%2593%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:o8n%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzEwZjI3YzQ1NjAuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACAGSGT"
+  },
+  {
+    "date": "2026/05/14",
+    "title": "現場のシステムユーザーにAI機能開発を渡したら、エンジニアとの専門性の境界が動き出した話",
+    "author": "戸松 一貴",
+    "type": "ZENN",
+    "status": "公開",
+    "key": "TECHBLOG-140",
+    "url": "https://zenn.dev/tokium_dev/articles/ops-self-development",
+    "image": "https://res.cloudinary.com/zenn/image/upload/s--C4lsiwWY--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:%25E7%258F%25BE%25E5%25A0%25B4%25E3%2581%25AE%25E3%2582%25B7%25E3%2582%25B9%25E3%2583%2586%25E3%2583%25A0%25E3%2583%25A6%25E3%2583%25BC%25E3%2582%25B6%25E3%2583%25BC%25E3%2581%25ABAI%25E6%25A9%259F%25E8%2583%25BD%25E9%2596%258B%25E7%2599%25BA%25E3%2582%2592%25E6%25B8%25A1%25E3%2581%2597%25E3%2581%259F%25E3%2582%2589%25E3%2580%2581%25E3%2582%25A8%25E3%2583%25B3%25E3%2582%25B8%25E3%2583%258B%25E3%2582%25A2%25E3%2581%25A8%25E3%2581%25AE%25E5%25B0%2582%25E9%2596%2580%25E6%2580%25A7%25E3%2581%25AE%25E5%25A2%2583%25E7%2595%258C%25E3%2581%258C%25E5%258B%2595%25E3%2581%258D%25E5%2587%25BA%25E3%2581%2597%25E3%2581%259F%25E8%25A9%25B1%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:kztm%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EtL0FPaDE0R2hMNVVyNm9KQi1Gd3pteVJfV3RSOGVMRjNfLXVwREo0Q2ZDcUFQPXM5Ni1j%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACAGSGT"
   },
   {
     "date": "2026/05/11",
@@ -1270,6 +1280,16 @@
     "image": "https://assets.st-note.com/production/uploads/images/205528726/rectangle_large_type_2_89308bac3269da68730d33ff5a36f15f.jpeg?fit=bounds&quality=85&width=1280"
   },
   {
+    "date": "2026/05/13",
+    "title": "SaaSプロダクトとAIの共存（入門編） 〜既存プロダクトへのAI組み込み、はじめの一歩〜",
+    "author": "西川 真澄",
+    "type": "TALK",
+    "status": "完了",
+    "key": "TALK-77",
+    "url": "https://speakerdeck.com/mnishikawa/saaspurodakutotoainogong-cun-ru-men-bian-ji-cun-purodakutohenoaizu-miip-mi-hazimeno-bu",
+    "image": "https://files.speakerdeck.com/presentations/e3337ac8f83744a48a9f00760da3219f/slide_0.jpg?39385374"
+  },
+  {
     "date": "2026/05/12",
     "title": "「リーダーは向いてない」と思っていた自分が、 新卒一年目からリーダーを任されて学んだこと",
     "author": "",
@@ -1288,6 +1308,16 @@
     "key": "TALK-74",
     "url": "https://speakerdeck.com/subroh0508/aiwoxian-kusitainara-mazuharen-jian-nogai-shan-rupukara",
     "image": "https://files.speakerdeck.com/presentations/cf454722b0714917a2e0cb1346da2b15/slide_0.jpg?39373326"
+  },
+  {
+    "date": "2026/04/23",
+    "title": "gijiby - Rubyベースとした非エンジニア向けプログラミング支援ライブラリを作ってみた",
+    "author": "橘高 俊",
+    "type": "TALK",
+    "status": "完了",
+    "key": "TALK-70",
+    "url": "https://speakerdeck.com/staka121/gijiby-ruby-kaigi-2026-lt",
+    "image": "https://files.speakerdeck.com/presentations/c4e384a68878452f8509d50db0523608/slide_0.jpg?39385359"
   },
   {
     "date": "2026/04/22",
