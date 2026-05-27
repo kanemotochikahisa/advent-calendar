@@ -184,7 +184,7 @@
     "title": "Bonsai 関連で何か書く！",
     "author": "村瀬 晃",
     "type": "ZENN",
-    "status": "執筆中",
+    "status": "公開",
     "key": "TECHBLOG-134",
     "url": "https://zenn.dev/articles/exam-bonsai-caesar",
     "image": "https://static.zenn.studio/images/logo-only-dark.png"
@@ -1450,6 +1450,16 @@
     "image": "https://files.speakerdeck.com/presentations/adcc360a79fb49458e3617ab5096c332/slide_0.jpg?38860045"
   },
   {
+    "date": "2026/03/28",
+    "title": "高専キャリア2026 春の全国大会 スポンサーLT",
+    "author": "坂上 晴信",
+    "type": "TALK",
+    "status": "完了",
+    "key": "TALK-62",
+    "url": "https://docs.google.com/presentation/d/1DuJalJbf4NUySl_fHUCGeS_gnrLICjUr/edit?usp=sharing&ouid=106468131952776278151&rtpof=true&sd=true",
+    "image": ""
+  },
+  {
     "date": "2026/03/21",
     "title": "25卒をAIネイティブ世代として育てた1年間：実践を通じて見えた変化と可能性",
     "author": "西平 基志",
@@ -1568,6 +1578,16 @@
     "key": "TALK-48",
     "url": "https://speakerdeck.com/muramasa1010/purodakutomanezimentoniokerudiao-zheng",
     "image": "https://files.speakerdeck.com/presentations/358540b740ee475fabbc00dace3f848f/slide_0.jpg?39020085"
+  },
+  {
+    "date": "2026/05/21",
+    "title": "新卒1年目が社内AIコンペで優勝した話",
+    "author": "西片 文哉",
+    "type": "TALK",
+    "status": "完了",
+    "key": "TALK-47",
+    "url": "https://speakerdeck.com/fum1ple/xin-zu-1nian-mu-gashe-nei-aikonpedeyou-sheng-sita",
+    "image": "https://files.speakerdeck.com/presentations/a68ac4e2247a4621bad69b5c9a52b974/slide_0.jpg?39512896"
   },
   {
     "date": "2026/01/15",
@@ -1790,6 +1810,26 @@
     "image": ""
   },
   {
+    "date": "2025/10/30",
+    "title": "Mastraを使ってAIエージェントを作ろう！ - 応用編 -",
+    "author": "坂上 晴信",
+    "type": "TALK",
+    "status": "完了",
+    "key": "TALK-22",
+    "url": "https://zenn.dev/tokium_dev/articles/mastra-ai-agent-handson-advanced",
+    "image": "https://res.cloudinary.com/zenn/image/upload/s--T6X5qr-5--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:Mastra%25E3%2582%2592%25E4%25BD%25BF%25E3%2581%25A3%25E3%2581%25A6AI%25E3%2582%25A8%25E3%2583%25BC%25E3%2582%25B8%25E3%2582%25A7%25E3%2583%25B3%25E3%2583%2588%25E3%2582%2592%25E4%25BD%259C%25E3%2582%258D%25E3%2581%2586%25EF%25BC%2581%2520-%2520%25E5%25BF%259C%25E7%2594%25A8%25E7%25B7%25A8%2520-%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:%25E3%2581%25AB%25E3%2581%2597%25E3%2581%2593%25E3%2582%258A%25E3%2581%2595%25E3%2581%25B6%25E3%2582%258D%25E3%2580%259C%2520%257C%2520TOKIUM%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EtL0FPaDE0R2dtNi16WWpYZEZUT0w4V0R2ZzhndjdSNWgxLTNXSnc4dXJSY05Ld1E9czI1MC1j%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACAGSGT"
+  },
+  {
+    "date": "2025/10/23",
+    "title": "Mastraを使ってAIエージェントを作ろう！ - 基礎編 -",
+    "author": "坂上 晴信",
+    "type": "TALK",
+    "status": "完了",
+    "key": "TALK-21",
+    "url": "https://zenn.dev/tokium_dev/articles/mastra-ai-agent-handson-basic-1",
+    "image": "https://res.cloudinary.com/zenn/image/upload/s--T2QbLUL3--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:Mastra%25E3%2582%2592%25E4%25BD%25BF%25E3%2581%25A3%25E3%2581%25A6AI%25E3%2582%25A8%25E3%2583%25BC%25E3%2582%25B8%25E3%2582%25A7%25E3%2583%25B3%25E3%2583%2588%25E3%2582%2592%25E4%25BD%259C%25E3%2582%258D%25E3%2581%2586%25EF%25BC%2581%2520-%2520%25E5%259F%25BA%25E7%25A4%258E%25E7%25B7%25A8%25281%2529%2520-%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:%25E3%2581%25AB%25E3%2581%2597%25E3%2581%2593%25E3%2582%258A%25E3%2581%2595%25E3%2581%25B6%25E3%2582%258D%25E3%2580%259C%2520%257C%2520TOKIUM%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EtL0FPaDE0R2dtNi16WWpYZEZUT0w4V0R2ZzhndjdSNWgxLTNXSnc4dXJSY05Ld1E9czI1MC1j%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACAGSGT"
+  },
+  {
     "date": "2025/10/22",
     "title": "チャットUIが最適解とは限らない AI出張手配で気づいた本質",
     "author": "重村 優太",
@@ -1958,5 +1998,15 @@
     "key": "TALK-4",
     "url": "https://speakerdeck.com/subroh0508/mastrawojiao-etara-fei-enziniaga-an-noli-woshou-niru-reta",
     "image": "https://files.speakerdeck.com/presentations/a1b9890b007342549c6c5a299f582a36/slide_0.jpg?36802251"
+  },
+  {
+    "date": "2025/06/14",
+    "title": "蓮ノ空女学院スクールアイドルクラブとともに \"今\"を頑張り、楽しく\"変化\"と向き合う",
+    "author": "坂上 晴信",
+    "type": "TALK",
+    "status": "完了",
+    "key": "TALK-2",
+    "url": "https://docs.google.com/presentation/d/1_iZLfD1KYLNrxO8XIwmjWHkYeetlQ79B13E8es14Z7w/edit?usp=sharing",
+    "image": ""
   }
 ]
