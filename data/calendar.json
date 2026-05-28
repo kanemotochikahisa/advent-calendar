@@ -10,6 +10,16 @@
     "image": "https://res.cloudinary.com/zenn/image/upload/s--iaXNfJ0Y--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:%25E3%2582%25B9%25E3%2582%25AD%25E3%2583%25AB%25E3%2583%2595%25E3%2582%25A1%25E3%2583%25BC%25E3%2582%25B9%25E3%2583%2588%25E3%2581%25A7%25E3%2583%258F%25E3%2583%25BC%25E3%2583%258D%25E3%2582%25B9%25E3%2582%2592%25E6%25A7%258B%25E7%25AF%2589%25E3%2581%2597%25E3%2581%25A6%25E3%2581%25BF%25E3%2582%2588%25E3%2581%2586%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:tomoyukiinoue%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSTRxTEJYVmFHWUF1NW82TTJjRXRKeWdSRHhEZTdzZTRtOXhVYUpjQklIclc4PXM5Ni1j%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACAGSGT"
   },
   {
+    "date": "2026/05/22",
+    "title": "AIが速く走るほど、舵取りの1度が遠くへずれる",
+    "author": "村上 雅一",
+    "type": "ZENN",
+    "status": "公開",
+    "key": "TECHBLOG-165",
+    "url": "https://zenn.dev/tokium_dev/articles/ai-speed-needs-direction",
+    "image": "https://res.cloudinary.com/zenn/image/upload/s--i5YY44cb--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:AI%25E3%2581%258C%25E9%2580%259F%25E3%2581%258F%25E8%25B5%25B0%25E3%2582%258B%25E3%2581%25BB%25E3%2581%25A9%25E3%2580%25811%25E5%25BA%25A6%25E3%2581%25AE%25E3%2582%25BA%25E3%2583%25AC%25E3%2581%25A7%25E3%2582%25B4%25E3%2583%25BC%25E3%2583%25AB%25E3%2581%25AB%25E3%2581%259F%25E3%2581%25A9%25E3%2582%258A%25E7%259D%2580%25E3%2581%2591%25E3%2581%25AA%25E3%2581%258F%25E3%2581%25AA%25E3%2582%258B%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:%25E3%2581%25BE%25E3%2581%25A3%25E3%2581%2595%25E3%2582%2593%2520%257C%2520TOKIUM%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyL2ZkYjk0YjRiMmYuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACAGSGT"
+  },
+  {
     "date": "2026/05/15",
     "title": "pdm summitの記事",
     "author": "加藤 未央",
@@ -18,6 +28,26 @@
     "key": "TECHBLOG-164",
     "url": "https://zenn.dev/tokium_dev/articles/pdm-summit-internal-pressure",
     "image": "https://res.cloudinary.com/zenn/image/upload/s--YXg0IrFa--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:%25E3%2583%25AD%25E3%2583%25BC%25E3%2583%2589%25E3%2583%259E%25E3%2583%2583%25E3%2583%2597%25E3%2582%2592%25E6%258F%25BA%25E3%2582%2589%25E3%2581%2599%25E5%2586%2585%25E5%259C%25A7%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:ja_tang%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzlhNmEzZWZmMDMuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACAGSGT"
+  },
+  {
+    "date": "2026/05/28",
+    "title": "歴史から見るこれからの働き方について",
+    "author": "高野辺将大",
+    "type": "ZENN",
+    "status": "公開",
+    "key": "TECHBLOG-163",
+    "url": "https://zenn.dev/tokium_dev/articles/ai-revolution-vs-past-revolutions",
+    "image": "https://res.cloudinary.com/zenn/image/upload/s--MWyePlor--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:AI%25E9%259D%25A9%25E5%2591%25BD%25E3%2581%25AF%25E7%2594%25A3%25E6%25A5%25AD%25E9%259D%25A9%25E5%2591%25BD%25E3%2581%25AE%25E7%25B9%25B0%25E3%2582%258A%25E8%25BF%2594%25E3%2581%2597%25E3%2581%258B%25EF%25BC%259F%25203%25E3%2581%25A4%25E3%2581%25AE%25E5%2585%25B1%25E9%2580%259A%25E7%2582%25B9%25E3%2581%25A8%25E6%25B1%25BA%25E5%25AE%259A%25E7%259A%2584%25E3%2581%25AA%25E9%2581%2595%25E3%2581%2584%25E3%2581%258B%25E3%2582%2589%25E8%2580%2583%25E3%2581%2588%25E3%2582%258B%25E3%2580%2581%25E3%2581%2593%25E3%2582%258C%25E3%2581%258B%25E3%2582%2589%25E3%2581%25AE%25E5%2583%258D%25E3%2581%258D%25E6%2596%25B9%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:konobe%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyL2E5MTM3ZDM4YzguanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACAGSGT"
+  },
+  {
+    "date": "2026/05/25",
+    "title": "開催しやすい社内技術勉強会の作り方",
+    "author": "立花 斐斗",
+    "type": "ZENN",
+    "status": "公開",
+    "key": "TECHBLOG-162",
+    "url": "https://zenn.dev/tokium_dev/articles/2026-05-25-tech-study",
+    "image": "https://res.cloudinary.com/zenn/image/upload/s--GuaAY8OR--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:%25E9%2596%258B%25E5%2582%25AC%25E3%2581%2597%25E3%2582%2584%25E3%2581%2599%25E3%2581%2584%25E7%25A4%25BE%25E5%2586%2585%25E6%258A%2580%25E8%25A1%2593%25E5%258B%2589%25E5%25BC%25B7%25E4%25BC%259A%25E3%2581%25AE%25E4%25BD%259C%25E3%2582%258A%25E6%2596%25B9%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:Lapi%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzUwOGNhNTJjNDIuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACAGSGT"
   },
   {
     "date": "2026/05/12",
@@ -178,6 +208,16 @@
     "key": "TECHBLOG-136",
     "url": "https://zenn.dev/tokium_dev/articles/claude-code-non-engineer",
     "image": "https://res.cloudinary.com/zenn/image/upload/s--7T5nhw-h--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:70%25E4%25BB%25A3%25E3%2583%25BB%25E9%259D%259E%25E3%2582%25A8%25E3%2583%25B3%25E3%2582%25B8%25E3%2583%258B%25E3%2582%25A2%25E7%259B%25A3%25E6%259F%25BB%25E5%25BD%25B9%25E3%2581%258C3%25E9%2580%25B1%25E9%2596%2593%25E3%2581%25A7AI%25E3%2582%25A2%25E3%2582%25B7%25E3%2582%25B9%25E3%2582%25BF%25E3%2583%25B3%25E3%2583%2588%25E3%2582%2592%25E4%25BD%259C%25E3%2581%25A3%25E3%2581%259F%25E8%25A9%25B1%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:%25E6%25A0%25AA%25E5%25BC%258F%25E4%25BC%259A%25E7%25A4%25BETOKIUM%2520%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E6%259C%25AC%25E9%2583%25A8%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyL2ZmNDdlOWE4ZDIuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACAGSGT"
+  },
+  {
+    "date": "2026/05/28",
+    "title": "Ruby ベースとした非エンジニア向けプログラミング支援ライブラリ「gijiby」を作ってみた",
+    "author": "橘高 俊",
+    "type": "ZENN",
+    "status": "公開",
+    "key": "TECHBLOG-135",
+    "url": "https://zenn.dev/tokium_dev/articles/gijiby-spec-language",
+    "image": "https://res.cloudinary.com/zenn/image/upload/s--HPz_nrmJ--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:Ruby%2520%25E3%2583%2599%25E3%2583%25BC%25E3%2582%25B9%25E3%2581%25A8%25E3%2581%2597%25E3%2581%259F%25E9%259D%259E%25E3%2582%25A8%25E3%2583%25B3%25E3%2582%25B8%25E3%2583%258B%25E3%2582%25A2%25E5%2590%2591%25E3%2581%2591%25E3%2583%2597%25E3%2583%25AD%25E3%2582%25B0%25E3%2583%25A9%25E3%2583%259F%25E3%2583%25B3%25E3%2582%25B0%25E6%2594%25AF%25E6%258F%25B4%25E3%2583%25A9%25E3%2582%25A4%25E3%2583%2596%25E3%2583%25A9%25E3%2583%25AA%25E3%2580%258Cgijiby%25E3%2580%258D%25E3%2582%2592%25E4%25BD%259C%25E3%2581%25A3%25E3%2581%25A6%25E3%2581%25BF%25E3%2581%259F%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:%25E3%2581%2584%25E3%2581%258B%25E3%2581%25AD%25E3%2581%2593%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EvQUNnOG9jSjlKQlA4aUlHYVQ0aTQ5aGlYWDdpZ1VWYW1pYTdlWGhtUk1EZlc4RWtMcUd0elNGNkI9czI1MC1j%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACAGSGT"
   },
   {
     "date": "2026/05/26",
@@ -1150,6 +1190,16 @@
     "image": "https://assets.st-note.com/production/uploads/images/277774596/rectangle_large_type_2_378e8daa526f45f33d64d233623f632b.png?fit=bounds&quality=85&width=1280"
   },
   {
+    "date": "2026/05/25",
+    "title": "プロダクト本部計数管理の話",
+    "author": "三浦 修一",
+    "type": "NOTE",
+    "status": "公開",
+    "key": "NOTE-48",
+    "url": "https://note.com/tokium_miuras/n/n54e474d0e6ce",
+    "image": "https://assets.st-note.com/production/uploads/images/279993258/rectangle_large_type_2_8cbba9e6890725255f3adf0b318db2a9.png?fit=bounds&quality=85&width=1280"
+  },
+  {
     "date": "2026/05/18",
     "title": "ソフトウェア開発のボトルネックの変化と、TOKIUM開発組織が今考えていること",
     "author": "西平 基志",
@@ -1187,7 +1237,7 @@
     "status": "公開",
     "key": "NOTE-41",
     "url": "https://note.tokium.jp/n/n60dac7e7db30",
-    "image": "https://assets.st-note.com/production/uploads/images/241540320/rectangle_large_type_2_86b309c4aaea17e0ef606ef225850a81.png?fit=bounds&quality=85&width=1280"
+    "image": ""
   },
   {
     "date": "2026/02/06",
@@ -1378,6 +1428,16 @@
     "key": "TALK-74",
     "url": "https://speakerdeck.com/subroh0508/aiwoxian-kusitainara-mazuharen-jian-nogai-shan-rupukara",
     "image": "https://files.speakerdeck.com/presentations/cf454722b0714917a2e0cb1346da2b15/slide_0.jpg?39373326"
+  },
+  {
+    "date": "2026/05/26",
+    "title": "「捨てる力」がプロダクトを強くする",
+    "author": "木下 博揮",
+    "type": "TALK",
+    "status": "完了",
+    "key": "TALK-72",
+    "url": "https://speakerdeck.com/hirokik0076/she-teruli-gapurodakutowoqiang-kusuru",
+    "image": "https://files.speakerdeck.com/presentations/afe1792e94b54058a3e5993bb4fb7544/slide_0.jpg?39516466"
   },
   {
     "date": "2026/04/23",
