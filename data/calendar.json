@@ -10,6 +10,16 @@
     "image": "https://res.cloudinary.com/zenn/image/upload/s--NlRpLRSu--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:%25E7%25A4%25BE%25E5%2586%2585%25E5%258B%2589%25E5%25BC%25B7%25E4%25BC%259A%25E3%2580%258CState%2520of%2520JS%25202025%25E3%2582%2592%25E8%25A6%258B%25E3%2582%258B%25E4%25BC%259A%25E3%2580%258D%25E3%2582%2592%25E9%2596%258B%25E5%2582%25AC%25E3%2581%2597%25E3%2581%25BE%25E3%2581%2597%25E3%2581%259F%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:%25E6%25A0%25AA%25E5%25BC%258F%25E4%25BC%259A%25E7%25A4%25BETOKIUM%2520%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E6%259C%25AC%25E9%2583%25A8%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyL2ZmNDdlOWE4ZDIuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACMTiAE"
   },
   {
+    "date": "2026/06/05",
+    "title": "Claude を使って Gemini 議事録から必要な情報を抽出する仕組み",
+    "author": "Shota Nagayama",
+    "type": "ZENN",
+    "status": "公開",
+    "key": "TECHBLOG-172",
+    "url": "https://zenn.dev/tokium_dev/articles/d806c7ad4fd458",
+    "image": "https://res.cloudinary.com/zenn/image/upload/s--Q_IycC6B--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:Claude%2520%25E3%2582%2592%25E4%25BD%25BF%25E3%2581%25A3%25E3%2581%25A6%2520Gemini%2520%25E8%25AD%25B0%25E4%25BA%258B%25E9%258C%25B2%25E3%2581%258B%25E3%2582%2589%25E5%25BF%2585%25E8%25A6%2581%25E3%2581%25AA%25E6%2583%2585%25E5%25A0%25B1%25E3%2582%2592%25E6%258A%25BD%25E5%2587%25BA%25E3%2581%2599%25E3%2582%258B%25E4%25BB%2595%25E7%25B5%2584%25E3%2581%25BF%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:%25E3%2581%2597%25E3%2582%2587%25E3%2583%25BC%25E3%2581%2595%25E3%2582%2593%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzlkMzExMTE0OTcuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACMTiAE"
+  },
+  {
     "date": "2026/05/26",
     "title": "スキルファーストでハーネスを構築してみよう",
     "author": "井上 智敬",
@@ -1227,7 +1237,7 @@
     "status": "公開",
     "key": "NOTE-50",
     "url": "https://note.com/tokium_seki/n/nc2f9da87c989",
-    "image": ""
+    "image": "https://assets.st-note.com/production/uploads/images/280588007/rectangle_large_type_2_da0b4958d771e610f4f4718f2cccab2a.jpeg?fit=bounds&quality=85&width=1280"
   },
   {
     "date": "2026/05/20",
@@ -1237,7 +1247,7 @@
     "status": "公開",
     "key": "NOTE-49",
     "url": "https://note.com/tokium_kubota/n/nec1bb31ba3da",
-    "image": ""
+    "image": "https://assets.st-note.com/production/uploads/images/277774596/rectangle_large_type_2_378e8daa526f45f33d64d233623f632b.png?fit=bounds&quality=85&width=1280"
   },
   {
     "date": "2026/05/25",
@@ -1247,7 +1257,7 @@
     "status": "公開",
     "key": "NOTE-48",
     "url": "https://note.com/tokium_miuras/n/n54e474d0e6ce",
-    "image": ""
+    "image": "https://assets.st-note.com/production/uploads/images/279993258/rectangle_large_type_2_8cbba9e6890725255f3adf0b318db2a9.png?fit=bounds&quality=85&width=1280"
   },
   {
     "date": "2026/05/18",
@@ -1257,7 +1267,7 @@
     "status": "公開",
     "key": "NOTE-46",
     "url": "https://note.com/tokium_nishihira/n/ne81a4bf676b4",
-    "image": ""
+    "image": "https://assets.st-note.com/production/uploads/images/277466657/rectangle_large_type_2_ade986f42d16555de3fb7d5a836cb85c.png?fit=bounds&quality=85&width=1280"
   },
   {
     "date": "2026/03/16",
@@ -1267,7 +1277,7 @@
     "status": "公開",
     "key": "NOTE-45",
     "url": "https://note.com/tokium_hanafusa/n/n2231558fbc65",
-    "image": ""
+    "image": "https://assets.st-note.com/production/uploads/images/259116996/rectangle_large_type_2_845e675fab7dd91c2d77ac8daa32d887.png?fit=bounds&quality=85&width=1280"
   },
   {
     "date": "2026/03/16",
@@ -1277,7 +1287,7 @@
     "status": "公開",
     "key": "NOTE-44",
     "url": "https://note.com/preview/n9745052d0c8b?prev_access_key=07e430661ac06a970bd4f5a12f6ac7d0",
-    "image": ""
+    "image": "https://d2l930y2yx77uc.cloudfront.net/production/social_images/0787d8254422a4ebea65153e368e98bd6909a0de.png"
   },
   {
     "date": "2026/01/05",
@@ -1287,7 +1297,7 @@
     "status": "公開",
     "key": "NOTE-41",
     "url": "https://note.tokium.jp/n/n60dac7e7db30",
-    "image": ""
+    "image": "https://assets.st-note.com/production/uploads/images/241540320/rectangle_large_type_2_86b309c4aaea17e0ef606ef225850a81.png?fit=bounds&quality=85&width=1280"
   },
   {
     "date": "2026/02/06",
@@ -1297,7 +1307,7 @@
     "status": "公開",
     "key": "NOTE-40",
     "url": "https://note.tokium.jp/n/n80f8b3c94350",
-    "image": ""
+    "image": "https://assets.st-note.com/production/uploads/images/238331986/rectangle_large_type_2_d910d2b0ba69205d07f392bc5575e185.png?fit=bounds&quality=85&width=1280"
   },
   {
     "date": "2026/02/20",
@@ -1307,7 +1317,7 @@
     "status": "公開",
     "key": "NOTE-39",
     "url": "https://note.com/tokium_hanafusa/n/n13111e5898d0",
-    "image": ""
+    "image": "https://assets.st-note.com/production/uploads/images/252951523/rectangle_large_type_2_ada158b49b69bca48879fcfe7ab72294.png?fit=bounds&quality=85&width=1280"
   },
   {
     "date": "2025/12/23",
@@ -1317,7 +1327,7 @@
     "status": "公開",
     "key": "NOTE-38",
     "url": "https://note.tokium.jp/n/n5fce7bf1cdc9",
-    "image": ""
+    "image": "https://assets.st-note.com/production/uploads/images/238312144/rectangle_large_type_2_3feec257da53620c138829e6eee0e7a3.png?fit=bounds&quality=85&width=1280"
   },
   {
     "date": "2025/12/17",
@@ -1327,7 +1337,7 @@
     "status": "公開",
     "key": "NOTE-36",
     "url": "https://note.tokium.jp/n/nee0a0405f208",
-    "image": ""
+    "image": "https://assets.st-note.com/production/uploads/images/236696096/rectangle_large_type_2_1cbfdcb5175c3c756a79d174244345be.png?fit=bounds&quality=85&width=1280"
   },
   {
     "date": "2025/12/08",
@@ -1337,7 +1347,7 @@
     "status": "公開",
     "key": "NOTE-33",
     "url": "https://note.tokium.jp/n/n91dfe5ad4968",
-    "image": ""
+    "image": "https://assets.st-note.com/production/uploads/images/234891655/rectangle_large_type_2_ad387748caa7309a456811896757a2e1.png?fit=bounds&quality=85&width=1280"
   },
   {
     "date": "2025/12/16",
@@ -1347,7 +1357,7 @@
     "status": "公開",
     "key": "NOTE-32",
     "url": "https://note.tokium.jp/n/nd18ef1a4ce87",
-    "image": ""
+    "image": "https://assets.st-note.com/production/uploads/images/236756190/rectangle_large_type_2_d756dc29b7bd7e4e7ab59fd149df32d3.png?fit=bounds&quality=85&width=1280"
   },
   {
     "date": "2025/12/12",
@@ -1357,7 +1367,7 @@
     "status": "公開",
     "key": "NOTE-31",
     "url": "https://note.tokium.jp/n/n13e0e9e4374b",
-    "image": ""
+    "image": "https://assets.st-note.com/production/uploads/images/235840124/rectangle_large_type_2_b89c662d49b802aacc5c42a66719766f.png?fit=bounds&quality=85&width=1280"
   },
   {
     "date": "2025/12/11",
@@ -1367,7 +1377,7 @@
     "status": "公開",
     "key": "NOTE-29",
     "url": "https://note.com/tokium_nishihira/n/n0574ff81c508",
-    "image": ""
+    "image": "https://assets.st-note.com/production/uploads/images/235618439/rectangle_large_type_2_98c80a5fd157134a8043c0f86b292913.png?fit=bounds&quality=85&width=1280"
   },
   {
     "date": "2025/10/10",
@@ -1377,7 +1387,7 @@
     "status": "公開",
     "key": "NOTE-25",
     "url": "https://note.tokium.jp/n/n236d947cf19e",
-    "image": ""
+    "image": "https://assets.st-note.com/production/uploads/images/221105224/rectangle_large_type_2_50df03592086aaf993b39a66f50f87fc.png?fit=bounds&quality=85&width=1280"
   },
   {
     "date": "2025/12/08",
@@ -1387,7 +1397,7 @@
     "status": "公開",
     "key": "NOTE-23",
     "url": "https://note.tokium.jp/n/n559abb68fc27",
-    "image": ""
+    "image": "https://assets.st-note.com/production/uploads/images/234830682/rectangle_large_type_2_803fb4b873b3a7ada51f3c5f51c26a13.png?fit=bounds&quality=85&width=1280"
   },
   {
     "date": "2025/09/26",
@@ -1397,7 +1407,7 @@
     "status": "公開",
     "key": "NOTE-20",
     "url": "https://note.tokium.jp/n/n3b31227e5146",
-    "image": ""
+    "image": "https://assets.st-note.com/production/uploads/images/217952519/rectangle_large_type_2_8043d386a0223ee1d50c36bb74157081.png?fit=bounds&quality=85&width=1280"
   },
   {
     "date": "2025/08/22",
@@ -1407,7 +1417,7 @@
     "status": "公開",
     "key": "NOTE-17",
     "url": "https://note.tokium.jp/n/n4a9a9825b019",
-    "image": ""
+    "image": "https://assets.st-note.com/production/uploads/images/209333785/rectangle_large_type_2_0b250e70272d1699a60676a4d20f51e4.jpeg?fit=bounds&quality=85&width=1280"
   },
   {
     "date": "2025/07/25",
@@ -1417,7 +1427,7 @@
     "status": "公開",
     "key": "NOTE-13",
     "url": "https://note.tokium.jp/n/n132e7d8dc7ac",
-    "image": ""
+    "image": "https://assets.st-note.com/production/uploads/images/203745820/rectangle_large_type_2_4aed48b3969f41f71ef285c2d7a0cbe9.jpeg?fit=bounds&quality=85&width=1280"
   },
   {
     "date": "2025/07/25",
@@ -1427,7 +1437,7 @@
     "status": "公開",
     "key": "NOTE-12",
     "url": "https://note.tokium.jp/n/n8e4546c3f6f3",
-    "image": ""
+    "image": "https://assets.st-note.com/production/uploads/images/205528726/rectangle_large_type_2_89308bac3269da68730d33ff5a36f15f.jpeg?fit=bounds&quality=85&width=1280"
   },
   {
     "date": "2026/05/19",
