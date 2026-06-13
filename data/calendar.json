@@ -1,5 +1,15 @@
 [
   {
+    "date": "2026/06/12",
+    "title": "TSKaigi 2026のスポンサーブースで、なぜLinter・テストランナーのアンケートをしたのか",
+    "author": "坂上 晴信",
+    "type": "ZENN",
+    "status": "公開",
+    "key": "TECHBLOG-183",
+    "url": "https://zenn.dev/tokium_dev/articles/tskaigi-2026-booth-survey-linter-test-runner",
+    "image": "https://res.cloudinary.com/zenn/image/upload/s--ej_I1rPn--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:TSKaigi%25202026%25E3%2581%25AE%25E3%2582%25B9%25E3%2583%259D%25E3%2583%25B3%25E3%2582%25B5%25E3%2583%25BC%25E3%2583%2596%25E3%2583%25BC%25E3%2582%25B9%25E3%2581%25A7%25E3%2580%2581%25E3%2581%25AA%25E3%2581%259CLinter%25E3%2583%25BB%25E3%2583%2586%25E3%2582%25B9%25E3%2583%2588%25E3%2583%25A9%25E3%2583%25B3%25E3%2583%258A%25E3%2583%25BC%25E3%2581%25AE%25E3%2582%25A2%25E3%2583%25B3%25E3%2582%25B1%25E3%2583%25BC%25E3%2583%2588%25E3%2582%2592%25E3%2581%2597%25E3%2581%259F%25E3%2581%25AE%25E3%2581%258B%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:%25E3%2581%25AB%25E3%2581%2597%25E3%2581%2593%25E3%2582%258A%25E3%2581%2595%25E3%2581%25B6%25E3%2582%258D%25E3%2580%259C%2520%257C%2520TOKIUM%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EtL0FPaDE0R2dtNi16WWpYZEZUT0w4V0R2ZzhndjdSNWgxLTNXSnc4dXJSY05Ld1E9czI1MC1j%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACMTiAE"
+  },
+  {
     "date": "2026/06/10",
     "title": "手順書をエージェントに実行させる——5年使ったWindowsからMacへの移行を「RUNBOOK as Code」で乗り切った話",
     "author": "寺田 太一",
@@ -1327,7 +1337,7 @@
     "status": "公開",
     "key": "NOTE-41",
     "url": "https://note.tokium.jp/n/n60dac7e7db30",
-    "image": "https://assets.st-note.com/production/uploads/images/241540320/rectangle_large_type_2_86b309c4aaea17e0ef606ef225850a81.png?fit=bounds&quality=85&width=1280"
+    "image": "https://assets.st-note.com/production/uploads/images/284738340/rectangle_large_type_2_4c7d58842b4c6f83f748c3dd0c049afc.png?fit=bounds&quality=85&width=1280"
   },
   {
     "date": "2026/02/06",
@@ -1337,7 +1347,7 @@
     "status": "公開",
     "key": "NOTE-40",
     "url": "https://note.tokium.jp/n/n80f8b3c94350",
-    "image": "https://assets.st-note.com/production/uploads/images/238331986/rectangle_large_type_2_d910d2b0ba69205d07f392bc5575e185.png?fit=bounds&quality=85&width=1280"
+    "image": "https://assets.st-note.com/production/uploads/images/284753599/rectangle_large_type_2_15d069cfae28b4b6a76f497f4b0d9c47.png?fit=bounds&quality=85&width=1280"
   },
   {
     "date": "2026/02/20",
@@ -1357,7 +1367,7 @@
     "status": "公開",
     "key": "NOTE-38",
     "url": "https://note.tokium.jp/n/n5fce7bf1cdc9",
-    "image": "https://assets.st-note.com/production/uploads/images/238312144/rectangle_large_type_2_3feec257da53620c138829e6eee0e7a3.png?fit=bounds&quality=85&width=1280"
+    "image": "https://assets.st-note.com/production/uploads/images/284739312/rectangle_large_type_2_acfd9b153b645482c1a6cbc48f596a98.png?fit=bounds&quality=85&width=1280"
   },
   {
     "date": "2025/12/17",
@@ -1367,7 +1377,7 @@
     "status": "公開",
     "key": "NOTE-36",
     "url": "https://note.tokium.jp/n/nee0a0405f208",
-    "image": "https://assets.st-note.com/production/uploads/images/236696096/rectangle_large_type_2_1cbfdcb5175c3c756a79d174244345be.png?fit=bounds&quality=85&width=1280"
+    "image": "https://assets.st-note.com/production/uploads/images/284740052/rectangle_large_type_2_c81806d3c1ae9642aa26af404ea0dd93.png?fit=bounds&quality=85&width=1280"
   },
   {
     "date": "2025/12/08",
@@ -1377,7 +1387,7 @@
     "status": "公開",
     "key": "NOTE-33",
     "url": "https://note.tokium.jp/n/n91dfe5ad4968",
-    "image": "https://assets.st-note.com/production/uploads/images/234891655/rectangle_large_type_2_ad387748caa7309a456811896757a2e1.png?fit=bounds&quality=85&width=1280"
+    "image": "https://assets.st-note.com/production/uploads/images/284741373/rectangle_large_type_2_ad12551d43b114070705f7e6c305b146.png?fit=bounds&quality=85&width=1280"
   },
   {
     "date": "2025/12/16",
@@ -1387,7 +1397,7 @@
     "status": "公開",
     "key": "NOTE-32",
     "url": "https://note.tokium.jp/n/nd18ef1a4ce87",
-    "image": "https://assets.st-note.com/production/uploads/images/236756190/rectangle_large_type_2_d756dc29b7bd7e4e7ab59fd149df32d3.png?fit=bounds&quality=85&width=1280"
+    "image": "https://assets.st-note.com/production/uploads/images/284740693/rectangle_large_type_2_3c1d6c3cf9b41d39b281191be4e8e716.png?fit=bounds&quality=85&width=1280"
   },
   {
     "date": "2025/12/12",
@@ -1397,7 +1407,7 @@
     "status": "公開",
     "key": "NOTE-31",
     "url": "https://note.tokium.jp/n/n13e0e9e4374b",
-    "image": "https://assets.st-note.com/production/uploads/images/235840124/rectangle_large_type_2_b89c662d49b802aacc5c42a66719766f.png?fit=bounds&quality=85&width=1280"
+    "image": "https://assets.st-note.com/production/uploads/images/284740957/rectangle_large_type_2_23b6b5254e8a50228487f77d23cb05a6.png?fit=bounds&quality=85&width=1280"
   },
   {
     "date": "2025/12/11",
@@ -1427,7 +1437,7 @@
     "status": "公開",
     "key": "NOTE-23",
     "url": "https://note.tokium.jp/n/n559abb68fc27",
-    "image": "https://assets.st-note.com/production/uploads/images/234830682/rectangle_large_type_2_803fb4b873b3a7ada51f3c5f51c26a13.png?fit=bounds&quality=85&width=1280"
+    "image": "https://assets.st-note.com/production/uploads/images/284742005/rectangle_large_type_2_b576f75f0ac62315eab51b55ebf2ceb0.png?fit=bounds&quality=85&width=1280"
   },
   {
     "date": "2025/09/26",
@@ -1437,7 +1447,7 @@
     "status": "公開",
     "key": "NOTE-20",
     "url": "https://note.tokium.jp/n/n3b31227e5146",
-    "image": "https://assets.st-note.com/production/uploads/images/217952519/rectangle_large_type_2_8043d386a0223ee1d50c36bb74157081.png?fit=bounds&quality=85&width=1280"
+    "image": "https://assets.st-note.com/production/uploads/images/284744403/rectangle_large_type_2_7d190f20b78f60507815f322a7afe5e4.png?fit=bounds&quality=85&width=1280"
   },
   {
     "date": "2025/08/22",
