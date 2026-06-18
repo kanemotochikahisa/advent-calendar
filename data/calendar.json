@@ -20,6 +20,16 @@
     "image": "https://res.cloudinary.com/zenn/image/upload/s--ej_I1rPn--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:TSKaigi%25202026%25E3%2581%25AE%25E3%2582%25B9%25E3%2583%259D%25E3%2583%25B3%25E3%2582%25B5%25E3%2583%25BC%25E3%2583%2596%25E3%2583%25BC%25E3%2582%25B9%25E3%2581%25A7%25E3%2580%2581%25E3%2581%25AA%25E3%2581%259CLinter%25E3%2583%25BB%25E3%2583%2586%25E3%2582%25B9%25E3%2583%2588%25E3%2583%25A9%25E3%2583%25B3%25E3%2583%258A%25E3%2583%25BC%25E3%2581%25AE%25E3%2582%25A2%25E3%2583%25B3%25E3%2582%25B1%25E3%2583%25BC%25E3%2583%2588%25E3%2582%2592%25E3%2581%2597%25E3%2581%259F%25E3%2581%25AE%25E3%2581%258B%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:%25E3%2581%25AB%25E3%2581%2597%25E3%2581%2593%25E3%2582%258A%25E3%2581%2595%25E3%2581%25B6%25E3%2582%258D%25E3%2580%259C%2520%257C%2520TOKIUM%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EtL0FPaDE0R2dtNi16WWpYZEZUT0w4V0R2ZzhndjdSNWgxLTNXSnc4dXJSY05Ld1E9czI1MC1j%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACMTiAE"
   },
   {
+    "date": "2026/06/17",
+    "title": "AIのメモは「貯める」より「どこに置くか」── QA業務の知識整理4層",
+    "author": "NAOTO IKEDA",
+    "type": "ZENN",
+    "status": "公開",
+    "key": "TECHBLOG-180",
+    "url": "https://zenn.dev/tokium_dev/articles/claude-knowledge-organization",
+    "image": "https://res.cloudinary.com/zenn/image/upload/s--4Xn5o4Nu--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:AI%25E3%2581%25AE%25E3%2583%25A1%25E3%2583%25A2%25E3%2581%25AF%25E3%2580%258C%25E8%25B2%25AF%25E3%2582%2581%25E3%2582%258B%25E3%2580%258D%25E3%2582%2588%25E3%2582%258A%25E3%2580%258C%25E3%2581%25A9%25E3%2581%2593%25E3%2581%25AB%25E7%25BD%25AE%25E3%2581%258F%25E3%2581%258B%25E3%2580%258D%25E2%2594%2580%25E2%2594%2580%2520QA%25E6%25A5%25AD%25E5%258B%2599%25E3%2581%25AE%25E7%259F%25A5%25E8%25AD%2598%25E6%2595%25B4%25E7%2590%25864%25E5%25B1%25A4%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:ikedan%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyL2UyOWE4YTA5ZmEuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACMTiAE"
+  },
+  {
     "date": "2026/06/10",
     "title": "手順書をエージェントに実行させる——5年使ったWindowsからMacへの移行を「RUNBOOK as Code」で乗り切った話",
     "author": "寺田 太一",
@@ -100,6 +110,26 @@
     "image": "https://res.cloudinary.com/zenn/image/upload/s--D-tztpVI--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:1%25E3%2583%25B6%25E6%259C%2588%25E4%25BD%25BF%25E3%2581%2584%25E5%2580%2592%25E3%2581%2597%25E3%2581%25A6%25E3%2580%25811%25E3%2583%25B6%25E6%259C%2588%25E5%25B0%2581%25E5%258D%25B0%25E3%2581%2597%25E3%2581%25A6%25E3%2580%2582%25E6%2596%25B0%25E5%258D%2592%25E7%25A0%2594%25E4%25BF%25AE%25E3%2581%25A7%2520AI%2520%25E3%2581%25A8%25E5%2590%2591%25E3%2581%258D%25E5%2590%2588%25E3%2581%25A3%25E3%2581%25A6%25E5%25AD%25A6%25E3%2582%2593%25E3%2581%25A0%25E3%2581%2593%25E3%2581%25A8%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:FatherScorpion%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzVkNWJkNGM0NWMuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACMTiAE"
   },
   {
+    "date": "2026/06/01",
+    "title": "PdMの脳みそをClaude Codeに移植した仕組み",
+    "author": "冨永 佑介",
+    "type": "ZENN",
+    "status": "公開",
+    "key": "TECHBLOG-167",
+    "url": "https://zenn.dev/tokium_dev/articles/pdm-brain-on-claude-code",
+    "image": "https://res.cloudinary.com/zenn/image/upload/s--4p_0SrUJ--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:PdM%25E3%2581%25AE%25E8%2584%25B3%25E3%2581%25BF%25E3%2581%259D%25E3%2582%2592Claude%2520Code%25E3%2581%25AB%25E7%25A7%25BB%25E6%25A4%258D%25E3%2581%2597%25E3%2581%259F%25E4%25BB%2595%25E7%25B5%2584%25E3%2581%25BF%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:%25E3%2581%25A8%25E3%2581%25BF%25E3%2583%25BC%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyL2QzNjY5Y2M4NjUuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACMTiAE"
+  },
+  {
+    "date": "2026/05/27",
+    "title": "GAした Claude Platform on AWS で Terraform PR Bot を作った話",
+    "author": "河村 真太朗",
+    "type": "ZENN",
+    "status": "公開",
+    "key": "TECHBLOG-166",
+    "url": "https://zenn.dev/tokium_dev/articles/slack-bot-anthropic-managed-agents",
+    "image": "https://res.cloudinary.com/zenn/image/upload/s--x5WBxNp_--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:GA%25E3%2581%2597%25E3%2581%259F%2520Claude%2520Platform%2520on%2520AWS%2520%25E3%2581%25A7%2520Terraform%2520PR%2520Bot%2520%25E3%2582%2592%25E4%25BD%259C%25E3%2581%25A3%25E3%2581%259F%25E8%25A9%25B1%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:muramura%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EtL0FPaDE0R2oxbUFPdER1dHhPZzRkVlpGeG5aVTQ5MzNRMUNPaURpOXZmQmcxPXM5Ni1j%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACMTiAE"
+  },
+  {
     "date": "2026/05/22",
     "title": "AIが速く走るほど、舵取りの1度が遠くへずれる",
     "author": "村上 雅一",
@@ -170,7 +200,7 @@
     "image": "https://res.cloudinary.com/zenn/image/upload/s--f8_Z1BRJ--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:Datadog%25E3%2581%25AEUI%25E6%2593%258D%25E4%25BD%259C%25E3%2581%25A0%25E3%2581%2591%25E3%2581%25A7%25E3%2581%25AF%25E8%25A6%258B%25E3%2581%2588%25E3%2581%25A6%25E3%2581%2593%25E3%2581%25AA%25E3%2581%2584%25E3%2580%258C%25E6%25AD%25A3%25E3%2581%2597%25E3%2581%2584%25E6%2595%25B0%25E5%2580%25A4%25E3%2580%258D%25E3%2581%25B8%25E3%2581%25AE%25E8%25BE%25BF%25E3%2582%258A%25E7%259D%2580%25E3%2581%258D%25E6%2596%25B9%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:jk%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzEzMzk2ZDRhZGYuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACMTiAE"
   },
   {
-    "date": "2026/05/28",
+    "date": "2026/05/29",
     "title": "SI何でも屋、SaaS・AIエージェント企業でQAエンジニアになる",
     "author": "赤星 順哉",
     "type": "ZENN",
@@ -178,6 +208,26 @@
     "key": "TECHBLOG-157",
     "url": "https://zenn.dev/tokium_dev/articles/224f89873e6413",
     "image": "https://res.cloudinary.com/zenn/image/upload/s--IGHQgd53--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:SIer%25E3%2581%25A78%25E5%25B9%25B4%25E3%2580%258C%25E4%25BD%2595%25E3%2581%25A7%25E3%2582%2582%25E5%25B1%258B%25E3%2580%258D%25E3%2581%25A0%25E3%2581%25A3%25E3%2581%259F%25E7%25A7%2581%25E3%2581%258C%25E3%2580%2581SaaS%25E3%2583%25BBAI%25E3%2582%25A8%25E3%2583%25BC%25E3%2582%25B8%25E3%2582%25A7%25E3%2583%25B3%25E3%2583%2588%25E4%25BC%2581%25E6%25A5%25AD%25E3%2581%25A7QA%25E3%2582%25A8%25E3%2583%25B3%25E3%2582%25B8%25E3%2583%258B%25E3%2582%25A2%25E3%2581%25AB%25E3%2581%25AA%25E3%2582%258B%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:wanko_daikichi%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzIyODBlMjU2OWEuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACMTiAE"
+  },
+  {
+    "date": "2026/05/29",
+    "title": "Claude のテスト設計が信用できないので ── 振り返りと試運転SkillをAIに盛り込んだ",
+    "author": "NAOTO IKEDA",
+    "type": "ZENN",
+    "status": "公開",
+    "key": "TECHBLOG-156",
+    "url": "https://zenn.dev/tokium_dev/articles/human-discipline-for-ai-colleague",
+    "image": "https://res.cloudinary.com/zenn/image/upload/s--v0IA5Sn9--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:Claude%2520%25E3%2581%25AE%25E3%2583%2586%25E3%2582%25B9%25E3%2583%2588%25E8%25A8%25AD%25E8%25A8%2588%25E3%2581%258C%25E4%25BF%25A1%25E7%2594%25A8%25E3%2581%25A7%25E3%2581%258D%25E3%2581%25AA%25E3%2581%2584%25E3%2581%25AE%25E3%2581%25A7%2520%25E2%2594%2580%25E2%2594%2580%2520%25E6%258C%25AF%25E3%2582%258A%25E8%25BF%2594%25E3%2582%258A%25E3%2581%25A8%25E8%25A9%25A6%25E9%2581%258B%25E8%25BB%25A2Skill%25E3%2582%2592AI%25E3%2581%25AB%25E7%259B%259B%25E3%2582%258A%25E8%25BE%25BC%25E3%2582%2593%25E3%2581%25A0%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:ikedan%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyL2UyOWE4YTA5ZmEuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACMTiAE"
+  },
+  {
+    "date": "2026/05/21",
+    "title": "AIに仕事を奪われて、それでも残るもの — 嗅覚とチューニング",
+    "author": "芦田 拓人",
+    "type": "ZENN",
+    "status": "公開",
+    "key": "TECHBLOG-154",
+    "url": "https://zenn.dev/tokium_dev/articles/9e4a7c2b8f5d31",
+    "image": "https://res.cloudinary.com/zenn/image/upload/s--ZNynQ6KM--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:AI%25E3%2581%25AB%25E4%25BB%2595%25E4%25BA%258B%25E3%2582%2592%25E5%25A5%25AA%25E3%2582%258F%25E3%2582%258C%25E3%2581%25A6%25E3%2580%2581%25E3%2581%259D%25E3%2582%258C%25E3%2581%25A7%25E3%2582%2582%25E6%25AE%258B%25E3%2582%258B%25E3%2582%2582%25E3%2581%25AE%2520%25E2%2580%2594%2520%25E5%2597%2585%25E8%25A6%259A%25E3%2581%25A8%25E3%2583%2581%25E3%2583%25A5%25E3%2583%25BC%25E3%2583%258B%25E3%2583%25B3%25E3%2582%25B0%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:Takuto1023%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzE3OTZjMDAyNjkuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACMTiAE"
   },
   {
     "date": "2026/04/17",
@@ -310,7 +360,7 @@
     "image": "https://res.cloudinary.com/zenn/image/upload/s--7T5nhw-h--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:70%25E4%25BB%25A3%25E3%2583%25BB%25E9%259D%259E%25E3%2582%25A8%25E3%2583%25B3%25E3%2582%25B8%25E3%2583%258B%25E3%2582%25A2%25E7%259B%25A3%25E6%259F%25BB%25E5%25BD%25B9%25E3%2581%258C3%25E9%2580%25B1%25E9%2596%2593%25E3%2581%25A7AI%25E3%2582%25A2%25E3%2582%25B7%25E3%2582%25B9%25E3%2582%25BF%25E3%2583%25B3%25E3%2583%2588%25E3%2582%2592%25E4%25BD%259C%25E3%2581%25A3%25E3%2581%259F%25E8%25A9%25B1%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:%25E6%25A0%25AA%25E5%25BC%258F%25E4%25BC%259A%25E7%25A4%25BETOKIUM%2520%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E6%259C%25AC%25E9%2583%25A8%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyL2ZmNDdlOWE4ZDIuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACMTiAE"
   },
   {
-    "date": "2026/05/25",
+    "date": "2026/05/28",
     "title": "Ruby ベースとした非エンジニア向けプログラミング支援ライブラリ「gijiby」を作ってみた",
     "author": "橘高 俊",
     "type": "ZENN",
@@ -321,13 +371,13 @@
   },
   {
     "date": "2026/05/26",
-    "title": "Bonsai 関連で何か書く！",
+    "title": "Bonsai はシーザー暗号を解けるのか",
     "author": "村瀬 晃",
     "type": "ZENN",
     "status": "公開",
     "key": "TECHBLOG-134",
-    "url": "https://zenn.dev/articles/exam-bonsai-caesar",
-    "image": "https://static.zenn.studio/images/logo-only-dark.png"
+    "url": "https://zenn.dev/tokium_dev/articles/exam-bonsai-caesar",
+    "image": "https://res.cloudinary.com/zenn/image/upload/s--XlJ2zPPj--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:Bonsai%2520%25E3%2581%25AF%25E3%2582%25B7%25E3%2583%25BC%25E3%2582%25B6%25E3%2583%25BC%25E6%259A%2597%25E5%258F%25B7%25E3%2582%2592%25E8%25A7%25A3%25E3%2581%2591%25E3%2582%258B%25E3%2581%25AE%25E3%2581%258B%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:kou%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyL2FhYzQxMDJkMjEuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACMTiAE"
   },
   {
     "date": "2026/04/13",
@@ -1170,7 +1220,7 @@
     "image": "https://res.cloudinary.com/zenn/image/upload/s--T2QbLUL3--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:Mastra%25E3%2582%2592%25E4%25BD%25BF%25E3%2581%25A3%25E3%2581%25A6AI%25E3%2582%25A8%25E3%2583%25BC%25E3%2582%25B8%25E3%2582%25A7%25E3%2583%25B3%25E3%2583%2588%25E3%2582%2592%25E4%25BD%259C%25E3%2582%258D%25E3%2581%2586%25EF%25BC%2581%2520-%2520%25E5%259F%25BA%25E7%25A4%258E%25E7%25B7%25A8%25281%2529%2520-%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:%25E3%2581%25AB%25E3%2581%2597%25E3%2581%2593%25E3%2582%258A%25E3%2581%2595%25E3%2581%25B6%25E3%2582%258D%25E3%2580%259C%2520%257C%2520TOKIUM%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9saDMuZ29vZ2xldXNlcmNvbnRlbnQuY29tL2EtL0FPaDE0R2dtNi16WWpYZEZUT0w4V0R2ZzhndjdSNWgxLTNXSnc4dXJSY05Ld1E9czI1MC1j%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACMTiAE"
   },
   {
-    "date": "2025/10/17",
+    "date": "2025/10/22",
     "title": "「AIを使わない」という選択をしてもいいのか？〜請求照合の泥臭い現場から見えた、AIとの正しい付き合い方〜",
     "author": "村上 雅一",
     "type": "ZENN",
@@ -1180,7 +1230,7 @@
     "image": "https://res.cloudinary.com/zenn/image/upload/s--amxEX8_e--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:%25E3%2581%2582%25E3%2581%2588%25E3%2581%25A6%25E3%2580%258CAI%25E3%2582%2592%25E4%25BD%25BF%25E3%2582%258F%25E3%2581%25AA%25E3%2581%2584%25E3%2580%258D%25E3%2581%25A8%25E3%2581%2584%25E3%2581%2586%25E5%2588%25A4%25E6%2596%25AD%25E3%2582%2592%25E3%2581%2597%25E3%2581%25A6%25E3%2582%2582%25E3%2581%2584%25E3%2581%2584%25E3%2581%25AE%25E3%2581%258B%25EF%25BC%259F%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:%25E3%2581%25BE%25E3%2581%25A3%25E3%2581%2595%25E3%2582%2593%2520%257C%2520TOKIUM%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyL2ZkYjk0YjRiMmYuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACMTiAE"
   },
   {
-    "date": "2025/08/08",
+    "date": "2025/08/15",
     "title": "正解のないテストに挑む ― AIエージェントQAの試行錯誤と学び",
     "author": "西田 泰明",
     "type": "ZENN",
@@ -1220,8 +1270,8 @@
     "image": "https://res.cloudinary.com/zenn/image/upload/s--RQbg-hcz--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:%25E5%259B%25B3%25E8%25A7%25A3%25E3%2581%25A7%25E4%25B8%2580%25E7%2599%25BA%25E7%2590%2586%25E8%25A7%25A3%25EF%25BC%2581AI%25E3%2581%25AE%25E3%2580%258C%25E8%25B3%25A2%25E3%2581%258F%25E3%2581%2595%25E3%2581%259B%25E6%2596%25B9%25E3%2580%258D3%25E3%2581%25A4%25E3%2581%25AE%25E9%2581%2595%25E3%2581%2584%25EF%25BC%259A%25E3%2583%2595%25E3%2582%25A1%25E3%2582%25A4%25E3%2583%25B3%25E3%2583%2581%25E3%2583%25A5%25E3%2583%25BC%25E3%2583%258B%25E3%2583%25B3%25E3%2582%25B0%25E3%2580%2581%25E3%2583%2597%25E3%2583%25AD%25E3%2583%25B3%25E3%2583%2597%25E3%2583%2588%25E3%2583%2581%25E3%2583%25A5%25E3%2583%25BC%25E3%2583%258B%25E3%2583%25B3%25E3%2582%25B0%25E3%2580%2581RAG%25E5%2585%25A5%25E9%2596%2580%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:%25E3%2581%25BE%25E3%2581%25A3%25E3%2581%2595%25E3%2582%2593%2520%257C%2520TOKIUM%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyL2ZkYjk0YjRiMmYuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACMTiAE"
   },
   {
-    "date": "2025/06/08",
-    "title": "スロークエリチューニング（タネ潰しPJ）の振り返り",
+    "date": "2025/09/02",
+    "title": "月末月初のサービスダウンからの脱却──SQLとコードの地道な改善で実現した高速化",
     "author": "岡本 匡弘",
     "type": "ZENN",
     "status": "公開",
@@ -1230,8 +1280,8 @@
     "image": "https://res.cloudinary.com/zenn/image/upload/s--eHv7w8r9--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:%25E6%259C%2588%25E6%259C%25AB%25E6%259C%2588%25E5%2588%259D%25E3%2581%25AE%25E3%2582%25B5%25E3%2583%25BC%25E3%2583%2593%25E3%2582%25B9%25E3%2583%2580%25E3%2582%25A6%25E3%2583%25B3%25E3%2581%258B%25E3%2582%2589%25E3%2581%25AE%25E8%2584%25B1%25E5%258D%25B4%25E2%2594%2580%25E2%2594%2580SQL%25E3%2581%25A8%25E3%2582%25B3%25E3%2583%25BC%25E3%2583%2589%25E3%2581%25AE%25E5%259C%25B0%25E9%2581%2593%25E3%2581%25AA%25E6%2594%25B9%25E5%2596%2584%25E3%2581%25A7%25E5%25AE%259F%25E7%258F%25BE%25E3%2581%2597%25E3%2581%259F%25E9%25AB%2598%25E9%2580%259F%25E5%258C%2596%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:o8n%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzEwZjI3YzQ1NjAuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACMTiAE"
   },
   {
-    "date": "2025/08/22",
-    "title": "Postgresqlの実行計画を読んでパフォーマンスチューニングする",
+    "date": "2025/08/25",
+    "title": "PostgreSQLの実行計画を読んでパフォーマンスチューニングする - EAVアンチパターン",
     "author": "立花 斐斗",
     "type": "ZENN",
     "status": "公開",
@@ -1488,6 +1538,16 @@
     "key": "NOTE-12",
     "url": "https://note.tokium.jp/n/n8e4546c3f6f3",
     "image": "https://assets.st-note.com/production/uploads/images/205528726/rectangle_large_type_2_89308bac3269da68730d33ff5a36f15f.jpeg?fit=bounds&quality=85&width=1280"
+  },
+  {
+    "date": "2026/06/16",
+    "title": "申請、めんどくさいですよね— 小さく出して、早く声を集め、価値を測った話",
+    "author": "石井 洋平",
+    "type": "TALK",
+    "status": "完了",
+    "key": "TALK-84",
+    "url": "https://speakerdeck.com/yoheiishii/shen-qing-mendokusaidesuyone-xiao-sakuchu-site-zao-kusheng-woji-me-jia-zhi-woce-tutahua",
+    "image": "https://files.speakerdeck.com/presentations/77d63507c4b6444fbdbd1bb3eb482a58/slide_0.jpg?39742068"
   },
   {
     "date": "2026/06/10",
