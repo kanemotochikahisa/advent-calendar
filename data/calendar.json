@@ -1600,6 +1600,16 @@
     "image": "https://files.speakerdeck.com/presentations/77d63507c4b6444fbdbd1bb3eb482a58/slide_0.jpg?39742068"
   },
   {
+    "date": "2026/06/25",
+    "title": "技育CAMPアカデミア",
+    "author": "木村 陸人",
+    "type": "TALK",
+    "status": "進行中",
+    "key": "TALK-83",
+    "url": "https://speakerdeck.com/krkrkrrk/zuo-ru-gatadaninarushi-dai-enzinianochai-hadokodetukunoka",
+    "image": "https://files.speakerdeck.com/presentations/c7af2555da43478194de6037478b8011/slide_0.jpg?39840914"
+  },
+  {
     "date": "2026/06/10",
     "title": "ポケモンの型をTypeScriptの型システムで表現してみた",
     "author": "坂上 晴信",
