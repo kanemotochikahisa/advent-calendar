@@ -1,5 +1,35 @@
 [
   {
+    "date": "2026/07/08",
+    "title": "「Slackに一言」で出張準備が終わる日常 ~AIに出張手配を任せている社員のリアル~",
+    "author": "nakatani_s",
+    "type": "ZENN",
+    "status": "公開",
+    "key": "TECHBLOG-202",
+    "url": "https://note.com/ban_15/n/n8aad2c3ca3e6",
+    "image": "https://assets.st-note.com/production/uploads/images/291969980/rectangle_large_type_2_360500e8312f8b268c80ae7b86988e4f.jpeg?fit=bounds&quality=85&width=1280"
+  },
+  {
+    "date": "2026/07/08",
+    "title": "「Slackに一言」で出張準備が終わる日常 ~AIに出張手配を任せている社員のリアル~",
+    "author": "ban_t",
+    "type": "ZENN",
+    "status": "公開",
+    "key": "TECHBLOG-201",
+    "url": "https://note.com/ban_15/n/n8aad2c3ca3e6?from=notice",
+    "image": "https://assets.st-note.com/production/uploads/images/291969980/rectangle_large_type_2_360500e8312f8b268c80ae7b86988e4f.jpeg?fit=bounds&quality=85&width=1280"
+  },
+  {
+    "date": "2026/07/15",
+    "title": "要件を書くPdMこそ、QAで手を動かしてみませんか",
+    "author": "冨永 佑介",
+    "type": "ZENN",
+    "status": "公開",
+    "key": "TECHBLOG-197",
+    "url": "https://zenn.dev/articles/pdm-qa-yaranaika/",
+    "image": "https://static.zenn.studio/images/logo-only-dark.png"
+  },
+  {
     "date": "2026/07/10",
     "title": "Colab Conf2026参加レポート",
     "author": "石井 晃斗",
@@ -1648,6 +1678,16 @@
     "key": "NOTE-12",
     "url": "https://note.tokium.jp/n/n8e4546c3f6f3",
     "image": "https://assets.st-note.com/production/uploads/images/293062720/rectangle_large_type_2_06009433ac0e5239538829da908b7501.png?fit=bounds&quality=85&width=1280"
+  },
+  {
+    "date": "2026/07/09",
+    "title": "Wantedly×UPSIDER×TOKIUM",
+    "author": "",
+    "type": "TALK",
+    "status": "完了",
+    "key": "TALK-92",
+    "url": "https://speakerdeck.com/staka121/aishi-dai-no-em-henochu-fang-jian",
+    "image": "https://files.speakerdeck.com/presentations/b7ff5ad0c3e746a58c51f1f031c03f3d/slide_0.jpg?39930588"
   },
   {
     "date": "2026/07/02",
