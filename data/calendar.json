@@ -1,5 +1,25 @@
 [
   {
+    "date": "2026/07/20",
+    "title": "誰も止めなかったので、TOKIUMのテックブログを1週間ジャックします",
+    "author": "村上 雅一",
+    "type": "ZENN",
+    "status": "公開",
+    "key": "TECHBLOG-205",
+    "url": "https://note.com/marimoo1/n/nca18d7eab3de",
+    "image": "https://assets.st-note.com/production/uploads/images/295997973/rectangle_large_type_2_28211fa1d2ad55791138d7d9116fcb97.png?fit=bounds&quality=85&width=1280"
+  },
+  {
+    "date": "2026/07/23",
+    "title": "SIer経験者がFDEをやってみての難しさ",
+    "author": "村上 雅一",
+    "type": "ZENN",
+    "status": "公開",
+    "key": "TECHBLOG-203",
+    "url": "https://zenn.dev/tokium_dev/articles/sier-to-saas-fde",
+    "image": "https://res.cloudinary.com/zenn/image/upload/s--DnKsCfUm--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:%25E5%258F%2597%25E8%25A8%2597%25E3%2581%25AE%25E5%25B8%25B8%25E8%25AD%2598%25E3%2581%25AF%25E3%2580%2581SaaS%25E3%2581%25AEFDE%25E3%2581%25AB%25E9%2580%259A%25E7%2594%25A8%25E3%2581%2597%25E3%2581%25AA%25E3%2581%258B%25E3%2581%25A3%25E3%2581%259F%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:%25E3%2581%25BE%25E3%2581%25A3%25E3%2581%2595%25E3%2582%2593%2520%257C%2520TOKIUM%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyL2ZkYjk0YjRiMmYuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACMTiAE"
+  },
+  {
     "date": "2026/07/08",
     "title": "「Slackに一言」で出張準備が終わる日常 ~AIに出張手配を任せている社員のリアル~",
     "author": "nakatani_s",
@@ -18,6 +38,26 @@
     "key": "TECHBLOG-201",
     "url": "https://note.com/ban_15/n/n8aad2c3ca3e6?from=notice",
     "image": "https://assets.st-note.com/production/uploads/images/291969980/rectangle_large_type_2_360500e8312f8b268c80ae7b86988e4f.jpeg?fit=bounds&quality=85&width=1280"
+  },
+  {
+    "date": "2026/07/22",
+    "title": "「深く考えて」は、なぜAIに効かないのか",
+    "author": "村上 雅一",
+    "type": "ZENN",
+    "status": "公開",
+    "key": "TECHBLOG-200",
+    "url": "https://zenn.dev/tokium_dev/articles/how-to-make-ai-think-deeply",
+    "image": "https://res.cloudinary.com/zenn/image/upload/s--rSgW5Fdu--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:%25E3%2580%258C%25E6%25B7%25B1%25E3%2581%258F%25E8%2580%2583%25E3%2581%2588%25E3%2581%25A6%25E3%2580%258D%25E3%2581%25AF%25E3%2580%2581%25E3%2581%25AA%25E3%2581%259CAI%25E3%2581%25AB%25E5%258A%25B9%25E3%2581%258B%25E3%2581%25AA%25E3%2581%2584%25E3%2581%25AE%25E3%2581%258B%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:%25E3%2581%25BE%25E3%2581%25A3%25E3%2581%2595%25E3%2582%2593%2520%257C%2520TOKIUM%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyL2ZkYjk0YjRiMmYuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACMTiAE"
+  },
+  {
+    "date": "2026/07/21",
+    "title": "いかにして問いを立てるか──AIが問題を解き続ける時代のPdM",
+    "author": "村上 雅一",
+    "type": "ZENN",
+    "status": "公開",
+    "key": "TECHBLOG-199",
+    "url": "https://zenn.dev/tokium_dev/articles/how-to-pose-questions",
+    "image": "https://res.cloudinary.com/zenn/image/upload/s--pMe0-Cl---/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:%25E3%2581%2584%25E3%2581%258B%25E3%2581%25AB%25E3%2581%2597%25E3%2581%25A6%25E5%2595%258F%25E3%2581%2584%25E3%2582%2592%25E7%25AB%258B%25E3%2581%25A6%25E3%2582%258B%25E3%2581%258B%25E2%2594%2580%25E2%2594%2580%25E6%259C%25AA%25E8%25A7%25A3%25E6%25B1%25BA%25E5%2595%258F%25E9%25A1%258C%25E3%2581%25BE%25E3%2581%25A7AI%25E3%2581%258C%25E8%25A7%25A3%25E3%2581%258F%25E6%2599%2582%25E4%25BB%25A3%25E3%2581%25AEPdM%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:%25E3%2581%25BE%25E3%2581%25A3%25E3%2581%2595%25E3%2582%2593%2520%257C%2520TOKIUM%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyL2ZkYjk0YjRiMmYuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACMTiAE"
   },
   {
     "date": "2026/07/15",
