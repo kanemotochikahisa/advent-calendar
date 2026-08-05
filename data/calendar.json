@@ -217,7 +217,7 @@
     "status": "公開",
     "key": "TECHBLOG-182",
     "url": "https://zenn.dev/tokium_dev/articles/tokium-share-pages",
-    "image": "https://res.cloudinary.com/zenn/image/upload/s--EVGnUqAW--/c_fit%2Cg_north_west%2Cl_text:notosansjp-medium.otf_55:%25E3%2583%259E%25E3%2583%25BC%25E3%2582%25AF%25E3%2583%2580%25E3%2582%25A6%25E3%2583%25B3%25E3%2582%2584HTML%25E3%2582%2592Slack%25E3%2581%25A7%25E5%2585%25B1%25E6%259C%2589%25E3%2581%2599%25E3%2582%258B%25E3%2581%25AE%25E3%2581%258C%25E8%25BE%259B%25E3%2581%2599%25E3%2581%258E%25E3%2581%25A6%25E7%25A4%25BE%25E5%2586%2585%25E3%2583%2584%25E3%2583%25BC%25E3%2583%25AB%25E3%2582%2592%25E4%25BD%259C%25E3%2581%25A3%25E3%2581%259F%25E8%25A9%25B1%2Cw_1010%2Cx_90%2Cy_100/g_south_west%2Cl_text:notosansjp-medium.otf_34:%25E3%2583%25A8%25E3%2582%25A6%25E3%2583%2598%25E3%2582%25A4%2Cx_220%2Cy_108/bo_3px_solid_rgb:d6e3ed%2Cg_south_west%2Ch_90%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyLzViNTEwYjI5ZjEuanBlZw==%2Cr_20%2Cw_90%2Cx_92%2Cy_102/g_south_west%2Ch_34%2Cl_default:og-publication-pro-mark-xcosax%2Cw_34%2Cx_217%2Cy_158/co_rgb:6e7b85%2Cg_south_west%2Cl_text:notosansjp-medium.otf_30:TOKIUM%25E3%2583%2597%25E3%2583%25AD%25E3%2583%2580%25E3%2582%25AF%25E3%2583%2588%25E3%2583%2581%25E3%2583%25BC%25E3%2583%25A0%2520%25E3%2583%2586%25E3%2583%2583%25E3%2582%25AF%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%2Cx_255%2Cy_160/bo_4px_solid_white%2Cg_south_west%2Ch_50%2Cl_fetch:aHR0cHM6Ly9zdGF0aWMuemVubi5zdHVkaW8vdXNlci11cGxvYWQvYXZhdGFyL2ZhODgxODE3N2EuanBlZw==%2Cr_max%2Cw_50%2Cx_139%2Cy_84/v1627283836/default/og-base-w1200-v2.png?_a=BACMTiAE"
+    "image": ""
   },
   {
     "date": "2026/06/29",
@@ -1784,7 +1784,7 @@
     "title": "「エンジニア中心主義」だった私がPdMに転身して、プロダクト開発の見え方が変わった",
     "author": "福田 理仁",
     "type": "TALK",
-    "status": "進行中",
+    "status": "完了",
     "key": "TALK-94",
     "url": "https://docs.google.com/presentation/d/1Jy1VlrhBzSZ8JbuHVAynJB43nQW9-5CwDLey-8KdWeM/edit?usp=sharing",
     "image": ""
